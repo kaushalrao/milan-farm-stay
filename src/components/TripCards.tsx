@@ -40,7 +40,7 @@ export default function TripCards() {
   };
 
   return (
-    <section className="py-12 -mt-12 relative z-20" id="plan">
+    <section className="pt-12 pb-4 -mt-12 relative z-20" id="plan">
       <div className="container mx-auto px-4 max-w-5xl">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {tripOptions.map((trip) => (
