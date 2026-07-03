@@ -7,7 +7,7 @@ export default function HomeCook() {
             <i className="ph-fill ph-cooking-pot"></i>
           </div>
           <div>
-            <h4 className="font-serif text-2xl font-semibold text-dark">Home Cooked Meals</h4>
+            <h4 className="font-serif text-2xl font-semibold text-dark">Home Cooked Veg Meals</h4>
             <p className="text-sm text-text-muted">Pre-order meals</p>
           </div>
         </div>

@@ -1,5 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
+const Player = dynamic(() => import("@lottiefiles/react-lottie-player").then((mod) => mod.Player), { ssr: false });
 
 export default function MobileFABs() {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,8 +33,10 @@ export default function MobileFABs() {
             <div className="w-8 h-8 rounded-full bg-[#25D366]/20 text-[#25D366] flex items-center justify-center shrink-0"><i className="ph-fill ph-whatsapp-logo"></i></div>
             WhatsApp Host
           </a>
-          <a href="https://wa.me/919876543210?text=Hi,%20I%20would%20like%20to%20pre-order%20meals." target="_blank" rel="noreferrer" className="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-cream transition-colors text-dark font-medium">
-            <div className="w-8 h-8 rounded-full bg-airbnb-coral/20 text-airbnb-coral flex items-center justify-center shrink-0"><i className="ph-fill ph-cooking-pot"></i></div>
+          <a href="https://wa.me/919876543210?text=Hi,%20I%20would%20like%20to%20pre-order%20meals." target="_blank" rel="noreferrer" className="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-cream transition-colors text-dark font-medium group">
+            <div className="w-8 h-8 rounded-full bg-airbnb-coral/20 text-airbnb-coral flex items-center justify-center shrink-0 overflow-hidden">
+              <Player src="/boiling-pot.json" autoplay loop style={{ height: '32px', width: '32px' }} />
+            </div>
             Message Cook
           </a>
           <div className="h-px bg-border my-1"></div>

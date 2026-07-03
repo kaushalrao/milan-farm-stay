@@ -16,6 +16,13 @@
 
   --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-serif), ui-serif, Georgia, serif;
+
+  --animate-wiggle: wiggle 1.5s ease-in-out infinite;
+
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(-12deg); }
+    50% { transform: rotate(12deg); }
+  }
 }
 
 @layer utilities {

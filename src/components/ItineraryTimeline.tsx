@@ -12,7 +12,7 @@ const roadTripStops = [
     tips: "Leave by 6:00 AM. Watch a beautiful highway sunrise.",
     duration: "N/A",
     drivingTime: "Drive 3 hrs",
-    mapsUrl: "https://maps.google.com"
+    mapsUrl: "https://www.google.com/maps/search/Bangalore"
   },
   {
     title: "Shree Doddagaddavalli Temple",
@@ -22,7 +22,7 @@ const roadTripStops = [
     tips: "Capture the symmetry of the four shrines from the eastern entrance.",
     duration: "Visit 45 mins",
     drivingTime: "Drive 30 mins",
-    mapsUrl: "https://maps.app.goo.gl/..." 
+    mapsUrl: "https://www.google.com/maps/search/Shree+Doddagaddavalli+Mahalakshmi+Temple" 
   },
   {
     title: "Hoysaleswara Temple, Halebidu",
@@ -32,7 +32,7 @@ const roadTripStops = [
     tips: "Zoom in on the intricate jewelry carved on the statues. Best lit in late morning.",
     duration: "Visit 1.5 hrs",
     drivingTime: "Drive 20 mins",
-    mapsUrl: "https://maps.google.com"
+    mapsUrl: "https://www.google.com/maps/search/Hoysaleswara+Temple,+Halebidu"
   },
   {
     title: "Mango Tree Veg Restaurant",
@@ -42,7 +42,7 @@ const roadTripStops = [
     tips: "Photograph the colorful thali spread from a top-down angle.",
     duration: "Visit 1 hr",
     drivingTime: "Drive 15 mins",
-    mapsUrl: "https://maps.google.com"
+    mapsUrl: "https://www.google.com/maps/search/Mango+Tree+Veg+Restaurant+Hassan"
   },
   {
     title: "Yagachi Water Adventure",
@@ -52,7 +52,7 @@ const roadTripStops = [
     tips: "Action shots of the water sports look great with a fast shutter speed.",
     duration: "Visit 1 hr",
     drivingTime: "Drive 10 mins",
-    mapsUrl: "https://maps.google.com"
+    mapsUrl: "https://www.google.com/maps/search/Yagachi+Water+Adventure+Centre"
   },
   {
     title: "Belur Chennakeshava Temple",
@@ -62,7 +62,7 @@ const roadTripStops = [
     tips: "Look for the 'Darpana Sundari'. Use a wide-angle lens.",
     duration: "Visit 1.5 hrs",
     drivingTime: "Drive 45 mins",
-    mapsUrl: "https://maps.google.com"
+    mapsUrl: "https://www.google.com/maps/search/Chennakeshava+Temple,+Belur"
   },
   {
     title: "Mudigere",
@@ -72,7 +72,7 @@ const roadTripStops = [
     tips: "Roll down the windows and capture a quick video of the misty roads.",
     duration: "N/A",
     drivingTime: "Drive 20 mins",
-    mapsUrl: "https://maps.google.com"
+    mapsUrl: "https://www.google.com/maps/search/Mudigere,+Karnataka"
   },
   {
     title: "Arrival at Milan Farm Stay",
@@ -82,7 +82,7 @@ const roadTripStops = [
     tips: "The golden hour sunlight hitting the estate house is perfect.",
     duration: "Check-in",
     drivingTime: "Arrived",
-    mapsUrl: "https://maps.google.com"
+    mapsUrl: "https://www.google.com/maps/search/Milan+Farm+Stay+Mudigere"
   }
 ];
 
@@ -95,7 +95,7 @@ const day2Stops = [
     tips: "Go early in the morning for a sea of clouds.",
     duration: "Visit 2 hrs",
     drivingTime: "Drive 30 mins",
-    mapsUrl: "https://maps.google.com"
+    mapsUrl: "https://www.google.com/maps/search/Devaramane+Viewpoint+Mudigere"
   },
   {
     title: "Abbi Falls",
@@ -105,7 +105,7 @@ const day2Stops = [
     tips: "Use a slow shutter speed on your phone for silky water.",
     duration: "Visit 1.5 hrs",
     drivingTime: "Drive 40 mins",
-    mapsUrl: "https://maps.google.com"
+    mapsUrl: "https://www.google.com/maps/search/Abbi+Falls"
   }
 ];
 
@@ -118,7 +118,7 @@ const day3Stops = [
     tips: "Macro shots of the red coffee cherries look incredible.",
     duration: "Visit 1.5 hrs",
     drivingTime: "Walk",
-    mapsUrl: "https://maps.google.com"
+    mapsUrl: "https://www.google.com/maps/search/Milan+Farm+Stay+Mudigere"
   }
 ];
 
@@ -259,7 +259,7 @@ export default function ItineraryTimeline({ days }: { days: string }) {
   const currentStops = getStopsForDay(activeTab);
 
   return (
-    <div className="relative pb-8 px-4 max-w-xl mx-auto" ref={timelineRef}>
+    <div className="relative pb-8 px-4 max-w-xl mx-auto min-h-[800px]" ref={timelineRef}>
       
       {/* Sticky Day Tabs (only show if trip is > 1 day) */}
       {numDays > 1 && (
@@ -269,7 +269,12 @@ export default function ItineraryTimeline({ days }: { days: string }) {
               key={i + 1}
               onClick={() => {
                 setActiveTab(i + 1);
-                window.scrollTo({ top: (timelineRef.current?.offsetTop || 0) - 100, behavior: 'smooth' });
+                setTimeout(() => {
+                  if (timelineRef.current) {
+                    const y = timelineRef.current.getBoundingClientRect().top + window.scrollY - 100;
+                    window.scrollTo({ top: y, behavior: 'smooth' });
+                  }
+                }, 10);
               }}
               className={`px-4 py-1.5 rounded-full text-sm font-semibold transition-all ${
                 activeTab === i + 1
@@ -301,7 +306,7 @@ export default function ItineraryTimeline({ days }: { days: string }) {
 
       {/* Floating Progress Bar */}
       {currentStop && (
-        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none transition-all duration-300 animate-in fade-in slide-in-from-bottom-4">
+        <div className="fixed bottom-24 md:bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none transition-all duration-300 animate-in fade-in slide-in-from-bottom-4">
           <div className="bg-dark/95 backdrop-blur-md text-white px-5 py-2.5 rounded-full shadow-xl flex items-center gap-3 text-[13px] font-medium border border-white/10 w-max max-w-[90vw]">
             <div className="flex items-center gap-1 text-airbnb-coral text-[10px]">
               <span>●</span><span className="tracking-tighter opacity-50">────</span><span>○</span>
