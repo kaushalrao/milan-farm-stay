@@ -1,0 +1,47 @@
+"use client";
+
+import { useState } from "react";
+import ItineraryTimeline from "./ItineraryTimeline";
+
+const tabs = [
+  { id: "1", label: "1 Day", icon: "ph-car-profile" },
+  { id: "2", label: "2 Days", icon: "ph-plant" },
+  { id: "3", label: "3 Days", icon: "ph-coffee" },
+  { id: "custom", label: "Custom", icon: "ph-mountains" },
+];
+
+export default function TripPlanner() {
+  const [selectedDays, setSelectedDays] = useState("1");
+
+  return (
+    <section className="py-16 md:py-24" id="plan">
+      <div className="container mx-auto px-6 max-w-6xl">
+        <div className="text-center mb-12">
+          <h2 className="font-serif text-3xl md:text-5xl font-semibold text-dark mb-4">Design Your Trip</h2>
+          <p className="text-lg text-text-muted">Select the duration of your stay to view our curated recommendations.</p>
+        </div>
+        
+        <div className="flex justify-center mb-16">
+          <div className="inline-flex bg-soft-beige p-1 rounded-full flex-wrap justify-center">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setSelectedDays(tab.id)}
+                className={`flex items-center gap-2 px-6 py-3 rounded-full font-medium text-base transition-all duration-300 ${
+                  selectedDays === tab.id
+                    ? "bg-white text-dark shadow-sm"
+                    : "text-text-muted hover:text-dark hover:bg-soft-beige/50"
+                }`}
+              >
+                <i className={`ph ${tab.icon} text-xl`}></i>
+                {tab.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <ItineraryTimeline days={selectedDays} />
+      </div>
+    </section>
+  );
+}
