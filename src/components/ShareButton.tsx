@@ -6,7 +6,7 @@ export default function ShareButton() {
   const whatsappLink = "https://wa.me/?text=" + encodeURIComponent(shareText + " " + shareUrl);
 
   return (
-    <section className="py-16 bg-cream border-t border-border">
+    <section className="py-8 bg-cream border-t border-border">
       <div className="container mx-auto px-6 max-w-2xl text-center">
         <h3 className="font-serif text-3xl text-dark mb-4">Share this Guide</h3>
         <p className="text-text-muted mb-8 text-lg">Send this itinerary to your travel companions so everyone stays on track.</p>

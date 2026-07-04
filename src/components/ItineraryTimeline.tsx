@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import { createPortal } from "react-dom";
 
 // The strict Bangalore to Milan Farm Stay route
 const roadTripStops = [
@@ -132,9 +133,7 @@ function CompactStopCard({ stop }: { stop: any }) {
   const [isExpanded, setIsExpanded] = useState(false);
   
   return (
-    <div className="relative pl-[36px] md:pl-[48px] mb-6 group stop-card" data-stop-title={stop.title}>
-      {/* Thinner Timeline Dot */}
-      <div className="absolute left-[15px] md:left-[21px] top-6 w-[8px] h-[8px] rounded-full bg-airbnb-coral border-[1.5px] border-white shadow-[0_0_0_2px_var(--color-airbnb-coral)] z-10"></div>
+    <div className="relative mb-6 group stop-card" data-stop-title={stop.title}>
       
       <div className="bg-white rounded-2xl overflow-hidden shadow-sm transition-all duration-300 border border-border/50 hover:shadow-md">
         <div className="relative h-[120px] sm:h-[140px] w-full overflow-hidden">
@@ -212,13 +211,46 @@ export default function ItineraryTimeline({ days }: { days: string }) {
   const numDays = parseInt(days) || 1;
   const [activeTab, setActiveTab] = useState(1);
   const [currentStop, setCurrentStop] = useState("");
+  const [isTimelineVisible, setIsTimelineVisible] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const timelineRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Setup reliable scroll listener for timeline visibility
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!timelineRef.current) return;
+      const rect = timelineRef.current.getBoundingClientRect();
+      const isVisible = rect.top < window.innerHeight && rect.bottom > 80;
+      setIsTimelineVisible(isVisible);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // Initial check
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Close dropdown on outside click or scroll
+  useEffect(() => {
+    const handleOutsideInteraction = () => setIsDropdownOpen(false);
+    if (isDropdownOpen) {
+      window.addEventListener("scroll", handleOutsideInteraction, { passive: true });
+      window.addEventListener("click", handleOutsideInteraction);
+    }
+    return () => {
+      window.removeEventListener("scroll", handleOutsideInteraction);
+      window.removeEventListener("click", handleOutsideInteraction);
+    };
+  }, [isDropdownOpen]);
 
   // Setup Intersection Observer for Floating Progress
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        // Find the visible entry that is intersecting most
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const title = entry.target.getAttribute("data-stop-title");
@@ -231,7 +263,6 @@ export default function ItineraryTimeline({ days }: { days: string }) {
 
     const stopCards = document.querySelectorAll(".stop-card");
     stopCards.forEach((card) => observer.observe(card));
-
     return () => observer.disconnect();
   }, [activeTab, days]);
 
@@ -252,34 +283,51 @@ export default function ItineraryTimeline({ days }: { days: string }) {
   return (
     <div className="relative pb-8 px-4 max-w-xl mx-auto" ref={timelineRef}>
       
-      {/* Sticky Day Tabs (only show if trip is > 1 day) */}
-      {numDays > 1 && (
-        <div className="sticky top-[16px] z-40 flex items-center justify-center gap-2 mb-4 bg-cream/80 backdrop-blur-md p-1.5 rounded-full shadow-sm border border-white/50 w-fit mx-auto">
-          {Array.from({ length: numDays }).map((_, i) => (
+      {/* Fixed Day Tabs in Navbar area (only show if trip is > 1 day & timeline is visible) */}
+      {mounted && numDays > 1 && isTimelineVisible && createPortal(
+        <div className="fixed top-[12px] right-6 z-[60] animate-in fade-in slide-in-from-top-2 duration-300">
+          <div className="relative" onClick={(e) => e.stopPropagation()}>
             <button
-              key={i + 1}
-              onClick={() => {
-                setActiveTab(i + 1);
-                setTimeout(() => {
-                  document.getElementById("itinerary-view")?.scrollIntoView({ behavior: "smooth" });
-                }, 10);
-              }}
-              className={`px-4 py-1.5 rounded-full text-sm font-semibold transition-all ${
-                activeTab === i + 1
-                  ? "bg-dark text-white shadow-sm"
-                  : "text-text-muted hover:bg-white hover:text-dark"
-              }`}
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              className="flex items-center gap-2 bg-white/95 backdrop-blur-md text-dark font-bold text-xs py-2 pl-4 pr-3 rounded-full shadow-md border border-border/50 hover:bg-cream transition-colors"
             >
-              Day {i + 1}
+              Day {activeTab}
+              <i className={`ph-bold ph-caret-down text-[10px] text-text-muted transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""}`}></i>
             </button>
-          ))}
-        </div>
+            
+            {isDropdownOpen && (
+              <div className="absolute top-full right-0 mt-2 w-32 bg-white rounded-xl shadow-lg border border-border/50 overflow-hidden animate-in fade-in zoom-in-95 duration-200 origin-top-right">
+                {Array.from({ length: numDays }).map((_, i) => (
+                  <button
+                    key={i + 1}
+                    onClick={() => {
+                      setActiveTab(i + 1);
+                      setIsDropdownOpen(false);
+                      setTimeout(() => {
+                        document.getElementById("itinerary-view")?.scrollIntoView({ behavior: "smooth" });
+                      }, 10);
+                    }}
+                    className={`w-full text-left px-4 py-3 text-xs font-bold transition-colors flex items-center justify-between ${
+                      activeTab === i + 1
+                        ? "bg-airbnb-coral/10 text-airbnb-coral"
+                        : "text-dark hover:bg-cream"
+                    }`}
+                  >
+                    Day {i + 1}
+                    {activeTab === i + 1 && <i className="ph-bold ph-check text-[10px]"></i>}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>,
+        document.body
       )}
 
       <DaySummaryCard dayNum={activeTab} />
       
       {/* Timeline Container */}
-      <div className="relative before:content-[''] before:absolute before:top-4 before:left-[18px] md:before:left-[24px] before:w-[2px] before:h-[calc(100%-40px)] before:bg-border/60">
+      <div className="relative flex flex-col gap-2">
         {currentStops.map((stop: any, idx: number) => (
           <CompactStopCard key={idx} stop={stop} />
         ))}

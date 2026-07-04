@@ -27,22 +27,31 @@ export default function CookModal({ isOpen, onClose }: { isOpen: boolean; onClos
         <p className="text-text-muted text-sm mb-6 leading-relaxed">
           Please note that lunch and dinner require prior notice as meals are freshly prepared and are <strong className="text-airbnb-coral font-bold">payable directly to vendor</strong>
         </p>
-        <div className="flex gap-3 w-full">
-          <a
-            href="tel:+919482214882"
-            onClick={onClose}
-            className="flex-1 flex items-center justify-center gap-2 py-3.5 bg-dark text-white rounded-xl font-semibold transition-transform hover:-translate-y-1"
-          >
-            <i className="ph-fill ph-phone text-xl"></i> Call
-          </a>
+        <div className="flex flex-col gap-3 w-full">
+          <div className="grid grid-cols-2 gap-3">
+            <a
+              href="tel:+919482214882"
+              onClick={onClose}
+              className="flex items-center justify-center gap-2 py-3 bg-dark text-white rounded-xl font-semibold transition-transform hover:-translate-y-1 text-sm"
+            >
+              <i className="ph-fill ph-device-mobile text-lg"></i> Mobile
+            </a>
+            <a
+              href="tel:+919066902249"
+              onClick={onClose}
+              className="flex items-center justify-center gap-2 py-3 bg-dark text-white rounded-xl font-semibold transition-transform hover:-translate-y-1 text-sm"
+            >
+              <i className="ph-fill ph-phone text-lg"></i> Home
+            </a>
+          </div>
           <a
             href="https://wa.me/919482214882?text=Hi%20Prasad,%20we%20are%20staying%20at%20Milan%20Farm%20Stay%20and%20would%20like%20to%20pre-order%20meals."
             target="_blank"
             rel="noreferrer"
             onClick={onClose}
-            className="flex-[1.5] flex items-center justify-center gap-2 py-3.5 bg-[#25D366] text-white rounded-xl font-semibold transition-transform hover:-translate-y-1"
+            className="w-full flex items-center justify-center gap-2 py-3.5 bg-[#25D366] text-white rounded-xl font-semibold transition-transform hover:-translate-y-1"
           >
-            <i className="ph-fill ph-whatsapp-logo text-xl"></i> Chat
+            <i className="ph-fill ph-whatsapp-logo text-xl"></i> Chat on WhatsApp
           </a>
         </div>
       </div>

@@ -15,7 +15,7 @@ export default function Home() {
         <Hero />
         <TripCards />
 
-        <section className="py-20" id="contacts">
+        <section className="pt-8 pb-8" id="contacts">
           <div className="container mx-auto px-6 max-w-5xl">
             <div className="text-center mb-12">
               <h2 className="font-serif text-3xl md:text-4xl font-semibold text-dark mb-4">Your Hosts at Milan Farm Stays</h2>
