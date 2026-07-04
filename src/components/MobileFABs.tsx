@@ -41,6 +41,10 @@ export default function MobileFABs() {
             </div>
             Contact Cook
           </button>
+          <a href="tel:+919702545810" className="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-cream transition-colors text-dark font-medium">
+            <div className="w-8 h-8 rounded-full bg-orange-500/20 text-orange-600 flex items-center justify-center shrink-0"><i className="ph-fill ph-package"></i></div>
+            Contact Delivery
+          </a>
           <div className="h-px bg-border my-1"></div>
           <a href="https://maps.app.goo.gl/27tXcbhyWdxo7We8A" target="_blank" rel="noreferrer" className="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-cream transition-colors text-dark font-medium">
             <div className="w-8 h-8 rounded-full bg-dark text-white flex items-center justify-center shrink-0"><i className="ph-fill ph-map-pin"></i></div>

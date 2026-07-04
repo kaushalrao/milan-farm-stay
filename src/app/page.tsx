@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import TripCards from "@/components/TripCards";
 import HomeCook from "@/components/HomeCook";
+import HomeDelivery from "@/components/HomeDelivery";
 import HostProfile from "@/components/HostProfile";
 import ShareButton from "@/components/ShareButton";
 import Footer from "@/components/Footer";
@@ -43,6 +44,7 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <HomeCook />
+              <HomeDelivery />
             </div>
           </div>
         </section>
