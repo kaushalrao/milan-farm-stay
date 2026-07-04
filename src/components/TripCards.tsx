@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import ItineraryTimeline from "./ItineraryTimeline";
 
 const tripOptions = [
@@ -77,38 +78,66 @@ export default function TripCards() {
             const isSelected = selectedDays === trip.id;
 
             return (
-              <div
+              <motion.div
                 key={trip.id}
-                className={`group relative bg-white rounded-[20px] overflow-hidden cursor-pointer transition-all duration-300 h-[160px] flex flex-col col-span-1 ${isSelected
-                    ? "ring-2 ring-airbnb-coral shadow-md scale-[1.02] ring-offset-2 ring-offset-cream z-10"
-                    : "border border-border/50 shadow-sm hover:-translate-y-1 hover:shadow-md"
-                  }`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.15 + parseInt(trip.id) * 0.05, ease: [0.22, 1, 0.36, 1] }}
+                whileHover={{ y: -4, scale: 1.01 }}
+                whileTap={{ scale: 0.98 }}
+                className={`group relative bg-white rounded-[20px] overflow-hidden cursor-pointer h-[160px] flex flex-col col-span-1 shadow-sm hover:shadow-md`}
                 onClick={() => handleSelect(trip)}
               >
-                {/* Selected Checkmark */}
+                {/* Active Selection Ring via LayoutID */}
                 {isSelected && (
-                  <div className="absolute top-2 right-2 z-10 bg-white rounded-full w-6 h-6 flex items-center justify-center shadow-sm animate-in zoom-in-50 duration-300">
-                    <i className="ph-fill ph-check-circle text-airbnb-coral text-lg"></i>
-                  </div>
+                  <motion.div
+                    layoutId="activeTripRing"
+                    className="absolute inset-0 border-2 border-airbnb-coral rounded-[20px] z-20 pointer-events-none shadow-[0_0_15px_rgba(255,90,95,0.2)]"
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  />
                 )}
+
+                {/* Selected Checkmark */}
+                <AnimatePresence>
+                  {isSelected && (
+                    <motion.div 
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      exit={{ scale: 0, opacity: 0 }}
+                      transition={{ type: "spring", bounce: 0.4, duration: 0.5 }}
+                      className="absolute top-2 right-2 z-30 bg-white rounded-full w-6 h-6 flex items-center justify-center shadow-sm"
+                    >
+                      <i className="ph-fill ph-check-circle text-airbnb-coral text-lg"></i>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
 
                 {/* Top 50%: Thumbnail */}
                 <div className="h-1/2 w-full relative overflow-hidden bg-soft-beige">
-                  <img src={trip.img} alt={trip.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
-
+                  <motion.img 
+                    src={trip.img} 
+                    alt={trip.title} 
+                    className="w-full h-full object-cover" 
+                    whileHover={{ scale: 1.04 }}
+                    transition={{ duration: 0.4 }}
+                    loading="lazy" 
+                  />
                 </div>
 
                 {/* Bottom 50%: Info */}
-                <div className="h-1/2 p-3 md:p-4 flex justify-between items-center bg-white">
+                <div className="h-1/2 p-3 md:p-4 flex justify-between items-center bg-white z-10 relative">
                   <div className="flex flex-col justify-center h-full">
                     <h3 className="font-serif text-lg md:text-xl font-semibold text-dark leading-none mb-1">{trip.title}</h3>
                     <p className="text-text-muted text-[11px] md:text-xs font-medium truncate max-w-[120px] md:max-w-[200px]">{trip.subtitle}</p>
                   </div>
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-colors ${isSelected ? 'bg-airbnb-coral/10 text-airbnb-coral' : 'bg-cream text-dark group-hover:bg-soft-beige'}`}>
+                  <motion.div 
+                    className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-colors ${isSelected ? 'bg-airbnb-coral/10 text-airbnb-coral' : 'bg-cream text-dark group-hover:bg-soft-beige'}`}
+                    whileHover={{ x: 3 }}
+                  >
                     <i className="ph-bold ph-caret-right"></i>
-                  </div>
+                  </motion.div>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>

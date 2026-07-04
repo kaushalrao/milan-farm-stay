@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { createPortal } from "react-dom";
 
 // The strict Bangalore to Milan Farm Stay route
@@ -271,19 +272,31 @@ const daySummaries: Record<number, any> = {
   4: { day: "Day 4", title: "Kalasa & Kelagur Route", text: "5 Stops • 110 km • Leisure Morning" },
 };
 
-function CompactStopCard({ stop }: { stop: any }) {
+function CompactStopCard({ stop, index }: { stop: any, index: number }) {
   const [isExpanded, setIsExpanded] = useState(false);
   
   return (
-    <div className="relative mb-6 group stop-card" data-stop-title={stop.title}>
+    <motion.div 
+      layout
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
+      className="relative mb-6 group stop-card" 
+      data-stop-title={stop.title}
+    >
       
-      <div className="bg-white rounded-2xl overflow-hidden shadow-sm transition-all duration-300 border border-border/50 hover:shadow-md">
-        <div className="relative h-[120px] sm:h-[140px] w-full overflow-hidden">
+      <motion.div layout className="bg-white rounded-2xl overflow-hidden shadow-sm transition-all duration-300 border border-border/50 hover:shadow-md">
+        <motion.div layout className="relative h-[120px] sm:h-[140px] w-full overflow-hidden cursor-pointer" onClick={() => setIsExpanded(!isExpanded)}>
           <span className="absolute top-2 left-2 bg-white/95 backdrop-blur-md px-2 py-0.5 rounded-md text-[10px] font-bold uppercase text-dark z-10 shadow-sm tracking-wider">
             {stop.category}
           </span>
-          <img src={stop.img} alt={stop.title} className="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
-        </div>
+          <motion.img 
+            whileHover={{ scale: 1.04 }}
+            transition={{ duration: 0.6 }}
+            src={stop.img} alt={stop.title} className="w-full h-full object-cover" 
+          />
+        </motion.div>
         
         <div className="p-4">
           <h4 className="font-serif text-[18px] leading-tight font-semibold text-dark mb-2">{stop.title}</h4>
@@ -299,80 +312,94 @@ function CompactStopCard({ stop }: { stop: any }) {
             {stop.desc}
           </p>
           
-          <div className="flex items-center justify-between">
+          <motion.div layout className="flex items-center justify-between mt-1">
             <button 
               onClick={() => setIsExpanded(!isExpanded)} 
               className="text-[13px] font-semibold text-airbnb-coral flex items-center gap-1 py-1"
             >
               {isExpanded ? "▲ Hide Details" : "▼ View Details"}
             </button>
-            <a href={stop.mapsUrl} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center px-4 h-[36px] border border-border rounded-full text-[12px] font-semibold text-dark transition-colors hover:bg-soft-beige gap-1">
-              📍 Maps
-            </a>
-          </div>
+            <motion.a 
+              whileTap={{ scale: 0.95 }}
+              href={stop.mapsUrl} target="_blank" rel="noreferrer" 
+              className="inline-flex items-center justify-center px-4 h-[36px] border border-border rounded-full text-[12px] font-semibold text-dark transition-colors hover:bg-soft-beige gap-1"
+            >
+              <i className="ph-bold ph-map-pin text-[14px]"></i> Maps
+            </motion.a>
+          </motion.div>
           
           {/* Expandable Section */}
-          <div className={`overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? "max-h-[800px] opacity-100 mt-3 pt-3 border-t border-border" : "max-h-0 opacity-0"}`}>
-            <div className="grid grid-cols-1 gap-2">
-              {stop.bestTime && (
-                <div className="bg-soft-beige/30 p-2.5 rounded-xl flex items-start gap-2">
-                  <i className="ph-fill ph-clock text-airbnb-coral text-[14px] mt-0.5"></i>
-                  <div>
-                    <h5 className="font-semibold text-dark text-[11px]">Best Time</h5>
-                    <p className="text-[11px] text-text-muted">{stop.bestTime}</p>
-                  </div>
+          <AnimatePresence>
+            {isExpanded && (
+              <motion.div 
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="overflow-hidden mt-3 pt-3 border-t border-border"
+              >
+                <div className="grid grid-cols-1 gap-2">
+                  {stop.bestTime && (
+                    <div className="bg-soft-beige/30 p-2.5 rounded-xl flex items-start gap-2">
+                      <i className="ph-fill ph-clock text-airbnb-coral text-[14px] mt-0.5"></i>
+                      <div>
+                        <h5 className="font-semibold text-dark text-[11px]">Best Time</h5>
+                        <p className="text-[11px] text-text-muted">{stop.bestTime}</p>
+                      </div>
+                    </div>
+                  )}
+                  {stop.entryFee && (
+                    <div className="bg-soft-beige/30 p-2.5 rounded-xl flex items-start gap-2">
+                      <i className="ph-fill ph-ticket text-airbnb-coral text-[14px] mt-0.5"></i>
+                      <div>
+                        <h5 className="font-semibold text-dark text-[11px]">Entry Fee</h5>
+                        <p className="text-[11px] text-text-muted">{stop.entryFee}</p>
+                      </div>
+                    </div>
+                  )}
+                  {stop.parkingInfo && (
+                    <div className="bg-soft-beige/30 p-2.5 rounded-xl flex items-start gap-2">
+                      <i className="ph-fill ph-car-profile text-airbnb-coral text-[14px] mt-0.5"></i>
+                      <div>
+                        <h5 className="font-semibold text-dark text-[11px]">Parking</h5>
+                        <p className="text-[11px] text-text-muted">{stop.parkingInfo}</p>
+                      </div>
+                    </div>
+                  )}
+                  {stop.tips && (
+                    <div className="bg-soft-beige/30 p-2.5 rounded-xl flex items-start gap-2">
+                      <i className="ph-fill ph-camera text-airbnb-coral text-[14px] mt-0.5"></i>
+                      <div>
+                        <h5 className="font-semibold text-dark text-[11px]">Photo Tip</h5>
+                        <p className="text-[11px] text-text-muted">{stop.tips}</p>
+                      </div>
+                    </div>
+                  )}
+                  {stop.localTips && (
+                    <div className="bg-soft-beige/30 p-2.5 rounded-xl flex items-start gap-2">
+                      <i className="ph-fill ph-info text-airbnb-coral text-[14px] mt-0.5"></i>
+                      <div>
+                        <h5 className="font-semibold text-dark text-[11px]">Local Tip</h5>
+                        <p className="text-[11px] text-text-muted">{stop.localTips}</p>
+                      </div>
+                    </div>
+                  )}
+                  {stop.nearbyCafes && (
+                    <div className="bg-soft-beige/30 p-2.5 rounded-xl flex items-start gap-2">
+                      <i className="ph-fill ph-coffee text-airbnb-coral text-[14px] mt-0.5"></i>
+                      <div>
+                        <h5 className="font-semibold text-dark text-[11px]">Nearby Food</h5>
+                        <p className="text-[11px] text-text-muted">{stop.nearbyCafes}</p>
+                      </div>
+                    </div>
+                  )}
                 </div>
-              )}
-              {stop.entryFee && (
-                <div className="bg-soft-beige/30 p-2.5 rounded-xl flex items-start gap-2">
-                  <i className="ph-fill ph-ticket text-airbnb-coral text-[14px] mt-0.5"></i>
-                  <div>
-                    <h5 className="font-semibold text-dark text-[11px]">Entry Fee</h5>
-                    <p className="text-[11px] text-text-muted">{stop.entryFee}</p>
-                  </div>
-                </div>
-              )}
-              {stop.parkingInfo && (
-                <div className="bg-soft-beige/30 p-2.5 rounded-xl flex items-start gap-2">
-                  <i className="ph-fill ph-car-profile text-airbnb-coral text-[14px] mt-0.5"></i>
-                  <div>
-                    <h5 className="font-semibold text-dark text-[11px]">Parking</h5>
-                    <p className="text-[11px] text-text-muted">{stop.parkingInfo}</p>
-                  </div>
-                </div>
-              )}
-              {stop.tips && (
-                <div className="bg-soft-beige/30 p-2.5 rounded-xl flex items-start gap-2">
-                  <i className="ph-fill ph-camera text-airbnb-coral text-[14px] mt-0.5"></i>
-                  <div>
-                    <h5 className="font-semibold text-dark text-[11px]">Photo Tip</h5>
-                    <p className="text-[11px] text-text-muted">{stop.tips}</p>
-                  </div>
-                </div>
-              )}
-              {stop.localTips && (
-                <div className="bg-soft-beige/30 p-2.5 rounded-xl flex items-start gap-2">
-                  <i className="ph-fill ph-info text-airbnb-coral text-[14px] mt-0.5"></i>
-                  <div>
-                    <h5 className="font-semibold text-dark text-[11px]">Local Tip</h5>
-                    <p className="text-[11px] text-text-muted">{stop.localTips}</p>
-                  </div>
-                </div>
-              )}
-              {stop.nearbyCafes && (
-                <div className="bg-soft-beige/30 p-2.5 rounded-xl flex items-start gap-2">
-                  <i className="ph-fill ph-coffee text-airbnb-coral text-[14px] mt-0.5"></i>
-                  <div>
-                    <h5 className="font-semibold text-dark text-[11px]">Nearby Food</h5>
-                    <p className="text-[11px] text-text-muted">{stop.nearbyCafes}</p>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
 
@@ -409,14 +436,15 @@ function DaySummaryCard({ dayNum, numDays }: { dayNum: number, numDays: number }
         </div>
       </div>
       
-      <button 
+      <motion.button 
+        whileTap={{ scale: 0.9 }}
         onClick={handleShare}
         className="w-10 h-10 shrink-0 flex flex-col items-center justify-center bg-cream rounded-xl text-dark hover:bg-soft-beige transition-colors ml-2"
         title="Share this Day"
       >
         <i className={`ph-bold ${copied ? 'ph-check text-green-600' : 'ph-share-network'} text-base mb-0.5`}></i>
         <span className="text-[8px] font-bold uppercase tracking-wider">{copied ? 'Copied' : 'Share'}</span>
-      </button>
+      </motion.button>
     </div>
   );
 }
@@ -544,13 +572,14 @@ export default function ItineraryTimeline({ days }: { days: string }) {
       {mounted && numDays > 1 && isTimelineVisible && (
         <div className={`fixed top-0 right-6 flex items-center z-[60] animate-in fade-in slide-in-from-top-2 transition-all duration-300 ${isScrolled ? 'h-[56px]' : 'h-[80px]'}`}>
           <div className="relative" onClick={(e) => e.stopPropagation()}>
-            <button
+            <motion.button
+              whileTap={{ scale: 0.95 }}
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               className="flex items-center gap-2 bg-white/95 backdrop-blur-md text-dark font-bold text-xs py-2 pl-4 pr-3 rounded-full shadow-md border border-border/50 hover:bg-cream transition-colors max-w-[calc(100vw-260px)] sm:max-w-[220px]"
             >
               <span className="truncate">Day {activeTab} - {daySummaries[activeTab]?.title}</span>
               <i className={`ph-bold ph-caret-down text-[10px] text-text-muted shrink-0 transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""}`}></i>
-            </button>
+            </motion.button>
             
             {isDropdownOpen && (
               <div className="absolute top-full right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-border/50 overflow-hidden animate-in fade-in zoom-in-95 duration-200 origin-top-right">
@@ -589,29 +618,42 @@ export default function ItineraryTimeline({ days }: { days: string }) {
 
       <DaySummaryCard dayNum={activeTab} numDays={numDays} />
       
-      {/* Timeline Container */}
-      <div className="relative flex flex-col gap-2">
-        {currentStops.map((stop: any, idx: number) => (
-          <CompactStopCard key={idx} stop={stop} />
-        ))}
+      {/* Timeline Container with Day Switching Animation */}
+      <AnimatePresence mode="wait">
+        <motion.div 
+          key={activeTab}
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: 20 }}
+          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          className="relative flex flex-col gap-2"
+        >
+          {currentStops.map((stop: any, idx: number) => (
+            <CompactStopCard key={idx} stop={stop} index={idx} />
+          ))}
 
-        {activeTab === 2 && (
-          <div className="mt-4 pt-6 border-t border-border">
-            <h3 className="font-serif text-xl font-bold text-dark mb-4 text-center flex items-center justify-center gap-2">
-              <i className="ph-fill ph-fork-knife text-airbnb-coral"></i> Recommended Restaurants
-            </h3>
-            {day2Restaurants.map((rest, idx) => (
-              <RestaurantCard key={idx} stop={rest} />
-            ))}
-          </div>
-        )}
-      </div>
+          {activeTab === 2 && (
+            <div className="mt-4 pt-6 border-t border-border">
+              <h3 className="font-serif text-xl font-bold text-dark mb-4 text-center flex items-center justify-center gap-2">
+                <i className="ph-fill ph-fork-knife text-airbnb-coral"></i> Recommended Restaurants
+              </h3>
+              {day2Restaurants.map((rest, idx) => (
+                <RestaurantCard key={idx} stop={rest} />
+              ))}
+            </div>
+          )}
+        </motion.div>
+      </AnimatePresence>
 
       {/* Complete Road Trip Route Button */}
       <div className="text-center mt-8">
-        <a href="https://maps.google.com" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center px-6 py-3.5 bg-airbnb-coral text-white rounded-2xl font-semibold text-sm transition-all hover:bg-rose-600 shadow-sm w-full gap-2">
+        <motion.a 
+          whileTap={{ scale: 0.97 }}
+          href="https://maps.google.com" target="_blank" rel="noreferrer" 
+          className="inline-flex items-center justify-center px-6 py-3.5 bg-airbnb-coral text-white rounded-2xl font-semibold text-sm transition-all hover:bg-rose-600 shadow-sm w-full gap-2"
+        >
           <i className="ph-fill ph-map-trifold text-lg"></i> Open Complete Day Route
-        </a>
+        </motion.a>
       </div>
 
     </div>
