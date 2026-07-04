@@ -180,16 +180,7 @@ function CompactStopCard({ stop }: { stop: any }) {
                 <p className="text-[12px] text-text-muted">{stop.tips}</p>
               </div>
             )}
-            <div className="grid grid-cols-2 gap-2 mt-3">
-               <div className="bg-cream/50 p-2 rounded-lg">
-                 <p className="text-[10px] text-text-muted uppercase font-bold">Best Time</p>
-                 <p className="text-[12px] font-medium text-dark">Morning</p>
-               </div>
-               <div className="bg-cream/50 p-2 rounded-lg">
-                 <p className="text-[10px] text-text-muted uppercase font-bold">Entry Fee</p>
-                 <p className="text-[12px] font-medium text-dark">Free Entry</p>
-               </div>
-            </div>
+
           </div>
         </div>
       </div>
@@ -259,7 +250,7 @@ export default function ItineraryTimeline({ days }: { days: string }) {
   const currentStops = getStopsForDay(activeTab);
 
   return (
-    <div className="relative pb-8 px-4 max-w-xl mx-auto min-h-[800px]" ref={timelineRef}>
+    <div className="relative pb-8 px-4 max-w-xl mx-auto" ref={timelineRef}>
       
       {/* Sticky Day Tabs (only show if trip is > 1 day) */}
       {numDays > 1 && (
@@ -270,10 +261,7 @@ export default function ItineraryTimeline({ days }: { days: string }) {
               onClick={() => {
                 setActiveTab(i + 1);
                 setTimeout(() => {
-                  if (timelineRef.current) {
-                    const y = timelineRef.current.getBoundingClientRect().top + window.scrollY - 100;
-                    window.scrollTo({ top: y, behavior: 'smooth' });
-                  }
+                  document.getElementById("itinerary-view")?.scrollIntoView({ behavior: "smooth" });
                 }, 10);
               }}
               className={`px-4 py-1.5 rounded-full text-sm font-semibold transition-all ${

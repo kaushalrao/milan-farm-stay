@@ -12,13 +12,13 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-col gap-4">
-            <a href="https://maps.google.com" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
+            <a href="https://maps.app.goo.gl/yzBY4r2cDHzE2JpY8" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
               <i className="ph ph-map-pin text-xl"></i> Google Maps
             </a>
-            <a href="https://wa.me/919876543210" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
+            <a href="https://wa.me/919448244666" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
               <i className="ph ph-whatsapp-logo text-xl"></i> WhatsApp
             </a>
-            <a href="tel:+919876543210" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
+            <a href="tel:+919448244666" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
               <i className="ph ph-phone text-xl"></i> Call Us
             </a>
           </div>
