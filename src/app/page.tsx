@@ -22,8 +22,26 @@ export default function Home() {
               <p className="text-text-muted text-lg">We are here to ensure you have a wonderful and comfortable stay.</p>
             </div>
 
+            <div className="grid grid-cols-2 gap-3 md:gap-8 mb-6 md:mb-8">
+              <HostProfile
+                name="Athula Rao K"
+                role="Host"
+                image="/images/athula_profile.jpeg"
+                imgClass="w-full h-full object-cover scale-[1.7] origin-[30%_20%]"
+                desc="Entrepreneur & Nature Enthusiast"
+                years="Hosting for over 6 years"
+                phone="9448244666"
+              />
+              <HostProfile
+                name="Kaushal Kudpi"
+                role="Co-Host"
+                image="/images/kaushal.jpg"
+                desc="Software Engineer & Outdoor Enthusiast"
+                years="Hosting for over 6 years"
+                phone="9448632666"
+              />
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <HostProfile />
               <HomeCook />
             </div>
           </div>

@@ -29,6 +29,15 @@ const tripOptions = [
     time: "6 hrs Drive",
     img: "/images/trip3.png",
     icon: "☕"
+  },
+  {
+    id: "4",
+    hash: "four-days",
+    title: "Four Days",
+    subtitle: "The complete getaway",
+    time: "8 hrs Drive",
+    img: "/images/hero.png",
+    icon: "🌄"
   }
 ];
 
@@ -47,15 +56,14 @@ export default function TripCards() {
   return (
     <section className="pt-2 pb-4 relative z-20" id="plan">
       <div className="container mx-auto px-4 max-w-4xl">
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
           {tripOptions.map((trip) => {
             const isSelected = selectedDays === trip.id;
 
             return (
               <div
                 key={trip.id}
-                className={`group relative bg-white rounded-[20px] overflow-hidden cursor-pointer transition-all duration-300 h-[160px] flex flex-col ${trip.id === "3" ? "col-span-2 md:col-span-1" : "col-span-1"
-                  } ${isSelected
+                className={`group relative bg-white rounded-[20px] overflow-hidden cursor-pointer transition-all duration-300 h-[160px] flex flex-col col-span-1 ${isSelected
                     ? "ring-2 ring-airbnb-coral shadow-md scale-[1.02] ring-offset-2 ring-offset-cream z-10"
                     : "border border-border/50 shadow-sm hover:-translate-y-1 hover:shadow-md"
                   }`}

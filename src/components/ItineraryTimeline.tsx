@@ -89,44 +89,186 @@ const roadTripStops = [
 
 const day2Stops = [
   {
-    title: "Devaramane Viewpoint",
-    category: "Nature",
-    desc: "Stunning viewpoint offering panoramic views of the Western Ghats.",
+    title: "Mullayanagiri Peak",
+    category: "Viewpoint",
+    desc: "Highest peak in Karnataka. Sunrise / panoramic viewpoint.",
     img: "/images/hero.png",
-    tips: "Go early in the morning for a sea of clouds.",
+    tips: "Trek up the stairs early morning to avoid the crowd and heat.",
     duration: "Visit 2 hrs",
-    drivingTime: "Drive 30 mins",
-    mapsUrl: "https://www.google.com/maps/search/Devaramane+Viewpoint+Mudigere"
+    drivingTime: "Drive 45 mins",
+    mapsUrl: "https://www.google.com/maps/search/Mullayanagiri+Peak",
+    parkingInfo: "Paid parking available at the base.",
+    bestTime: "Sunrise or early morning."
   },
   {
-    title: "Abbi Falls",
+    title: "Jhari Waterfalls",
     category: "Waterfall",
-    desc: "Serene waterfall tucked inside a coffee estate.",
+    desc: "Jeep ride (seasonal). Waterfall & photography.",
     img: "/images/trip2.png",
-    tips: "Use a slow shutter speed on your phone for silky water.",
+    tips: "Prepare for a bumpy jeep ride down. Carry a waterproof bag.",
     duration: "Visit 1.5 hrs",
+    drivingTime: "Drive 30 mins",
+    mapsUrl: "https://www.google.com/maps/search/Jhari+Waterfalls",
+    entryFee: "Jeep ride costs approx ₹700 per vehicle."
+  },
+  {
+    title: "Datta Peeta (Baba Budangiri)",
+    category: "Heritage",
+    desc: "Historic pilgrimage site with incredible mountain viewpoints.",
+    img: "/images/trip3.png",
+    tips: "Respect the religious significance of the site.",
+    duration: "Visit 1 hr",
+    drivingTime: "Drive 20 mins",
+    mapsUrl: "https://www.google.com/maps/search/Baba+Budangiri"
+  },
+  {
+    title: "Manikyadhara Falls",
+    category: "Waterfall",
+    desc: "Natural waterfall known for its refreshing stop.",
+    img: "/images/trip2.png",
+    tips: "The water is considered holy. Great for a quick splash.",
+    duration: "Visit 45 mins",
+    drivingTime: "Drive 15 mins",
+    mapsUrl: "https://www.google.com/maps/search/Manikyadhara+Falls"
+  },
+  {
+    title: "Hirekolale Lake",
+    category: "Nature",
+    desc: "Peaceful lake views perfect for sunset photography.",
+    img: "/images/lake.png",
+    tips: "Sunset reflects beautifully on the water with hills in the backdrop.",
+    duration: "Visit 1 hr",
     drivingTime: "Drive 40 mins",
-    mapsUrl: "https://www.google.com/maps/search/Abbi+Falls"
+    mapsUrl: "https://www.google.com/maps/search/Hirekolale+Lake",
+    bestTime: "Late afternoon / Sunset."
+  },
+  {
+    title: "Freedom Park (Chikmagalur)",
+    category: "Leisure",
+    desc: "Evening relaxation at a family-friendly park.",
+    img: "/images/park.png",
+    tips: "Great spot for kids to play and unwind after a long day.",
+    duration: "Visit 1 hr",
+    drivingTime: "Drive 25 mins",
+    mapsUrl: "https://maps.app.goo.gl/9gJzLmhFYukHQMoz5"
+  }
+];
+
+const day2Restaurants = [
+  {
+    title: "Mayura Deluxe",
+    category: "Pure Veg",
+    tags: ["Lunch & Dinner", "Family Friendly"],
+    desc: "Comfortable and popular pure vegetarian dining.",
+    img: "/images/restaurant.png",
+    mapsUrl: "https://www.google.com/maps/search/Mayura+Deluxe+Chikmagalur"
+  },
+  {
+    title: "Hotel Adrika",
+    category: "Multi Cuisine",
+    tags: ["Coffee & Snacks", "Dinner"],
+    desc: "Premium multi-cuisine restaurant with a great ambiance.",
+    img: "/images/restaurant.png",
+    mapsUrl: "https://www.google.com/maps/search/Hotel+Adrika+Chikmagalur"
   }
 ];
 
 const day3Stops = [
   {
-    title: "Estate Coffee Walk",
-    category: "Experience",
-    desc: "Guided walk with the host through the 50-acre plantation.",
-    img: "/images/trip1.png",
-    tips: "Macro shots of the red coffee cherries look incredible.",
+    title: "Devaramane View Point",
+    category: "Nature",
+    desc: "Misty hills and incredible sunrise viewpoint.",
+    img: "/images/hero.png",
+    tips: "The winds can be very strong. Carry a windcheater.",
     duration: "Visit 1.5 hrs",
-    drivingTime: "Walk",
-    mapsUrl: "https://www.google.com/maps/search/Milan+Farm+Stay+Mudigere"
+    drivingTime: "Drive 30 mins",
+    mapsUrl: "https://www.google.com/maps/search/Devaramane+Viewpoint",
+    bestTime: "Early Morning."
+  },
+  {
+    title: "Bettada Bhairaveshwara Temple",
+    category: "Heritage",
+    desc: "Hilltop temple with a scenic drive through the forests.",
+    img: "/images/trip3.png",
+    tips: "The drive itself is beautiful. Stop safely for photos.",
+    duration: "Visit 1 hr",
+    drivingTime: "Drive 20 mins",
+    mapsUrl: "https://www.google.com/maps/search/Bettada+Bhairaveshwara+Temple"
+  },
+  {
+    title: "Majagadahalli Waterfalls",
+    category: "Hidden Gem",
+    desc: "Hidden waterfall requiring a short nature walk.",
+    img: "/images/trip2.png",
+    tips: "Wear shoes with good grip. The path can be slippery.",
+    duration: "Visit 2 hrs",
+    drivingTime: "Drive 45 mins",
+    mapsUrl: "https://www.google.com/maps/search/Majagadahalli+Waterfalls",
+    localTips: "Ask locals for directions as signal might be weak."
+  }
+];
+
+const day4Stops = [
+  {
+    title: "Kelagur Tea Estate",
+    category: "Experience",
+    desc: "Explore tea plantations, take photos, and buy local tea.",
+    img: "/images/tea.png",
+    tips: "Visit the factory outlet to buy fresh tea directly from the estate.",
+    duration: "Visit 1.5 hrs",
+    drivingTime: "Drive 25 mins",
+    mapsUrl: "https://www.google.com/maps/search/Kelagur+Tea+Estate",
+    nearbyCafes: "Estate tea shop."
+  },
+  {
+    title: "Ranijhari Viewpoint",
+    category: "Scenic Route",
+    desc: "Iconic winding roads and a must-visit photo stop.",
+    img: "/images/hero.png",
+    tips: "Drone photography looks spectacular here.",
+    duration: "Visit 45 mins",
+    drivingTime: "Drive 20 mins",
+    mapsUrl: "https://www.google.com/maps/search/Ranijhari+Viewpoint"
+  },
+  {
+    title: "Kodige Falls",
+    category: "Waterfall",
+    desc: "Seasonal waterfall accessible via a short trek.",
+    img: "/images/trip2.png",
+    tips: "Carry drinking water for the short hike.",
+    duration: "Visit 1.5 hrs",
+    drivingTime: "Drive 30 mins",
+    mapsUrl: "https://www.google.com/maps/search/Kodige+Falls",
+    entryFee: "Nominal forest department fee."
+  },
+  {
+    title: "Maidadi View Point",
+    category: "Hidden Gem",
+    desc: "Panoramic Western Ghats hidden viewpoint.",
+    img: "/images/trip1.png",
+    tips: "Very secluded, perfect for peaceful reflection.",
+    duration: "Visit 1 hr",
+    drivingTime: "Drive 40 mins",
+    mapsUrl: "https://www.google.com/maps/search/Maidadi+View+Point"
+  },
+  {
+    title: "Hornadu Annapoorneshwari Temple",
+    category: "Heritage",
+    desc: "Famous temple providing a peaceful ending to the trip.",
+    img: "/images/trip3.png",
+    tips: "Prasadam (lunch/dinner) is served to all devotees. Highly recommended.",
+    duration: "Visit 2 hrs",
+    drivingTime: "Drive 30 mins",
+    mapsUrl: "https://www.google.com/maps/search/Hornadu+Annapoorneshwari+Temple",
+    localTips: "Dress code applies for entry to the inner sanctum."
   }
 ];
 
 const daySummaries: Record<number, any> = {
-  1: { day: "Day 1", title: "The Road Trip", stops: 8, distance: "265 km", driveTime: "6 hr Drive", arrival: "5:30 PM" },
-  2: { day: "Day 2", title: "Explore Mudigere", stops: 2, distance: "85 km", driveTime: "2 hr Drive", arrival: "6:00 PM" },
-  3: { day: "Day 3", title: "Estate Leisure", stops: 1, distance: "0 km", driveTime: "Walk", arrival: "Flexible" },
+  1: { day: "Day 1", title: "The Road Trip", text: "8 Stops • 265 km • 6 hrs Drive" },
+  2: { day: "Day 2", title: "Chikmagalur Adventure", text: "6 Stops • 90 km • 8 hrs • Start 7:00 AM" },
+  3: { day: "Day 3", title: "Hidden Gems", text: "3 Stops • 70 km • Relaxed Exploration" },
+  4: { day: "Day 4", title: "Departure Day", text: "5 Stops • 110 km • Leisure Morning" },
 };
 
 function CompactStopCard({ stop }: { stop: any }) {
@@ -170,16 +312,63 @@ function CompactStopCard({ stop }: { stop: any }) {
           </div>
           
           {/* Expandable Section */}
-          <div className={`overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? "max-h-[500px] opacity-100 mt-3 pt-3 border-t border-border" : "max-h-0 opacity-0"}`}>
-            {stop.tips && (
-              <div className="mb-2 bg-soft-beige/50 p-3 rounded-xl">
-                <h5 className="font-semibold text-dark text-[12px] mb-1 flex items-center gap-1.5">
-                  <i className="ph-fill ph-camera text-airbnb-coral text-[14px]"></i> Photo Tip
-                </h5>
-                <p className="text-[12px] text-text-muted">{stop.tips}</p>
-              </div>
-            )}
-
+          <div className={`overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? "max-h-[800px] opacity-100 mt-3 pt-3 border-t border-border" : "max-h-0 opacity-0"}`}>
+            <div className="grid grid-cols-1 gap-2">
+              {stop.bestTime && (
+                <div className="bg-soft-beige/30 p-2.5 rounded-xl flex items-start gap-2">
+                  <i className="ph-fill ph-clock text-airbnb-coral text-[14px] mt-0.5"></i>
+                  <div>
+                    <h5 className="font-semibold text-dark text-[11px]">Best Time</h5>
+                    <p className="text-[11px] text-text-muted">{stop.bestTime}</p>
+                  </div>
+                </div>
+              )}
+              {stop.entryFee && (
+                <div className="bg-soft-beige/30 p-2.5 rounded-xl flex items-start gap-2">
+                  <i className="ph-fill ph-ticket text-airbnb-coral text-[14px] mt-0.5"></i>
+                  <div>
+                    <h5 className="font-semibold text-dark text-[11px]">Entry Fee</h5>
+                    <p className="text-[11px] text-text-muted">{stop.entryFee}</p>
+                  </div>
+                </div>
+              )}
+              {stop.parkingInfo && (
+                <div className="bg-soft-beige/30 p-2.5 rounded-xl flex items-start gap-2">
+                  <i className="ph-fill ph-car-profile text-airbnb-coral text-[14px] mt-0.5"></i>
+                  <div>
+                    <h5 className="font-semibold text-dark text-[11px]">Parking</h5>
+                    <p className="text-[11px] text-text-muted">{stop.parkingInfo}</p>
+                  </div>
+                </div>
+              )}
+              {stop.tips && (
+                <div className="bg-soft-beige/30 p-2.5 rounded-xl flex items-start gap-2">
+                  <i className="ph-fill ph-camera text-airbnb-coral text-[14px] mt-0.5"></i>
+                  <div>
+                    <h5 className="font-semibold text-dark text-[11px]">Photo Tip</h5>
+                    <p className="text-[11px] text-text-muted">{stop.tips}</p>
+                  </div>
+                </div>
+              )}
+              {stop.localTips && (
+                <div className="bg-soft-beige/30 p-2.5 rounded-xl flex items-start gap-2">
+                  <i className="ph-fill ph-info text-airbnb-coral text-[14px] mt-0.5"></i>
+                  <div>
+                    <h5 className="font-semibold text-dark text-[11px]">Local Tip</h5>
+                    <p className="text-[11px] text-text-muted">{stop.localTips}</p>
+                  </div>
+                </div>
+              )}
+              {stop.nearbyCafes && (
+                <div className="bg-soft-beige/30 p-2.5 rounded-xl flex items-start gap-2">
+                  <i className="ph-fill ph-coffee text-airbnb-coral text-[14px] mt-0.5"></i>
+                  <div>
+                    <h5 className="font-semibold text-dark text-[11px]">Nearby Food</h5>
+                    <p className="text-[11px] text-text-muted">{stop.nearbyCafes}</p>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -190,18 +379,39 @@ function CompactStopCard({ stop }: { stop: any }) {
 function DaySummaryCard({ dayNum }: { dayNum: number }) {
   const summary = daySummaries[dayNum];
   return (
-    <div className="sticky top-[70px] md:top-[80px] z-30 bg-white/90 backdrop-blur-md shadow-sm border border-border/50 rounded-2xl p-3 mb-6 mx-auto max-w-xl">
-      <div className="flex items-center justify-between mb-1">
-        <h3 className="font-serif font-bold text-lg text-dark">{summary.day}: {summary.title}</h3>
+    <div className="sticky top-[70px] md:top-[80px] z-30 bg-white/90 backdrop-blur-md shadow-sm border border-border/50 rounded-2xl p-3 mb-6 mx-auto max-w-xl text-center">
+      <h3 className="font-serif font-bold text-lg text-dark mb-1">{summary.day} - {summary.title}</h3>
+      <div className="text-[12px] font-medium text-text-muted">
+        {summary.text}
       </div>
-      <div className="flex items-center gap-3 text-[12px] font-medium text-text-muted">
-        <span>{summary.stops} Stops</span>
-        <span className="w-1 h-1 rounded-full bg-border"></span>
-        <span>{summary.distance}</span>
-        <span className="w-1 h-1 rounded-full bg-border"></span>
-        <span>{summary.driveTime}</span>
-        <span className="w-1 h-1 rounded-full bg-border"></span>
-        <span>Arr: {summary.arrival}</span>
+    </div>
+  );
+}
+
+function RestaurantCard({ stop }: { stop: any }) {
+  return (
+    <div className="bg-white rounded-2xl overflow-hidden shadow-sm transition-all duration-300 border border-border/50 hover:shadow-md mb-4 flex">
+      <div className="w-[100px] h-[100px] shrink-0 p-2">
+        <img src={stop.img} alt={stop.title} className="w-full h-full object-cover rounded-xl" />
+      </div>
+      <div className="p-3 flex-1 flex flex-col justify-between">
+        <div>
+          <div className="flex items-start justify-between mb-1">
+            <h4 className="font-serif text-[15px] font-bold text-dark">{stop.title}</h4>
+            <span className="bg-soft-beige text-dark px-1.5 py-0.5 rounded text-[9px] font-bold uppercase shrink-0 ml-2">{stop.category}</span>
+          </div>
+          <div className="flex flex-wrap gap-1 mb-2">
+            {stop.tags.map((tag: string, i: number) => (
+              <span key={i} className="text-[10px] text-text-muted bg-cream px-1.5 py-0.5 rounded-md">{tag}</span>
+            ))}
+          </div>
+          <p className="text-[11px] text-text-muted leading-tight line-clamp-1">{stop.desc}</p>
+        </div>
+        <div className="flex justify-end mt-1">
+          <a href={stop.mapsUrl} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center px-3 py-1 bg-cream text-dark hover:bg-soft-beige rounded-full text-[10px] font-bold gap-1 transition-colors">
+            📍 Maps
+          </a>
+        </div>
       </div>
     </div>
   );
@@ -275,6 +485,7 @@ export default function ItineraryTimeline({ days }: { days: string }) {
     if (day === 1) return roadTripStops;
     if (day === 2) return day2Stops;
     if (day === 3) return day3Stops;
+    if (day === 4) return day4Stops;
     return [];
   };
 
@@ -331,12 +542,23 @@ export default function ItineraryTimeline({ days }: { days: string }) {
         {currentStops.map((stop: any, idx: number) => (
           <CompactStopCard key={idx} stop={stop} />
         ))}
+
+        {activeTab === 2 && (
+          <div className="mt-4 pt-6 border-t border-border">
+            <h3 className="font-serif text-xl font-bold text-dark mb-4 text-center flex items-center justify-center gap-2">
+              <i className="ph-fill ph-fork-knife text-airbnb-coral"></i> Recommended Restaurants
+            </h3>
+            {day2Restaurants.map((rest, idx) => (
+              <RestaurantCard key={idx} stop={rest} />
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Complete Road Trip Route Button */}
       <div className="text-center mt-8">
         <a href="https://maps.google.com" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center px-6 py-3.5 bg-airbnb-coral text-white rounded-2xl font-semibold text-sm transition-all hover:bg-rose-600 shadow-sm w-full gap-2">
-          <i className="ph-fill ph-map-trifold text-lg"></i> Complete Route Map
+          <i className="ph-fill ph-map-trifold text-lg"></i> Open Complete Day Route
         </a>
       </div>
 
