@@ -14,14 +14,14 @@ export default function Home() {
       <main>
         <Hero />
         <TripCards />
-        
+
         <section className="py-20" id="contacts">
           <div className="container mx-auto px-6 max-w-5xl">
             <div className="text-center mb-12">
-              <h2 className="font-serif text-3xl md:text-4xl font-semibold text-dark mb-4">Your Hosts at Milan Farm Stay</h2>
+              <h2 className="font-serif text-3xl md:text-4xl font-semibold text-dark mb-4">Your Hosts at Milan Farm Stays</h2>
               <p className="text-text-muted text-lg">We are here to ensure you have a wonderful and comfortable stay.</p>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <HostProfile />
               <HomeCook />

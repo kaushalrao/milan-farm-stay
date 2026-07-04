@@ -14,8 +14,8 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Milan Farm Stay | Guest Itinerary",
-  description: "Curated road trips, hidden gems & unforgettable coffee estate experiences at Milan Farm Stay.",
+  title: "Milan Farm Stays | Guest Itinerary",
+  description: "Curated road trips, hidden gems & unforgettable coffee estate experiences at Milan Farm Stays.",
 };
 
 export default function RootLayout({

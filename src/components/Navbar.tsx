@@ -22,7 +22,7 @@ export default function Navbar() {
           href="#"
           className="font-serif text-2xl font-bold text-dark transition-colors duration-300"
         >
-          Milan Farm Stay
+          Milan Farm Stays
         </Link>
         <div className="hidden md:flex gap-8">
           {["Plan", "Host", "Cook", "Help"].map((item) => (
