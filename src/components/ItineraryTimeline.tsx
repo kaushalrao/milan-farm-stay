@@ -304,17 +304,6 @@ export default function ItineraryTimeline({ days }: { days: string }) {
         </a>
       </div>
 
-      {/* Floating Progress Bar */}
-      {currentStop && (
-        <div className="fixed bottom-24 md:bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none transition-all duration-300 animate-in fade-in slide-in-from-bottom-4">
-          <div className="bg-dark/95 backdrop-blur-md text-white px-5 py-2.5 rounded-full shadow-xl flex items-center gap-3 text-[13px] font-medium border border-white/10 w-max max-w-[90vw]">
-            <div className="flex items-center gap-1 text-airbnb-coral text-[10px]">
-              <span>●</span><span className="tracking-tighter opacity-50">────</span><span>○</span>
-            </div>
-            <span className="truncate">Current: <span className="font-bold text-white">{currentStop}</span></span>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

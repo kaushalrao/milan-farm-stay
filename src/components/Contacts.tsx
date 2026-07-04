@@ -15,8 +15,8 @@ export default function Contacts() {
               <h4 className="text-3xl font-serif mb-6">Athula Rao K</h4>
             </div>
             <div className="flex gap-3">
-              <a href="tel:+919448632666" className="w-12 h-12 rounded-full bg-white text-dark flex justify-center items-center text-xl hover:shadow-md hover:-translate-y-1 transition-all"><i className="ph-fill ph-phone"></i></a>
-              <a href="https://wa.me/919448632666" className="w-12 h-12 rounded-full bg-[#25D366] text-white flex justify-center items-center text-xl hover:shadow-md hover:-translate-y-1 transition-all"><i className="ph-fill ph-whatsapp-logo"></i></a>
+              <a href="tel:+919448244666" className="w-12 h-12 rounded-full bg-white text-dark flex justify-center items-center text-xl hover:shadow-md hover:-translate-y-1 transition-all"><i className="ph-fill ph-phone"></i></a>
+              <a href="https://wa.me/919448244666" className="w-12 h-12 rounded-full bg-[#25D366] text-white flex justify-center items-center text-xl hover:shadow-md hover:-translate-y-1 transition-all"><i className="ph-fill ph-whatsapp-logo"></i></a>
             </div>
           </div>
 

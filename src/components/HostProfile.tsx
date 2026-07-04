@@ -24,12 +24,12 @@ export default function HostProfile() {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-3">
-        <a href="tel:+919448244666" className="flex items-center justify-center gap-2 py-3 bg-white text-forest-green rounded-xl font-medium transition-transform hover:-translate-y-1">
-          <i className="ph-fill ph-phone text-lg"></i> Call
+      <div className="flex gap-3">
+        <a href="tel:+919448244666" className="flex-1 flex items-center justify-center gap-2 py-3 bg-white text-forest-green rounded-xl font-medium transition-transform hover:-translate-y-1 shadow-sm">
+          <i className="ph-fill ph-phone text-xl"></i> Call
         </a>
-        <a href="https://wa.me/919448244666" target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 py-3 bg-[#25D366] text-white rounded-xl font-medium transition-transform hover:-translate-y-1">
-          <i className="ph-fill ph-whatsapp-logo text-lg"></i> WhatsApp
+        <a href="https://wa.me/919448244666" target="_blank" rel="noreferrer" className="flex-[1.5] flex items-center justify-center gap-2 py-3 bg-[#25D366] text-white rounded-xl font-medium transition-transform hover:-translate-y-1 shadow-sm">
+          <i className="ph-fill ph-whatsapp-logo text-xl"></i> WhatsApp
         </a>
       </div>
     </div>
