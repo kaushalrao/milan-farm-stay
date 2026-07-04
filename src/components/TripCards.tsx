@@ -95,9 +95,7 @@ export default function TripCards() {
                 {/* Top 50%: Thumbnail */}
                 <div className="h-1/2 w-full relative overflow-hidden bg-soft-beige">
                   <img src={trip.img} alt={trip.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
-                  <div className="absolute bottom-2 left-2 bg-white/95 backdrop-blur-sm px-2 py-1 rounded-lg text-[10px] md:text-xs font-bold text-dark shadow-sm flex items-center gap-1">
-                    <span>{trip.icon}</span> {trip.time}
-                  </div>
+
                 </div>
 
                 {/* Bottom 50%: Info */}

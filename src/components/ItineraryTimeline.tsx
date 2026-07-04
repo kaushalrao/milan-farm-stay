@@ -473,9 +473,12 @@ export default function ItineraryTimeline({ days }: { days: string }) {
     }
   }, [numDays]);
 
+  const [isScrolled, setIsScrolled] = useState(false);
+
   // Setup reliable scroll listener for timeline visibility
   useEffect(() => {
     const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
       if (!timelineRef.current) return;
       const rect = timelineRef.current.getBoundingClientRect();
       const isVisible = rect.top < window.innerHeight && rect.bottom > 80;
@@ -539,7 +542,7 @@ export default function ItineraryTimeline({ days }: { days: string }) {
       
       {/* Fixed Day Tabs in Navbar area (only show if trip is > 1 day & timeline is visible) */}
       {mounted && numDays > 1 && isTimelineVisible && (
-        <div className="fixed top-[12px] right-6 z-[60] animate-in fade-in slide-in-from-top-2 duration-300">
+        <div className={`fixed top-0 right-6 flex items-center z-[60] animate-in fade-in slide-in-from-top-2 transition-all duration-300 ${isScrolled ? 'h-[56px]' : 'h-[80px]'}`}>
           <div className="relative" onClick={(e) => e.stopPropagation()}>
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}

@@ -31,7 +31,7 @@ export default function RootLayout({
       <head>
         <Script src="https://unpkg.com/@phosphor-icons/web" strategy="beforeInteractive" />
       </head>
-      <body className="min-h-screen flex flex-col bg-warm-white text-text-main font-sans overflow-x-hidden">
+      <body className="min-h-screen flex flex-col bg-cream text-text-main font-sans overflow-x-hidden">
         {children}
       </body>
     </html>
