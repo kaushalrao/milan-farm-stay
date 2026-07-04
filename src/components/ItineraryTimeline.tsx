@@ -96,8 +96,8 @@ const day2Stops = [
     tips: "Trek up the stairs early morning to avoid the crowd and heat.",
     duration: "Visit 2 hrs",
     drivingTime: "Drive 45 mins",
-    mapsUrl: "https://www.google.com/maps/search/Mullayanagiri+Peak",
-    parkingInfo: "Paid parking available at the base.",
+    mapsUrl: "https://maps.app.goo.gl/NV7oPUxjdznWqfFh7",
+    parkingInfo: "Park at the Seethalayyanagiri temple base where the jeep ride starts.",
     bestTime: "Sunrise or early morning."
   },
   {
@@ -376,14 +376,47 @@ function CompactStopCard({ stop }: { stop: any }) {
   );
 }
 
-function DaySummaryCard({ dayNum }: { dayNum: number }) {
+function DaySummaryCard({ dayNum, numDays }: { dayNum: number, numDays: number }) {
   const summary = daySummaries[dayNum];
+  const [copied, setCopied] = useState(false);
+
+  const handleShare = async () => {
+    const url = `${window.location.origin}${window.location.pathname}?trip=${numDays}&day=${dayNum}`;
+    
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: `Day ${dayNum}: ${summary.title} - Milan Farm Stays`,
+          text: `Check out Day ${dayNum} of the Milan Farm Stays itinerary!`,
+          url: url,
+        });
+      } catch (err) {
+        console.log("Error sharing", err);
+      }
+    } else {
+      navigator.clipboard.writeText(url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
+
   return (
-    <div className="sticky top-[70px] md:top-[80px] z-30 bg-white/90 backdrop-blur-md shadow-sm border border-border/50 rounded-2xl p-3 mb-6 mx-auto max-w-xl text-center">
-      <h3 className="font-serif font-bold text-lg text-dark mb-1">{summary.day} - {summary.title}</h3>
-      <div className="text-[12px] font-medium text-text-muted">
-        {summary.text}
+    <div className="sticky top-[70px] md:top-[80px] z-30 bg-white/90 backdrop-blur-md shadow-sm border border-border/50 rounded-2xl p-3 mb-6 mx-auto max-w-xl text-center flex items-center justify-between">
+      <div className="flex-1">
+        <h3 className="font-serif font-bold text-lg text-dark mb-0.5">{summary.day} - {summary.title}</h3>
+        <div className="text-[11px] md:text-[12px] font-medium text-text-muted">
+          {summary.text}
+        </div>
       </div>
+      
+      <button 
+        onClick={handleShare}
+        className="w-10 h-10 shrink-0 flex flex-col items-center justify-center bg-cream rounded-xl text-dark hover:bg-soft-beige transition-colors ml-2"
+        title="Share this Day"
+      >
+        <i className={`ph-bold ${copied ? 'ph-check text-green-600' : 'ph-share-network'} text-base mb-0.5`}></i>
+        <span className="text-[8px] font-bold uppercase tracking-wider">{copied ? 'Copied' : 'Share'}</span>
+      </button>
     </div>
   );
 }
@@ -428,7 +461,17 @@ export default function ItineraryTimeline({ days }: { days: string }) {
 
   useEffect(() => {
     setMounted(true);
-  }, []);
+    
+    // Read from URL on mount to restore the specific day tab if shared
+    const params = new URLSearchParams(window.location.search);
+    const dayParam = params.get('day');
+    if (dayParam) {
+      const d = parseInt(dayParam);
+      if (d >= 1 && d <= numDays) {
+        setActiveTab(d);
+      }
+    }
+  }, [numDays]);
 
   // Setup reliable scroll listener for timeline visibility
   useEffect(() => {
@@ -495,7 +538,7 @@ export default function ItineraryTimeline({ days }: { days: string }) {
     <div className="relative pb-8 px-4 max-w-xl mx-auto" ref={timelineRef}>
       
       {/* Fixed Day Tabs in Navbar area (only show if trip is > 1 day & timeline is visible) */}
-      {mounted && numDays > 1 && isTimelineVisible && createPortal(
+      {mounted && numDays > 1 && isTimelineVisible && (
         <div className="fixed top-[12px] right-6 z-[60] animate-in fade-in slide-in-from-top-2 duration-300">
           <div className="relative" onClick={(e) => e.stopPropagation()}>
             <button
@@ -514,6 +557,11 @@ export default function ItineraryTimeline({ days }: { days: string }) {
                     onClick={() => {
                       setActiveTab(i + 1);
                       setIsDropdownOpen(false);
+                      
+                      // Update URL
+                      const newUrl = `${window.location.pathname}?trip=${numDays}&day=${i + 1}`;
+                      window.history.pushState(null, '', newUrl);
+
                       setTimeout(() => {
                         document.getElementById("itinerary-view")?.scrollIntoView({ behavior: "smooth" });
                       }, 10);
@@ -531,11 +579,10 @@ export default function ItineraryTimeline({ days }: { days: string }) {
               </div>
             )}
           </div>
-        </div>,
-        document.body
+        </div>
       )}
 
-      <DaySummaryCard dayNum={activeTab} />
+      <DaySummaryCard dayNum={activeTab} numDays={numDays} />
       
       {/* Timeline Container */}
       <div className="relative flex flex-col gap-2">

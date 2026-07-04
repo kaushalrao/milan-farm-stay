@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ItineraryTimeline from "./ItineraryTimeline";
 
 const tripOptions = [
@@ -44,9 +44,25 @@ const tripOptions = [
 export default function TripCards() {
   const [selectedDays, setSelectedDays] = useState<string | null>(null);
 
+  // Initialize from URL parameters if someone shared a link
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const tripParam = params.get('trip');
+    if (tripParam && ["1", "2", "3", "4"].includes(tripParam)) {
+      setSelectedDays(tripParam);
+      // Give DOM time to render before scrolling
+      setTimeout(() => {
+        document.getElementById("itinerary-view")?.scrollIntoView({ behavior: "smooth" });
+      }, 300);
+    }
+  }, []);
+
   const handleSelect = (trip: typeof tripOptions[0]) => {
     setSelectedDays(trip.id);
-    window.history.pushState(null, '', `#${trip.hash}`);
+    
+    // Update URL without reloading
+    const newUrl = `${window.location.pathname}?trip=${trip.id}&day=1`;
+    window.history.pushState(null, '', newUrl);
 
     setTimeout(() => {
       document.getElementById("itinerary-view")?.scrollIntoView({ behavior: "smooth" });
@@ -54,7 +70,7 @@ export default function TripCards() {
   };
 
   return (
-    <section className="pt-2 pb-4 relative z-20" id="plan">
+    <section className="pt-2 pb-4 relative" id="plan">
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
           {tripOptions.map((trip) => {
