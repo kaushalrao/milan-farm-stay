@@ -267,8 +267,8 @@ const day4Stops = [
 const daySummaries: Record<number, any> = {
   1: { day: "Day 1", title: "The Road Trip", text: "8 Stops • 265 km • 6 hrs Drive" },
   2: { day: "Day 2", title: "Chikmagalur Adventure", text: "6 Stops • 90 km • 8 hrs • Start 7:00 AM" },
-  3: { day: "Day 3", title: "Hidden Gems", text: "3 Stops • 70 km • Relaxed Exploration" },
-  4: { day: "Day 4", title: "Departure Day", text: "5 Stops • 110 km • Leisure Morning" },
+  3: { day: "Day 3", title: "Mudigere Exploration", text: "3 Stops • 70 km • Relaxed Exploration" },
+  4: { day: "Day 4", title: "Kalasa & Kelagur Route", text: "5 Stops • 110 km • Leisure Morning" },
 };
 
 function CompactStopCard({ stop }: { stop: any }) {
@@ -543,39 +543,41 @@ export default function ItineraryTimeline({ days }: { days: string }) {
           <div className="relative" onClick={(e) => e.stopPropagation()}>
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="flex items-center gap-2 bg-white/95 backdrop-blur-md text-dark font-bold text-xs py-2 pl-4 pr-3 rounded-full shadow-md border border-border/50 hover:bg-cream transition-colors"
+              className="flex items-center gap-2 bg-white/95 backdrop-blur-md text-dark font-bold text-xs py-2 pl-4 pr-3 rounded-full shadow-md border border-border/50 hover:bg-cream transition-colors max-w-[calc(100vw-260px)] sm:max-w-[220px]"
             >
-              Day {activeTab}
-              <i className={`ph-bold ph-caret-down text-[10px] text-text-muted transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""}`}></i>
+              <span className="truncate">Day {activeTab} - {daySummaries[activeTab]?.title}</span>
+              <i className={`ph-bold ph-caret-down text-[10px] text-text-muted shrink-0 transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""}`}></i>
             </button>
             
             {isDropdownOpen && (
-              <div className="absolute top-full right-0 mt-2 w-32 bg-white rounded-xl shadow-lg border border-border/50 overflow-hidden animate-in fade-in zoom-in-95 duration-200 origin-top-right">
-                {Array.from({ length: numDays }).map((_, i) => (
+              <div className="absolute top-full right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-border/50 overflow-hidden animate-in fade-in zoom-in-95 duration-200 origin-top-right">
+                {Array.from({ length: numDays }).map((_, i) => {
+                  const d = i + 1;
+                  return (
                   <button
-                    key={i + 1}
+                    key={d}
                     onClick={() => {
-                      setActiveTab(i + 1);
+                      setActiveTab(d);
                       setIsDropdownOpen(false);
                       
                       // Update URL
-                      const newUrl = `${window.location.pathname}?trip=${numDays}&day=${i + 1}`;
+                      const newUrl = `${window.location.pathname}?trip=${numDays}&day=${d}`;
                       window.history.pushState(null, '', newUrl);
 
                       setTimeout(() => {
                         document.getElementById("itinerary-view")?.scrollIntoView({ behavior: "smooth" });
                       }, 10);
                     }}
-                    className={`w-full text-left px-4 py-3 text-xs font-bold transition-colors flex items-center justify-between ${
-                      activeTab === i + 1
+                    className={`w-full text-left px-4 py-3 text-[11px] md:text-xs font-bold transition-colors flex items-center justify-between ${
+                      activeTab === d
                         ? "bg-airbnb-coral/10 text-airbnb-coral"
                         : "text-dark hover:bg-cream"
                     }`}
                   >
-                    Day {i + 1}
-                    {activeTab === i + 1 && <i className="ph-bold ph-check text-[10px]"></i>}
+                    <span className="truncate pr-2">Day {d} - {daySummaries[d]?.title}</span>
+                    {activeTab === d && <i className="ph-bold ph-check text-[10px] shrink-0"></i>}
                   </button>
-                ))}
+                )})}
               </div>
             )}
           </div>
