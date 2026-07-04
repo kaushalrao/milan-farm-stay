@@ -36,7 +36,7 @@ export default function CookModal({ isOpen, onClose }: { isOpen: boolean; onClos
             <i className="ph-fill ph-phone text-xl"></i> Call
           </a>
           <a
-            href="https://wa.me/919482214882?text=Hi,%20I%20would%20like%20to%20pre-order%20meals."
+            href="https://wa.me/919482214882?text=Hi%20Prasad,%20we%20are%20staying%20at%20Milan%20Farm%20Stay%20and%20would%20like%20to%20pre-order%20meals."
             target="_blank"
             rel="noreferrer"
             onClick={onClose}

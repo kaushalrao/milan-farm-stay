@@ -4,7 +4,7 @@ export default function HostProfile() {
       <div>
         <div className="flex items-center gap-4 mb-8">
           <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center text-3xl overflow-hidden shrink-0">
-            <img src="/images/hero.png" alt="Host Profile" className="w-full h-full object-cover" />
+            <img src="/images/athula.png" alt="Host Profile" className="w-full h-full object-cover" />
           </div>
           <div>
             <h4 className="font-serif text-3xl font-semibold mb-1">Athula Rao K</h4>
