@@ -40,7 +40,7 @@ export default function TripPlanner() {
           </div>
         </div>
 
-        <ItineraryTimeline days={selectedDays} />
+        <ItineraryTimeline day={selectedDays} />
       </div>
     </section>
   );

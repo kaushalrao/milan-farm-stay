@@ -71,7 +71,7 @@ export default function TripCards() {
   };
 
   return (
-    <section className="pt-2 pb-4 relative" id="plan">
+    <section className="pt-2 pb-4 relative scroll-mt-24" id="plan">
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
           {tripOptions.map((trip) => {
