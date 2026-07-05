@@ -6,38 +6,38 @@ import ItineraryTimeline from "./ItineraryTimeline";
 const tripOptions = [
   {
     id: "1",
-    hash: "one-day",
-    title: "One Day",
-    subtitle: "Perfect for weekend travellers",
-    time: "4.5 hrs Drive",
+    hash: "day-1",
+    title: "Day 1",
+    subtitle: "Bangalore → Milan",
+    time: "Drive & Arrival",
     img: "/images/trip1.png",
     icon: "🚗"
   },
   {
     id: "2",
-    hash: "two-days",
-    title: "Two Days",
-    subtitle: "Weekend getaway",
-    time: "5 hrs Drive",
-    img: "/images/trip2.png",
+    hash: "day-2",
+    title: "Day 2",
+    subtitle: "Chikmagalur Adventure",
+    time: "Full Day Explorer",
+    img: "/images/hero.png",
     icon: "🌿"
   },
   {
     id: "3",
-    hash: "three-days",
-    title: "Three Days",
-    subtitle: "Explorer experience",
-    time: "6 hrs Drive",
+    hash: "day-3",
+    title: "Day 3",
+    subtitle: "Mudigere Exploration",
+    time: "Relaxed Sightseeing",
     img: "/images/trip3.png",
     icon: "☕"
   },
   {
     id: "4",
-    hash: "four-days",
-    title: "Four Days",
-    subtitle: "The complete getaway",
-    time: "8 hrs Drive",
-    img: "/images/hero.png",
+    hash: "day-4",
+    title: "Day 4",
+    subtitle: "Coffee Estate & Return",
+    time: "Morning Activity",
+    img: "/images/trip2.png",
     icon: "🌄"
   }
 ];
@@ -62,7 +62,7 @@ export default function TripCards() {
     setSelectedDays(trip.id);
     
     // Update URL without reloading
-    const newUrl = `${window.location.pathname}?trip=${trip.id}&day=1`;
+    const newUrl = `${window.location.pathname}?day=${trip.id}`;
     window.history.pushState(null, '', newUrl);
 
     setTimeout(() => {
@@ -145,7 +145,7 @@ export default function TripCards() {
 
       {selectedDays && (
         <div id="itinerary-view" className="mt-6 pt-6 border-t border-border scroll-mt-14">
-          <ItineraryTimeline days={selectedDays} />
+          <ItineraryTimeline day={selectedDays} />
         </div>
       )}
     </section>

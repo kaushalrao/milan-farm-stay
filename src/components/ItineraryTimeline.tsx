@@ -408,7 +408,7 @@ function DaySummaryCard({ dayNum, numDays }: { dayNum: number, numDays: number }
   const [copied, setCopied] = useState(false);
 
   const handleShare = async () => {
-    const url = `${window.location.origin}${window.location.pathname}?trip=${numDays}&day=${dayNum}`;
+    const url = `${window.location.origin}${window.location.pathname}?day=${dayNum}`;
     
     if (navigator.share) {
       try {
@@ -478,67 +478,16 @@ function RestaurantCard({ stop }: { stop: any }) {
   );
 }
 
-export default function ItineraryTimeline({ days }: { days: string }) {
-  const numDays = parseInt(days) || 1;
-  const [activeTab, setActiveTab] = useState(1);
-  const [currentStop, setCurrentStop] = useState("");
-  const [isTimelineVisible, setIsTimelineVisible] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  const timelineRef = useRef<HTMLDivElement>(null);
+export default function ItineraryTimeline({ day }: { day: string }) {
+  const activeTab = parseInt(day) || 1;
 
-  useEffect(() => {
-    setMounted(true);
-    
-    // Read from URL on mount to restore the specific day tab if shared
-    const params = new URLSearchParams(window.location.search);
-    const dayParam = params.get('day');
-    if (dayParam) {
-      const d = parseInt(dayParam);
-      if (d >= 1 && d <= numDays) {
-        setActiveTab(d);
-      }
-    }
-  }, [numDays]);
-
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  // Setup reliable scroll listener for timeline visibility
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-      if (!timelineRef.current) return;
-      const rect = timelineRef.current.getBoundingClientRect();
-      const isVisible = rect.top < window.innerHeight && rect.bottom > 80;
-      setIsTimelineVisible(isVisible);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll(); // Initial check
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Close dropdown on outside click or scroll
-  useEffect(() => {
-    const handleOutsideInteraction = () => setIsDropdownOpen(false);
-    if (isDropdownOpen) {
-      window.addEventListener("scroll", handleOutsideInteraction, { passive: true });
-      window.addEventListener("click", handleOutsideInteraction);
-    }
-    return () => {
-      window.removeEventListener("scroll", handleOutsideInteraction);
-      window.removeEventListener("click", handleOutsideInteraction);
-    };
-  }, [isDropdownOpen]);
-
-  // Setup Intersection Observer for Floating Progress
+  // Setup Intersection Observer for scroll reveal triggers
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const title = entry.target.getAttribute("data-stop-title");
-            if (title) setCurrentStop(title);
+            // Trigger animation or tracking if needed
           }
         });
       },
@@ -548,12 +497,7 @@ export default function ItineraryTimeline({ days }: { days: string }) {
     const stopCards = document.querySelectorAll(".stop-card");
     stopCards.forEach((card) => observer.observe(card));
     return () => observer.disconnect();
-  }, [activeTab, days]);
-
-  // Reset active tab if days prop decreases
-  useEffect(() => {
-    if (activeTab > numDays) setActiveTab(1);
-  }, [numDays, activeTab]);
+  }, [activeTab]);
 
   const getStopsForDay = (day: number) => {
     if (day === 1) return roadTripStops;
@@ -566,57 +510,9 @@ export default function ItineraryTimeline({ days }: { days: string }) {
   const currentStops = getStopsForDay(activeTab);
 
   return (
-    <div className="relative pb-8 px-4 max-w-xl mx-auto" ref={timelineRef}>
+    <div className="relative pb-8 px-4 max-w-xl mx-auto">
       
-      {/* Fixed Day Tabs in Navbar area (only show if trip is > 1 day & timeline is visible) */}
-      {mounted && numDays > 1 && isTimelineVisible && (
-        <div className={`fixed top-0 right-6 flex items-center z-[60] animate-in fade-in slide-in-from-top-2 transition-all duration-300 ${isScrolled ? 'h-[56px]' : 'h-[80px]'}`}>
-          <div className="relative" onClick={(e) => e.stopPropagation()}>
-            <motion.button
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="flex items-center gap-2 bg-white/95 backdrop-blur-md text-dark font-bold text-xs py-2 pl-4 pr-3 rounded-full shadow-md border border-border/50 hover:bg-cream transition-colors max-w-[calc(100vw-260px)] sm:max-w-[220px]"
-            >
-              <span className="truncate">Day {activeTab} - {daySummaries[activeTab]?.title}</span>
-              <i className={`ph-bold ph-caret-down text-[10px] text-text-muted shrink-0 transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""}`}></i>
-            </motion.button>
-            
-            {isDropdownOpen && (
-              <div className="absolute top-full right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-border/50 overflow-hidden animate-in fade-in zoom-in-95 duration-200 origin-top-right">
-                {Array.from({ length: numDays }).map((_, i) => {
-                  const d = i + 1;
-                  return (
-                  <button
-                    key={d}
-                    onClick={() => {
-                      setActiveTab(d);
-                      setIsDropdownOpen(false);
-                      
-                      // Update URL
-                      const newUrl = `${window.location.pathname}?trip=${numDays}&day=${d}`;
-                      window.history.pushState(null, '', newUrl);
-
-                      setTimeout(() => {
-                        document.getElementById("itinerary-view")?.scrollIntoView({ behavior: "smooth" });
-                      }, 10);
-                    }}
-                    className={`w-full text-left px-4 py-3 text-[11px] md:text-xs font-bold transition-colors flex items-center justify-between ${
-                      activeTab === d
-                        ? "bg-airbnb-coral/10 text-airbnb-coral"
-                        : "text-dark hover:bg-cream"
-                    }`}
-                  >
-                    <span className="truncate pr-2">Day {d} - {daySummaries[d]?.title}</span>
-                    {activeTab === d && <i className="ph-bold ph-check text-[10px] shrink-0"></i>}
-                  </button>
-                )})}
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-
-      <DaySummaryCard dayNum={activeTab} numDays={numDays} />
+      <DaySummaryCard dayNum={activeTab} numDays={4} />
       
       {/* Timeline Container with Day Switching Animation */}
       <AnimatePresence mode="wait">
