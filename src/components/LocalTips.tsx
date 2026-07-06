@@ -1,10 +1,6 @@
+import { localTips as tips } from "../config/data";
+
 export default function LocalTips() {
-  const tips = [
-    { icon: "ph-wifi-slash", title: "Network Availability", desc: "Airtel works best. Jio is patchy. Enjoy the digital detox!" },
-    { icon: "ph-qr-code", title: "Payments", desc: "UPI is widely accepted, but carry cash for remote shops." },
-    { icon: "ph-steering-wheel", title: "Road Conditions", desc: "The last 2km to the estate is an off-road path. Drive slow." },
-    { icon: "ph-camera-plus", title: "Photography", desc: "Early mornings (6:30 AM) offer the best mist in the coffee estate." },
-  ];
 
   return (
     <section className="py-24" id="tips">

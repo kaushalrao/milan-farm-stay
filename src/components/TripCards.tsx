@@ -3,53 +3,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ItineraryTimeline from "./ItineraryTimeline";
 
-const tripOptions = [
-  {
-    id: "1",
-    hash: "day-1",
-    destination: "Milan Farm Stays",
-    metadata: "Day 1 • 6 hrs Drive",
-    highlights: "📍 Bangalore • Hassan • Sakleshpur",
-    tags: ["Road Trip", "Scenic"],
-    img: "/images/trip1.png",
-  },
-  {
-    id: "2",
-    hash: "day-2",
-    destination: "Chikmagalur",
-    metadata: "Day 2 • Full Day",
-    highlights: "📍 Mullayanagiri • Jhari Falls",
-    tags: ["Nature", "Adventure"],
-    img: "/images/hero.png",
-  },
-  {
-    id: "3",
-    hash: "day-3",
-    destination: "Mudigere",
-    metadata: "Day 3 • Relaxed",
-    highlights: "📍 Devaramane • Charmadi",
-    tags: ["Views", "Coffee"],
-    img: "/images/trip3.png",
-  },
-  {
-    id: "4",
-    hash: "day-4",
-    destination: "Kalasa",
-    metadata: "Day 4 • Morning",
-    highlights: "📍 Kelagur Estate • Temple",
-    tags: ["Culture", "Tea"],
-    img: "/images/trip2.png",
-  },
-  {
-    id: "5",
-    hash: "day-5",
-    destination: "Explore Treks",
-    metadata: "Advance Booking Req.",
-    highlights: "📍 Netravati • Bandaje • Ettina Bhuja",
-    tags: ["Treks", "Forest"],
-    img: "/images/netravati.png",
-  }
-];
+import { tripOptions } from "../config/data";
 
 export default function TripCards() {
   const [selectedDays, setSelectedDays] = useState<string | null>(null);

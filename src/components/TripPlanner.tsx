@@ -3,12 +3,7 @@
 import { useState } from "react";
 import ItineraryTimeline from "./ItineraryTimeline";
 
-const tabs = [
-  { id: "1", label: "1 Day", icon: "ph-car-profile" },
-  { id: "2", label: "2 Days", icon: "ph-plant" },
-  { id: "3", label: "3 Days", icon: "ph-coffee" },
-  { id: "custom", label: "Custom", icon: "ph-mountains" },
-];
+import { tripPlannerTabs as tabs } from "../config/data";
 
 export default function TripPlanner() {
   const [selectedDays, setSelectedDays] = useState("1");

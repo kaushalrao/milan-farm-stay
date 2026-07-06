@@ -3,10 +3,7 @@ import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
-const navItems = [
-  { label: "Itinerary", href: "#plan", id: "plan", icon: "ph-map-trifold" },
-  { label: "Guest Services", href: "#contacts", id: "contacts", icon: "ph-users" }
-];
+import { navItems } from "../config/data";
 
 export default function Navbar() {
   const { scrollY } = useScroll();

@@ -1,14 +1,7 @@
 "use client";
 import { useState } from "react";
 
-const images = [
-  "https://images.unsplash.com/photo-1524388631102-140b904ebfce?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1490682143684-14369e18dce8?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1621213079948-2b8104df04ee?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1627883238637-251cce66ebdd?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1542718610-a1d656d1884c?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1601051515905-eb10bcebc11b?q=80&w=800&auto=format&fit=crop"
-];
+import { galleryImages as images } from "../config/data";
 
 export default function Gallery() {
   const [selectedImg, setSelectedImg] = useState<string | null>(null);

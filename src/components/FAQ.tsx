@@ -1,11 +1,7 @@
 "use client";
 import { useState } from "react";
 
-const faqs = [
-  { q: "What time is check-in and check-out?", a: "Check-in is at 2:00 PM and check-out is at 11:00 AM." },
-  { q: "Are pets allowed?", a: "Yes, we are a pet-friendly property! Please inform us in advance." },
-  { q: "Do you offer pick-up services?", a: "Yes, we can arrange taxi pickups from Bangalore or Mangalore airport." },
-];
+import { faqs } from "../config/data";
 
 export default function FAQ() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
