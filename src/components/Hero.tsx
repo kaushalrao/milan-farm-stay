@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import WeatherWidget from "./WeatherWidget";
 
 export default function Hero() {
   return (
@@ -21,6 +22,7 @@ export default function Hero() {
         >
           Explore our curated day-by-day itinerary for the perfect journey from Bangalore and around Chikmagalur.
         </motion.p>
+        <WeatherWidget />
       </motion.div>
     </header>
   );
