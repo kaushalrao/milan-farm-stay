@@ -196,31 +196,35 @@ function DaySummaryCard({ dayNum, numDays }: { dayNum: number, numDays: number }
   };
 
   return (
-    <div className="sticky top-[70px] md:top-[80px] z-30 bg-white/90 backdrop-blur-md shadow-sm border border-border/50 rounded-2xl p-3 mb-6 mx-auto max-w-xl text-center flex items-center justify-between">
-      <div className="flex-1">
-        <div className="flex items-center justify-center gap-2 mb-0.5">
-          <h3 className="font-serif font-bold text-lg text-dark">{summary.day} - {summary.title}</h3>
-          {weather && (
-            <div className="flex items-center gap-1 bg-cream px-1.5 py-0.5 rounded-md text-[10px] font-bold text-dark border border-border/50" title="Chikmagalur Current Weather">
-              <i className={`ph-fill ${getWeatherIcon(weather.weathercode, weather.is_day)} text-airbnb-coral`}></i>
-              <span>{Math.round(weather.temperature)}°C</span>
-            </div>
-          )}
-        </div>
-        <div className="text-[11px] md:text-[12px] font-medium text-text-muted">
+    <div className="sticky top-[70px] md:top-[80px] z-30 bg-white/95 backdrop-blur-md shadow-sm border border-border/50 rounded-2xl py-2.5 px-3.5 mb-6 mx-auto max-w-xl flex items-center justify-between gap-3">
+      
+      <div className="flex-1 min-w-0 text-left">
+        <h3 className="font-serif text-[15px] md:text-[17px] text-dark leading-tight flex items-center gap-1.5 flex-wrap mb-0.5">
+          <span className="font-bold">{summary.day}</span>
+          <span className="text-text-muted/40 text-[10px] leading-none mt-0.5">•</span>
+          <span className="font-medium text-dark/90 line-clamp-1">{summary.title}</span>
+        </h3>
+        <div className="text-[10.5px] md:text-[12px] font-medium text-text-muted line-clamp-1">
           {summary.text}
         </div>
       </div>
 
-      <motion.button
-        whileTap={{ scale: 0.9 }}
-        onClick={handleShare}
-        className="w-10 h-10 shrink-0 flex flex-col items-center justify-center bg-cream rounded-xl text-dark hover:bg-soft-beige transition-colors ml-2"
-        title="Share this Day"
-      >
-        <i className={`ph-bold ${copied ? 'ph-check text-green-600' : 'ph-share-network'} text-base mb-0.5`}></i>
-        <span className="text-[8px] font-bold uppercase tracking-wider">{copied ? 'Copied' : 'Share'}</span>
-      </motion.button>
+      <div className="flex items-center gap-1.5 shrink-0">
+        {weather && (
+          <div className="flex items-center gap-1 bg-soft-beige px-2 py-1.5 rounded-xl text-[10.5px] font-bold text-dark border border-border/50" title="Chikmagalur Current Weather">
+            <i className={`ph-fill ${getWeatherIcon(weather.weathercode, weather.is_day)} text-airbnb-coral text-[12px]`}></i>
+            <span>{Math.round(weather.temperature)}°C</span>
+          </div>
+        )}
+        <motion.button
+          whileTap={{ scale: 0.9 }}
+          onClick={handleShare}
+          className="w-8 h-8 flex items-center justify-center bg-cream rounded-full text-dark hover:bg-soft-beige transition-colors border border-border/50"
+          title="Share this Day"
+        >
+          <i className={`ph-bold ${copied ? 'ph-check text-green-600' : 'ph-share-network'} text-[15px]`}></i>
+        </motion.button>
+      </div>
     </div>
   );
 }
