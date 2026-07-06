@@ -7,47 +7,47 @@ const tripOptions = [
   {
     id: "1",
     hash: "day-1",
-    title: "Day 1",
-    subtitle: "Bangalore → Milan",
-    time: "Drive & Arrival",
+    destination: "Milan Farm Stays",
+    metadata: "Day 1 • 6 hrs Drive",
+    highlights: "📍 Bangalore • Hassan • Sakleshpur",
+    tags: ["Road Trip", "Scenic"],
     img: "/images/trip1.png",
-    icon: "🚗"
   },
   {
     id: "2",
     hash: "day-2",
-    title: "Day 2",
-    subtitle: "Chikmagalur Adventure",
-    time: "Full Day Explorer",
+    destination: "Chikmagalur",
+    metadata: "Day 2 • Full Day",
+    highlights: "📍 Mullayanagiri • Jhari Falls",
+    tags: ["Nature", "Adventure"],
     img: "/images/hero.png",
-    icon: "🌿"
   },
   {
     id: "3",
     hash: "day-3",
-    title: "Day 3",
-    subtitle: "Mudigere Exploration",
-    time: "Relaxed Sightseeing",
+    destination: "Mudigere",
+    metadata: "Day 3 • Relaxed",
+    highlights: "📍 Devaramane • Charmadi",
+    tags: ["Views", "Coffee"],
     img: "/images/trip3.png",
-    icon: "☕"
   },
   {
     id: "4",
     hash: "day-4",
-    title: "Day 4",
-    subtitle: "Coffee Estate & Return",
-    time: "Morning Activity",
+    destination: "Kalasa",
+    metadata: "Day 4 • Morning",
+    highlights: "📍 Kelagur Estate • Temple",
+    tags: ["Culture", "Tea"],
     img: "/images/trip2.png",
-    icon: "🌄"
   },
   {
     id: "5",
     hash: "day-5",
-    title: "Treks",
-    subtitle: "Chikmagalur Treks",
-    time: "Advance Booking",
+    destination: "Explore Treks",
+    metadata: "Advance Booking Req.",
+    highlights: "📍 Netravati • Bandaje • Ettina Bhuja",
+    tags: ["Treks", "Forest"],
     img: "/images/netravati.png",
-    icon: "🥾"
   }
 ];
 
@@ -58,7 +58,7 @@ export default function TripCards() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const tripParam = params.get('trip');
-    if (tripParam && ["1", "2", "3", "4"].includes(tripParam)) {
+    if (tripParam && ["1", "2", "3", "4", "5"].includes(tripParam)) {
       setSelectedDays(tripParam);
       // Give DOM time to render before scrolling
       setTimeout(() => {
@@ -81,70 +81,82 @@ export default function TripCards() {
 
   return (
     <section className="pt-2 pb-4 relative scroll-mt-24" id="plan">
-      <div className="container mx-auto px-4 max-w-4xl">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+      <div className="container mx-auto px-0 md:px-4 max-w-6xl overflow-hidden">
+        {/* Horizontal Scroll Container */}
+        <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-6 pt-2 px-6 md:px-2 w-full [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {tripOptions.map((trip) => {
             const isSelected = selectedDays === trip.id;
 
             return (
               <motion.div
                 key={trip.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.15 + parseInt(trip.id) * 0.05, ease: [0.22, 1, 0.36, 1] }}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 + parseInt(trip.id) * 0.05, ease: [0.22, 1, 0.36, 1] }}
                 whileHover={{ y: -4, scale: 1.01 }}
                 whileTap={{ scale: 0.98 }}
-                className={`group relative bg-white rounded-[20px] overflow-hidden cursor-pointer h-[160px] flex flex-col col-span-1 shadow-sm hover:shadow-md`}
+                className={`group relative snap-center md:snap-start shrink-0 w-[260px] md:w-[280px] bg-white rounded-3xl overflow-hidden cursor-pointer flex flex-col transition-all duration-300 ${
+                  isSelected 
+                    ? "border-transparent shadow-[0_8px_30px_rgb(0,0,0,0.12)]" 
+                    : "border border-border/60 hover:border-border shadow-sm hover:shadow-md"
+                }`}
                 onClick={() => handleSelect(trip)}
+                style={isSelected ? { boxShadow: "0 4px 20px -2px rgba(255, 90, 95, 0.2), 0 0 0 1.5px rgba(255, 90, 95, 0.6)" } : {}}
               >
-                {/* Active Selection Ring via LayoutID */}
-                {isSelected && (
-                  <motion.div
-                    layoutId="activeTripRing"
-                    className="absolute inset-0 border-2 border-airbnb-coral rounded-[20px] z-20 pointer-events-none shadow-[0_0_15px_rgba(255,90,95,0.2)]"
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                  />
-                )}
-
-                {/* Selected Checkmark */}
-                <AnimatePresence>
-                  {isSelected && (
-                    <motion.div 
-                      initial={{ scale: 0, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      exit={{ scale: 0, opacity: 0 }}
-                      transition={{ type: "spring", bounce: 0.4, duration: 0.5 }}
-                      className="absolute top-2 right-2 z-30 bg-white rounded-full w-6 h-6 flex items-center justify-center shadow-sm"
-                    >
-                      <i className="ph-fill ph-check-circle text-airbnb-coral text-lg"></i>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
-                {/* Top 50%: Thumbnail */}
-                <div className="h-1/2 w-full relative overflow-hidden bg-soft-beige">
+                {/* Top Image Banner (Compact) */}
+                <div className="h-[90px] w-full relative overflow-hidden bg-soft-beige">
                   <motion.img 
                     src={trip.img} 
-                    alt={trip.title} 
+                    alt={trip.destination} 
                     className="w-full h-full object-cover" 
-                    whileHover={{ scale: 1.04 }}
-                    transition={{ duration: 0.4 }}
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.5 }}
                     loading="lazy" 
                   />
+                  {/* Subtle Top Indicator for Selected */}
+                  <AnimatePresence>
+                    {isSelected && (
+                      <motion.div 
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        className="absolute top-3 left-3 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-full text-[9px] uppercase tracking-wider font-bold text-airbnb-coral flex items-center gap-1.5 shadow-sm"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-airbnb-coral animate-pulse"></span>
+                        Current Stop
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
 
-                {/* Bottom 50%: Info */}
-                <div className="h-1/2 p-3 md:p-4 flex justify-between items-center bg-white z-10 relative">
-                  <div className="flex flex-col justify-center h-full">
-                    <h3 className="font-serif text-lg md:text-xl font-semibold text-dark leading-none mb-1">{trip.title}</h3>
-                    <p className="text-text-muted text-[11px] md:text-xs font-medium truncate max-w-[120px] md:max-w-[200px]">{trip.subtitle}</p>
+                {/* Info Section */}
+                <div className="p-4 flex flex-col gap-1.5 bg-white flex-1 z-10 rounded-b-3xl">
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <h3 className="font-serif text-[20px] md:text-[22px] font-bold text-dark leading-tight tracking-tight">
+                        {trip.destination}
+                      </h3>
+                      <p className="text-[11px] md:text-[12px] font-bold text-text-muted mt-0.5">
+                        {trip.metadata}
+                      </p>
+                    </div>
+                    
+                    <div className={`transition-all duration-300 ${isSelected ? 'text-airbnb-coral translate-x-1' : 'text-text-muted/40 group-hover:text-text-main group-hover:translate-x-1'}`}>
+                      <i className="ph-bold ph-arrow-right text-lg"></i>
+                    </div>
                   </div>
-                  <motion.div 
-                    className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-colors ${isSelected ? 'bg-airbnb-coral/10 text-airbnb-coral' : 'bg-cream text-dark group-hover:bg-soft-beige'}`}
-                    whileHover={{ x: 3 }}
-                  >
-                    <i className="ph-bold ph-caret-right"></i>
-                  </motion.div>
+
+                  <p className="text-[11px] font-medium text-text-main/80 mt-1 truncate">
+                    {trip.highlights}
+                  </p>
+
+                  <div className="flex flex-wrap gap-1.5 mt-2.5">
+                    {trip.tags.map(tag => (
+                      <span key={tag} className="px-2 py-1 bg-soft-beige rounded-md text-[9px] uppercase tracking-wider font-bold text-text-main">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </motion.div>
             );
@@ -153,7 +165,7 @@ export default function TripCards() {
       </div>
 
       {selectedDays && (
-        <div id="itinerary-view" className="mt-6 pt-6 border-t border-border scroll-mt-14">
+        <div id="itinerary-view" className="mt-2 pt-8 border-t border-border scroll-mt-14 relative z-10 bg-cream">
           <ItineraryTimeline day={selectedDays} />
         </div>
       )}
