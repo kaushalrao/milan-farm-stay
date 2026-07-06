@@ -634,7 +634,7 @@ export default function ItineraryTimeline({ day }: { day: string }) {
                 <i className="ph-fill ph-fork-knife text-airbnb-coral"></i> Recommended Restaurants
               </h3>
               {day2Restaurants.map((rest, idx) => (
-                <RestaurantCard key={rest.name || idx} stop={rest} />
+                <RestaurantCard key={rest.title || idx} stop={rest} />
               ))}
             </div>
           )}
