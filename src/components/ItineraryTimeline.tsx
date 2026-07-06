@@ -171,6 +171,14 @@ const day2Restaurants = [
     desc: "Premium multi-cuisine restaurant with a great ambiance.",
     img: "/images/restaurant.png",
     mapsUrl: "https://www.google.com/maps/search/Hotel+Adrika+Chikmagalur"
+  },
+  {
+    title: "Chikmagalur Food Court",
+    category: "Food Court",
+    tags: ["Multi Cuisine", "Quick Bites"],
+    desc: "A great stop offering a wide variety of food options in one place.",
+    img: "/images/restaurant.png",
+    mapsUrl: "https://maps.app.goo.gl/doUSZZqpFipqiWrZ7"
   }
 ];
 
@@ -645,7 +653,31 @@ export default function ItineraryTimeline({ day }: { day: string }) {
       <div className="text-center mt-8">
         <motion.a 
           whileTap={{ scale: 0.97 }}
-          href="https://maps.google.com" target="_blank" rel="noreferrer" 
+          href={(() => {
+            if (!currentStops || currentStops.length === 0) return "https://maps.google.com";
+            
+            const cleanTitle = (title: string) => title.replace("Departure from ", "").replace("Arrival at ", "");
+
+            if (currentStops.length === 1) {
+              return `https://www.google.com/maps/dir/?api=1&origin=My+Location&destination=${encodeURIComponent(cleanTitle(currentStops[0].title))}`;
+            }
+
+            // Exclude the starting point from waypoints if it's just "Bangalore" since origin is My Location
+            // But to keep it simple, just clean the titles.
+            const validStops = currentStops.map(s => ({ ...s, searchTitle: cleanTitle(s.title) }));
+            const lastStop = validStops[validStops.length - 1];
+            
+            // If the first stop is a generic starting point, we can skip it in waypoints to avoid backtracking
+            const waypointsList = validStops.slice(0, -1);
+            if (waypointsList.length > 0 && currentStops[0].category === "Starting Point") {
+              waypointsList.shift();
+            }
+
+            const waypoints = waypointsList.map((s: any) => s.searchTitle).join('|');
+            
+            return `https://www.google.com/maps/dir/?api=1&origin=My+Location&destination=${encodeURIComponent(lastStop.searchTitle)}${waypoints ? `&waypoints=${encodeURIComponent(waypoints)}` : ''}`;
+          })()}
+          target="_blank" rel="noreferrer" 
           className="inline-flex items-center justify-center px-6 py-3.5 bg-airbnb-coral text-white rounded-2xl font-semibold text-sm transition-all hover:bg-rose-600 shadow-sm w-full gap-2"
         >
           <i className="ph-fill ph-map-trifold text-lg"></i> Open Complete Day Route
