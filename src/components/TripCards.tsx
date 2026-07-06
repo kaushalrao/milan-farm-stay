@@ -101,6 +101,16 @@ export default function TripCards() {
                     : "border border-border/60 hover:border-border shadow-sm hover:shadow-md"
                 }`}
                 onClick={() => handleSelect(trip)}
+                role="button"
+                tabIndex={0}
+                aria-label={`Select ${trip.destination}`}
+                aria-current={isSelected ? "true" : "false"}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    handleSelect(trip);
+                  }
+                }}
                 style={isSelected ? { boxShadow: "0 4px 20px -2px rgba(255, 90, 95, 0.2), 0 0 0 1.5px rgba(255, 90, 95, 0.6)" } : {}}
               >
                 {/* Top Image Banner (Compact) */}

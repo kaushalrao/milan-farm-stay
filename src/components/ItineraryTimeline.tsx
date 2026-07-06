@@ -577,7 +577,7 @@ export default function ItineraryTimeline({ day }: { day: string }) {
           className="relative flex flex-col gap-2"
         >
           {activeTab === 2 && (
-            <div className="bg-orange-50/80 backdrop-blur-sm border border-orange-200/60 rounded-2xl p-4 mb-4 flex flex-col gap-3 shadow-sm">
+            <div key="warning-2" className="bg-orange-50/80 backdrop-blur-sm border border-orange-200/60 rounded-2xl p-4 mb-4 flex flex-col gap-3 shadow-sm">
               <div className="flex items-start gap-3">
                 <div className="bg-orange-100 text-orange-600 w-8 h-8 rounded-full flex items-center justify-center shrink-0">
                   <i className="ph-fill ph-warning-circle text-lg"></i>
@@ -601,7 +601,7 @@ export default function ItineraryTimeline({ day }: { day: string }) {
           )}
 
           {activeTab === 5 && (
-            <div className="bg-orange-50/80 backdrop-blur-sm border border-orange-200/60 rounded-2xl p-4 mb-4 flex flex-col gap-3 shadow-sm">
+            <div key="warning-5" className="bg-orange-50/80 backdrop-blur-sm border border-orange-200/60 rounded-2xl p-4 mb-4 flex flex-col gap-3 shadow-sm">
               <div className="flex items-start gap-3">
                 <div className="bg-orange-100 text-orange-600 w-8 h-8 rounded-full flex items-center justify-center shrink-0">
                   <i className="ph-fill ph-warning-circle text-lg"></i>
@@ -625,16 +625,16 @@ export default function ItineraryTimeline({ day }: { day: string }) {
           )}
 
           {currentStops.map((stop: any, idx: number) => (
-            <CompactStopCard key={idx} stop={stop} index={idx} />
+            <CompactStopCard key={stop.title || idx} stop={stop} index={idx} />
           ))}
 
           {activeTab === 2 && (
-            <div className="mt-4 pt-6 border-t border-border">
+            <div key="restaurants-2" className="mt-4 pt-6 border-t border-border">
               <h3 className="font-serif text-xl font-bold text-dark mb-4 text-center flex items-center justify-center gap-2">
                 <i className="ph-fill ph-fork-knife text-airbnb-coral"></i> Recommended Restaurants
               </h3>
               {day2Restaurants.map((rest, idx) => (
-                <RestaurantCard key={idx} stop={rest} />
+                <RestaurantCard key={rest.name || idx} stop={rest} />
               ))}
             </div>
           )}
