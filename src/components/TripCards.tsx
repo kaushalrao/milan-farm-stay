@@ -57,7 +57,7 @@ export default function TripCards() {
   // Initialize from URL parameters if someone shared a link
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const tripParam = params.get('trip');
+    const tripParam = params.get('day') || params.get('trip');
     if (tripParam && ["1", "2", "3", "4", "5"].includes(tripParam)) {
       setSelectedDays(tripParam);
       // Give DOM time to render before scrolling
