@@ -524,6 +524,30 @@ export default function ItineraryTimeline({ day }: { day: string }) {
           transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
           className="relative flex flex-col gap-2"
         >
+          {activeTab === 2 && (
+            <div className="bg-orange-50/80 backdrop-blur-sm border border-orange-200/60 rounded-2xl p-4 mb-4 flex flex-col gap-3 shadow-sm">
+              <div className="flex items-start gap-3">
+                <div className="bg-orange-100 text-orange-600 w-8 h-8 rounded-full flex items-center justify-center shrink-0">
+                  <i className="ph-fill ph-warning-circle text-lg"></i>
+                </div>
+                <div>
+                  <h4 className="text-[13px] font-bold text-orange-900 mb-0.5">Advance Booking Required</h4>
+                  <p className="text-[11px] text-orange-800/80 leading-snug">
+                    Slots for Mullayanagiri, Baba Budangiri, and Jhari Waterfalls must be booked beforehand via Chikmagalur Tourism.
+                  </p>
+                </div>
+              </div>
+              <a 
+                href="https://pgbiz.omniware.in/chikkamagalurutourism" 
+                target="_blank" 
+                rel="noreferrer"
+                className="mt-1 text-center bg-orange-500 hover:bg-orange-600 text-white text-[12px] font-bold py-2.5 rounded-xl transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5"
+              >
+                Book Entry Slots
+              </a>
+            </div>
+          )}
+
           {currentStops.map((stop: any, idx: number) => (
             <CompactStopCard key={idx} stop={stop} index={idx} />
           ))}
