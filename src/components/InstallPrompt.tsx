@@ -6,11 +6,24 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function InstallPrompt() {
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
   const [showPrompt, setShowPrompt] = useState(false);
+  const [isIOS, setIsIOS] = useState(false);
 
   useEffect(() => {
     // Check if the app is already installed
-    if (window.matchMedia('(display-mode: standalone)').matches) {
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || ('standalone' in window.navigator && (window.navigator as any).standalone);
+    if (isStandalone) {
       return;
+    }
+
+    // Detect iOS
+    const userAgent = window.navigator.userAgent.toLowerCase();
+    const isIOSDevice = /iphone|ipad|ipod/.test(userAgent);
+    
+    if (isIOSDevice) {
+      setIsIOS(true);
+      // Show prompt after a slight delay
+      const timer = setTimeout(() => setShowPrompt(true), 2000);
+      return () => clearTimeout(timer);
     }
 
     const handleBeforeInstallPrompt = (e: Event) => {
@@ -51,9 +64,15 @@ export default function InstallPrompt() {
               <div className="w-10 h-10 bg-airbnb-coral rounded-xl flex items-center justify-center shrink-0">
                 <i className="ph-bold ph-download-simple text-xl text-white"></i>
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col flex-1">
                 <h4 className="font-bold text-sm leading-tight">Install Offline App</h4>
-                <p className="text-xs text-gray-300 mt-0.5 leading-tight">Access your itinerary without network.</p>
+                <p className="text-xs text-gray-300 mt-0.5 leading-tight">
+                  {isIOS ? (
+                    <>Tap <i className="ph-bold ph-export"></i> Share, then <strong>Add to Home Screen</strong></>
+                  ) : (
+                    "Access your itinerary without network."
+                  )}
+                </p>
               </div>
             </div>
             
@@ -65,12 +84,14 @@ export default function InstallPrompt() {
               >
                 <i className="ph-bold ph-x text-[10px] text-white"></i>
               </button>
-              <button
-                onClick={handleInstallClick}
-                className="bg-white text-dark px-3.5 py-2 rounded-full text-xs font-bold whitespace-nowrap hover:bg-gray-100 transition-colors"
-              >
-                Install
-              </button>
+              {!isIOS && (
+                <button
+                  onClick={handleInstallClick}
+                  className="bg-white text-dark px-3.5 py-2 rounded-full text-xs font-bold whitespace-nowrap hover:bg-gray-100 transition-colors"
+                >
+                  Install
+                </button>
+              )}
             </div>
           </div>
         </motion.div>
