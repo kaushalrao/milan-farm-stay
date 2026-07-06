@@ -148,9 +148,32 @@ function CompactStopCard({ stop, index }: { stop: any, index: number }) {
   );
 }
 
+const WEATHER_API = "https://api.open-meteo.com/v1/forecast?latitude=13.3161&longitude=75.7720&current_weather=true";
+
 function DaySummaryCard({ dayNum, numDays }: { dayNum: number, numDays: number }) {
   const summary = daySummaries[dayNum];
   const [copied, setCopied] = useState(false);
+  const [weather, setWeather] = useState<any>(null);
+
+  useEffect(() => {
+    fetch(WEATHER_API)
+      .then(res => res.json())
+      .then(data => {
+        if (data.current_weather) {
+          setWeather(data.current_weather);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const getWeatherIcon = (code: number, isDay: number) => {
+    if (code === 0) return isDay ? "ph-sun" : "ph-moon";
+    if (code <= 3) return isDay ? "ph-cloud-sun" : "ph-cloud-moon";
+    if (code <= 48) return "ph-cloud-fog";
+    if (code <= 67) return "ph-cloud-rain";
+    if (code <= 77) return "ph-snowflake";
+    return "ph-cloud-lightning";
+  };
 
   const handleShare = async () => {
     const url = `${window.location.origin}${window.location.pathname}?day=${dayNum}`;
@@ -175,7 +198,15 @@ function DaySummaryCard({ dayNum, numDays }: { dayNum: number, numDays: number }
   return (
     <div className="sticky top-[70px] md:top-[80px] z-30 bg-white/90 backdrop-blur-md shadow-sm border border-border/50 rounded-2xl p-3 mb-6 mx-auto max-w-xl text-center flex items-center justify-between">
       <div className="flex-1">
-        <h3 className="font-serif font-bold text-lg text-dark mb-0.5">{summary.day} - {summary.title}</h3>
+        <div className="flex items-center justify-center gap-2 mb-0.5">
+          <h3 className="font-serif font-bold text-lg text-dark">{summary.day} - {summary.title}</h3>
+          {weather && (
+            <div className="flex items-center gap-1 bg-cream px-1.5 py-0.5 rounded-md text-[10px] font-bold text-dark border border-border/50" title="Chikmagalur Current Weather">
+              <i className={`ph-fill ${getWeatherIcon(weather.weathercode, weather.is_day)} text-airbnb-coral`}></i>
+              <span>{Math.round(weather.temperature)}°C</span>
+            </div>
+          )}
+        </div>
         <div className="text-[11px] md:text-[12px] font-medium text-text-muted">
           {summary.text}
         </div>
