@@ -16,14 +16,14 @@ export default function Home() {
         <Hero />
         <TripCards />
 
-        <section className="pt-8 pb-8 scroll-mt-24" id="contacts">
+        <section className="pt-2 md:pt-8 pb-8 scroll-mt-24" id="contacts">
           <div className="container mx-auto px-6 max-w-5xl">
-            <div className="text-center mb-12">
-              <h2 className="font-serif text-3xl md:text-4xl font-semibold text-dark mb-4">Your Hosts at Milan Farm Stays</h2>
+            <div className="text-center mb-8 md:mb-12">
+              <h2 className="font-serif text-3xl md:text-4xl font-semibold text-dark mb-3 md:mb-4">Your Hosts at Milan Farm Stays</h2>
               <p className="text-text-muted text-lg">We are here to ensure you have a wonderful and comfortable stay.</p>
             </div>
 
-            <div className="grid grid-cols-2 gap-3 md:gap-8 mb-6 md:mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-8">
               <HostProfile
                 name="Athula Rao K"
                 role="Host"
@@ -42,7 +42,14 @@ export default function Home() {
                 phone="9448632666"
               />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <div className="flex items-center gap-4 my-8 md:my-10">
+              <div className="flex-1 h-px bg-border"></div>
+              <h3 className="font-serif text-lg md:text-2xl font-semibold text-text-muted/80 tracking-wide text-center uppercase">Food & Delivery</h3>
+              <div className="flex-1 h-px bg-border"></div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-8">
               <HomeCook />
               <HomeDelivery />
             </div>

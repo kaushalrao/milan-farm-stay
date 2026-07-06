@@ -33,7 +33,7 @@ export default function WeatherWidget() {
   }, []);
 
   return (
-    <div className="h-[100px] flex justify-center mt-6 mb-2">
+    <div className="flex justify-center mt-4 md:mt-6 mb-2">
       <AnimatePresence mode="wait">
         {loading ? (
           <motion.div
@@ -49,24 +49,24 @@ export default function WeatherWidget() {
             initial={{ opacity: 0, y: 15, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="flex flex-col items-center gap-3"
+            className="flex flex-col items-center gap-2"
           >
-            <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-md px-5 py-2.5 rounded-full shadow-sm border border-border hover:shadow-md transition-all cursor-default">
-              <i className={`ph-fill ${getWeatherDetails(weather.weathercode, weather.is_day).icon} text-2xl text-airbnb-coral`}></i>
+            <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-md px-4 py-2 md:px-5 md:py-2.5 rounded-full shadow-sm border border-border hover:shadow-md transition-all cursor-default">
+              <i className={`ph-fill ${getWeatherDetails(weather.weathercode, weather.is_day).icon} text-[22px] md:text-2xl text-airbnb-coral`}></i>
               <div className="flex flex-col text-left">
-                <span className="text-[15px] font-bold text-dark leading-none">{Math.round(weather.temperature)}°C</span>
-                <span className="text-[10px] uppercase tracking-wider font-bold text-text-muted mt-0.5">{getWeatherDetails(weather.weathercode, weather.is_day).label}</span>
+                <span className="text-[14px] md:text-[15px] font-bold text-dark leading-none">{Math.round(weather.temperature)}°C</span>
+                <span className="text-[9px] md:text-[10px] uppercase tracking-wider font-bold text-text-muted mt-0.5">{getWeatherDetails(weather.weathercode, weather.is_day).label}</span>
               </div>
               <div className="w-[1px] h-6 bg-border mx-1"></div>
               <div className="flex flex-col text-left">
-                <span className="text-[13px] font-bold text-dark leading-none">Chikmagalur</span>
-                <span className="text-[10px] text-text-muted mt-0.5 font-medium">Current Weather</span>
+                <span className="text-[12px] md:text-[13px] font-bold text-dark leading-none">Chikmagalur</span>
+                <span className="text-[9px] md:text-[10px] text-text-muted mt-0.5 font-medium">Current Weather</span>
               </div>
             </div>
             
-            <div className="text-[11px] md:text-xs font-medium text-text-main bg-soft-beige px-4 py-1.5 rounded-full border border-border/50 flex items-center gap-2 shadow-sm">
-              <i className="ph-fill ph-backpack text-airbnb-coral text-[14px]"></i>
-              <span>{getWeatherDetails(weather.weathercode, weather.is_day).tips}</span>
+            <div className="text-[10px] md:text-xs font-medium text-text-main bg-soft-beige px-3 py-1.5 md:px-4 rounded-full border border-border/50 flex items-center gap-1.5 shadow-sm max-w-[90vw] text-center">
+              <i className="ph-fill ph-backpack text-airbnb-coral text-[12px] md:text-[14px] shrink-0"></i>
+              <span className="truncate">{getWeatherDetails(weather.weathercode, weather.is_day).tips}</span>
             </div>
           </motion.div>
         ) : null}

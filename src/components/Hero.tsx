@@ -4,18 +4,18 @@ import WeatherWidget from "./WeatherWidget";
 
 export default function Hero() {
   return (
-    <header className="pt-32 pb-8 md:pb-12 px-4 text-center">
+    <header className="pt-24 md:pt-32 pb-6 md:pb-12 px-4 text-center">
       <motion.div
         className="container mx-auto max-w-4xl"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
-        <h1 className="font-serif text-5xl md:text-7xl leading-[1.1] text-dark font-semibold mb-6">
+        <h1 className="font-serif text-[40px] md:text-7xl leading-[1.05] md:leading-[1.1] text-dark font-semibold mb-4 md:mb-6 tracking-tight">
           Road Trip to<br />Milan Farm Stays
         </h1>
         <motion.p
-          className="text-xl md:text-2xl text-text-muted max-w-2xl mx-auto mb-4"
+          className="text-[17px] md:text-2xl leading-snug text-text-muted max-w-2xl mx-auto mb-2 md:mb-4 px-2"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}

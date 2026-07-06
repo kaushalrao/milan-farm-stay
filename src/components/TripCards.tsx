@@ -34,10 +34,10 @@ export default function TripCards() {
   };
 
   return (
-    <section className="pt-2 pb-4 relative scroll-mt-24" id="plan">
+    <section className="pt-0 pb-0 md:pb-4 relative scroll-mt-24" id="plan">
       <div className="container mx-auto px-0 md:px-4 max-w-6xl overflow-hidden">
         {/* Horizontal Scroll Container */}
-        <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-6 pt-2 px-6 md:px-2 w-full [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+        <div className="flex gap-3 md:gap-4 overflow-x-auto snap-x snap-mandatory pb-4 pt-1 px-4 md:px-2 w-full [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {tripOptions.map((trip) => {
             const isSelected = selectedDays === trip.id;
 
@@ -49,7 +49,7 @@ export default function TripCards() {
                 transition={{ duration: 0.5, delay: 0.1 + parseInt(trip.id) * 0.05, ease: [0.22, 1, 0.36, 1] }}
                 whileHover={{ y: -4, scale: 1.01 }}
                 whileTap={{ scale: 0.98 }}
-                className={`group relative snap-center md:snap-start shrink-0 w-[260px] md:w-[280px] bg-white rounded-3xl overflow-hidden cursor-pointer flex flex-col transition-all duration-300 ${
+                className={`group relative snap-center md:snap-start shrink-0 w-[240px] md:w-[280px] bg-white rounded-3xl overflow-hidden cursor-pointer flex flex-col transition-all duration-300 ${
                   isSelected 
                     ? "border-transparent shadow-[0_8px_30px_rgb(0,0,0,0.12)]" 
                     : "border border-border/60 hover:border-border shadow-sm hover:shadow-md"
