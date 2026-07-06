@@ -140,14 +140,14 @@ const day2Stops = [
     tips: "Sunset reflects beautifully on the water with hills in the backdrop.",
     duration: "Visit 1 hr",
     drivingTime: "Drive 40 mins",
-    mapsUrl: "https://www.google.com/maps/search/Hirekolale+Lake",
+    mapsUrl: "https://maps.app.goo.gl/dLKYr7AsYb6vt9yM8",
     bestTime: "Late afternoon / Sunset."
   },
   {
     title: "Freedom Park (Chikmagalur)",
     category: "Leisure",
     desc: "Evening relaxation at a family-friendly park.",
-    img: "/images/park.png",
+    img: "/images/freedom_park.png",
     tips: "Great spot for kids to play and unwind after a long day.",
     duration: "Visit 1 hr",
     drivingTime: "Drive 25 mins",
