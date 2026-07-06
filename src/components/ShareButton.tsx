@@ -2,7 +2,7 @@
 
 export default function ShareButton() {
   const shareText = "Check out our beautiful Road Trip Guide to Milan Farm Stay! 🚗🌿";
-  const shareUrl = "https://milanfarmstay.com/guide"; // Placeholder URL
+  const shareUrl = "https://milan-farm-stay.vercel.app/";
   const whatsappLink = "https://wa.me/?text=" + encodeURIComponent(shareText + " " + shareUrl);
 
   return (
