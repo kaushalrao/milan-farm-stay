@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import Script from "next/script";
+import InstallPrompt from "@/components/InstallPrompt";
 import "./globals.css";
 
 const inter = Inter({
@@ -16,6 +17,12 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Milan Farm Stays | Guest Itinerary",
   description: "Curated road trips, hidden gems & unforgettable coffee estate experiences at Milan Farm Stays.",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Milan Farm",
+  },
 };
 
 export default function RootLayout({
@@ -33,6 +40,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen flex flex-col bg-cream text-text-main font-sans overflow-x-hidden">
         {children}
+        <InstallPrompt />
       </body>
     </html>
   );
