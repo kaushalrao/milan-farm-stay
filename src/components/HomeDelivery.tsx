@@ -42,21 +42,13 @@ export default function HomeDelivery() {
         </div>
       </div>
 
-      <div className="flex gap-2 relative z-10">
+      <div className="flex relative z-10">
         <motion.a
           whileTap={{ scale: 0.97 }}
           href="tel:+919702545810"
-          className="flex-1 flex items-center justify-center gap-2 py-3 bg-cream text-dark border border-border/50 rounded-xl text-sm md:text-base font-semibold transition-all hover:bg-soft-beige shadow-sm hover:-translate-y-1"
+          className="w-full flex items-center justify-center gap-2 py-3 bg-cream text-dark border border-border/50 rounded-xl text-sm md:text-base font-semibold transition-all hover:bg-soft-beige shadow-sm hover:-translate-y-1"
         >
           <i className="ph-fill ph-phone text-lg md:text-xl"></i> Call
-        </motion.a>
-        <motion.a
-          whileTap={{ scale: 0.97 }}
-          href="https://wa.me/919702545810"
-          target="_blank" rel="noreferrer"
-          className="flex-1 flex items-center justify-center gap-2 py-3 bg-[#25D366] text-white rounded-xl text-sm md:text-base font-semibold transition-all hover:shadow-lg hover:shadow-green-500/20 hover:-translate-y-1"
-        >
-          <i className="ph-fill ph-whatsapp-logo text-lg md:text-xl"></i> WhatsApp
         </motion.a>
       </div>
 
