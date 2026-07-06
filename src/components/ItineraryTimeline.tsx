@@ -24,7 +24,7 @@ const roadTripStops = [
     tips: "Capture the symmetry of the four shrines from the eastern entrance.",
     duration: "Visit 45 mins",
     drivingTime: "Drive 30 mins",
-    mapsUrl: "https://www.google.com/maps/search/Shree+Doddagaddavalli+Mahalakshmi+Temple" 
+    mapsUrl: "https://www.google.com/maps/search/Shree+Doddagaddavalli+Mahalakshmi+Temple"
   },
   {
     title: "Hoysaleswara Temple, Halebidu",
@@ -90,15 +90,15 @@ const roadTripStops = [
 
 const day2Stops = [
   {
-    title: "Mullayanagiri Peak",
-    category: "Viewpoint",
-    desc: "Highest peak in Karnataka. Sunrise / panoramic viewpoint.",
+    title: "Mullayanagiri Base Point",
+    category: "Viewpoint Base",
+    desc: "Base point for Mullayanagiri Peak. Park your car here and take a jeep to the top.",
     img: "/images/hero.png",
-    tips: "Trek up the stairs early morning to avoid the crowd and heat.",
+    tips: "Trek up the final stairs early morning to avoid the crowd and heat.",
     duration: "Visit 2 hrs",
     drivingTime: "Drive 45 mins",
-    mapsUrl: "https://maps.app.goo.gl/NV7oPUxjdznWqfFh7",
-    parkingInfo: "Park at the Seethalayyanagiri temple base where the jeep ride starts.",
+    mapsUrl: "https://www.google.com/maps/search/Shri+Sitalayyanagiri+Gudi",
+    parkingInfo: "Park your vehicle here. Jeep ride required from this point onwards.",
     bestTime: "Sunrise or early morning."
   },
   {
@@ -322,33 +322,33 @@ const daySummaries: Record<number, any> = {
 
 function CompactStopCard({ stop, index }: { stop: any, index: number }) {
   const [isExpanded, setIsExpanded] = useState(false);
-  
+
   return (
-    <motion.div 
+    <motion.div
       layout
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.5, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
-      className="relative mb-6 group stop-card" 
+      className="relative mb-6 group stop-card"
       data-stop-title={stop.title}
     >
-      
+
       <motion.div layout className="bg-white rounded-2xl overflow-hidden shadow-sm transition-all duration-300 border border-border/50 hover:shadow-md">
         <motion.div layout className="relative h-[120px] sm:h-[140px] w-full overflow-hidden cursor-pointer" onClick={() => setIsExpanded(!isExpanded)}>
           <span className="absolute top-2 left-2 bg-white/95 backdrop-blur-md px-2 py-0.5 rounded-md text-[10px] font-bold uppercase text-dark z-10 shadow-sm tracking-wider">
             {stop.category}
           </span>
-          <motion.img 
+          <motion.img
             whileHover={{ scale: 1.04 }}
             transition={{ duration: 0.6 }}
-            src={stop.img} alt={stop.title} className="w-full h-full object-cover" 
+            src={stop.img} alt={stop.title} className="w-full h-full object-cover"
           />
         </motion.div>
-        
+
         <div className="p-4">
           <h4 className="font-serif text-[18px] leading-tight font-semibold text-dark mb-2">{stop.title}</h4>
-          
+
           <div className="flex flex-wrap gap-1.5 text-text-muted text-[11px] font-medium mb-2">
             <span className="bg-cream px-2 py-1 rounded-md flex items-center gap-1"><i className="ph ph-car"></i> {stop.drivingTime}</span>
             {stop.duration !== "N/A" && (
@@ -359,26 +359,26 @@ function CompactStopCard({ stop, index }: { stop: any, index: number }) {
           <p className="text-text-muted text-[13px] leading-snug mb-3 line-clamp-2">
             {stop.desc}
           </p>
-          
+
           <motion.div layout className="flex items-center justify-between mt-1">
-            <button 
-              onClick={() => setIsExpanded(!isExpanded)} 
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
               className="text-[13px] font-semibold text-airbnb-coral flex items-center gap-1 py-1"
             >
               {isExpanded ? "▲ Hide Details" : "▼ View Details"}
             </button>
             <div className="flex items-center gap-2">
-              <motion.a 
+              <motion.a
                 whileTap={{ scale: 0.95 }}
-                href={stop.mapsUrl} target="_blank" rel="noreferrer" 
+                href={stop.mapsUrl} target="_blank" rel="noreferrer"
                 className="inline-flex items-center justify-center px-4 h-[36px] border border-border rounded-full text-[12px] font-semibold text-dark transition-colors hover:bg-soft-beige gap-1"
               >
                 <i className="ph-bold ph-map-pin text-[14px]"></i> Maps
               </motion.a>
               {stop.bookingLink && (
-                <motion.a 
+                <motion.a
                   whileTap={{ scale: 0.95 }}
-                  href={stop.bookingLink} target="_blank" rel="noreferrer" 
+                  href={stop.bookingLink} target="_blank" rel="noreferrer"
                   className="inline-flex items-center justify-center px-4 h-[36px] bg-airbnb-coral text-white rounded-full text-[12px] font-semibold transition-colors hover:bg-rose-600 gap-1"
                 >
                   <i className="ph-bold ph-ticket text-[14px]"></i> Book Entry
@@ -386,11 +386,11 @@ function CompactStopCard({ stop, index }: { stop: any, index: number }) {
               )}
             </div>
           </motion.div>
-          
+
           {/* Expandable Section */}
           <AnimatePresence>
             {isExpanded && (
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
@@ -468,7 +468,7 @@ function DaySummaryCard({ dayNum, numDays }: { dayNum: number, numDays: number }
 
   const handleShare = async () => {
     const url = `${window.location.origin}${window.location.pathname}?day=${dayNum}`;
-    
+
     if (navigator.share) {
       try {
         await navigator.share({
@@ -494,8 +494,8 @@ function DaySummaryCard({ dayNum, numDays }: { dayNum: number, numDays: number }
           {summary.text}
         </div>
       </div>
-      
-      <motion.button 
+
+      <motion.button
         whileTap={{ scale: 0.9 }}
         onClick={handleShare}
         className="w-10 h-10 shrink-0 flex flex-col items-center justify-center bg-cream rounded-xl text-dark hover:bg-soft-beige transition-colors ml-2"
@@ -571,12 +571,12 @@ export default function ItineraryTimeline({ day }: { day: string }) {
 
   return (
     <div className="relative pb-8 px-4 max-w-xl mx-auto">
-      
+
       <DaySummaryCard dayNum={activeTab} numDays={4} />
-      
+
       {/* Timeline Container with Day Switching Animation */}
       <AnimatePresence mode="wait">
-        <motion.div 
+        <motion.div
           key={activeTab}
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -597,9 +597,9 @@ export default function ItineraryTimeline({ day }: { day: string }) {
                   </p>
                 </div>
               </div>
-              <a 
-                href="https://pgbiz.omniware.in/chikkamagalurutourism" 
-                target="_blank" 
+              <a
+                href="https://pgbiz.omniware.in/chikkamagalurutourism"
+                target="_blank"
                 rel="noreferrer"
                 className="mt-1 text-center bg-orange-500 hover:bg-orange-600 text-white text-[12px] font-bold py-2.5 rounded-xl transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5"
               >
@@ -621,9 +621,9 @@ export default function ItineraryTimeline({ day }: { day: string }) {
                   </p>
                 </div>
               </div>
-              <a 
-                href="https://aranyavihaara.karnataka.gov.in/" 
-                target="_blank" 
+              <a
+                href="https://aranyavihaara.karnataka.gov.in/"
+                target="_blank"
                 rel="noreferrer"
                 className="mt-1 text-center bg-orange-500 hover:bg-orange-600 text-white text-[12px] font-bold py-2.5 rounded-xl transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5"
               >
@@ -651,11 +651,11 @@ export default function ItineraryTimeline({ day }: { day: string }) {
 
       {/* Complete Road Trip Route Button */}
       <div className="text-center mt-8">
-        <motion.a 
+        <motion.a
           whileTap={{ scale: 0.97 }}
           href={(() => {
             if (!currentStops || currentStops.length === 0) return "https://maps.google.com";
-            
+
             const cleanTitle = (title: string) => title.replace("Departure from ", "").replace("Arrival at ", "");
 
             if (currentStops.length === 1) {
@@ -666,7 +666,7 @@ export default function ItineraryTimeline({ day }: { day: string }) {
             // But to keep it simple, just clean the titles.
             const validStops = currentStops.map(s => ({ ...s, searchTitle: cleanTitle(s.title) }));
             const lastStop = validStops[validStops.length - 1];
-            
+
             // If the first stop is a generic starting point, we can skip it in waypoints to avoid backtracking
             const waypointsList = validStops.slice(0, -1);
             if (waypointsList.length > 0 && currentStops[0].category === "Starting Point") {
@@ -674,10 +674,10 @@ export default function ItineraryTimeline({ day }: { day: string }) {
             }
 
             const waypoints = waypointsList.map((s: any) => s.searchTitle).join('|');
-            
+
             return `https://www.google.com/maps/dir/?api=1&origin=My+Location&destination=${encodeURIComponent(lastStop.searchTitle)}${waypoints ? `&waypoints=${encodeURIComponent(waypoints)}` : ''}`;
           })()}
-          target="_blank" rel="noreferrer" 
+          target="_blank" rel="noreferrer"
           className="inline-flex items-center justify-center px-6 py-3.5 bg-airbnb-coral text-white rounded-2xl font-semibold text-sm transition-all hover:bg-rose-600 shadow-sm w-full gap-2"
         >
           <i className="ph-fill ph-map-trifold text-lg"></i> Open Complete Day Route
