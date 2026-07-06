@@ -39,6 +39,15 @@ const tripOptions = [
     time: "Morning Activity",
     img: "/images/trip2.png",
     icon: "🌄"
+  },
+  {
+    id: "5",
+    hash: "day-5",
+    title: "Treks",
+    subtitle: "Chikmagalur Treks",
+    time: "Advance Booking",
+    img: "/images/netravati.png",
+    icon: "🥾"
   }
 ];
 

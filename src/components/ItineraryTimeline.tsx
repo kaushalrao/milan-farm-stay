@@ -265,11 +265,51 @@ const day4Stops = [
   }
 ];
 
+const day5Stops = [
+  {
+    title: "Netravati Peak Trek",
+    category: "Trekking",
+    desc: "Scenic trek offering breathtaking views of the Western Ghats.",
+    img: "/images/netravati.png",
+    tips: "Trek permissions and slots must be booked in advance.",
+    duration: "Visit 5-6 hrs",
+    drivingTime: "Drive 1.5 hrs",
+    mapsUrl: "https://www.google.com/maps/search/Netravati+Peak",
+    localTips: "Local Guide: [+91 XXXXX XXXXX]. Pre-book entry tickets via Aranya Vihara portal.",
+    bookingLink: "https://aranyavihaara.karnataka.gov.in/"
+  },
+  {
+    title: "Bandaje Falls Trek",
+    category: "Trekking",
+    desc: "A challenging but rewarding trek to the stunning Bandaje Arbi falls.",
+    img: "/images/bandaje.png",
+    tips: "Ensure you have enough water and wear good grip shoes.",
+    duration: "Visit 6-8 hrs",
+    drivingTime: "Drive 1.5 hrs",
+    mapsUrl: "https://www.google.com/maps/search/Bandaje+Falls",
+    localTips: "Advance entry booking is strictly required via Aranya Vihara portal.",
+    bookingLink: "https://aranyavihaara.karnataka.gov.in/"
+  },
+  {
+    title: "Ettina Bhuja Trek",
+    category: "Trekking",
+    desc: "Short yet moderately steep trek offering 360-degree panoramic views.",
+    img: "/images/ettina.png",
+    tips: "Trek in the early morning to avoid the heat. Very scenic during monsoon.",
+    duration: "Visit 3 hrs",
+    drivingTime: "Drive 45 mins",
+    mapsUrl: "https://www.google.com/maps/search/Ettina+Bhuja",
+    localTips: "Home Made Lunch: [+91 XXXXX XXXXX]. Advance entry booking via Aranya Vihara portal is required.",
+    bookingLink: "https://aranyavihaara.karnataka.gov.in/"
+  }
+];
+
 const daySummaries: Record<number, any> = {
   1: { day: "Day 1", title: "The Road Trip", text: "8 Stops • 265 km • 6 hrs Drive" },
   2: { day: "Day 2", title: "Chikmagalur Adventure", text: "6 Stops • 90 km • 8 hrs • Start 7:00 AM" },
   3: { day: "Day 3", title: "Mudigere Exploration", text: "3 Stops • 70 km • Relaxed Exploration" },
   4: { day: "Day 4", title: "Kalasa & Kelagur Route", text: "5 Stops • 110 km • Leisure Morning" },
+  5: { day: "Treks", title: "Chikmagalur Treks", text: "3 Treks • Advance Booking Required" },
 };
 
 function CompactStopCard({ stop, index }: { stop: any, index: number }) {
@@ -319,13 +359,24 @@ function CompactStopCard({ stop, index }: { stop: any, index: number }) {
             >
               {isExpanded ? "▲ Hide Details" : "▼ View Details"}
             </button>
-            <motion.a 
-              whileTap={{ scale: 0.95 }}
-              href={stop.mapsUrl} target="_blank" rel="noreferrer" 
-              className="inline-flex items-center justify-center px-4 h-[36px] border border-border rounded-full text-[12px] font-semibold text-dark transition-colors hover:bg-soft-beige gap-1"
-            >
-              <i className="ph-bold ph-map-pin text-[14px]"></i> Maps
-            </motion.a>
+            <div className="flex items-center gap-2">
+              <motion.a 
+                whileTap={{ scale: 0.95 }}
+                href={stop.mapsUrl} target="_blank" rel="noreferrer" 
+                className="inline-flex items-center justify-center px-4 h-[36px] border border-border rounded-full text-[12px] font-semibold text-dark transition-colors hover:bg-soft-beige gap-1"
+              >
+                <i className="ph-bold ph-map-pin text-[14px]"></i> Maps
+              </motion.a>
+              {stop.bookingLink && (
+                <motion.a 
+                  whileTap={{ scale: 0.95 }}
+                  href={stop.bookingLink} target="_blank" rel="noreferrer" 
+                  className="inline-flex items-center justify-center px-4 h-[36px] bg-airbnb-coral text-white rounded-full text-[12px] font-semibold transition-colors hover:bg-rose-600 gap-1"
+                >
+                  <i className="ph-bold ph-ticket text-[14px]"></i> Book Entry
+                </motion.a>
+              )}
+            </div>
           </motion.div>
           
           {/* Expandable Section */}
@@ -504,6 +555,7 @@ export default function ItineraryTimeline({ day }: { day: string }) {
     if (day === 2) return day2Stops;
     if (day === 3) return day3Stops;
     if (day === 4) return day4Stops;
+    if (day === 5) return day5Stops;
     return [];
   };
 
