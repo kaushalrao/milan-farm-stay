@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { createPortal } from "react-dom";
 
-import { roadTripStops, day2Stops, day2Restaurants, day3Stops, day4Stops, day5Stops, daySummaries } from "../config/data";
+import { roadTripStops, day1Restaurants, day2Stops, day2Restaurants, day3Stops, day4Stops, day5Stops, daySummaries } from "../config/data";
 
 function CompactStopCard({ stop, index }: { stop: any, index: number }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -356,6 +356,17 @@ export default function ItineraryTimeline({ day }: { day: string }) {
           {currentStops.map((stop: any, idx: number) => (
             <CompactStopCard key={stop.title || idx} stop={stop} index={idx} />
           ))}
+
+          {activeTab === 1 && day1Restaurants && (
+            <div key="restaurants-1" className="mt-4 pt-6 border-t border-border">
+              <h3 className="font-serif text-xl font-bold text-dark mb-4 text-center flex items-center justify-center gap-2">
+                <i className="ph-fill ph-fork-knife text-airbnb-coral"></i> Recommended Restaurants
+              </h3>
+              {day1Restaurants.map((rest, idx) => (
+                <RestaurantCard key={rest.title || idx} stop={rest} />
+              ))}
+            </div>
+          )}
 
           {activeTab === 2 && (
             <div key="restaurants-2" className="mt-4 pt-6 border-t border-border">

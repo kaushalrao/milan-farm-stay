@@ -111,16 +111,7 @@ export const roadTripStops = [
     drivingTime: "Drive 20 mins",
     mapsUrl: "https://www.google.com/maps/search/Hoysaleswara+Temple,+Halebidu"
   },
-  {
-    title: "Mango Tree Veg Restaurant",
-    category: "Food Stop",
-    desc: "Clean vegetarian restaurant perfectly timed for your lunch break.",
-    img: "/images/hero.png",
-    tips: "Photograph the colorful thali spread from a top-down angle.",
-    duration: "Visit 1 hr",
-    drivingTime: "Drive 15 mins",
-    mapsUrl: "https://www.google.com/maps/search/Mango+Tree+Veg+Restaurant+Hassan"
-  },
+
   {
     title: "Yagachi Water Adventure",
     category: "Adventure",
@@ -160,6 +151,17 @@ export const roadTripStops = [
     duration: "Check-in",
     drivingTime: "Arrived",
     mapsUrl: "https://www.google.com/maps/search/Milan+Farm+Stay+Mudigere"
+  }
+];
+
+export const day1Restaurants = [
+  {
+    title: "Mango Tree Veg Restaurant, Halebidu",
+    category: "Pure Veg",
+    tags: ["Lunch Break", "Family Friendly"],
+    desc: "Clean vegetarian restaurant perfectly timed for your lunch break.",
+    img: "/images/hero.png",
+    mapsUrl: "https://maps.app.goo.gl/T7nues5F2329JMpX9"
   }
 ];
 

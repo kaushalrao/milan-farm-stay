@@ -41,8 +41,11 @@ export default function WeatherWidget() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="w-[200px] h-[52px] bg-border/40 rounded-full animate-pulse"
-          />
+            className="flex items-center gap-3 bg-white/60 backdrop-blur-md px-5 py-2.5 rounded-full border border-border/50 shadow-sm"
+          >
+            <i className="ph ph-spinner-gap text-airbnb-coral text-xl animate-spin"></i>
+            <span className="text-[13px] font-medium text-text-muted">Fetching local weather...</span>
+          </motion.div>
         ) : weather ? (
           <motion.div
             key="widget"
