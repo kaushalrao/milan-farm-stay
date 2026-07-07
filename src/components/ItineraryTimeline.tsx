@@ -156,7 +156,7 @@ function CompactStopCard({ stop, index }: { stop: any, index: number }) {
 
 const WEATHER_API = "https://api.open-meteo.com/v1/forecast?latitude=13.3161&longitude=75.7720&current_weather=true";
 
-function DaySummaryCard({ dayNum, numDays }: { dayNum: number, numDays: number }) {
+function DaySummaryCard({ dayNum, numDays, viewMode, setViewMode }: { dayNum: number, numDays: number, viewMode: "list" | "map", setViewMode: (mode: "list" | "map") => void }) {
   const summary = daySummaries[dayNum];
   const [copied, setCopied] = useState(false);
   const [weather, setWeather] = useState<any>(null);
@@ -202,34 +202,63 @@ function DaySummaryCard({ dayNum, numDays }: { dayNum: number, numDays: number }
   };
 
   return (
-    <div className="sticky top-[70px] md:top-[80px] z-30 bg-white/95 backdrop-blur-md shadow-sm border border-border/50 rounded-2xl py-2.5 px-3.5 mb-6 mx-auto max-w-xl flex items-center justify-between gap-3">
-      
-      <div className="flex-1 min-w-0 text-left">
-        <h3 className="font-serif text-[15px] md:text-[17px] text-dark leading-tight flex items-center gap-1.5 flex-wrap mb-0.5">
-          <span className="font-bold">{summary.day}</span>
-          <span className="text-text-muted/40 text-[10px] leading-none mt-0.5">•</span>
-          <span className="font-medium text-dark/90 line-clamp-1">{summary.title}</span>
-        </h3>
-        <div className="text-[10.5px] md:text-[12px] font-medium text-text-muted line-clamp-1">
-          {summary.text}
-        </div>
-      </div>
-
-      <div className="flex items-center gap-1.5 shrink-0">
-        {weather && (
-          <div className="flex items-center gap-1 bg-soft-beige px-2 py-1.5 rounded-xl text-[10.5px] font-bold text-dark border border-border/50" title="Chikmagalur Current Weather">
-            <i className={`ph-fill ${getWeatherIcon(weather.weathercode, weather.is_day)} text-airbnb-coral text-[12px]`}></i>
-            <span>{Math.round(weather.temperature)}°C</span>
+    <div className="sticky top-[70px] md:top-[80px] z-30 mb-6 mx-auto max-w-xl shadow-[0_4px_20px_-10px_rgba(0,0,0,0.1)] rounded-2xl">
+      <div className="bg-white/95 backdrop-blur-md border border-border/50 rounded-2xl p-3 flex flex-col gap-3">
+        
+        {/* Top Row: Title & Actions */}
+        <div className="flex items-center justify-between gap-3">
+          <div className="flex-1 min-w-0 text-left">
+            <h3 className="font-serif text-[15px] md:text-[17px] text-dark leading-tight flex items-center gap-1.5 flex-wrap mb-0.5">
+              <span className="font-bold">{summary.day}</span>
+              <span className="text-text-muted/40 text-[10px] leading-none mt-0.5">•</span>
+              <span className="font-medium text-dark/90 line-clamp-1">{summary.title}</span>
+            </h3>
+            <div className="text-[10.5px] md:text-[12px] font-medium text-text-muted line-clamp-1">
+              {summary.text}
+            </div>
           </div>
-        )}
-        <motion.button
-          whileTap={{ scale: 0.9 }}
-          onClick={handleShare}
-          className="w-8 h-8 flex items-center justify-center bg-cream rounded-full text-dark hover:bg-soft-beige transition-colors border border-border/50"
-          title="Share this Day"
-        >
-          <i className={`ph-bold ${copied ? 'ph-check text-green-600' : 'ph-share-network'} text-[15px]`}></i>
-        </motion.button>
+    
+          <div className="flex items-center gap-1.5 shrink-0">
+            {weather && (
+              <div className="flex items-center gap-1 bg-soft-beige px-2 py-1.5 rounded-xl text-[10.5px] font-bold text-dark border border-border/50" title="Chikmagalur Current Weather">
+                <i className={`ph-fill ${getWeatherIcon(weather.weathercode, weather.is_day)} text-airbnb-coral text-[12px]`}></i>
+                <span>{Math.round(weather.temperature)}°C</span>
+              </div>
+            )}
+            <motion.button
+              whileTap={{ scale: 0.9 }}
+              onClick={handleShare}
+              className="w-8 h-8 flex items-center justify-center bg-cream rounded-full text-dark hover:bg-soft-beige transition-colors border border-border/50"
+              title="Share this Day"
+            >
+              <i className={`ph-bold ${copied ? 'ph-check text-green-600' : 'ph-share-network'} text-[15px]`}></i>
+            </motion.button>
+          </div>
+        </div>
+
+        {/* Bottom Row: View Toggle (Segmented Control) */}
+        <div className="bg-cream/80 p-1 rounded-[10px] flex w-full relative">
+          {/* Animated Background Slider */}
+          <motion.div 
+            layout
+            className="absolute top-1 bottom-1 w-[calc(50%-4px)] bg-white rounded-lg shadow-[0_2px_8px_-2px_rgba(0,0,0,0.15)] border border-border/50 z-0"
+            animate={{ left: viewMode === "list" ? "4px" : "calc(50%)" }}
+            transition={{ type: "spring", stiffness: 400, damping: 30 }}
+          />
+          
+          <button 
+            onClick={() => setViewMode("list")}
+            className={`flex-1 py-1.5 text-[12px] font-bold transition-colors z-10 rounded-lg ${viewMode === "list" ? "text-dark" : "text-text-muted hover:text-dark"}`}
+          >
+            <i className="ph-bold ph-list-bullets mr-1 text-[14px] align-middle"></i> List View
+          </button>
+          <button 
+            onClick={() => setViewMode("map")}
+            className={`flex-1 py-1.5 text-[12px] font-bold transition-colors z-10 rounded-lg ${viewMode === "map" ? "text-dark" : "text-text-muted hover:text-dark"}`}
+          >
+            <i className="ph-bold ph-map-trifold mr-1 text-[14px] align-middle"></i> Map View
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -267,6 +296,7 @@ function RestaurantCard({ stop }: { stop: any }) {
 export default function ItineraryTimeline({ day }: { day: string }) {
   const activeTab = parseInt(day) || 1;
   const [viewMode, setViewMode] = useState<"list" | "map">("list");
+  const timelineRef = useRef<HTMLDivElement>(null);
 
   // Setup Intersection Observer for scroll reveal triggers
   useEffect(() => {
@@ -286,6 +316,17 @@ export default function ItineraryTimeline({ day }: { day: string }) {
     return () => observer.disconnect();
   }, [activeTab]);
 
+  // Prevent layout shift when switching views
+  useEffect(() => {
+    if (timelineRef.current) {
+      const rect = timelineRef.current.getBoundingClientRect();
+      if (rect.top < 80) {
+        const offset = window.scrollY + rect.top - 100;
+        window.scrollTo({ top: offset, behavior: "smooth" });
+      }
+    }
+  }, [viewMode, activeTab]);
+
   const getStopsForDay = (day: number) => {
     if (day === 1) return roadTripStops;
     if (day === 2) return day2Stops;
@@ -298,27 +339,9 @@ export default function ItineraryTimeline({ day }: { day: string }) {
   const currentStops = getStopsForDay(activeTab);
 
   return (
-    <div className="relative pb-8 px-4 max-w-xl mx-auto">
+    <div className="relative pb-8 px-4 max-w-xl mx-auto" ref={timelineRef}>
 
-      <DaySummaryCard dayNum={activeTab} numDays={4} />
-
-      {/* View Toggle */}
-      <div className="flex items-center justify-center mb-6">
-        <div className="bg-white p-1 rounded-full border border-border/80 inline-flex shadow-sm">
-          <button 
-            onClick={() => setViewMode("list")}
-            className={`px-5 py-1.5 rounded-full text-[13px] font-bold transition-all ${viewMode === "list" ? "bg-dark text-white shadow-md" : "text-text-muted hover:text-dark"}`}
-          >
-            <i className="ph-bold ph-list-bullets mr-1"></i> List
-          </button>
-          <button 
-            onClick={() => setViewMode("map")}
-            className={`px-5 py-1.5 rounded-full text-[13px] font-bold transition-all ${viewMode === "map" ? "bg-dark text-white shadow-md" : "text-text-muted hover:text-dark"}`}
-          >
-            <i className="ph-bold ph-map-trifold mr-1"></i> Map
-          </button>
-        </div>
-      </div>
+      <DaySummaryCard dayNum={activeTab} numDays={4} viewMode={viewMode} setViewMode={setViewMode} />
 
       {/* Timeline Container with Day Switching Animation */}
       <AnimatePresence mode="wait">
