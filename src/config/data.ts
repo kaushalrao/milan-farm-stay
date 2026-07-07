@@ -89,7 +89,9 @@ export const roadTripStops = [
     tips: "Leave by 6:00 AM. Watch a beautiful highway sunrise.",
     duration: "N/A",
     drivingTime: "Drive 3 hrs",
-    mapsUrl: "https://www.google.com/maps/search/Bangalore"
+    mapsUrl: "https://www.google.com/maps/search/Bangalore",
+    lat: 12.9716,
+    lng: 77.5946,
   },
   {
     title: "Shree Doddagaddavalli Temple",
@@ -99,7 +101,9 @@ export const roadTripStops = [
     tips: "Capture the symmetry of the four shrines from the eastern entrance.",
     duration: "Visit 45 mins",
     drivingTime: "Drive 30 mins",
-    mapsUrl: "https://www.google.com/maps/search/Shree+Doddagaddavalli+Mahalakshmi+Temple"
+    mapsUrl: "https://www.google.com/maps/search/Shree+Doddagaddavalli+Mahalakshmi+Temple",
+    lat: 13.0906,
+    lng: 76.0125,
   },
   {
     title: "Hoysaleswara Temple, Halebidu",
@@ -109,7 +113,9 @@ export const roadTripStops = [
     tips: "Zoom in on the intricate jewelry carved on the statues. Best lit in late morning.",
     duration: "Visit 1.5 hrs",
     drivingTime: "Drive 20 mins",
-    mapsUrl: "https://www.google.com/maps/search/Hoysaleswara+Temple,+Halebidu"
+    mapsUrl: "https://www.google.com/maps/search/Hoysaleswara+Temple,+Halebidu",
+    lat: 13.2132,
+    lng: 75.9942,
   },
 
   {
@@ -120,7 +126,9 @@ export const roadTripStops = [
     tips: "Action shots of the water sports look great with a fast shutter speed.",
     duration: "Visit 1 hr",
     drivingTime: "Drive 10 mins",
-    mapsUrl: "https://www.google.com/maps/search/Yagachi+Water+Adventure+Centre"
+    mapsUrl: "https://www.google.com/maps/search/Yagachi+Water+Adventure+Centre",
+    lat: 13.197,
+    lng: 75.877,
   },
   {
     title: "Belur Chennakeshava Temple",
@@ -130,7 +138,9 @@ export const roadTripStops = [
     tips: "Look for the 'Darpana Sundari'. Use a wide-angle lens.",
     duration: "Visit 1.5 hrs",
     drivingTime: "Drive 45 mins",
-    mapsUrl: "https://www.google.com/maps/search/Chennakeshava+Temple,+Belur"
+    mapsUrl: "https://www.google.com/maps/search/Chennakeshava+Temple,+Belur",
+    lat: 13.1627,
+    lng: 75.8593,
   },
   {
     title: "Mudigere",
@@ -140,7 +150,9 @@ export const roadTripStops = [
     tips: "Roll down the windows and capture a quick video of the misty roads.",
     duration: "N/A",
     drivingTime: "Drive 20 mins",
-    mapsUrl: "https://www.google.com/maps/search/Mudigere,+Karnataka"
+    mapsUrl: "https://www.google.com/maps/search/Mudigere,+Karnataka",
+    lat: 13.1365,
+    lng: 75.6429,
   },
   {
     title: "Arrival at Milan Farm Stay",
@@ -150,7 +162,9 @@ export const roadTripStops = [
     tips: "The golden hour sunlight hitting the estate house is perfect.",
     duration: "Check-in",
     drivingTime: "Arrived",
-    mapsUrl: "https://www.google.com/maps/search/Milan+Farm+Stay+Mudigere"
+    mapsUrl: "https://www.google.com/maps/search/Milan+Farm+Stay+Mudigere",
+    lat: 13.13,
+    lng: 75.64,
   }
 ];
 
@@ -161,7 +175,9 @@ export const day1Restaurants = [
     tags: ["Lunch Break", "Family Friendly"],
     desc: "Clean vegetarian restaurant perfectly timed for your lunch break.",
     img: "/images/hero.png",
-    mapsUrl: "https://maps.app.goo.gl/T7nues5F2329JMpX9"
+    mapsUrl: "https://maps.app.goo.gl/T7nues5F2329JMpX9",
+    lat: 13.21,
+    lng: 75.99,
   }
 ];
 
@@ -175,6 +191,8 @@ export const day2Stops = [
     duration: "Visit 2 hrs",
     drivingTime: "Drive 45 mins",
     mapsUrl: "https://www.google.com/maps/search/Shri+Sitalayyanagiri+Gudi",
+    lat: 13.385,
+    lng: 75.72,
     parkingInfo: "Park your vehicle here. Jeep ride required from this point onwards.",
     bestTime: "Sunrise or early morning."
   },
@@ -187,6 +205,8 @@ export const day2Stops = [
     duration: "Visit 1.5 hrs",
     drivingTime: "Drive 30 mins",
     mapsUrl: "https://www.google.com/maps/search/Jhari+Waterfalls",
+    lat: 13.398,
+    lng: 75.745,
     entryFee: "Jeep ride costs approx ₹700 per vehicle."
   },
   {
@@ -197,7 +217,9 @@ export const day2Stops = [
     tips: "Respect the religious significance of the site.",
     duration: "Visit 1 hr",
     drivingTime: "Drive 20 mins",
-    mapsUrl: "https://www.google.com/maps/search/Baba+Budangiri"
+    mapsUrl: "https://www.google.com/maps/search/Baba+Budangiri",
+    lat: 13.415,
+    lng: 75.755
   },
   {
     title: "Manikyadhara Falls",
@@ -207,7 +229,9 @@ export const day2Stops = [
     tips: "The water is considered holy. Great for a quick splash.",
     duration: "Visit 45 mins",
     drivingTime: "Drive 15 mins",
-    mapsUrl: "https://www.google.com/maps/search/Manikyadhara+Falls"
+    mapsUrl: "https://www.google.com/maps/search/Manikyadhara+Falls",
+    lat: 13.425,
+    lng: 75.765,
   },
   {
     title: "Hirekolale Lake",
@@ -218,6 +242,8 @@ export const day2Stops = [
     duration: "Visit 1 hr",
     drivingTime: "Drive 40 mins",
     mapsUrl: "https://maps.app.goo.gl/dLKYr7AsYb6vt9yM8",
+    lat: 13.33,
+    lng: 75.715,
     bestTime: "Late afternoon / Sunset."
   },
   {
@@ -228,7 +254,9 @@ export const day2Stops = [
     tips: "Great spot for kids to play and unwind after a long day.",
     duration: "Visit 1 hr",
     drivingTime: "Drive 25 mins",
-    mapsUrl: "https://maps.app.goo.gl/9gJzLmhFYukHQMoz5"
+    mapsUrl: "https://maps.app.goo.gl/9gJzLmhFYukHQMoz5",
+    lat: 13.32,
+    lng: 75.77
   }
 ];
 
@@ -239,7 +267,9 @@ export const day2Restaurants = [
     tags: ["Lunch & Dinner", "Family Friendly"],
     desc: "Comfortable and popular pure vegetarian dining.",
     img: "/images/restaurant.png",
-    mapsUrl: "https://www.google.com/maps/search/Mayura+Deluxe+Chikmagalur"
+    mapsUrl: "https://www.google.com/maps/search/Mayura+Deluxe+Chikmagalur",
+    lat: 13.315,
+    lng: 75.775,
   },
   {
     title: "Hotel Adrika",
@@ -247,7 +277,9 @@ export const day2Restaurants = [
     tags: ["Coffee & Snacks", "Dinner"],
     desc: "Premium multi-cuisine restaurant with a great ambiance.",
     img: "/images/restaurant.png",
-    mapsUrl: "https://www.google.com/maps/search/Hotel+Adrika+Chikmagalur"
+    mapsUrl: "https://www.google.com/maps/search/Hotel+Adrika+Chikmagalur",
+    lat: 13.316,
+    lng: 75.776,
   },
   {
     title: "Chikmagalur Food Court",
@@ -255,7 +287,9 @@ export const day2Restaurants = [
     tags: ["Multi Cuisine", "Quick Bites"],
     desc: "A great stop offering a wide variety of food options in one place.",
     img: "/images/restaurant.png",
-    mapsUrl: "https://maps.app.goo.gl/doUSZZqpFipqiWrZ7"
+    mapsUrl: "https://maps.app.goo.gl/doUSZZqpFipqiWrZ7",
+    lat: 13.317,
+    lng: 75.777,
   }
 ];
 
@@ -269,6 +303,8 @@ export const day3Stops = [
     duration: "Visit 1.5 hrs",
     drivingTime: "Drive 30 mins",
     mapsUrl: "https://www.google.com/maps/search/Devaramane+Viewpoint",
+    lat: 13.06,
+    lng: 75.54,
     bestTime: "Early Morning."
   },
   {
@@ -279,7 +315,9 @@ export const day3Stops = [
     tips: "The drive itself is beautiful. Stop safely for photos.",
     duration: "Visit 1 hr",
     drivingTime: "Drive 20 mins",
-    mapsUrl: "https://www.google.com/maps/search/Bettada+Bhairaveshwara+Temple"
+    mapsUrl: "https://www.google.com/maps/search/Bettada+Bhairaveshwara+Temple",
+    lat: 13.065,
+    lng: 75.545,
   },
   {
     title: "Majagadahalli Waterfalls",
@@ -290,6 +328,8 @@ export const day3Stops = [
     duration: "Visit 2 hrs",
     drivingTime: "Drive 45 mins",
     mapsUrl: "https://www.google.com/maps/search/Majagadahalli+Waterfalls",
+    lat: 13.07,
+    lng: 75.55,
     localTips: "Ask locals for directions as signal might be weak."
   }
 ];
@@ -304,6 +344,8 @@ export const day4Stops = [
     duration: "Visit 1.5 hrs",
     drivingTime: "Drive 25 mins",
     mapsUrl: "https://www.google.com/maps/search/Kelagur+Tea+Estate",
+    lat: 13.12,
+    lng: 75.45,
     nearbyCafes: "Estate tea shop."
   },
   {
@@ -314,7 +356,9 @@ export const day4Stops = [
     tips: "Drone photography looks spectacular here.",
     duration: "Visit 45 mins",
     drivingTime: "Drive 20 mins",
-    mapsUrl: "https://www.google.com/maps/search/Ranijhari+Viewpoint"
+    mapsUrl: "https://www.google.com/maps/search/Ranijhari+Viewpoint",
+    lat: 13.13,
+    lng: 75.46,
   },
   {
     title: "Kodige Falls",
@@ -325,6 +369,8 @@ export const day4Stops = [
     duration: "Visit 1.5 hrs",
     drivingTime: "Drive 30 mins",
     mapsUrl: "https://www.google.com/maps/search/Kodige+Falls",
+    lat: 13.14,
+    lng: 75.47,
     entryFee: "Nominal forest department fee."
   },
   {
@@ -335,7 +381,9 @@ export const day4Stops = [
     tips: "Very secluded, perfect for peaceful reflection.",
     duration: "Visit 1 hr",
     drivingTime: "Drive 40 mins",
-    mapsUrl: "https://www.google.com/maps/search/Maidadi+View+Point"
+    mapsUrl: "https://www.google.com/maps/search/Maidadi+View+Point",
+    lat: 13.15,
+    lng: 75.48,
   },
   {
     title: "Hornadu Annapoorneshwari Temple",
@@ -346,6 +394,8 @@ export const day4Stops = [
     duration: "Visit 2 hrs",
     drivingTime: "Drive 30 mins",
     mapsUrl: "https://www.google.com/maps/search/Hornadu+Annapoorneshwari+Temple",
+    lat: 13.27,
+    lng: 75.34,
     localTips: "Dress code applies for entry to the inner sanctum."
   }
 ];
@@ -360,6 +410,8 @@ export const day5Stops = [
     duration: "Visit 5-6 hrs",
     drivingTime: "Drive 1.5 hrs",
     mapsUrl: "https://www.google.com/maps/search/Netravati+Peak",
+    lat: 13.12,
+    lng: 75.35,
     localTips: "Local Guide: [+91 XXXXX XXXXX]. Pre-book entry tickets via Aranya Vihara portal.",
     bookingLink: "https://aranyavihaara.karnataka.gov.in/"
   },
@@ -372,6 +424,8 @@ export const day5Stops = [
     duration: "Visit 6-8 hrs",
     drivingTime: "Drive 1.5 hrs",
     mapsUrl: "https://www.google.com/maps/search/Bandaje+Falls",
+    lat: 13.13,
+    lng: 75.36,
     localTips: "Advance entry booking is strictly required via Aranya Vihara portal.",
     bookingLink: "https://aranyavihaara.karnataka.gov.in/"
   },
@@ -384,6 +438,8 @@ export const day5Stops = [
     duration: "Visit 3 hrs",
     drivingTime: "Drive 45 mins",
     mapsUrl: "https://www.google.com/maps/search/Ettina+Bhuja",
+    lat: 13.14,
+    lng: 75.37,
     localTips: "Home Made Lunch: [+91 XXXXX XXXXX]. Advance entry booking via Aranya Vihara portal is required.",
     bookingLink: "https://aranyavihaara.karnataka.gov.in/"
   }

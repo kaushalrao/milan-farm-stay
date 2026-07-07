@@ -3,6 +3,12 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { createPortal } from "react-dom";
+import dynamic from "next/dynamic";
+
+const MapView = dynamic(() => import("./MapView"), { 
+  ssr: false, 
+  loading: () => <div className="h-[500px] w-full bg-soft-beige rounded-2xl animate-pulse flex items-center justify-center text-text-muted font-bold text-sm">Loading Map...</div> 
+});
 
 import { roadTripStops, day1Restaurants, day2Stops, day2Restaurants, day3Stops, day4Stops, day5Stops, daySummaries } from "../config/data";
 
@@ -260,6 +266,7 @@ function RestaurantCard({ stop }: { stop: any }) {
 
 export default function ItineraryTimeline({ day }: { day: string }) {
   const activeTab = parseInt(day) || 1;
+  const [viewMode, setViewMode] = useState<"list" | "map">("list");
 
   // Setup Intersection Observer for scroll reveal triggers
   useEffect(() => {
@@ -295,10 +302,28 @@ export default function ItineraryTimeline({ day }: { day: string }) {
 
       <DaySummaryCard dayNum={activeTab} numDays={4} />
 
+      {/* View Toggle */}
+      <div className="flex items-center justify-center mb-6">
+        <div className="bg-white p-1 rounded-full border border-border/80 inline-flex shadow-sm">
+          <button 
+            onClick={() => setViewMode("list")}
+            className={`px-5 py-1.5 rounded-full text-[13px] font-bold transition-all ${viewMode === "list" ? "bg-dark text-white shadow-md" : "text-text-muted hover:text-dark"}`}
+          >
+            <i className="ph-bold ph-list-bullets mr-1"></i> List
+          </button>
+          <button 
+            onClick={() => setViewMode("map")}
+            className={`px-5 py-1.5 rounded-full text-[13px] font-bold transition-all ${viewMode === "map" ? "bg-dark text-white shadow-md" : "text-text-muted hover:text-dark"}`}
+          >
+            <i className="ph-bold ph-map-trifold mr-1"></i> Map
+          </button>
+        </div>
+      </div>
+
       {/* Timeline Container with Day Switching Animation */}
       <AnimatePresence mode="wait">
         <motion.div
-          key={activeTab}
+          key={`${activeTab}-${viewMode}`}
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 20 }}
@@ -353,30 +378,36 @@ export default function ItineraryTimeline({ day }: { day: string }) {
             </div>
           )}
 
-          {currentStops.map((stop: any, idx: number) => (
-            <CompactStopCard key={stop.title || idx} stop={stop} index={idx} />
-          ))}
-
-          {activeTab === 1 && day1Restaurants && (
-            <div key="restaurants-1" className="mt-4 pt-6 border-t border-border">
-              <h3 className="font-serif text-xl font-bold text-dark mb-4 text-center flex items-center justify-center gap-2">
-                <i className="ph-fill ph-fork-knife text-airbnb-coral"></i> Recommended Restaurants
-              </h3>
-              {day1Restaurants.map((rest, idx) => (
-                <RestaurantCard key={rest.title || idx} stop={rest} />
+          {viewMode === "map" ? (
+            <MapView stops={currentStops} />
+          ) : (
+            <>
+              {currentStops.map((stop: any, idx: number) => (
+                <CompactStopCard key={stop.title || idx} stop={stop} index={idx} />
               ))}
-            </div>
-          )}
 
-          {activeTab === 2 && (
-            <div key="restaurants-2" className="mt-4 pt-6 border-t border-border">
-              <h3 className="font-serif text-xl font-bold text-dark mb-4 text-center flex items-center justify-center gap-2">
-                <i className="ph-fill ph-fork-knife text-airbnb-coral"></i> Recommended Restaurants
-              </h3>
-              {day2Restaurants.map((rest, idx) => (
-                <RestaurantCard key={rest.title || idx} stop={rest} />
-              ))}
-            </div>
+              {activeTab === 1 && day1Restaurants && (
+                <div key="restaurants-1" className="mt-4 pt-6 border-t border-border">
+                  <h3 className="font-serif text-xl font-bold text-dark mb-4 text-center flex items-center justify-center gap-2">
+                    <i className="ph-fill ph-fork-knife text-airbnb-coral"></i> Recommended Restaurants
+                  </h3>
+                  {day1Restaurants.map((rest, idx) => (
+                    <RestaurantCard key={rest.title || idx} stop={rest} />
+                  ))}
+                </div>
+              )}
+
+              {activeTab === 2 && (
+                <div key="restaurants-2" className="mt-4 pt-6 border-t border-border">
+                  <h3 className="font-serif text-xl font-bold text-dark mb-4 text-center flex items-center justify-center gap-2">
+                    <i className="ph-fill ph-fork-knife text-airbnb-coral"></i> Recommended Restaurants
+                  </h3>
+                  {day2Restaurants.map((rest, idx) => (
+                    <RestaurantCard key={rest.title || idx} stop={rest} />
+                  ))}
+                </div>
+              )}
+            </>
           )}
         </motion.div>
       </AnimatePresence>
