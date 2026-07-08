@@ -33,7 +33,7 @@ export default function WeatherWidget() {
   }, []);
 
   return (
-    <div className="flex justify-center mt-4 md:mt-6 mb-2">
+    <div className="flex justify-center lg:justify-start mt-4 md:mt-6 mb-2">
       <AnimatePresence mode="wait">
         {loading ? (
           <motion.div
@@ -52,7 +52,7 @@ export default function WeatherWidget() {
             initial={{ opacity: 0, y: 15, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="flex flex-col items-center gap-2"
+            className="flex flex-col items-center lg:items-start gap-2"
           >
             <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-md px-4 py-2 md:px-5 md:py-2.5 rounded-full shadow-sm border border-border hover:shadow-md transition-all cursor-default">
               <i className={`ph-fill ${getWeatherDetails(weather.weathercode, weather.is_day).icon} text-[22px] md:text-2xl text-airbnb-coral`}></i>
@@ -67,7 +67,7 @@ export default function WeatherWidget() {
               </div>
             </div>
             
-            <div className="text-[10px] md:text-xs font-medium text-text-main bg-soft-beige px-3 py-1.5 md:px-4 rounded-full border border-border/50 flex items-center gap-1.5 shadow-sm max-w-[90vw] text-center">
+            <div className="text-[10px] md:text-xs font-medium text-text-main bg-soft-beige px-3 py-1.5 md:px-4 rounded-full border border-border/50 flex items-center gap-1.5 shadow-sm max-w-[90vw] text-center lg:text-left">
               <i className="ph-fill ph-backpack text-airbnb-coral text-[12px] md:text-[14px] shrink-0"></i>
               <span className="truncate">{getWeatherDetails(weather.weathercode, weather.is_day).tips}</span>
             </div>

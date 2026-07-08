@@ -38,7 +38,7 @@ export default function MapView({ stops }: { stops: any[] }) {
   };
 
   return (
-    <div className="h-[500px] w-full md:h-[600px] bg-soft-beige rounded-2xl md:rounded-3xl overflow-hidden relative shadow-inner">
+    <div className="h-[500px] w-full md:h-[600px] lg:h-full bg-soft-beige rounded-2xl md:rounded-3xl overflow-hidden relative shadow-inner">
       <MapContainer 
         center={routePositions[0] || [13.3, 75.7]} 
         zoom={10} 

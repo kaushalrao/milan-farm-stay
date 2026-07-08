@@ -237,7 +237,7 @@ function DaySummaryCard({ dayNum, numDays, viewMode, setViewMode }: { dayNum: nu
         </div>
 
         {/* Bottom Row: View Toggle (Segmented Control) */}
-        <div className="bg-cream/80 p-1 rounded-[10px] flex w-full relative">
+        <div className="bg-cream/80 p-1 rounded-[10px] flex w-full relative lg:hidden">
           {/* Animated Background Slider */}
           <motion.div 
             layout
@@ -339,7 +339,7 @@ export default function ItineraryTimeline({ day }: { day: string }) {
   const currentStops = getStopsForDay(activeTab);
 
   return (
-    <div className="relative pb-8 px-4 max-w-xl mx-auto" ref={timelineRef}>
+    <div className="relative pb-8 px-4 max-w-xl lg:max-w-7xl mx-auto" ref={timelineRef}>
 
       <DaySummaryCard dayNum={activeTab} numDays={4} viewMode={viewMode} setViewMode={setViewMode} />
 
@@ -401,10 +401,11 @@ export default function ItineraryTimeline({ day }: { day: string }) {
             </div>
           )}
 
-          {viewMode === "map" ? (
-            <MapView stops={currentStops} />
-          ) : (
-            <>
+          {/* Desktop & Mobile Layout wrapper */}
+          <div className="lg:grid lg:grid-cols-[1fr_450px] xl:grid-cols-[1fr_550px] lg:gap-8 lg:items-start">
+            
+            {/* List View */}
+            <div className={`${viewMode === "map" ? 'hidden lg:flex' : 'flex'} flex-col gap-2 w-full`}>
               {currentStops.map((stop: any, idx: number) => (
                 <CompactStopCard key={stop.title || idx} stop={stop} index={idx} />
               ))}
@@ -430,8 +431,14 @@ export default function ItineraryTimeline({ day }: { day: string }) {
                   ))}
                 </div>
               )}
-            </>
-          )}
+            </div>
+
+            {/* Map View */}
+            <div className={`${viewMode === "list" ? 'hidden lg:block' : 'block'} w-full lg:sticky lg:top-[160px] lg:h-[calc(100vh-200px)] rounded-[24px] overflow-hidden shadow-sm border border-border/50`}>
+              <MapView stops={currentStops} />
+            </div>
+
+          </div>
         </motion.div>
       </AnimatePresence>
 

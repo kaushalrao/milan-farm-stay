@@ -69,7 +69,7 @@ export default function Navbar() {
         className="absolute bottom-0 left-0 right-0 h-[1px] bg-border/50"
       />
       
-      <div className="container mx-auto px-6 max-w-6xl flex justify-between items-center relative z-10">
+      <div className="container mx-auto px-6 max-w-7xl flex justify-between items-center relative z-10">
         <Link href="#">
           <motion.div
             style={{ scale: logoScale, originX: 0, originY: 0.5 }}
