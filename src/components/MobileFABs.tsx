@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useScroll, useMotionValueEvent } from "framer-motion";
 import CookModal from "./CookModal";
 import dynamic from "next/dynamic";
 const Player = dynamic(() => import("@lottiefiles/react-lottie-player").then((mod) => mod.Player), { ssr: false });
@@ -7,6 +8,17 @@ const Player = dynamic(() => import("@lottiefiles/react-lottie-player").then((mo
 export default function MobileFABs() {
   const [isOpen, setIsOpen] = useState(false);
   const [cookModalOpen, setCookModalOpen] = useState(false);
+  const [isNavVisible, setIsNavVisible] = useState(true);
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious() || 0;
+    if (latest > previous && latest > 150) {
+      setIsNavVisible(false);
+    } else {
+      setIsNavVisible(true);
+    }
+  });
 
   // Close when clicking outside
   useEffect(() => {
@@ -20,7 +32,12 @@ export default function MobileFABs() {
   }, [isOpen]);
 
   return (
-    <div id="help-menu-container" className="fixed bottom-6 right-6 z-[99]">
+    <div 
+      id="help-menu-container" 
+      className={`fixed right-6 z-[99] transition-all duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+        isNavVisible ? "bottom-[96px] md:bottom-6" : "bottom-6"
+      }`}
+    >
       {/* Floating Menu */}
       <div
         className={"absolute bottom-20 right-0 w-64 bg-white rounded-2xl shadow-xl border border-border p-3 transition-all duration-300 origin-bottom-right " + (isOpen ? 'scale-100 opacity-100' : 'scale-75 opacity-0 pointer-events-none')}

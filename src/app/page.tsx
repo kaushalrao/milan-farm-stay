@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 import MobileFABs from "@/components/MobileFABs";
 
 import TaxiCard from "@/components/TaxiCard";
+import MobileBottomNav from "@/components/MobileBottomNav";
 
 export default function Home() {
   return (
@@ -48,7 +49,7 @@ export default function Home() {
                 phone="9448632666"
               />
 
-              <div className="col-span-1 md:col-span-2 lg:hidden flex items-center gap-4 my-5 md:my-2">
+              <div id="food" className="col-span-1 md:col-span-2 lg:hidden flex items-center gap-4 my-5 md:my-2 scroll-mt-24">
                 <div className="flex-1 h-px bg-border"></div>
                 <h3 className="font-serif text-lg md:text-2xl font-semibold text-text-muted/80 tracking-wide text-center uppercase">Food & Delivery</h3>
                 <div className="flex-1 h-px bg-border"></div>
@@ -84,6 +85,7 @@ export default function Home() {
         <ShareButton />
       </main>
       <Footer />
+      <MobileBottomNav />
       <MobileFABs />
     </>
   );
