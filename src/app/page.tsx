@@ -8,6 +8,8 @@ import ShareButton from "@/components/ShareButton";
 import Footer from "@/components/Footer";
 import MobileFABs from "@/components/MobileFABs";
 
+import TaxiCard from "@/components/TaxiCard";
+
 export default function Home() {
   return (
     <>
@@ -18,12 +20,13 @@ export default function Home() {
 
         <section className="pt-2 md:pt-8 pb-8 scroll-mt-24" id="contacts">
           <div className="container mx-auto px-6 max-w-5xl lg:max-w-7xl">
-            <div className="text-center mb-8 md:mb-12">
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-semibold text-dark mb-3 md:mb-4">
-                <span className="lg:hidden">Your Hosts at Milan Farm Stays</span>
-                <span className="hidden lg:block">Property & Host Details</span>
+            <div className="flex items-center gap-4 mb-8 md:mb-10">
+              <div className="flex-1 h-px bg-border"></div>
+              <h2 className="font-serif text-lg md:text-2xl lg:text-3xl font-semibold text-text-muted/80 tracking-wide text-center uppercase">
+                <span className="lg:hidden">Your Hosts</span>
+                <span className="hidden lg:inline">Property & Host Details</span>
               </h2>
-              <p className="text-text-muted text-lg">We are here to ensure you have a wonderful and comfortable stay.</p>
+              <div className="flex-1 h-px bg-border"></div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-8 lg:gap-6 items-stretch">
@@ -53,6 +56,27 @@ export default function Home() {
 
               <HomeCook />
               <HomeDelivery />
+            </div>
+          </div>
+        </section>
+
+        <section className="pb-8 md:pb-6 lg:pb-1" id="taxi">
+          <div className="container mx-auto px-6 max-w-5xl lg:max-w-7xl">
+            <div className="flex items-center gap-4 mb-8 md:mb-10">
+              <div className="flex-1 h-px bg-border"></div>
+              <h2 className="font-serif text-lg md:text-2xl lg:text-3xl font-semibold text-text-muted/80 tracking-wide text-center uppercase">
+                Local Taxi Services
+              </h2>
+              <div className="flex-1 h-px bg-border"></div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-8 lg:gap-6 items-stretch justify-center">
+              <div className="lg:col-start-2">
+                <TaxiCard name="Vishwanath Car Belagala" phone="+919481672571" />
+              </div>
+              <div className="lg:col-start-3">
+                <TaxiCard name="Myaddi Isama Car" phone="+919880947313" />
+              </div>
             </div>
           </div>
         </section>
