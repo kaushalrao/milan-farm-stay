@@ -41,13 +41,16 @@ export default function MapView({ stops }: { stops: any[] }) {
     const isFood = cat.includes("veg") || cat.includes("cuisine") || cat.includes("food") || cat.includes("restaurant") || cat.includes("cafe");
     
     let content = `${index + 1}`;
+    let bgColor = "#ff5a5f"; // Default coral/red for sightseeing
+    
     if (isFood) {
       content = `<i class="ph-bold ph-fork-knife" style="font-size: 14px;"></i>`;
+      bgColor = "#10b981"; // Emerald green for food
     }
 
     return L.divIcon({
       className: "custom-leaflet-icon",
-      html: `<div style="background-color: #ff5a5f; color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-family: sans-serif; box-shadow: 0 4px 6px rgba(0,0,0,0.3); border: 2px solid white; transform: translate(-14px, -14px);">${content}</div>`
+      html: `<div style="background-color: ${bgColor}; color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-family: sans-serif; box-shadow: 0 4px 6px rgba(0,0,0,0.3); border: 2px solid white; transform: translate(-14px, -14px);">${content}</div>`
     });
   };
 
