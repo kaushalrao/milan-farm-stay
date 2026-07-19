@@ -41,7 +41,7 @@ export default function StaySection() {
               href="https://airbnb.com" 
               target="_blank" 
               rel="noreferrer"
-              className="inline-flex items-center justify-center px-8 py-4 bg-dark text-white rounded-2xl font-semibold text-lg transition-all hover:bg-black w-fit"
+              className="inline-flex items-center justify-center px-8 py-4 bg-dark text-warm-white rounded-2xl font-semibold text-lg transition-all hover:opacity-90 w-fit"
             >
               Book Now on Airbnb
             </a>

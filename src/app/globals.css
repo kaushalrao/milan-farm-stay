@@ -1,22 +1,57 @@
+@custom-variant dark (&:where(.dark, .dark *));
+
 @import "tailwindcss";
 
 html {
   scroll-behavior: smooth;
 }
 
+:root {
+  --app-warm-white: #FCFBF8;
+  --app-cream: #F5F2E9;
+  --app-forest-green: #2C4A3B;
+  --app-coffee-brown: #4A3B2C;
+  --app-stone-grey: #8A8A8A;
+  --app-muted-terracotta: #B97A6B;
+  --app-soft-beige: #E8E2D2;
+  --app-airbnb-coral: #FF5A5F;
+  --app-dark: #1F1F1F;
+  --app-text-main: #222222;
+  --app-text-muted: #717171;
+  --app-border: #EBEBEB;
+  --app-sky-blue: #3b82f6;
+}
+
+.dark {
+  --app-warm-white: #1A1A1A;
+  --app-cream: #121212;
+  --app-forest-green: #4ade80; /* lighter green for dark mode visibility */
+  --app-coffee-brown: #d4a373; /* lighter brown */
+  --app-stone-grey: #A0A0A0;
+  --app-muted-terracotta: #e07a5f;
+  --app-soft-beige: #2A2A2A; /* dark beige equivalent */
+  --app-airbnb-coral: #FF5A5F;
+  --app-dark: #F5F5F5; /* inverted */
+  --app-text-main: #F5F5F5;
+  --app-text-muted: #A0A0A0;
+  --app-border: #333333;
+  --app-sky-blue: #60a5fa;
+}
+
 @theme {
-  --color-warm-white: #FCFBF8;
-  --color-cream: #F5F2E9;
-  --color-forest-green: #2C4A3B;
-  --color-coffee-brown: #4A3B2C;
-  --color-stone-grey: #8A8A8A;
-  --color-muted-terracotta: #B97A6B;
-  --color-soft-beige: #E8E2D2;
-  --color-airbnb-coral: #FF5A5F;
-  --color-dark: #1F1F1F;
-  --color-text-main: #222222;
-  --color-text-muted: #717171;
-  --color-border: #EBEBEB;
+  --color-warm-white: var(--app-warm-white);
+  --color-cream: var(--app-cream);
+  --color-forest-green: var(--app-forest-green);
+  --color-coffee-brown: var(--app-coffee-brown);
+  --color-stone-grey: var(--app-stone-grey);
+  --color-muted-terracotta: var(--app-muted-terracotta);
+  --color-soft-beige: var(--app-soft-beige);
+  --color-airbnb-coral: var(--app-airbnb-coral);
+  --color-dark: var(--app-dark);
+  --color-text-main: var(--app-text-main);
+  --color-text-muted: var(--app-text-muted);
+  --color-border: var(--app-border);
+  --color-sky-blue: var(--app-sky-blue);
 
   --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-serif), ui-serif, Georgia, serif;
@@ -42,6 +77,7 @@ html {
   overflow: hidden;
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
   border: 1px solid var(--color-border);
+  background: var(--color-warm-white);
 }
 .custom-popup .leaflet-popup-content {
   margin: 0;
@@ -52,5 +88,11 @@ html {
 }
 .custom-popup .leaflet-popup-tip {
   box-shadow: none;
-  background: white;
+  background: var(--color-warm-white);
+}
+
+
+/* Dark Mode Map Filter */
+.dark .leaflet-tile-pane, .dark .leaflet-control-zoom-in, .dark .leaflet-control-zoom-out, .dark .leaflet-control-attribution {
+  filter: invert(100%) hue-rotate(180deg) grayscale(80%) brightness(105%) contrast(100%);
 }

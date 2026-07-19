@@ -15,12 +15,12 @@ export default function Contacts() {
               <h4 className="text-3xl font-serif mb-6">Athula Rao K</h4>
             </div>
             <div className="flex gap-3">
-              <a href="tel:+919448244666" className="w-12 h-12 rounded-full bg-white text-dark flex justify-center items-center text-xl hover:shadow-md hover:-translate-y-1 transition-all"><i className="ph-fill ph-phone"></i></a>
+              <a href="tel:+919448244666" className="w-12 h-12 rounded-full bg-warm-white text-dark flex justify-center items-center text-xl hover:shadow-md hover:-translate-y-1 transition-all"><i className="ph-fill ph-phone"></i></a>
               <a href="https://wa.me/919448244666" className="w-12 h-12 rounded-full bg-[#25D366] text-white flex justify-center items-center text-xl hover:shadow-md hover:-translate-y-1 transition-all"><i className="ph-fill ph-whatsapp-logo"></i></a>
             </div>
           </div>
 
-          <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm flex flex-col justify-between">
+          <div className="bg-warm-white p-6 md:p-8 rounded-2xl shadow-sm flex flex-col justify-between">
             <div>
               <h5 className="text-xs uppercase tracking-wider text-text-muted mb-1">Caretaker</h5>
               <h4 className="text-2xl font-serif text-dark mb-6">Prasad Halekote</h4>
@@ -30,7 +30,7 @@ export default function Contacts() {
             </div>
           </div>
 
-          <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm flex flex-col justify-between">
+          <div className="bg-warm-white p-6 md:p-8 rounded-2xl shadow-sm flex flex-col justify-between">
             <div>
               <h5 className="text-xs uppercase tracking-wider text-text-muted mb-1">Emergency</h5>
               <h4 className="text-2xl font-serif text-dark mb-6">Mudigere Police</h4>
@@ -40,7 +40,7 @@ export default function Contacts() {
             </div>
           </div>
 
-          <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm flex flex-col justify-between">
+          <div className="bg-warm-white p-6 md:p-8 rounded-2xl shadow-sm flex flex-col justify-between">
             <div>
               <h5 className="text-xs uppercase tracking-wider text-text-muted mb-1">Hospital</h5>
               <h4 className="text-2xl font-serif text-dark mb-6">Govt. Hospital</h4>

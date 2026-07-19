@@ -1,26 +1,28 @@
 "use client";
-import { useState, useEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useState, useEffect, useMemo } from "react";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
   const t = useTranslations("Navbar");
   const locale = useLocale();
 
-  const navItems = [
+  const navItems = useMemo(() => [
     { label: t("plan"), href: "#plan", id: "plan", icon: "ph-map-trifold" },
     { label: t("contacts"), href: "#contacts", id: "contacts", icon: "ph-users" }
-  ];
+  ], [t]);
 
-  const { scrollY } = useScroll();
+  const [isScrolled, setIsScrolled] = useState(false);
   
-  // Interpolate values based on scroll position (0px to 50px)
-  const paddingY = useTransform(scrollY, [0, 50], ["1.5rem", "0.75rem"]);
-  const backgroundColor = useTransform(scrollY, [0, 50], ["rgba(252, 251, 248, 0)", "rgba(252, 251, 248, 0.95)"]);
-  const backdropFilter = useTransform(scrollY, [0, 50], ["blur(0px)", "blur(12px)"]);
-  const borderOpacity = useTransform(scrollY, [0, 50], [0, 1]);
-  const logoScale = useTransform(scrollY, [0, 50], [1, 0.95]);
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const [activeSection, setActiveSection] = useState<string>("");
 
@@ -48,7 +50,7 @@ export default function Navbar() {
     }, 100);
 
     return () => observer.disconnect();
-  }, []);
+  }, [navItems]);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, href: string) => {
     e.preventDefault();
@@ -58,38 +60,28 @@ export default function Navbar() {
   };
 
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const nextLocale = e.target.value;
-    document.cookie = `NEXT_LOCALE=${nextLocale}; path=/; max-age=31536000`;
+    document.cookie = `NEXT_LOCALE=${e.target.value}; path=/; max-age=31536000`;
     window.location.reload();
   };
 
   return (
     <motion.nav
-      style={{
-        paddingTop: paddingY,
-        paddingBottom: paddingY,
-        backgroundColor,
-        backdropFilter,
-        WebkitBackdropFilter: backdropFilter,
-      }}
-      className="fixed top-0 left-0 w-full z-50 transition-shadow duration-300"
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        isScrolled 
+          ? "py-3 bg-warm-white/95 backdrop-blur-md shadow-sm border-b border-border/50" 
+          : "py-6 bg-transparent border-b border-transparent"
+      }`}
       aria-label="Main Navigation"
     >
-      <motion.div 
-        style={{ opacity: borderOpacity }}
-        className="absolute bottom-0 left-0 right-0 h-[1px] bg-border/50"
-      />
-      
       <div className="container mx-auto px-6 max-w-7xl flex justify-between items-center relative z-10">
         <Link href="#">
           <motion.div
-            style={{ scale: logoScale }}
-            className="font-serif text-xl md:text-2xl font-bold text-dark transition-colors duration-300 truncate mr-2"
+            className={`font-serif font-bold text-dark transition-all duration-300 truncate mr-2 ${isScrolled ? 'text-xl' : 'text-2xl'}`}
           >
             {t("title")}
           </motion.div>
         </Link>
-        <div className="flex items-center gap-4 md:gap-8">
+        <div className="flex items-center gap-3 md:gap-6">
           <div className="hidden md:flex items-center gap-8">
             {navItems.map((item) => {
               const isActive = activeSection === item.id;
@@ -98,7 +90,7 @@ export default function Navbar() {
                   <a
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.href)}
-                    className={`font-medium transition-colors duration-300 \${isActive ? 'text-airbnb-coral' : 'text-text-main hover:text-airbnb-coral'}`}
+                    className={`font-medium transition-colors duration-300 ${isActive ? 'text-airbnb-coral' : 'text-text-main hover:text-airbnb-coral'}`}
                     aria-current={isActive ? "page" : undefined}
                   >
                     {item.label}
@@ -107,6 +99,8 @@ export default function Navbar() {
               );
             })}
           </div>
+          
+          <ThemeToggle />
           
           <select
             value={locale}

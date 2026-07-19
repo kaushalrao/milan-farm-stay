@@ -29,7 +29,7 @@ export default function MobileFABs() {
     >
       {/* Floating Menu */}
       <div
-        className={"absolute bottom-20 right-0 w-64 bg-white rounded-2xl shadow-xl border border-border p-3 transition-all duration-300 origin-bottom-right " + (isOpen ? 'scale-100 opacity-100' : 'scale-75 opacity-0 pointer-events-none')}
+        className={"absolute bottom-20 right-0 w-64 bg-warm-white rounded-2xl shadow-xl border border-border p-3 transition-all duration-300 origin-bottom-right " + (isOpen ? 'scale-100 opacity-100' : 'scale-75 opacity-0 pointer-events-none')}
       >
         <h4 className="text-sm font-semibold text-text-muted uppercase tracking-wider mb-2 px-3 pt-2">{t("askUs")}</h4>
         <div className="flex flex-col gap-1">
@@ -53,7 +53,7 @@ export default function MobileFABs() {
           </a>
           <div className="h-px bg-border my-1"></div>
           <a href="https://maps.app.goo.gl/27tXcbhyWdxo7We8A" target="_blank" rel="noreferrer" className="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-cream transition-colors text-dark font-medium">
-            <div className="w-8 h-8 rounded-full bg-dark text-white flex items-center justify-center shrink-0"><i className="ph-fill ph-map-pin"></i></div>
+            <div className="w-8 h-8 rounded-full bg-dark text-warm-white flex items-center justify-center shrink-0"><i className="ph-fill ph-map-pin"></i></div>
             {t("milanFarmStays")}
           </a>
         </div>
@@ -62,7 +62,7 @@ export default function MobileFABs() {
       {/* Main Toggle Button */}
       <button
         onClick={(e) => { e.stopPropagation(); setIsOpen(!isOpen); }}
-        className="flex items-center justify-center w-14 h-14 bg-dark text-white rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.2)] transition-transform active:scale-95 hover:-translate-y-1"
+        className="flex items-center justify-center w-14 h-14 bg-dark text-warm-white rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.2)] transition-transform active:scale-95 hover:-translate-y-1"
         aria-label="Help Options"
       >
         <i className={`text-2xl ph-bold transition-transform duration-300 ${isOpen ? 'ph-x rotate-90 scale-90' : 'ph-question'}`}></i>

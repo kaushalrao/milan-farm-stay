@@ -16,7 +16,7 @@ export default function CookModal({ isOpen, onClose }: { isOpen: boolean; onClos
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-dark/40 backdrop-blur-sm animate-in fade-in duration-200" onClick={onClose}>
-      <div className="bg-white rounded-3xl p-6 md:p-8 max-w-sm w-full shadow-2xl relative animate-in zoom-in-95 duration-200" onClick={e => e.stopPropagation()}>
+      <div className="bg-warm-white rounded-3xl p-6 md:p-8 max-w-sm w-full shadow-2xl relative animate-in zoom-in-95 duration-200" onClick={e => e.stopPropagation()}>
         <button onClick={onClose} className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-cream text-dark hover:bg-border transition-colors">
           <i className="ph-bold ph-x"></i>
         </button>
@@ -32,14 +32,14 @@ export default function CookModal({ isOpen, onClose }: { isOpen: boolean; onClos
             <a
               href="tel:+919482214882"
               onClick={onClose}
-              className="flex items-center justify-center gap-2 py-3 bg-dark text-white rounded-xl font-semibold transition-transform hover:-translate-y-1 text-sm"
+              className="flex items-center justify-center gap-2 py-3 bg-dark text-warm-white rounded-xl font-semibold transition-transform hover:-translate-y-1 text-sm"
             >
               <i className="ph-fill ph-device-mobile text-lg"></i> Mobile
             </a>
             <a
               href="tel:+919066902249"
               onClick={onClose}
-              className="flex items-center justify-center gap-2 py-3 bg-dark text-white rounded-xl font-semibold transition-transform hover:-translate-y-1 text-sm"
+              className="flex items-center justify-center gap-2 py-3 bg-dark text-warm-white rounded-xl font-semibold transition-transform hover:-translate-y-1 text-sm"
             >
               <i className="ph-fill ph-phone text-lg"></i> Home
             </a>

@@ -26,7 +26,7 @@ export default function TripPlanner() {
                 onClick={() => setSelectedDays(tab.id)}
                 className={`flex items-center gap-2 px-6 py-3 rounded-full font-medium text-base transition-all duration-300 ${
                   selectedDays === tab.id
-                    ? "bg-white text-dark shadow-sm"
+                    ? "bg-warm-white text-dark shadow-sm"
                     : "text-text-muted hover:text-dark hover:bg-soft-beige/50"
                 }`}
               >

@@ -14,19 +14,19 @@ export default function TaxiCard({ name, phone }: { name: string, phone: string 
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      className="bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-sm flex flex-col justify-between border border-blue-100/50 relative overflow-hidden group hover:shadow-md transition-shadow cursor-pointer h-full"
+      className="bg-warm-white rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-sm flex flex-col justify-between border border-blue-100/60 dark:border-blue-500/20 relative overflow-hidden group hover:shadow-md transition-shadow cursor-pointer h-full"
       onClick={() => setIsExpanded(!isExpanded)}
     >
       <i className="ph-fill ph-car absolute -right-6 -bottom-6 text-[160px] md:text-[240px] text-blue-500/[0.03] rotate-[-15deg] pointer-events-none transition-transform duration-700 group-hover:scale-110"></i>
 
       <div className="flex flex-row lg:flex-col items-center lg:items-start gap-3.5 md:gap-4 mb-0 lg:mb-4 relative z-10 text-left">
-        <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-blue-50 to-blue-100/50 text-blue-600 rounded-full md:rounded-2xl flex items-center justify-center text-[22px] md:text-3xl shadow-sm border border-blue-100 shrink-0">
+        <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-blue-50 to-blue-100/50 dark:from-blue-500/20 dark:to-blue-500/10 text-blue-600 dark:text-blue-400 rounded-full md:rounded-2xl flex items-center justify-center text-[22px] md:text-3xl shadow-sm border border-blue-100/60 dark:border-blue-500/20 shrink-0">
           <i className="ph-fill ph-taxi"></i>
         </div>
         <div className="flex flex-col flex-1 min-w-0">
           <h4 className="font-serif text-[17px] md:text-2xl lg:text-xl font-semibold text-dark mb-0.5 md:mb-1 leading-tight line-clamp-2">{t("localTaxi")}</h4>
           <div className="flex items-center gap-1 md:gap-1.5">
-            <i className="ph-fill ph-user text-blue-600 text-[12px] md:text-base"></i>
+            <i className="ph-fill ph-user text-blue-600 dark:text-blue-400 text-[12px] md:text-base"></i>
             <span className="text-[10px] md:text-sm lg:text-xs font-bold md:font-medium text-text-muted uppercase tracking-wider md:normal-case md:tracking-normal line-clamp-1">{name}</span>
           </div>
         </div>
@@ -35,17 +35,17 @@ export default function TaxiCard({ name, phone }: { name: string, phone: string 
           <a 
             href={`tel:${phone}`} 
             onClick={(e) => e.stopPropagation()}
-            className="w-[38px] h-[38px] flex items-center justify-center bg-dark text-white hover:bg-black rounded-full transition-colors shadow-sm"
+            className="w-[38px] h-[38px] flex items-center justify-center bg-dark text-warm-white hover:opacity-90 rounded-full transition-colors shadow-sm"
           >
             <i className="ph-fill ph-phone text-[18px]"></i>
           </a>
-          <div className={`w-8 h-8 flex items-center justify-center rounded-full bg-cream text-dark transition-transform ${isExpanded ? 'rotate-180' : ''}`}>
+          <div className={`w-8 h-8 flex items-center justify-center rounded-full bg-warm-white dark:bg-white/5 text-dark dark:text-white transition-transform ${isExpanded ? 'rotate-180' : ''}`}>
             <i className="ph-bold ph-caret-down text-sm"></i>
           </div>
         </div>
 
         <div className="hidden md:flex lg:hidden items-center gap-2 shrink-0">
-          <div className={`w-10 h-10 flex items-center justify-center rounded-full bg-cream text-dark transition-transform ${isExpanded ? 'rotate-180' : ''}`}>
+          <div className={`w-10 h-10 flex items-center justify-center rounded-full bg-warm-white dark:bg-white/5 text-dark dark:text-white transition-transform ${isExpanded ? 'rotate-180' : ''}`}>
             <i className="ph-bold ph-caret-down text-base"></i>
           </div>
         </div>
@@ -73,7 +73,7 @@ export default function TaxiCard({ name, phone }: { name: string, phone: string 
         <a
           href={`tel:${phone}`}
           onClick={(e) => e.stopPropagation()}
-          className="hidden lg:flex items-center justify-center w-full gap-2 py-3 bg-dark text-white rounded-xl text-base font-semibold transition-all hover:bg-black shadow-sm hover:-translate-y-1 mt-auto"
+          className="hidden lg:flex items-center justify-center w-full gap-2 py-3 bg-dark text-warm-white rounded-xl text-base font-semibold transition-all hover:opacity-90 shadow-sm hover:-translate-y-1 mt-auto"
         >
           <i className="ph-fill ph-phone text-xl"></i> {t("callFirstName", { firstName })}
         </a>
@@ -89,15 +89,15 @@ export default function TaxiCard({ name, phone }: { name: string, phone: string 
               exit={{ height: 0, opacity: 0, marginTop: 0 }}
               className="relative z-10 overflow-hidden"
             >
-              <div className="bg-blue-50/40 border border-blue-100/60 p-3.5 md:p-5 rounded-xl md:rounded-2xl mb-4 backdrop-blur-sm">
+              <div className="bg-blue-50/40 dark:bg-blue-500/10 border border-blue-100/60 dark:border-blue-500/20 p-3.5 md:p-5 rounded-xl md:rounded-2xl mb-4 backdrop-blur-sm">
                 <ul className="space-y-2.5 md:space-y-3">
-                  <li className="flex justify-between items-center text-dark border-b border-blue-100/50 pb-2.5 md:pb-3">
-                    <span className="flex items-center gap-2 md:gap-3 text-sm md:text-base font-medium"><i className="ph-fill ph-map-pin text-blue-600/70 text-lg md:text-xl"></i> {t("area")}</span>
-                    <span className="text-[10px] md:text-xs bg-white text-dark px-2 py-1 md:px-3 md:py-1.5 rounded-md shadow-sm font-semibold border border-border/50 tracking-wide">{t("mudigere")}</span>
+                  <li className="flex justify-between items-center text-dark border-b border-blue-100/60 dark:border-blue-500/20 pb-2.5 md:pb-3">
+                    <span className="flex items-center gap-2 md:gap-3 text-sm md:text-base font-medium"><i className="ph-fill ph-map-pin text-blue-600 dark:text-blue-400/70 text-lg md:text-xl"></i> {t("area")}</span>
+                    <span className="text-[10px] md:text-xs bg-warm-white dark:bg-white/5 text-dark dark:text-white px-2 py-1 md:px-3 md:py-1.5 rounded-md shadow-sm font-semibold border border-border/50 tracking-wide">{t("mudigere")}</span>
                   </li>
                   <li className="flex justify-between items-center text-dark">
-                    <span className="flex items-center gap-2 md:gap-3 text-sm md:text-base font-medium"><i className="ph-fill ph-clock text-blue-600/70 text-lg md:text-xl"></i> {t("booking")}</span>
-                    <span className="text-[10px] md:text-xs bg-white text-text-muted px-2 py-1 md:px-3 md:py-1.5 rounded-md shadow-sm font-medium border border-border/50">{t("preBook")}</span>
+                    <span className="flex items-center gap-2 md:gap-3 text-sm md:text-base font-medium"><i className="ph-fill ph-clock text-blue-600 dark:text-blue-400/70 text-lg md:text-xl"></i> {t("booking")}</span>
+                    <span className="text-[10px] md:text-xs bg-warm-white dark:bg-white/5 text-text-muted dark:text-gray-300 px-2 py-1 md:px-3 md:py-1.5 rounded-md shadow-sm font-medium border border-border/50">{t("preBook")}</span>
                   </li>
                 </ul>
               </div>
@@ -105,7 +105,7 @@ export default function TaxiCard({ name, phone }: { name: string, phone: string 
               <a
                 href={`tel:${phone}`}
                 onClick={(e) => e.stopPropagation()}
-                className="hidden md:flex items-center justify-center w-full gap-2 py-3 bg-dark text-white rounded-xl text-base font-semibold transition-all hover:bg-black shadow-sm hover:-translate-y-1"
+                className="hidden md:flex items-center justify-center w-full gap-2 py-3 bg-dark text-warm-white rounded-xl text-base font-semibold transition-all hover:opacity-90 shadow-sm hover:-translate-y-1"
               >
                 <i className="ph-fill ph-phone text-xl"></i> {t("callFirstName", { firstName })}
               </a>

@@ -4,6 +4,7 @@ import Script from "next/script";
 import InstallPrompt from "@/components/InstallPrompt";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getLocale } from "next-intl/server";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import "./globals.css";
 
 const inter = Inter({
@@ -39,14 +40,17 @@ export default async function RootLayout({
     <html
       lang={locale}
       className={`${inter.variable} ${playfair.variable} scroll-smooth antialiased`}
+      suppressHydrationWarning
     >
       <head>
         <Script src="https://unpkg.com/@phosphor-icons/web" strategy="beforeInteractive" />
       </head>
       <body className="min-h-screen flex flex-col bg-cream text-text-main font-sans overflow-x-hidden">
         <NextIntlClientProvider messages={messages}>
-          {children}
-          <InstallPrompt />
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            {children}
+            <InstallPrompt />
+          </ThemeProvider>
         </NextIntlClientProvider>
       </body>
     </html>

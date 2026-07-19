@@ -12,19 +12,19 @@ export default function HomeCook() {
 
   return (
     <div 
-      className="bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-sm flex flex-col justify-between border border-green-100/50 relative overflow-hidden group hover:shadow-md transition-shadow cursor-pointer h-full"
+      className="bg-warm-white rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-sm flex flex-col justify-between border border-green-100/60 dark:border-green-500/20 relative overflow-hidden group hover:shadow-md transition-shadow cursor-pointer h-full"
       onClick={() => setIsExpanded(!isExpanded)}
     >
       <i className="ph-fill ph-leaf absolute -right-6 -bottom-6 text-[160px] md:text-[240px] text-green-500/[0.03] rotate-[-15deg] pointer-events-none transition-transform duration-700 group-hover:scale-110"></i>
       
       <div className="flex flex-row lg:flex-col items-center lg:items-start gap-3.5 md:gap-4 mb-0 lg:mb-4 relative z-10 text-left">
-        <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-green-50 to-green-100/50 text-green-600 rounded-full md:rounded-2xl flex items-center justify-center text-[22px] md:text-3xl shadow-sm border border-green-100 shrink-0">
+        <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-green-50 to-green-100/50 dark:from-green-500/20 dark:to-green-500/10 text-green-600 dark:text-green-400 rounded-full md:rounded-2xl flex items-center justify-center text-[22px] md:text-3xl shadow-sm border border-green-100/60 dark:border-green-500/20 shrink-0">
           <i className="ph-fill ph-cooking-pot"></i>
         </div>
         <div className="flex flex-col flex-1 min-w-0">
           <h4 className="font-serif text-[17px] md:text-2xl lg:text-xl font-semibold text-dark mb-0.5 md:mb-1 leading-tight line-clamp-2">{t("title")}</h4>
           <div className="flex items-center gap-1 md:gap-1.5">
-            <i className="ph-fill ph-chef-hat text-green-600 text-[12px] md:text-base"></i>
+            <i className="ph-fill ph-chef-hat text-green-600 dark:text-green-400 text-[12px] md:text-base"></i>
             <span className="text-[10px] md:text-sm lg:text-xs font-bold md:font-medium text-text-muted uppercase tracking-wider md:normal-case md:tracking-normal line-clamp-1">{t("cookName")}</span>
           </div>
         </div>
@@ -32,7 +32,7 @@ export default function HomeCook() {
         <div className="flex md:hidden items-center gap-2 shrink-0">
           <button 
             onClick={(e) => { e.stopPropagation(); setCookModalOpen(true); }}
-            className="w-[38px] h-[38px] flex items-center justify-center bg-dark text-white hover:bg-black rounded-full transition-colors shadow-sm"
+            className="w-[38px] h-[38px] flex items-center justify-center bg-dark text-warm-white hover:opacity-90 rounded-full transition-colors shadow-sm"
           >
             <i className="ph-fill ph-phone text-[18px]"></i>
           </button>
@@ -55,7 +55,7 @@ export default function HomeCook() {
             <i className="ph-fill ph-coffee text-text-muted text-xl mt-0.5"></i>
             <div className="flex flex-col gap-0.5">
               <span className="text-sm font-medium">{t("breakfast")}</span>
-              <span className="text-[13px] text-green-600 font-medium">{t("complementary")}</span>
+              <span className="text-[13px] text-green-600 dark:text-green-400 font-medium">{t("complementary")}</span>
             </div>
           </div>
           <div className="flex items-start gap-3 text-dark">
@@ -74,7 +74,7 @@ export default function HomeCook() {
           </div>
         </div>
 
-        <button onClick={(e) => { e.stopPropagation(); setCookModalOpen(true); }} className="hidden lg:flex items-center justify-center gap-2 w-full py-3 bg-dark text-white rounded-xl text-base font-semibold transition-all hover:bg-black shadow-sm hover:-translate-y-1 mt-auto">
+        <button onClick={(e) => { e.stopPropagation(); setCookModalOpen(true); }} className="hidden lg:flex items-center justify-center gap-2 w-full py-3 bg-dark text-warm-white rounded-xl text-base font-semibold transition-all hover:opacity-90 shadow-sm hover:-translate-y-1 mt-auto">
           <i className="ph-fill ph-phone text-xl"></i> {t("contactCook")}
         </button>
       </div>
@@ -89,24 +89,24 @@ export default function HomeCook() {
               exit={{ height: 0, opacity: 0, marginTop: 0 }}
               className="relative z-10 overflow-hidden"
             >
-              <div className="bg-green-50/40 border border-green-100/60 p-3.5 md:p-5 rounded-xl md:rounded-2xl mb-4 backdrop-blur-sm">
+              <div className="bg-green-50/40 dark:bg-green-500/10 border border-green-100/60 dark:border-green-500/20 p-3.5 md:p-5 rounded-xl md:rounded-2xl mb-4 backdrop-blur-sm">
                 <ul className="space-y-2.5 md:space-y-3">
-                  <li className="flex justify-between items-center text-dark border-b border-green-100/50 pb-2.5 md:pb-3">
-                    <span className="flex items-center gap-2 md:gap-3 text-sm md:text-base font-medium"><i className="ph-fill ph-coffee text-green-600/70 text-lg md:text-xl"></i> {t("breakfast")}</span>
-                    <span className="text-[10px] md:text-xs bg-white text-green-700 px-2 py-1 md:px-3 md:py-1.5 rounded-md shadow-sm font-semibold border border-green-100 uppercase tracking-wide">{t("complementary")}</span>
+                  <li className="flex justify-between items-center text-dark border-b border-green-100/60 dark:border-green-500/20 pb-2.5 md:pb-3">
+                    <span className="flex items-center gap-2 md:gap-3 text-sm md:text-base font-medium"><i className="ph-fill ph-coffee text-green-600 dark:text-green-400/70 text-lg md:text-xl"></i> {t("breakfast")}</span>
+                    <span className="text-[10px] md:text-xs bg-warm-white dark:bg-white/5 text-green-700 dark:text-green-400 px-2 py-1 md:px-3 md:py-1.5 rounded-md shadow-sm font-semibold border border-green-100/60 dark:border-green-500/20 uppercase tracking-wide">{t("complementary")}</span>
                   </li>
-                  <li className="flex justify-between items-center text-dark border-b border-green-100/50 pb-2.5 md:pb-3">
-                    <span className="flex items-center gap-2 md:gap-3 text-sm md:text-base font-medium"><i className="ph-fill ph-bowl-food text-green-600/70 text-lg md:text-xl"></i> {t("lunch")}</span>
-                    <span className="text-[10px] md:text-xs bg-white text-text-muted px-2 py-1 md:px-3 md:py-1.5 rounded-md shadow-sm font-medium border border-border/50">{t("preOrder4hrs")}</span>
+                  <li className="flex justify-between items-center text-dark border-b border-green-100/60 dark:border-green-500/20 pb-2.5 md:pb-3">
+                    <span className="flex items-center gap-2 md:gap-3 text-sm md:text-base font-medium"><i className="ph-fill ph-bowl-food text-green-600 dark:text-green-400/70 text-lg md:text-xl"></i> {t("lunch")}</span>
+                    <span className="text-[10px] md:text-xs bg-warm-white dark:bg-white/5 text-text-muted dark:text-gray-300 px-2 py-1 md:px-3 md:py-1.5 rounded-md shadow-sm font-medium border border-border/50 dark:border-white/10">{t("preOrder4hrs")}</span>
                   </li>
                   <li className="flex justify-between items-center text-dark">
-                    <span className="flex items-center gap-2 md:gap-3 text-sm md:text-base font-medium"><i className="ph-fill ph-moon-stars text-green-600/70 text-lg md:text-xl"></i> {t("dinner")}</span>
-                    <span className="text-[10px] md:text-xs bg-white text-text-muted px-2 py-1 md:px-3 md:py-1.5 rounded-md shadow-sm font-medium border border-border/50">{t("preOrder4hrs")}</span>
+                    <span className="flex items-center gap-2 md:gap-3 text-sm md:text-base font-medium"><i className="ph-fill ph-moon-stars text-green-600 dark:text-green-400/70 text-lg md:text-xl"></i> {t("dinner")}</span>
+                    <span className="text-[10px] md:text-xs bg-warm-white dark:bg-white/5 text-text-muted dark:text-gray-300 px-2 py-1 md:px-3 md:py-1.5 rounded-md shadow-sm font-medium border border-border/50 dark:border-white/10">{t("preOrder4hrs")}</span>
                   </li>
                 </ul>
               </div>
 
-              <button onClick={(e) => { e.stopPropagation(); setCookModalOpen(true); }} className="hidden md:flex items-center justify-center gap-2 w-full py-3 bg-dark text-white rounded-xl text-base font-semibold transition-all hover:bg-black shadow-sm hover:-translate-y-1">
+              <button onClick={(e) => { e.stopPropagation(); setCookModalOpen(true); }} className="hidden md:flex items-center justify-center gap-2 w-full py-3 bg-dark text-warm-white rounded-xl text-base font-semibold transition-all hover:opacity-90 shadow-sm hover:-translate-y-1">
                 <i className="ph-fill ph-phone text-xl"></i> {t("contactCook")}
               </button>
             </motion.div>

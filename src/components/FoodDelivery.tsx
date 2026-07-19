@@ -8,7 +8,7 @@ export default function FoodDelivery() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       whileHover={{ y: -4 }}
-      className="bg-white rounded-2xl md:rounded-3xl p-5 md:p-8 shadow-sm flex flex-col justify-between border border-orange-100/50 relative overflow-hidden group hover:shadow-md transition-shadow"
+      className="bg-warm-white rounded-2xl md:rounded-3xl p-5 md:p-8 shadow-sm flex flex-col justify-between border border-orange-100/50 relative overflow-hidden group hover:shadow-md transition-shadow"
     >
       {/* Decorative background */}
       <i className="ph-fill ph-moped absolute -right-6 -bottom-6 text-[160px] md:text-[240px] text-orange-500/[0.03] rotate-[-15deg] pointer-events-none transition-transform duration-700 group-hover:scale-110"></i>
@@ -32,11 +32,11 @@ export default function FoodDelivery() {
           <ul className="space-y-2.5 md:space-y-3">
             <li className="flex justify-between items-center text-dark border-b border-orange-100/50 pb-2.5 md:pb-3">
               <span className="flex items-center gap-2 md:gap-3 text-sm md:text-base font-medium"><i className="ph-fill ph-clock text-orange-600/70 text-lg md:text-xl"></i> Wait Time</span>
-              <span className="text-[10px] md:text-xs bg-white text-dark px-2 py-1 md:px-3 md:py-1.5 rounded-md md:rounded-full shadow-sm font-semibold border border-border/50 uppercase tracking-wide">45 - 60 mins</span>
+              <span className="text-[10px] md:text-xs bg-warm-white text-dark px-2 py-1 md:px-3 md:py-1.5 rounded-md md:rounded-full shadow-sm font-semibold border border-border/50 uppercase tracking-wide">45 - 60 mins</span>
             </li>
             <li className="flex justify-between items-center text-dark border-b border-orange-100/50 pb-2.5 md:pb-3">
               <span className="flex items-center gap-2 md:gap-3 text-sm md:text-base font-medium"><i className="ph-fill ph-motorcycle text-orange-600/70 text-lg md:text-xl"></i> Delivery Fee</span>
-              <span className="text-[10px] md:text-xs bg-white text-text-muted px-2 py-1 md:px-3 md:py-1.5 rounded-md md:rounded-full shadow-sm font-medium border border-border/50">Varies by distance</span>
+              <span className="text-[10px] md:text-xs bg-warm-white text-text-muted px-2 py-1 md:px-3 md:py-1.5 rounded-md md:rounded-full shadow-sm font-medium border border-border/50">Varies by distance</span>
             </li>
           </ul>
         </div>

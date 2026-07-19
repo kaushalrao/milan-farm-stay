@@ -19,11 +19,11 @@ export default function HostProfile({ name, role, image, imgClass = "w-full h-fu
 
   return (
     <div 
-      className="bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-sm flex flex-col justify-between border border-border h-full hover:shadow-md transition-shadow cursor-pointer md:cursor-default"
+      className="bg-warm-white rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-sm flex flex-col justify-between border border-border h-full hover:shadow-md transition-shadow cursor-pointer md:cursor-default"
       onClick={() => setIsExpanded(!isExpanded)}
     >
       <div className="flex flex-row md:flex-col items-center md:items-start gap-3.5 md:gap-4 mb-0 md:mb-6 text-left">
-        <div className="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden shrink-0 ring-2 ring-airbnb-coral/20 ring-offset-2">
+        <div className="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden shrink-0 ring-2 ring-airbnb-coral/20 ring-offset-2 ring-offset-warm-white">
           <img src={image} alt={name} className={imgClass} />
         </div>
         <div className="flex flex-col flex-1 min-w-0 md:flex-none">
@@ -36,13 +36,13 @@ export default function HostProfile({ name, role, image, imgClass = "w-full h-fu
 
         {/* Mobile action buttons & Chevron */}
         <div className="flex md:hidden items-center gap-1.5 shrink-0">
-          <a href={`tel:+91${phone}`} onClick={(e) => e.stopPropagation()} className="w-9 h-9 flex items-center justify-center bg-dark text-white hover:bg-black rounded-full transition-colors shadow-sm">
+          <a href={`tel:+91${phone}`} onClick={(e) => e.stopPropagation()} className="w-9 h-9 flex items-center justify-center bg-dark text-warm-white hover:opacity-90 rounded-full transition-colors shadow-sm">
             <i className="ph-fill ph-phone text-[16px]"></i>
           </a>
           <a href={`https://wa.me/91${phone}`} onClick={(e) => e.stopPropagation()} target="_blank" rel="noreferrer" className="w-9 h-9 flex items-center justify-center bg-[#25D366] text-white hover:bg-[#20b858] rounded-full transition-colors shadow-sm">
             <i className="ph-fill ph-whatsapp-logo text-[17px]"></i>
           </a>
-          <div className={`w-7 h-7 flex items-center justify-center rounded-full bg-cream text-dark transition-transform ${isExpanded ? 'rotate-180' : ''}`}>
+          <div className={`w-7 h-7 flex items-center justify-center rounded-full bg-cream dark:bg-white/10 text-dark dark:text-white transition-transform ${isExpanded ? 'rotate-180' : ''}`}>
             <i className="ph-bold ph-caret-down text-[12px]"></i>
           </div>
         </div>
@@ -57,7 +57,7 @@ export default function HostProfile({ name, role, image, imgClass = "w-full h-fu
             exit={{ height: 0, opacity: 0, marginTop: 0 }}
             className="md:hidden overflow-hidden relative z-10"
           >
-            <div className="flex flex-col gap-2.5 bg-cream/40 p-3.5 rounded-xl border border-border/50">
+            <div className="flex flex-col gap-2.5 bg-cream/40 dark:bg-white/5 p-3.5 rounded-xl border border-border/50 dark:border-white/10">
               <div className="flex items-start gap-2.5 text-dark">
                 <i className="ph-fill ph-briefcase text-text-muted text-[17px] mt-0.5"></i>
                 <span className="text-[13px] font-medium leading-snug">{desc}</span>
@@ -85,7 +85,7 @@ export default function HostProfile({ name, role, image, imgClass = "w-full h-fu
 
       {/* Desktop only action buttons */}
       <div className="hidden md:flex flex-row gap-3 mt-auto">
-        <a href={`tel:+91${phone}`} onClick={(e) => e.stopPropagation()} className="flex-1 flex items-center justify-center gap-2 py-3 bg-dark text-white hover:bg-black rounded-xl text-base font-semibold transition-transform hover:-translate-y-1 shadow-sm">
+        <a href={`tel:+91${phone}`} onClick={(e) => e.stopPropagation()} className="flex-1 flex items-center justify-center gap-2 py-3 bg-dark text-warm-white hover:opacity-90 rounded-xl text-base font-semibold transition-transform hover:-translate-y-1 shadow-sm">
           <i className="ph-fill ph-phone text-xl"></i> {ui("call")}
         </a>
         <a href={`https://wa.me/91${phone}`} onClick={(e) => e.stopPropagation()} target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center gap-2 py-3 bg-[#25D366] text-white hover:bg-[#20b858] rounded-xl text-base font-semibold transition-transform hover:-translate-y-1 shadow-sm hover:shadow-md">

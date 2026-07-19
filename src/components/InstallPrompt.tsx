@@ -20,7 +20,7 @@ export default function InstallPrompt() {
     const isIOSDevice = /iphone|ipad|ipod/.test(userAgent);
     
     if (isIOSDevice) {
-      setIsIOS(true);
+      setTimeout(() => setIsIOS(true), 0);
       // Show prompt after a slight delay
       const timer = setTimeout(() => setShowPrompt(true), 2000);
       return () => clearTimeout(timer);
@@ -59,7 +59,7 @@ export default function InstallPrompt() {
           exit={{ opacity: 0, y: 50, x: "-50%" }}
           className="fixed bottom-24 left-1/2 z-50 w-[calc(100%-2rem)] max-w-sm"
         >
-          <div className="bg-dark text-white rounded-2xl p-4 shadow-xl flex items-center justify-between gap-4 border border-white/10">
+          <div className="bg-[#1F1F1F] text-white rounded-2xl p-4 shadow-xl flex items-center justify-between gap-4 border border-white/10">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-airbnb-coral rounded-xl flex items-center justify-center shrink-0">
                 <i className="ph-bold ph-download-simple text-xl text-white"></i>

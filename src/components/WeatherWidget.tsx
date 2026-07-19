@@ -41,7 +41,7 @@ export default function WeatherWidget() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="flex items-center gap-3 bg-white/60 backdrop-blur-md px-5 py-2.5 rounded-full border border-border/50 shadow-sm"
+            className="flex items-center gap-3 bg-warm-white/60 backdrop-blur-md px-5 py-2.5 rounded-full border border-border/50 shadow-sm"
           >
             <i className="ph ph-spinner-gap text-airbnb-coral text-xl animate-spin"></i>
             <span className="text-[13px] font-medium text-text-muted">Fetching local weather...</span>
@@ -54,7 +54,7 @@ export default function WeatherWidget() {
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
             className="flex flex-col items-center lg:items-start gap-2"
           >
-            <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-md px-4 py-2 md:px-5 md:py-2.5 rounded-full shadow-sm border border-border hover:shadow-md transition-all cursor-default">
+            <div className="inline-flex items-center gap-3 bg-warm-white/80 backdrop-blur-md px-4 py-2 md:px-5 md:py-2.5 rounded-full shadow-sm border border-border hover:shadow-md transition-all cursor-default">
               <i className={`ph-fill ${getWeatherDetails(weather.weathercode, weather.is_day).icon} text-[22px] md:text-2xl text-airbnb-coral`}></i>
               <div className="flex flex-col text-left">
                 <span className="text-[14px] md:text-[15px] font-bold text-dark leading-none">{Math.round(weather.temperature)}°C</span>

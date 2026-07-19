@@ -17,10 +17,10 @@ export default function ShareButton() {
           <div className="flex-1 h-px bg-border"></div>
         </div>
 
-        <div className="bg-white/95 backdrop-blur-md border border-green-100 rounded-[1.5rem] p-5 md:p-6 shadow-lg shadow-green-900/5 relative overflow-hidden flex flex-col md:flex-row items-center gap-4 md:gap-6">
+        <div className="bg-warm-white/95 dark:bg-warm-white/5 backdrop-blur-md border border-green-100 dark:border-white/10 rounded-[1.5rem] p-5 md:p-6 shadow-lg shadow-green-900/5 relative overflow-hidden flex flex-col md:flex-row items-center gap-4 md:gap-6">
           <i className="ph-fill ph-paper-plane-tilt absolute -top-4 -right-4 text-[120px] text-green-500/[0.03] rotate-[-15deg] pointer-events-none"></i>
           
-          <div className="hidden md:flex w-14 h-14 shrink-0 bg-green-50 rounded-2xl items-center justify-center text-green-600 text-2xl shadow-sm border border-green-100">
+          <div className="hidden md:flex w-14 h-14 shrink-0 bg-green-50 dark:bg-green-500/10 rounded-2xl items-center justify-center text-green-600 dark:text-green-400 text-2xl shadow-sm border border-green-100 dark:border-white/10">
             <i className="ph-fill ph-share-network"></i>
           </div>
 

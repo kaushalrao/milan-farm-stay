@@ -75,7 +75,7 @@ export default function MobileBottomNav() {
       className="md:hidden fixed bottom-0 left-0 w-full z-[80] pb-[env(safe-area-inset-bottom)] pointer-events-none"
     >
       <div className="mx-4 mb-4 pointer-events-auto">
-        <div className="flex items-center justify-between px-2 py-1.5 h-[64px] bg-white/85 backdrop-blur-xl border border-white/40 shadow-[0_8px_30px_rgb(0,0,0,0.12)] rounded-full">
+        <div className="flex items-center justify-between px-2 py-1.5 h-[64px] bg-warm-white/85 backdrop-blur-xl border border-white/40 shadow-[0_8px_30px_rgb(0,0,0,0.12)] rounded-full">
           {navItems.map((item) => {
             const isActive = activeSection === item.id;
             return (

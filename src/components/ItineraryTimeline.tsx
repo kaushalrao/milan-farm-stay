@@ -25,9 +25,9 @@ function CompactStopCard({ stop, index }: { stop: any, index: number }) {
       data-stop-title={stop.title}
     >
 
-      <motion.div layout className="bg-white rounded-2xl overflow-hidden shadow-sm transition-all duration-300 border border-border/50 hover:shadow-md">
+      <motion.div layout className="bg-warm-white rounded-2xl overflow-hidden shadow-sm transition-all duration-300 border border-border/50 hover:shadow-md">
         <motion.div layout className="relative h-[120px] sm:h-[140px] w-full overflow-hidden cursor-pointer" onClick={() => setIsExpanded(!isExpanded)}>
-          <span className="absolute top-2 left-2 bg-white/95 backdrop-blur-md px-2 py-0.5 rounded-md text-[10px] font-bold uppercase text-dark z-10 shadow-sm tracking-wider">
+          <span className="absolute top-2 left-2 bg-warm-white/95 dark:bg-[#1A1A1A]/90 dark:border dark:border-white/10 backdrop-blur-md px-2 py-0.5 rounded-md text-[10px] font-bold uppercase text-dark dark:text-white z-10 shadow-sm tracking-wider">
             {stop.category}
           </span>
           <motion.img
@@ -41,9 +41,9 @@ function CompactStopCard({ stop, index }: { stop: any, index: number }) {
           <h4 className="font-serif text-[18px] leading-tight font-semibold text-dark mb-2">{stop.title}</h4>
 
           <div className="flex flex-wrap gap-1.5 text-text-muted text-[11px] font-medium mb-2">
-            <span className="bg-cream px-2 py-1 rounded-md flex items-center gap-1"><i className="ph ph-car"></i> {stop.drivingTime}</span>
+            <span className="bg-cream dark:bg-white/5 dark:border dark:border-white/10 px-2 py-1 rounded-md flex items-center gap-1 dark:text-gray-300"><i className="ph ph-car"></i> {stop.drivingTime}</span>
             {stop.duration !== "N/A" && (
-              <span className="bg-cream px-2 py-1 rounded-md flex items-center gap-1"><i className="ph ph-clock"></i> {stop.duration}</span>
+              <span className="bg-cream dark:bg-white/5 dark:border dark:border-white/10 px-2 py-1 rounded-md flex items-center gap-1 dark:text-gray-300"><i className="ph ph-clock"></i> {stop.duration}</span>
             )}
           </div>
 
@@ -90,7 +90,7 @@ function CompactStopCard({ stop, index }: { stop: any, index: number }) {
               >
                 <div className="grid grid-cols-1 gap-2">
                   {stop.bestTime && (
-                    <div className="bg-soft-beige/30 p-2.5 rounded-xl flex items-start gap-2">
+                    <div className="bg-soft-beige/30 dark:bg-white/5 p-2.5 rounded-xl border border-transparent dark:border-white/10 flex items-start gap-2">
                       <i className="ph-fill ph-clock text-airbnb-coral text-[14px] mt-0.5"></i>
                       <div>
                         <h5 className="font-semibold text-dark text-[11px]">{t("bestTime")}</h5>
@@ -99,7 +99,7 @@ function CompactStopCard({ stop, index }: { stop: any, index: number }) {
                     </div>
                   )}
                   {stop.entryFee && (
-                    <div className="bg-soft-beige/30 p-2.5 rounded-xl flex items-start gap-2">
+                    <div className="bg-soft-beige/30 dark:bg-white/5 p-2.5 rounded-xl border border-transparent dark:border-white/10 flex items-start gap-2">
                       <i className="ph-fill ph-ticket text-airbnb-coral text-[14px] mt-0.5"></i>
                       <div>
                         <h5 className="font-semibold text-dark text-[11px]">{t("entryFee")}</h5>
@@ -108,7 +108,7 @@ function CompactStopCard({ stop, index }: { stop: any, index: number }) {
                     </div>
                   )}
                   {stop.parkingInfo && (
-                    <div className="bg-soft-beige/30 p-2.5 rounded-xl flex items-start gap-2">
+                    <div className="bg-soft-beige/30 dark:bg-white/5 p-2.5 rounded-xl border border-transparent dark:border-white/10 flex items-start gap-2">
                       <i className="ph-fill ph-car-profile text-airbnb-coral text-[14px] mt-0.5"></i>
                       <div>
                         <h5 className="font-semibold text-dark text-[11px]">{t("parking")}</h5>
@@ -117,7 +117,7 @@ function CompactStopCard({ stop, index }: { stop: any, index: number }) {
                     </div>
                   )}
                   {stop.tips && (
-                    <div className="bg-soft-beige/30 p-2.5 rounded-xl flex items-start gap-2">
+                    <div className="bg-soft-beige/30 dark:bg-white/5 p-2.5 rounded-xl border border-transparent dark:border-white/10 flex items-start gap-2">
                       <i className="ph-fill ph-camera text-airbnb-coral text-[14px] mt-0.5"></i>
                       <div>
                         <h5 className="font-semibold text-dark text-[11px]">{t("photoTip")}</h5>
@@ -126,7 +126,7 @@ function CompactStopCard({ stop, index }: { stop: any, index: number }) {
                     </div>
                   )}
                   {stop.localTips && (
-                    <div className="bg-soft-beige/30 p-2.5 rounded-xl flex items-start gap-2">
+                    <div className="bg-soft-beige/30 dark:bg-white/5 p-2.5 rounded-xl border border-transparent dark:border-white/10 flex items-start gap-2">
                       <i className="ph-fill ph-info text-airbnb-coral text-[14px] mt-0.5"></i>
                       <div>
                         <h5 className="font-semibold text-dark text-[11px]">{t("localTip")}</h5>
@@ -135,7 +135,7 @@ function CompactStopCard({ stop, index }: { stop: any, index: number }) {
                     </div>
                   )}
                   {stop.nearbyCafes && (
-                    <div className="bg-soft-beige/30 p-2.5 rounded-xl flex items-start gap-2">
+                    <div className="bg-soft-beige/30 dark:bg-white/5 p-2.5 rounded-xl border border-transparent dark:border-white/10 flex items-start gap-2">
                       <i className="ph-fill ph-coffee text-airbnb-coral text-[14px] mt-0.5"></i>
                       <div>
                         <h5 className="font-semibold text-dark text-[11px]">{t("nearbyFood")}</h5>
@@ -205,7 +205,7 @@ function DaySummaryCard({ dayNum, numDays, viewMode, setViewMode }: { dayNum: nu
 
   return (
     <div className="sticky top-[70px] md:top-[80px] z-30 mb-6 mx-auto max-w-xl shadow-[0_4px_20px_-10px_rgba(0,0,0,0.1)] rounded-2xl">
-      <div className="bg-white/95 backdrop-blur-md border border-border/50 rounded-2xl p-3 flex flex-col gap-3">
+      <div className="bg-warm-white/95 backdrop-blur-md border border-border/50 rounded-2xl p-3 flex flex-col gap-3">
         
         {/* Top Row: Title & Actions */}
         <div className="flex items-center justify-between gap-3">
@@ -222,7 +222,7 @@ function DaySummaryCard({ dayNum, numDays, viewMode, setViewMode }: { dayNum: nu
     
           <div className="flex items-center gap-1.5 shrink-0">
             {weather && (
-              <div className="flex items-center gap-1 bg-soft-beige px-2 py-1.5 rounded-xl text-[10.5px] font-bold text-dark border border-border/50" title="Chikmagalur Current Weather">
+              <div className="flex items-center gap-1 bg-soft-beige dark:bg-white/5 px-2 py-1.5 rounded-xl text-[10.5px] font-bold text-dark dark:text-white border border-border/50 dark:border-white/10" title="Chikmagalur Current Weather">
                 <i className={`ph-fill ${getWeatherIcon(weather.weathercode, weather.is_day)} text-airbnb-coral text-[12px]`}></i>
                 <span>{Math.round(weather.temperature)}°C</span>
               </div>
@@ -230,7 +230,7 @@ function DaySummaryCard({ dayNum, numDays, viewMode, setViewMode }: { dayNum: nu
             <motion.button
               whileTap={{ scale: 0.9 }}
               onClick={handleShare}
-              className="w-8 h-8 flex items-center justify-center bg-cream rounded-full text-dark hover:bg-soft-beige transition-colors border border-border/50"
+              className="w-8 h-8 flex items-center justify-center bg-cream dark:bg-[#1A1A1A] rounded-full text-dark dark:text-white hover:bg-soft-beige dark:hover:bg-white/10 transition-colors border border-border/50 dark:border-white/10"
               title="Share this Day"
             >
               <i className={`ph-bold ${copied ? 'ph-check text-green-600' : 'ph-share-network'} text-[15px]`}></i>
@@ -243,7 +243,7 @@ function DaySummaryCard({ dayNum, numDays, viewMode, setViewMode }: { dayNum: nu
           {/* Animated Background Slider */}
           <motion.div 
             layout
-            className="absolute top-1 bottom-1 w-[calc(50%-4px)] bg-white rounded-lg shadow-[0_2px_8px_-2px_rgba(0,0,0,0.15)] border border-border/50 z-0"
+            className="absolute top-1 bottom-1 w-[calc(50%-4px)] bg-warm-white rounded-lg shadow-[0_2px_8px_-2px_rgba(0,0,0,0.15)] border border-border/50 z-0"
             animate={{ left: viewMode === "list" ? "4px" : "calc(50%)" }}
             transition={{ type: "spring", stiffness: 400, damping: 30 }}
           />
@@ -269,7 +269,7 @@ function DaySummaryCard({ dayNum, numDays, viewMode, setViewMode }: { dayNum: nu
 function RestaurantCard({ stop }: { stop: any }) {
   const t = useTranslations("ItineraryTimeline");
   return (
-    <div className="bg-white rounded-2xl overflow-hidden shadow-sm transition-all duration-300 border border-border/50 hover:shadow-md mb-4 flex">
+    <div className="bg-warm-white rounded-2xl overflow-hidden shadow-sm transition-all duration-300 border border-border/50 hover:shadow-md mb-4 flex">
       <div className="w-[100px] h-[100px] shrink-0 p-2">
         <img src={stop.img} alt={stop.title} className="w-full h-full object-cover rounded-xl" />
       </div>
@@ -281,7 +281,7 @@ function RestaurantCard({ stop }: { stop: any }) {
           </div>
           <div className="flex flex-wrap gap-1 mb-2">
             {stop.tags.map((tag: string, i: number) => (
-              <span key={i} className="text-[10px] text-text-muted bg-cream px-1.5 py-0.5 rounded-md">{tag}</span>
+              <span key={i} className="text-[10px] text-text-muted dark:text-gray-300 bg-cream dark:bg-white/5 dark:border dark:border-white/10 px-1.5 py-0.5 rounded-md">{tag}</span>
             ))}
           </div>
           <p className="text-[11px] text-text-muted leading-tight line-clamp-1">{stop.desc}</p>
@@ -361,14 +361,14 @@ export default function ItineraryTimeline({ day }: { day: string }) {
           className="relative flex flex-col gap-2"
         >
           {activeTab === 2 && (
-            <div key="warning-2" className="bg-orange-50/80 backdrop-blur-sm border border-orange-200/60 rounded-2xl p-4 mb-4 flex flex-col gap-3 shadow-sm">
+            <div key="warning-2" className="bg-orange-50/80 dark:bg-orange-500/10 backdrop-blur-sm border border-orange-200/60 dark:border-orange-500/20 rounded-2xl p-4 mb-4 flex flex-col gap-3 shadow-sm">
               <div className="flex items-start gap-3">
-                <div className="bg-orange-100 text-orange-600 w-8 h-8 rounded-full flex items-center justify-center shrink-0">
+                <div className="bg-orange-100 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400 w-8 h-8 rounded-full flex items-center justify-center shrink-0">
                   <i className="ph-fill ph-warning-circle text-lg"></i>
                 </div>
                 <div>
-                  <h4 className="text-[13px] font-bold text-orange-900 mb-0.5">{t("advanceBookingRequired")}</h4>
-                  <p className="text-[11px] text-orange-800/80 leading-snug">
+                  <h4 className="text-[13px] font-bold text-orange-900 dark:text-orange-400 mb-0.5">{t("advanceBookingRequired")}</h4>
+                  <p className="text-[11px] text-orange-800/80 dark:text-orange-300/80 leading-snug">
                     {t("advanceBookingMsg2")}
                   </p>
                 </div>
@@ -385,14 +385,14 @@ export default function ItineraryTimeline({ day }: { day: string }) {
           )}
 
           {activeTab === 5 && (
-            <div key="warning-5" className="bg-orange-50/80 backdrop-blur-sm border border-orange-200/60 rounded-2xl p-4 mb-4 flex flex-col gap-3 shadow-sm">
+            <div key="warning-5" className="bg-orange-50/80 dark:bg-orange-500/10 backdrop-blur-sm border border-orange-200/60 dark:border-orange-500/20 rounded-2xl p-4 mb-4 flex flex-col gap-3 shadow-sm">
               <div className="flex items-start gap-3">
-                <div className="bg-orange-100 text-orange-600 w-8 h-8 rounded-full flex items-center justify-center shrink-0">
+                <div className="bg-orange-100 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400 w-8 h-8 rounded-full flex items-center justify-center shrink-0">
                   <i className="ph-fill ph-warning-circle text-lg"></i>
                 </div>
                 <div>
-                  <h4 className="text-[13px] font-bold text-orange-900 mb-0.5">{t("advanceBookingRequired")}</h4>
-                  <p className="text-[11px] text-orange-800/80 leading-snug">
+                  <h4 className="text-[13px] font-bold text-orange-900 dark:text-orange-400 mb-0.5">{t("advanceBookingRequired")}</h4>
+                  <p className="text-[11px] text-orange-800/80 dark:text-orange-300/80 leading-snug">
                     {t("advanceBookingMsg5")}
                   </p>
                 </div>

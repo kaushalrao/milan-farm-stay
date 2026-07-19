@@ -9,7 +9,7 @@ export default function FoodSection() {
         
         <div className="flex gap-6 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide">
           
-          <div className="flex-none w-[300px] md:w-[350px] bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow snap-start">
+          <div className="flex-none w-[300px] md:w-[350px] bg-warm-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow snap-start">
             <div className="h-[200px] w-full">
               <img src="https://images.unsplash.com/photo-1626804475297-41609ea265eb?q=80&w=800&auto=format&fit=crop" alt="Local Breakfast" className="w-full h-full object-cover" />
             </div>
@@ -29,7 +29,7 @@ export default function FoodSection() {
             </div>
           </div>
 
-          <div className="flex-none w-[300px] md:w-[350px] bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow snap-start">
+          <div className="flex-none w-[300px] md:w-[350px] bg-warm-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow snap-start">
             <div className="h-[200px] w-full">
               <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?q=80&w=800&auto=format&fit=crop" alt="Estate Coffee" className="w-full h-full object-cover" />
             </div>

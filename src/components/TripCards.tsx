@@ -17,7 +17,7 @@ export default function TripCards() {
     const params = new URLSearchParams(window.location.search);
     const tripParam = params.get('day') || params.get('trip');
     if (tripParam && ["1", "2", "3", "4", "5"].includes(tripParam)) {
-      setSelectedDays(tripParam);
+      setTimeout(() => setSelectedDays(tripParam), 0);
       // Give DOM time to render before scrolling
       setTimeout(() => {
         document.getElementById("itinerary-view")?.scrollIntoView({ behavior: "smooth" });
@@ -53,7 +53,7 @@ export default function TripCards() {
                 transition={{ duration: 0.5, delay: 0.1 + parseInt(trip.id) * 0.05, ease: [0.22, 1, 0.36, 1] }}
                 whileHover={{ y: -4, scale: 1.01 }}
                 whileTap={{ scale: 0.98 }}
-                className={`group relative snap-center md:snap-start shrink-0 w-[240px] md:w-[280px] lg:w-auto bg-white rounded-3xl overflow-hidden cursor-pointer flex flex-col transition-all duration-300 ${
+                className={`group relative snap-center md:snap-start shrink-0 w-[240px] md:w-[280px] lg:w-auto bg-warm-white rounded-3xl overflow-hidden cursor-pointer flex flex-col transition-all duration-300 ${
                   isSelected 
                     ? "border-transparent shadow-[0_8px_30px_rgb(0,0,0,0.12)]" 
                     : "border border-border/60 hover:border-border shadow-sm hover:shadow-md"
@@ -88,7 +88,7 @@ export default function TripCards() {
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
-                        className="absolute top-3 left-3 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-full text-[9px] uppercase tracking-wider font-bold text-airbnb-coral flex items-center gap-1.5 shadow-sm"
+                        className="absolute top-3 left-3 bg-warm-white/95 dark:bg-[#1A1A1A]/90 dark:border dark:border-white/10 backdrop-blur-md px-2.5 py-1 rounded-full text-[9px] uppercase tracking-wider font-bold text-airbnb-coral flex items-center gap-1.5 shadow-sm"
                       >
                         <span className="w-1.5 h-1.5 rounded-full bg-airbnb-coral animate-pulse"></span>
                         {ui("currentStop")}
@@ -98,7 +98,7 @@ export default function TripCards() {
                 </div>
 
                 {/* Info Section */}
-                <div className="p-4 flex flex-col gap-1.5 bg-white flex-1 z-10 rounded-b-3xl">
+                <div className="p-4 flex flex-col gap-1.5 bg-warm-white flex-1 z-10 rounded-b-3xl">
                   <div className="flex justify-between items-start">
                     <div>
                       <h3 className="font-serif text-[20px] md:text-[22px] font-bold text-dark leading-tight tracking-tight">
@@ -109,7 +109,7 @@ export default function TripCards() {
                       </p>
                     </div>
                     
-                    <div className={`transition-all duration-300 ${isSelected ? 'text-airbnb-coral translate-x-1' : 'text-text-muted/40 group-hover:text-text-main group-hover:translate-x-1'}`}>
+                    <div className={`transition-all duration-300 ${isSelected ? 'text-airbnb-coral translate-x-1' : 'text-text-muted/40 dark:text-gray-600 group-hover:text-text-main group-hover:translate-x-1'}`}>
                       <i className="ph-bold ph-arrow-right text-lg"></i>
                     </div>
                   </div>
@@ -120,7 +120,7 @@ export default function TripCards() {
 
                   <div className="flex flex-wrap gap-1.5 mt-2.5">
                     {trip.tags.map((tag: string) => (
-                      <span key={tag} className="px-2 py-1 bg-soft-beige rounded-md text-[10px] font-bold uppercase tracking-wider text-dark/70 border border-border/50 shadow-sm">
+                      <span key={tag} className="px-2 py-1 bg-soft-beige dark:bg-white/5 rounded-md text-[10px] font-bold uppercase tracking-wider text-dark/70 dark:text-gray-300 border border-border/50 dark:border-white/10 shadow-sm">
                         {tag}
                       </span>
                     ))}
