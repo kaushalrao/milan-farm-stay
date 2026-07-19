@@ -267,9 +267,9 @@ export const day2Restaurants = [
     tags: ["Lunch & Dinner", "Family Friendly"],
     desc: "Comfortable and popular pure vegetarian dining.",
     img: "/images/restaurant.png",
-    mapsUrl: "https://www.google.com/maps/search/Mayura+Deluxe+Chikmagalur",
-    lat: 13.315,
-    lng: 75.775,
+    mapsUrl: "https://maps.app.goo.gl/XEqYN8PQ1R5qb5VVA",
+    lat: 13.3162156,
+    lng: 75.7744567,
   },
   {
     title: "Hotel Adrika",
@@ -277,9 +277,9 @@ export const day2Restaurants = [
     tags: ["Coffee & Snacks", "Dinner"],
     desc: "Premium multi-cuisine restaurant with a great ambiance.",
     img: "/images/restaurant.png",
-    mapsUrl: "https://www.google.com/maps/search/Hotel+Adrika+Chikmagalur",
-    lat: 13.316,
-    lng: 75.776,
+    mapsUrl: "https://maps.app.goo.gl/duYcC7NXzyx14Ues7",
+    lat: 13.3171879,
+    lng: 75.7710211,
   },
   {
     title: "Chikmagalur Food Court",
@@ -287,9 +287,9 @@ export const day2Restaurants = [
     tags: ["Multi Cuisine", "Quick Bites"],
     desc: "A great stop offering a wide variety of food options in one place.",
     img: "/images/restaurant.png",
-    mapsUrl: "https://maps.app.goo.gl/doUSZZqpFipqiWrZ7",
-    lat: 13.317,
-    lng: 75.777,
+    mapsUrl: "https://maps.app.goo.gl/ABLqorYQefxh3yGd9",
+    lat: 13.3122196,
+    lng: 75.776348,
   }
 ];
 

@@ -435,7 +435,15 @@ export default function ItineraryTimeline({ day }: { day: string }) {
 
             {/* Map View */}
             <div className={`${viewMode === "list" ? 'hidden lg:block' : 'block'} w-full lg:sticky lg:top-[160px] lg:h-[calc(100vh-200px)] rounded-[24px] overflow-hidden shadow-sm border border-border/50`}>
-              <MapView stops={currentStops} />
+              {(() => {
+                let mapStops: any[] = [...currentStops];
+                if (activeTab === 1 && typeof day1Restaurants !== 'undefined') {
+                  mapStops = [...mapStops, ...day1Restaurants];
+                } else if (activeTab === 2 && typeof day2Restaurants !== 'undefined') {
+                  mapStops = [...mapStops, ...day2Restaurants];
+                }
+                return <MapView stops={mapStops} />;
+              })()}
             </div>
 
           </div>
