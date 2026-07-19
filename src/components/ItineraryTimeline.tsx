@@ -2,18 +2,17 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { createPortal } from "react-dom";
 import dynamic from "next/dynamic";
+import { useTranslations } from "next-intl";
 
 const MapView = dynamic(() => import("./MapView"), { 
   ssr: false, 
   loading: () => <div className="h-[500px] w-full bg-soft-beige rounded-2xl animate-pulse flex items-center justify-center text-text-muted font-bold text-sm">Loading Map...</div> 
 });
 
-import { roadTripStops, day1Restaurants, day2Stops, day2Restaurants, day3Stops, day4Stops, day5Stops, daySummaries } from "../config/data";
-
 function CompactStopCard({ stop, index }: { stop: any, index: number }) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const t = useTranslations("ItineraryTimeline");
 
   return (
     <motion.div
@@ -57,7 +56,7 @@ function CompactStopCard({ stop, index }: { stop: any, index: number }) {
               onClick={() => setIsExpanded(!isExpanded)}
               className="text-[13px] font-semibold text-airbnb-coral flex items-center gap-1 py-1"
             >
-              {isExpanded ? "▲ Hide Details" : "▼ View Details"}
+              {isExpanded ? t("hideDetails") : t("viewDetails")}
             </button>
             <div className="flex items-center gap-2">
               <motion.a
@@ -65,7 +64,7 @@ function CompactStopCard({ stop, index }: { stop: any, index: number }) {
                 href={stop.mapsUrl} target="_blank" rel="noreferrer"
                 className="inline-flex items-center justify-center px-4 h-[36px] border border-border rounded-full text-[12px] font-semibold text-dark transition-colors hover:bg-soft-beige gap-1"
               >
-                <i className="ph-bold ph-map-pin text-[14px]"></i> Maps
+                <i className="ph-bold ph-map-pin text-[14px]"></i> {t("maps")}
               </motion.a>
               {stop.bookingLink && (
                 <motion.a
@@ -73,7 +72,7 @@ function CompactStopCard({ stop, index }: { stop: any, index: number }) {
                   href={stop.bookingLink} target="_blank" rel="noreferrer"
                   className="inline-flex items-center justify-center px-4 h-[36px] bg-airbnb-coral text-white rounded-full text-[12px] font-semibold transition-colors hover:bg-rose-600 gap-1"
                 >
-                  <i className="ph-bold ph-ticket text-[14px]"></i> Book Entry
+                  <i className="ph-bold ph-ticket text-[14px]"></i> {t("bookEntry")}
                 </motion.a>
               )}
             </div>
@@ -94,7 +93,7 @@ function CompactStopCard({ stop, index }: { stop: any, index: number }) {
                     <div className="bg-soft-beige/30 p-2.5 rounded-xl flex items-start gap-2">
                       <i className="ph-fill ph-clock text-airbnb-coral text-[14px] mt-0.5"></i>
                       <div>
-                        <h5 className="font-semibold text-dark text-[11px]">Best Time</h5>
+                        <h5 className="font-semibold text-dark text-[11px]">{t("bestTime")}</h5>
                         <p className="text-[11px] text-text-muted">{stop.bestTime}</p>
                       </div>
                     </div>
@@ -103,7 +102,7 @@ function CompactStopCard({ stop, index }: { stop: any, index: number }) {
                     <div className="bg-soft-beige/30 p-2.5 rounded-xl flex items-start gap-2">
                       <i className="ph-fill ph-ticket text-airbnb-coral text-[14px] mt-0.5"></i>
                       <div>
-                        <h5 className="font-semibold text-dark text-[11px]">Entry Fee</h5>
+                        <h5 className="font-semibold text-dark text-[11px]">{t("entryFee")}</h5>
                         <p className="text-[11px] text-text-muted">{stop.entryFee}</p>
                       </div>
                     </div>
@@ -112,7 +111,7 @@ function CompactStopCard({ stop, index }: { stop: any, index: number }) {
                     <div className="bg-soft-beige/30 p-2.5 rounded-xl flex items-start gap-2">
                       <i className="ph-fill ph-car-profile text-airbnb-coral text-[14px] mt-0.5"></i>
                       <div>
-                        <h5 className="font-semibold text-dark text-[11px]">Parking</h5>
+                        <h5 className="font-semibold text-dark text-[11px]">{t("parking")}</h5>
                         <p className="text-[11px] text-text-muted">{stop.parkingInfo}</p>
                       </div>
                     </div>
@@ -121,7 +120,7 @@ function CompactStopCard({ stop, index }: { stop: any, index: number }) {
                     <div className="bg-soft-beige/30 p-2.5 rounded-xl flex items-start gap-2">
                       <i className="ph-fill ph-camera text-airbnb-coral text-[14px] mt-0.5"></i>
                       <div>
-                        <h5 className="font-semibold text-dark text-[11px]">Photo Tip</h5>
+                        <h5 className="font-semibold text-dark text-[11px]">{t("photoTip")}</h5>
                         <p className="text-[11px] text-text-muted">{stop.tips}</p>
                       </div>
                     </div>
@@ -130,7 +129,7 @@ function CompactStopCard({ stop, index }: { stop: any, index: number }) {
                     <div className="bg-soft-beige/30 p-2.5 rounded-xl flex items-start gap-2">
                       <i className="ph-fill ph-info text-airbnb-coral text-[14px] mt-0.5"></i>
                       <div>
-                        <h5 className="font-semibold text-dark text-[11px]">Local Tip</h5>
+                        <h5 className="font-semibold text-dark text-[11px]">{t("localTip")}</h5>
                         <p className="text-[11px] text-text-muted">{stop.localTips}</p>
                       </div>
                     </div>
@@ -139,7 +138,7 @@ function CompactStopCard({ stop, index }: { stop: any, index: number }) {
                     <div className="bg-soft-beige/30 p-2.5 rounded-xl flex items-start gap-2">
                       <i className="ph-fill ph-coffee text-airbnb-coral text-[14px] mt-0.5"></i>
                       <div>
-                        <h5 className="font-semibold text-dark text-[11px]">Nearby Food</h5>
+                        <h5 className="font-semibold text-dark text-[11px]">{t("nearbyFood")}</h5>
                         <p className="text-[11px] text-text-muted">{stop.nearbyCafes}</p>
                       </div>
                     </div>
@@ -157,9 +156,12 @@ function CompactStopCard({ stop, index }: { stop: any, index: number }) {
 const WEATHER_API = "https://api.open-meteo.com/v1/forecast?latitude=13.3161&longitude=75.7720&current_weather=true";
 
 function DaySummaryCard({ dayNum, numDays, viewMode, setViewMode }: { dayNum: number, numDays: number, viewMode: "list" | "map", setViewMode: (mode: "list" | "map") => void }) {
+  const data = useTranslations("Data");
+  const daySummaries = data.raw("daySummaries");
   const summary = daySummaries[dayNum];
   const [copied, setCopied] = useState(false);
   const [weather, setWeather] = useState<any>(null);
+  const t = useTranslations("ItineraryTimeline");
 
   useEffect(() => {
     fetch(WEATHER_API)
@@ -250,13 +252,13 @@ function DaySummaryCard({ dayNum, numDays, viewMode, setViewMode }: { dayNum: nu
             onClick={() => setViewMode("list")}
             className={`flex-1 py-1.5 text-[12px] font-bold transition-colors z-10 rounded-lg ${viewMode === "list" ? "text-dark" : "text-text-muted hover:text-dark"}`}
           >
-            <i className="ph-bold ph-list-bullets mr-1 text-[14px] align-middle"></i> List View
+            <i className="ph-bold ph-list-bullets mr-1 text-[14px] align-middle"></i> {t("listView")}
           </button>
           <button 
             onClick={() => setViewMode("map")}
             className={`flex-1 py-1.5 text-[12px] font-bold transition-colors z-10 rounded-lg ${viewMode === "map" ? "text-dark" : "text-text-muted hover:text-dark"}`}
           >
-            <i className="ph-bold ph-map-trifold mr-1 text-[14px] align-middle"></i> Map View
+            <i className="ph-bold ph-map-trifold mr-1 text-[14px] align-middle"></i> {t("mapView")}
           </button>
         </div>
       </div>
@@ -265,6 +267,7 @@ function DaySummaryCard({ dayNum, numDays, viewMode, setViewMode }: { dayNum: nu
 }
 
 function RestaurantCard({ stop }: { stop: any }) {
+  const t = useTranslations("ItineraryTimeline");
   return (
     <div className="bg-white rounded-2xl overflow-hidden shadow-sm transition-all duration-300 border border-border/50 hover:shadow-md mb-4 flex">
       <div className="w-[100px] h-[100px] shrink-0 p-2">
@@ -285,7 +288,7 @@ function RestaurantCard({ stop }: { stop: any }) {
         </div>
         <div className="flex justify-end mt-1">
           <a href={stop.mapsUrl} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center px-3 py-1 bg-cream text-dark hover:bg-soft-beige rounded-full text-[10px] font-bold gap-1 transition-colors">
-            📍 Maps
+            📍 {t("maps")}
           </a>
         </div>
       </div>
@@ -297,6 +300,8 @@ export default function ItineraryTimeline({ day }: { day: string }) {
   const activeTab = parseInt(day) || 1;
   const [viewMode, setViewMode] = useState<"list" | "map">("list");
   const timelineRef = useRef<HTMLDivElement>(null);
+  const data = useTranslations("Data");
+  const t = useTranslations("ItineraryTimeline");
 
   // Setup Intersection Observer for scroll reveal triggers
   useEffect(() => {
@@ -328,15 +333,17 @@ export default function ItineraryTimeline({ day }: { day: string }) {
   }, [viewMode, activeTab]);
 
   const getStopsForDay = (day: number) => {
-    if (day === 1) return roadTripStops;
-    if (day === 2) return day2Stops;
-    if (day === 3) return day3Stops;
-    if (day === 4) return day4Stops;
-    if (day === 5) return day5Stops;
+    if (day === 1) return data.raw("roadTripStops");
+    if (day === 2) return data.raw("day2Stops");
+    if (day === 3) return data.raw("day3Stops");
+    if (day === 4) return data.raw("day4Stops");
+    if (day === 5) return data.raw("day5Stops");
     return [];
   };
 
   const currentStops = getStopsForDay(activeTab);
+  const day1Restaurants = data.raw("day1Restaurants");
+  const day2Restaurants = data.raw("day2Restaurants");
 
   return (
     <div className="relative pb-8 px-4 max-w-xl lg:max-w-7xl mx-auto" ref={timelineRef}>
@@ -360,9 +367,9 @@ export default function ItineraryTimeline({ day }: { day: string }) {
                   <i className="ph-fill ph-warning-circle text-lg"></i>
                 </div>
                 <div>
-                  <h4 className="text-[13px] font-bold text-orange-900 mb-0.5">Advance Booking Required</h4>
+                  <h4 className="text-[13px] font-bold text-orange-900 mb-0.5">{t("advanceBookingRequired")}</h4>
                   <p className="text-[11px] text-orange-800/80 leading-snug">
-                    Slots for Mullayanagiri, Baba Budangiri, and Jhari Waterfalls must be booked beforehand via Chikmagalur Tourism.
+                    {t("advanceBookingMsg2")}
                   </p>
                 </div>
               </div>
@@ -372,7 +379,7 @@ export default function ItineraryTimeline({ day }: { day: string }) {
                 rel="noreferrer"
                 className="mt-1 text-center bg-orange-500 hover:bg-orange-600 text-white text-[12px] font-bold py-2.5 rounded-xl transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5"
               >
-                Book Entry Slots
+                {t("bookEntrySlots")}
               </a>
             </div>
           )}
@@ -384,9 +391,9 @@ export default function ItineraryTimeline({ day }: { day: string }) {
                   <i className="ph-fill ph-warning-circle text-lg"></i>
                 </div>
                 <div>
-                  <h4 className="text-[13px] font-bold text-orange-900 mb-0.5">Advance Booking Required</h4>
+                  <h4 className="text-[13px] font-bold text-orange-900 mb-0.5">{t("advanceBookingRequired")}</h4>
                   <p className="text-[11px] text-orange-800/80 leading-snug">
-                    Permissions and slots for Chikmagalur treks must be booked beforehand via Karnataka Eco Tourism (Aranya Vihara).
+                    {t("advanceBookingMsg5")}
                   </p>
                 </div>
               </div>
@@ -396,7 +403,7 @@ export default function ItineraryTimeline({ day }: { day: string }) {
                 rel="noreferrer"
                 className="mt-1 text-center bg-orange-500 hover:bg-orange-600 text-white text-[12px] font-bold py-2.5 rounded-xl transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5"
               >
-                Book Entry Slots
+                {t("bookEntrySlots")}
               </a>
             </div>
           )}
@@ -413,20 +420,20 @@ export default function ItineraryTimeline({ day }: { day: string }) {
               {activeTab === 1 && day1Restaurants && (
                 <div key="restaurants-1" className="mt-4 pt-6 border-t border-border">
                   <h3 className="font-serif text-xl font-bold text-dark mb-4 text-center flex items-center justify-center gap-2">
-                    <i className="ph-fill ph-fork-knife text-airbnb-coral"></i> Recommended Restaurants
+                    <i className="ph-fill ph-fork-knife text-airbnb-coral"></i> {t("recommendedRestaurants")}
                   </h3>
-                  {day1Restaurants.map((rest, idx) => (
+                  {day1Restaurants.map((rest: any, idx: number) => (
                     <RestaurantCard key={rest.title || idx} stop={rest} />
                   ))}
                 </div>
               )}
 
-              {activeTab === 2 && (
+              {activeTab === 2 && day2Restaurants && (
                 <div key="restaurants-2" className="mt-4 pt-6 border-t border-border">
                   <h3 className="font-serif text-xl font-bold text-dark mb-4 text-center flex items-center justify-center gap-2">
-                    <i className="ph-fill ph-fork-knife text-airbnb-coral"></i> Recommended Restaurants
+                    <i className="ph-fill ph-fork-knife text-airbnb-coral"></i> {t("recommendedRestaurants")}
                   </h3>
-                  {day2Restaurants.map((rest, idx) => (
+                  {day2Restaurants.map((rest: any, idx: number) => (
                     <RestaurantCard key={rest.title || idx} stop={rest} />
                   ))}
                 </div>
@@ -465,7 +472,7 @@ export default function ItineraryTimeline({ day }: { day: string }) {
 
             // Exclude the starting point from waypoints if it's just "Bangalore" since origin is My Location
             // But to keep it simple, just clean the titles.
-            const validStops = currentStops.map(s => ({ ...s, searchTitle: cleanTitle(s.title) }));
+            const validStops = currentStops.map((s: any) => ({ ...s, searchTitle: cleanTitle(s.title) }));
             const lastStop = validStops[validStops.length - 1];
 
             // If the first stop is a generic starting point, we can skip it in waypoints to avoid backtracking
@@ -481,7 +488,7 @@ export default function ItineraryTimeline({ day }: { day: string }) {
           target="_blank" rel="noreferrer"
           className="inline-flex items-center justify-center px-6 py-3.5 bg-airbnb-coral text-white rounded-2xl font-semibold text-sm transition-all hover:bg-rose-600 shadow-sm w-full gap-2"
         >
-          <i className="ph-fill ph-map-trifold text-lg"></i> Open Complete Day Route
+          <i className="ph-fill ph-map-trifold text-lg"></i> {t("openCompleteRoute")}
         </motion.a>
       </div>
 

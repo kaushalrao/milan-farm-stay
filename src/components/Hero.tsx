@@ -1,8 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
 import WeatherWidget from "./WeatherWidget";
+import { useTranslations } from "next-intl";
 
 export default function Hero() {
+  const t = useTranslations("Hero");
   return (
     <header className="pt-24 md:pt-32 pb-6 md:pb-12 px-4 lg:px-8 text-center lg:text-left overflow-hidden">
       <div className="container mx-auto max-w-4xl lg:max-w-7xl lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center">
@@ -13,16 +15,17 @@ export default function Hero() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="flex flex-col items-center lg:items-start"
         >
-          <h1 className="font-serif text-[40px] md:text-7xl lg:text-[76px] leading-[1.05] md:leading-[1.1] lg:leading-[1.05] text-dark font-semibold mb-4 md:mb-6 tracking-tight">
-            Welcome to your<br />home in the hills
-          </h1>
+          <h1 
+            className="font-serif text-[40px] md:text-7xl lg:text-[76px] leading-[1.05] md:leading-[1.1] lg:leading-[1.05] text-dark font-semibold mb-4 md:mb-6 tracking-tight"
+            dangerouslySetInnerHTML={{ __html: t("title") }}
+          />
           <motion.p
             className="text-[17px] md:text-2xl lg:text-xl leading-snug text-text-muted max-w-2xl mx-auto lg:mx-0 mb-2 md:mb-4 px-2 lg:px-0 lg:max-w-xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           >
-            Explore our curated day-by-day itinerary for the perfect journey from Bangalore and around Chikmagalur.
+            {t("subtitle")}
           </motion.p>
           <div className="lg:w-full">
             <WeatherWidget />

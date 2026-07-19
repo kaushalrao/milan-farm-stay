@@ -2,9 +2,12 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+import { useTranslations } from "next-intl";
+
 export default function TaxiCard({ name, phone }: { name: string, phone: string }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const firstName = name.split(" ")[0];
+  const t = useTranslations("TaxiCard");
 
   return (
     <motion.div
@@ -21,7 +24,7 @@ export default function TaxiCard({ name, phone }: { name: string, phone: string 
           <i className="ph-fill ph-taxi"></i>
         </div>
         <div className="flex flex-col flex-1 min-w-0">
-          <h4 className="font-serif text-[17px] md:text-2xl lg:text-xl font-semibold text-dark mb-0.5 md:mb-1 leading-tight line-clamp-2">Local Taxi</h4>
+          <h4 className="font-serif text-[17px] md:text-2xl lg:text-xl font-semibold text-dark mb-0.5 md:mb-1 leading-tight line-clamp-2">{t("localTaxi")}</h4>
           <div className="flex items-center gap-1 md:gap-1.5">
             <i className="ph-fill ph-user text-blue-600 text-[12px] md:text-base"></i>
             <span className="text-[10px] md:text-sm lg:text-xs font-bold md:font-medium text-text-muted uppercase tracking-wider md:normal-case md:tracking-normal line-clamp-1">{name}</span>
@@ -54,15 +57,15 @@ export default function TaxiCard({ name, phone }: { name: string, phone: string 
           <div className="flex items-start gap-3 text-dark">
             <i className="ph-fill ph-map-pin text-text-muted text-xl mt-0.5"></i>
             <div className="flex flex-col gap-0.5">
-              <span className="text-sm font-medium">Service Area</span>
-              <span className="text-[13px] text-text-muted font-medium leading-tight">Mudigere & Surrounds</span>
+              <span className="text-sm font-medium">{t("serviceArea")}</span>
+              <span className="text-[13px] text-text-muted font-medium leading-tight">{t("mudigereSurrounds")}</span>
             </div>
           </div>
           <div className="flex items-start gap-3 text-dark">
             <i className="ph-fill ph-clock text-text-muted text-xl mt-0.5"></i>
             <div className="flex flex-col gap-0.5">
-              <span className="text-sm font-medium">Availability</span>
-              <span className="text-[13px] text-text-muted font-medium leading-tight">Pre-book via Call</span>
+              <span className="text-sm font-medium">{t("availability")}</span>
+              <span className="text-[13px] text-text-muted font-medium leading-tight">{t("preBookCall")}</span>
             </div>
           </div>
         </div>
@@ -72,7 +75,7 @@ export default function TaxiCard({ name, phone }: { name: string, phone: string 
           onClick={(e) => e.stopPropagation()}
           className="hidden lg:flex items-center justify-center w-full gap-2 py-3 bg-dark text-white rounded-xl text-base font-semibold transition-all hover:bg-black shadow-sm hover:-translate-y-1 mt-auto"
         >
-          <i className="ph-fill ph-phone text-xl"></i> Call {firstName}
+          <i className="ph-fill ph-phone text-xl"></i> {t("callFirstName", { firstName })}
         </a>
       </div>
 
@@ -89,12 +92,12 @@ export default function TaxiCard({ name, phone }: { name: string, phone: string 
               <div className="bg-blue-50/40 border border-blue-100/60 p-3.5 md:p-5 rounded-xl md:rounded-2xl mb-4 backdrop-blur-sm">
                 <ul className="space-y-2.5 md:space-y-3">
                   <li className="flex justify-between items-center text-dark border-b border-blue-100/50 pb-2.5 md:pb-3">
-                    <span className="flex items-center gap-2 md:gap-3 text-sm md:text-base font-medium"><i className="ph-fill ph-map-pin text-blue-600/70 text-lg md:text-xl"></i> Area</span>
-                    <span className="text-[10px] md:text-xs bg-white text-dark px-2 py-1 md:px-3 md:py-1.5 rounded-md shadow-sm font-semibold border border-border/50 tracking-wide">Mudigere</span>
+                    <span className="flex items-center gap-2 md:gap-3 text-sm md:text-base font-medium"><i className="ph-fill ph-map-pin text-blue-600/70 text-lg md:text-xl"></i> {t("area")}</span>
+                    <span className="text-[10px] md:text-xs bg-white text-dark px-2 py-1 md:px-3 md:py-1.5 rounded-md shadow-sm font-semibold border border-border/50 tracking-wide">{t("mudigere")}</span>
                   </li>
                   <li className="flex justify-between items-center text-dark">
-                    <span className="flex items-center gap-2 md:gap-3 text-sm md:text-base font-medium"><i className="ph-fill ph-clock text-blue-600/70 text-lg md:text-xl"></i> Booking</span>
-                    <span className="text-[10px] md:text-xs bg-white text-text-muted px-2 py-1 md:px-3 md:py-1.5 rounded-md shadow-sm font-medium border border-border/50">Pre-book</span>
+                    <span className="flex items-center gap-2 md:gap-3 text-sm md:text-base font-medium"><i className="ph-fill ph-clock text-blue-600/70 text-lg md:text-xl"></i> {t("booking")}</span>
+                    <span className="text-[10px] md:text-xs bg-white text-text-muted px-2 py-1 md:px-3 md:py-1.5 rounded-md shadow-sm font-medium border border-border/50">{t("preBook")}</span>
                   </li>
                 </ul>
               </div>
@@ -104,7 +107,7 @@ export default function TaxiCard({ name, phone }: { name: string, phone: string 
                 onClick={(e) => e.stopPropagation()}
                 className="hidden md:flex items-center justify-center w-full gap-2 py-3 bg-dark text-white rounded-xl text-base font-semibold transition-all hover:bg-black shadow-sm hover:-translate-y-1"
               >
-                <i className="ph-fill ph-phone text-xl"></i> Call {firstName}
+                <i className="ph-fill ph-phone text-xl"></i> {t("callFirstName", { firstName })}
               </a>
             </motion.div>
           )}

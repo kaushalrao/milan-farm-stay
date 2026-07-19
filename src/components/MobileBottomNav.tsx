@@ -2,16 +2,18 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-
-const navItems = [
-  { id: "plan", label: "Itinerary", icon: "ph-map-trifold" },
-  { id: "contacts", label: "Hosts", icon: "ph-users" },
-  { id: "food", label: "Food", icon: "ph-cooking-pot" },
-  { id: "taxi", label: "Taxi", icon: "ph-taxi" }
-];
+import { useTranslations } from "next-intl";
 
 export default function MobileBottomNav() {
   const [activeSection, setActiveSection] = useState<string>("plan");
+  const t = useTranslations("Navbar");
+
+  const navItems = [
+    { id: "plan", label: t("plan"), icon: "ph-map-trifold" },
+    { id: "contacts", label: t("contacts"), icon: "ph-users" },
+    { id: "food", label: t("food"), icon: "ph-cooking-pot" },
+    { id: "taxi", label: t("taxi"), icon: "ph-taxi" }
+  ];
 
   // Scroll Spy: Update active section based on scroll position
   useEffect(() => {

@@ -2,10 +2,17 @@
 import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
-
-import { navItems } from "../config/data";
+import { useTranslations, useLocale } from "next-intl";
 
 export default function Navbar() {
+  const t = useTranslations("Navbar");
+  const locale = useLocale();
+
+  const navItems = [
+    { label: t("plan"), href: "#plan", id: "plan", icon: "ph-map-trifold" },
+    { label: t("contacts"), href: "#contacts", id: "contacts", icon: "ph-users" }
+  ];
+
   const { scrollY } = useScroll();
   
   // Interpolate values based on scroll position (0px to 50px)
@@ -50,6 +57,12 @@ export default function Navbar() {
     }, 50);
   };
 
+  const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const nextLocale = e.target.value;
+    document.cookie = `NEXT_LOCALE=${nextLocale}; path=/; max-age=31536000`;
+    window.location.reload();
+  };
+
   return (
     <motion.nav
       style={{
@@ -67,31 +80,46 @@ export default function Navbar() {
         className="absolute bottom-0 left-0 right-0 h-[1px] bg-border/50"
       />
       
-      <div className="container mx-auto px-6 max-w-7xl flex justify-center md:justify-between items-center relative z-10">
+      <div className="container mx-auto px-6 max-w-7xl flex justify-between items-center relative z-10">
         <Link href="#">
           <motion.div
             style={{ scale: logoScale }}
-            className="font-serif text-2xl font-bold text-dark transition-colors duration-300"
+            className="font-serif text-xl md:text-2xl font-bold text-dark transition-colors duration-300 truncate mr-2"
           >
-            Milan Farm Stays
+            {t("title")}
           </motion.div>
         </Link>
-        <div className="hidden md:flex items-center gap-8">
-          {navItems.map((item) => {
-            const isActive = activeSection === item.id;
-            return (
-              <motion.div key={item.id} whileHover={{ y: -2 }} whileTap={{ scale: 0.95 }}>
-                <a
-                  href={item.href}
-                  onClick={(e) => handleNavClick(e, item.href)}
-                  className={`font-medium transition-colors duration-300 ${isActive ? 'text-airbnb-coral' : 'text-text-main hover:text-airbnb-coral'}`}
-                  aria-current={isActive ? "page" : undefined}
-                >
-                  {item.label}
-                </a>
-              </motion.div>
-            );
-          })}
+        <div className="flex items-center gap-4 md:gap-8">
+          <div className="hidden md:flex items-center gap-8">
+            {navItems.map((item) => {
+              const isActive = activeSection === item.id;
+              return (
+                <motion.div key={item.id} whileHover={{ y: -2 }} whileTap={{ scale: 0.95 }}>
+                  <a
+                    href={item.href}
+                    onClick={(e) => handleNavClick(e, item.href)}
+                    className={`font-medium transition-colors duration-300 \${isActive ? 'text-airbnb-coral' : 'text-text-main hover:text-airbnb-coral'}`}
+                    aria-current={isActive ? "page" : undefined}
+                  >
+                    {item.label}
+                  </a>
+                </motion.div>
+              );
+            })}
+          </div>
+          
+          <select
+            value={locale}
+            onChange={handleLanguageChange}
+            className="bg-transparent text-text-main font-medium border border-border/60 hover:border-border rounded-md px-2 py-1.5 focus:outline-none focus:ring-2 focus:ring-airbnb-coral/50 text-sm md:text-base cursor-pointer transition-colors"
+            aria-label="Select Language"
+          >
+            <option value="en">English</option>
+            <option value="kn">ಕನ್ನಡ</option>
+            <option value="te">తెలుగు</option>
+            <option value="ta">தமிழ்</option>
+            <option value="ml">മലയാളം</option>
+          </select>
         </div>
       </div>
     </motion.nav>

@@ -3,9 +3,13 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ItineraryTimeline from "./ItineraryTimeline";
 
-import { tripOptions } from "../config/data";
+import { useTranslations } from "next-intl";
 
 export default function TripCards() {
+  const t = useTranslations("Data");
+  const ui = useTranslations("UI");
+  const tripOptions = t.raw("tripOptions") as any[];
+
   const [selectedDays, setSelectedDays] = useState<string | null>(null);
 
   // Initialize from URL parameters if someone shared a link
@@ -87,7 +91,7 @@ export default function TripCards() {
                         className="absolute top-3 left-3 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-full text-[9px] uppercase tracking-wider font-bold text-airbnb-coral flex items-center gap-1.5 shadow-sm"
                       >
                         <span className="w-1.5 h-1.5 rounded-full bg-airbnb-coral animate-pulse"></span>
-                        Current Stop
+                        {ui("currentStop")}
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -115,8 +119,8 @@ export default function TripCards() {
                   </p>
 
                   <div className="flex flex-wrap gap-1.5 mt-2.5">
-                    {trip.tags.map(tag => (
-                      <span key={tag} className="px-2 py-1 bg-soft-beige rounded-md text-[9px] uppercase tracking-wider font-bold text-text-main">
+                    {trip.tags.map((tag: string) => (
+                      <span key={tag} className="px-2 py-1 bg-soft-beige rounded-md text-[10px] font-bold uppercase tracking-wider text-dark/70 border border-border/50 shadow-sm">
                         {tag}
                       </span>
                     ))}

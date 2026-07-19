@@ -2,23 +2,25 @@
 
 import { useState } from "react";
 import ItineraryTimeline from "./ItineraryTimeline";
-
-import { tripPlannerTabs as tabs } from "../config/data";
+import { useTranslations } from "next-intl";
 
 export default function TripPlanner() {
   const [selectedDays, setSelectedDays] = useState("1");
+  const t = useTranslations("TripPlanner");
+  const data = useTranslations("Data");
+  const tabs = data.raw("tripPlannerTabs");
 
   return (
     <section className="py-16 md:py-24" id="plan">
       <div className="container mx-auto px-6 max-w-6xl">
         <div className="text-center mb-12">
-          <h2 className="font-serif text-3xl md:text-5xl font-semibold text-dark mb-4">Design Your Trip</h2>
-          <p className="text-lg text-text-muted">Select the duration of your stay to view our curated recommendations.</p>
+          <h2 className="font-serif text-3xl md:text-5xl font-semibold text-dark mb-4">{t("title")}</h2>
+          <p className="text-lg text-text-muted">{t("subtitle")}</p>
         </div>
         
         <div className="flex justify-center mb-16">
           <div className="inline-flex bg-soft-beige p-1 rounded-full flex-wrap justify-center">
-            {tabs.map((tab) => (
+            {tabs.map((tab: any) => (
               <button
                 key={tab.id}
                 onClick={() => setSelectedDays(tab.id)}

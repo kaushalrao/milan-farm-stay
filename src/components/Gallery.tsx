@@ -1,20 +1,22 @@
 "use client";
 import { useState } from "react";
-
-import { galleryImages as images } from "../config/data";
+import { useTranslations } from "next-intl";
 
 export default function Gallery() {
   const [selectedImg, setSelectedImg] = useState<string | null>(null);
+  const t = useTranslations("UI");
+  const data = useTranslations("Data");
+  const images = data.raw("galleryImages");
 
   return (
     <section className="py-24 bg-cream" id="gallery">
       <div className="container mx-auto px-6 max-w-6xl">
         <div className="text-center mb-12">
-          <h2 className="font-serif text-3xl md:text-5xl font-semibold text-dark">Gallery</h2>
+          <h2 className="font-serif text-3xl md:text-5xl font-semibold text-dark">{t("gallery")}</h2>
         </div>
         
         <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
-          {images.map((src, i) => (
+          {images.map((src: string, i: number) => (
             <div key={i} className="break-inside-avoid rounded-2xl overflow-hidden cursor-pointer shadow-sm hover:shadow-md transition-shadow group" onClick={() => setSelectedImg(src)}>
               <img 
                 src={src} 

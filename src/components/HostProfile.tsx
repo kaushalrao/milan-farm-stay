@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 interface HostProfileProps {
   name: string;
@@ -14,6 +15,7 @@ interface HostProfileProps {
 
 export default function HostProfile({ name, role, image, imgClass = "w-full h-full object-cover", desc, years, phone }: HostProfileProps) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const ui = useTranslations("UI");
 
   return (
     <div 
@@ -84,10 +86,10 @@ export default function HostProfile({ name, role, image, imgClass = "w-full h-fu
       {/* Desktop only action buttons */}
       <div className="hidden md:flex flex-row gap-3 mt-auto">
         <a href={`tel:+91${phone}`} onClick={(e) => e.stopPropagation()} className="flex-1 flex items-center justify-center gap-2 py-3 bg-dark text-white hover:bg-black rounded-xl text-base font-semibold transition-transform hover:-translate-y-1 shadow-sm">
-          <i className="ph-fill ph-phone text-xl"></i> Call
+          <i className="ph-fill ph-phone text-xl"></i> {ui("call")}
         </a>
         <a href={`https://wa.me/91${phone}`} onClick={(e) => e.stopPropagation()} target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center gap-2 py-3 bg-[#25D366] text-white hover:bg-[#20b858] rounded-xl text-base font-semibold transition-transform hover:-translate-y-1 shadow-sm hover:shadow-md">
-          <i className="ph-fill ph-whatsapp-logo text-xl"></i> WA
+          <i className="ph-fill ph-whatsapp-logo text-xl"></i> {ui("wa")}
         </a>
       </div>
     </div>

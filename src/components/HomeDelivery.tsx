@@ -2,8 +2,11 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+import { useTranslations } from "next-intl";
+
 export default function HomeDelivery() {
   const [isExpanded, setIsExpanded] = useState(false);
+  const t = useTranslations("HomeDelivery");
 
   return (
     <motion.div
@@ -20,10 +23,10 @@ export default function HomeDelivery() {
           <i className="ph-fill ph-package"></i>
         </div>
         <div className="flex flex-col flex-1 min-w-0">
-          <h4 className="font-serif text-[17px] md:text-2xl lg:text-xl font-semibold text-dark mb-0.5 md:mb-1 leading-tight line-clamp-2">Home Delivery</h4>
+          <h4 className="font-serif text-[17px] md:text-2xl lg:text-xl font-semibold text-dark mb-0.5 md:mb-1 leading-tight line-clamp-2">{t("title")}</h4>
           <div className="flex items-center gap-1 md:gap-1.5">
             <i className="ph-fill ph-user text-orange-600 text-[12px] md:text-base"></i>
-            <span className="text-[10px] md:text-sm lg:text-xs font-bold md:font-medium text-text-muted uppercase tracking-wider md:normal-case md:tracking-normal line-clamp-1">Manjunath</span>
+            <span className="text-[10px] md:text-sm lg:text-xs font-bold md:font-medium text-text-muted uppercase tracking-wider md:normal-case md:tracking-normal line-clamp-1">{t("deliveryName")}</span>
           </div>
         </div>
 
@@ -53,15 +56,15 @@ export default function HomeDelivery() {
           <div className="flex items-start gap-3 text-dark">
             <i className="ph-fill ph-shopping-cart text-text-muted text-xl mt-0.5"></i>
             <div className="flex flex-col gap-0.5">
-              <span className="text-sm font-medium">Items</span>
-              <span className="text-[13px] text-text-muted font-medium leading-tight">Food & Groceries</span>
+              <span className="text-sm font-medium">{t("items")}</span>
+              <span className="text-[13px] text-text-muted font-medium leading-tight">{t("foodGroceries")}</span>
             </div>
           </div>
           <div className="flex items-start gap-3 text-dark">
             <i className="ph-fill ph-motorcycle text-text-muted text-xl mt-0.5"></i>
             <div className="flex flex-col gap-0.5">
-              <span className="text-sm font-medium">Delivery Fee</span>
-              <span className="text-[13px] text-text-muted font-medium leading-tight">Varies by distance</span>
+              <span className="text-sm font-medium">{t("deliveryFee")}</span>
+              <span className="text-[13px] text-text-muted font-medium leading-tight">{t("variesDistance")}</span>
             </div>
           </div>
         </div>
@@ -71,7 +74,7 @@ export default function HomeDelivery() {
           onClick={(e) => e.stopPropagation()}
           className="hidden lg:flex items-center justify-center w-full gap-2 py-3 bg-dark text-white rounded-xl text-base font-semibold transition-all hover:bg-black shadow-sm hover:-translate-y-1 mt-auto"
         >
-          <i className="ph-fill ph-phone text-xl"></i> Call Manjunath
+          <i className="ph-fill ph-phone text-xl"></i> {t("callDelivery")}
         </a>
       </div>
 
@@ -88,12 +91,12 @@ export default function HomeDelivery() {
               <div className="bg-orange-50/40 border border-orange-100/60 p-3.5 md:p-5 rounded-xl md:rounded-2xl mb-4 backdrop-blur-sm">
                 <ul className="space-y-2.5 md:space-y-3">
                   <li className="flex justify-between items-center text-dark border-b border-orange-100/50 pb-2.5 md:pb-3">
-                    <span className="flex items-center gap-2 md:gap-3 text-sm md:text-base font-medium"><i className="ph-fill ph-shopping-cart text-orange-600/70 text-lg md:text-xl"></i> Items</span>
-                    <span className="text-[10px] md:text-xs bg-white text-dark px-2 py-1 md:px-3 md:py-1.5 rounded-md shadow-sm font-semibold border border-border/50 tracking-wide">Food & Groceries</span>
+                    <span className="flex items-center gap-2 md:gap-3 text-sm md:text-base font-medium"><i className="ph-fill ph-shopping-cart text-orange-600/70 text-lg md:text-xl"></i> {t("items")}</span>
+                    <span className="text-[10px] md:text-xs bg-white text-dark px-2 py-1 md:px-3 md:py-1.5 rounded-md shadow-sm font-semibold border border-border/50 tracking-wide">{t("foodGroceries")}</span>
                   </li>
                   <li className="flex justify-between items-center text-dark">
-                    <span className="flex items-center gap-2 md:gap-3 text-sm md:text-base font-medium"><i className="ph-fill ph-motorcycle text-orange-600/70 text-lg md:text-xl"></i> Delivery Fee</span>
-                    <span className="text-[10px] md:text-xs bg-white text-text-muted px-2 py-1 md:px-3 md:py-1.5 rounded-md shadow-sm font-medium border border-border/50">Varies by distance</span>
+                    <span className="flex items-center gap-2 md:gap-3 text-sm md:text-base font-medium"><i className="ph-fill ph-motorcycle text-orange-600/70 text-lg md:text-xl"></i> {t("deliveryFee")}</span>
+                    <span className="text-[10px] md:text-xs bg-white text-text-muted px-2 py-1 md:px-3 md:py-1.5 rounded-md shadow-sm font-medium border border-border/50">{t("variesDistance")}</span>
                   </li>
                 </ul>
               </div>
@@ -103,7 +106,7 @@ export default function HomeDelivery() {
                 onClick={(e) => e.stopPropagation()}
                 className="hidden md:flex items-center justify-center w-full gap-2 py-3 bg-dark text-white rounded-xl text-base font-semibold transition-all hover:bg-black shadow-sm hover:-translate-y-1"
               >
-                <i className="ph-fill ph-phone text-xl"></i> Call Manjunath
+                <i className="ph-fill ph-phone text-xl"></i> {t("callDelivery")}
               </a>
             </motion.div>
           )}

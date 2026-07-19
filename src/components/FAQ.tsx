@@ -1,20 +1,22 @@
 "use client";
 import { useState } from "react";
-
-import { faqs } from "../config/data";
+import { useTranslations } from "next-intl";
 
 export default function FAQ() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
+  const t = useTranslations("UI");
+  const data = useTranslations("Data");
+  const faqs = data.raw("faqs");
 
   return (
     <section className="py-24" id="faq">
       <div className="container mx-auto px-6 max-w-3xl">
         <div className="text-center mb-12">
-          <h2 className="font-serif text-3xl md:text-5xl font-semibold text-dark">FAQ</h2>
+          <h2 className="font-serif text-3xl md:text-5xl font-semibold text-dark">{t("faq")}</h2>
         </div>
         
         <div className="flex flex-col border-t border-border">
-          {faqs.map((faq, i) => (
+          {faqs.map((faq: any, i: number) => (
             <div key={i} className="border-b border-border">
               <button
                 onClick={() => setOpenIdx(openIdx === i ? null : i)}

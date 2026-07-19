@@ -1,7 +1,10 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 export default function ShareButton() {
-  const shareText = `Hey! Here is the complete digital guide for our trip to Milan Farm Stay. 🌿🚗\n\nIt contains the route map, itinerary, and all important contact numbers (including our hosts, home-cooked food, and local delivery options).\n\n💡 *Tip:* Bookmark this link or add it to your home screen for quick offline-like access during the trip!`;
+  const t = useTranslations("ShareButton");
+  const shareText = t("shareText");
   const shareUrl = "https://milan-farm-stay.vercel.app/";
   const whatsappLink = "https://wa.me/?text=" + encodeURIComponent(shareText + "\n\n" + shareUrl);
 
@@ -10,7 +13,7 @@ export default function ShareButton() {
       <div className="container mx-auto max-w-4xl relative">
         <div className="flex items-center gap-4 mb-6 md:mb-10">
           <div className="flex-1 h-px bg-border"></div>
-          <h3 className="font-serif text-lg md:text-2xl font-semibold text-text-muted/80 tracking-wide text-center uppercase">Share Guide</h3>
+          <h3 className="font-serif text-lg md:text-2xl font-semibold text-text-muted/80 tracking-wide text-center uppercase">{t("shareGuide")}</h3>
           <div className="flex-1 h-px bg-border"></div>
         </div>
 
@@ -23,7 +26,7 @@ export default function ShareButton() {
 
           <div className="flex-1 text-center md:text-left relative z-10">
             <p className="text-text-muted text-[15px] md:text-base leading-snug">
-              Send this itinerary to your travel companions so everyone stays on track.
+              {t("description")}
             </p>
           </div>
           
@@ -33,7 +36,7 @@ export default function ShareButton() {
             rel="noreferrer"
             className="inline-flex shrink-0 items-center justify-center gap-2 w-full md:w-auto px-6 md:px-8 py-3.5 bg-[#25D366] text-white rounded-xl font-semibold text-[17px] transition-all hover:bg-[#20b858] hover:-translate-y-0.5 shadow-md shadow-[#25D366]/25 hover:shadow-lg hover:shadow-[#25D366]/40 relative z-10"
           >
-            <i className="ph-fill ph-whatsapp-logo text-[22px]"></i> Share on WhatsApp
+            <i className="ph-fill ph-whatsapp-logo text-[22px]"></i> {t("shareOnWhatsapp")}
           </a>
         </div>
       </div>

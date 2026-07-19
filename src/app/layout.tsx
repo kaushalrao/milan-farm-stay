@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import Script from "next/script";
 import InstallPrompt from "@/components/InstallPrompt";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages, getLocale } from "next-intl/server";
 import "./globals.css";
 
 const inter = Inter({
@@ -25,22 +27,27 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+  const messages = await getMessages();
+
   return (
     <html
-      lang="en"
+      lang={locale}
       className={`${inter.variable} ${playfair.variable} scroll-smooth antialiased`}
     >
       <head>
         <Script src="https://unpkg.com/@phosphor-icons/web" strategy="beforeInteractive" />
       </head>
       <body className="min-h-screen flex flex-col bg-cream text-text-main font-sans overflow-x-hidden">
-        {children}
-        <InstallPrompt />
+        <NextIntlClientProvider messages={messages}>
+          {children}
+          <InstallPrompt />
+        </NextIntlClientProvider>
       </body>
     </html>
   );
