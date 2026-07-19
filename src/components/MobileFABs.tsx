@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-import { useScroll, useMotionValueEvent } from "framer-motion";
 import CookModal from "./CookModal";
 import dynamic from "next/dynamic";
 const Player = dynamic(() => import("@lottiefiles/react-lottie-player").then((mod) => mod.Player), { ssr: false });
@@ -8,17 +7,6 @@ const Player = dynamic(() => import("@lottiefiles/react-lottie-player").then((mo
 export default function MobileFABs() {
   const [isOpen, setIsOpen] = useState(false);
   const [cookModalOpen, setCookModalOpen] = useState(false);
-  const [isNavVisible, setIsNavVisible] = useState(true);
-  const { scrollY } = useScroll();
-
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    const previous = scrollY.getPrevious() || 0;
-    if (latest > previous && latest > 150) {
-      setIsNavVisible(false);
-    } else {
-      setIsNavVisible(true);
-    }
-  });
 
   // Close when clicking outside
   useEffect(() => {
@@ -34,9 +22,7 @@ export default function MobileFABs() {
   return (
     <div 
       id="help-menu-container" 
-      className={`fixed right-6 z-[99] transition-all duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
-        isNavVisible ? "bottom-[96px] md:bottom-6" : "bottom-6"
-      }`}
+      className="fixed right-6 z-[99] transition-all duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] bottom-[96px] md:bottom-6"
     >
       {/* Floating Menu */}
       <div
@@ -73,12 +59,10 @@ export default function MobileFABs() {
       {/* Main Toggle Button */}
       <button
         onClick={(e) => { e.stopPropagation(); setIsOpen(!isOpen); }}
-        className="flex items-center gap-3 h-14 pl-6 pr-2 bg-dark text-white rounded-full shadow-lg transition-transform active:scale-95 hover:-translate-y-1"
+        className="flex items-center justify-center w-14 h-14 bg-dark text-white rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.2)] transition-transform active:scale-95 hover:-translate-y-1"
+        aria-label="Help Options"
       >
-        <span className="font-medium text-lg">Ask</span>
-        <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-          <i className={"ph-bold ph-caret-up transition-transform duration-300 " + (isOpen ? 'rotate-180' : '')}></i>
-        </div>
+        <i className={`text-2xl ph-bold transition-transform duration-300 ${isOpen ? 'ph-x rotate-90 scale-90' : 'ph-question'}`}></i>
       </button>
 
       <CookModal isOpen={cookModalOpen} onClose={() => setCookModalOpen(false)} />

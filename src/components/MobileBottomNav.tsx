@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { motion } from "framer-motion";
 
 const navItems = [
   { id: "plan", label: "Itinerary", icon: "ph-map-trifold" },
@@ -12,39 +12,46 @@ const navItems = [
 
 export default function MobileBottomNav() {
   const [activeSection, setActiveSection] = useState<string>("plan");
-  const [isVisible, setIsVisible] = useState(true);
-  const { scrollY } = useScroll();
 
-  // Hide nav when scrolling down, show when scrolling up
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    const previous = scrollY.getPrevious() || 0;
-    // Don't hide if we are at the very top of the page
-    if (latest > previous && latest > 150) {
-      setIsVisible(false);
-    } else {
-      setIsVisible(true);
-    }
-  });
-
-  // Scroll Spy: Update active section based on what's in the viewport
+  // Scroll Spy: Update active section based on scroll position
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
+    const handleScroll = () => {
+      // Use a detection line at 30% from the top of the viewport
+      const detectionLine = window.innerHeight * 0.3;
+      
+      // Iterate through sections in reverse order to properly handle nested or overlapping sections
+      const reversedItems = [...navItems].reverse();
+      
+      for (const item of reversedItems) {
+        const el = document.getElementById(item.id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          // If the top of the element is above the detection line, it is the active section
+          if (rect.top <= detectionLine) {
+            setActiveSection(item.id);
+            return; // Found the active section, stop checking
           }
+        }
+      }
+    };
+
+    // Throttle scroll event using requestAnimationFrame
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
         });
-      },
-      { rootMargin: "-30% 0px -50% 0px" }
-    );
+        ticking = true;
+      }
+    };
 
-    navItems.forEach((item) => {
-      const el = document.getElementById(item.id);
-      if (el) observer.observe(el);
-    });
+    window.addEventListener("scroll", onScroll, { passive: true });
+    // Trigger once on mount
+    handleScroll();
 
-    return () => observer.disconnect();
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const scrollToSection = (id: string) => {
@@ -61,7 +68,7 @@ export default function MobileBottomNav() {
   return (
     <motion.div
       initial={{ y: 150 }}
-      animate={{ y: isVisible ? 0 : 150 }}
+      animate={{ y: 0 }}
       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
       className="md:hidden fixed bottom-0 left-0 w-full z-[80] pb-[env(safe-area-inset-bottom)] pointer-events-none"
     >
