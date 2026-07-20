@@ -25,7 +25,8 @@ export default function MobileFABs() {
   return (
     <div 
       id="help-menu-container" 
-      className="fixed right-6 z-[99] transition-all duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] bottom-[96px] md:bottom-6"
+      className="fixed right-6 z-[99] transition-all duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+      style={{ bottom: "calc(env(safe-area-inset-bottom, 0px) + 96px)" }}
     >
       {/* Floating Menu */}
       <div

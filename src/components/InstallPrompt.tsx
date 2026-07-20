@@ -69,7 +69,7 @@ export default function InstallPrompt() {
           animate={{ opacity: 1, y: 0, x: "-50%" }}
           exit={{ opacity: 0, y: 50, x: "-50%" }}
           className="fixed left-1/2 z-50 w-[calc(100%-2rem)] max-w-sm"
-          style={{ top: "calc(100svh - env(safe-area-inset-bottom, 0px) - 160px)" }}
+          style={{ bottom: "calc(env(safe-area-inset-bottom, 0px) + 96px)" }}
         >
           <div className="bg-[#1F1F1F] text-white rounded-2xl p-4 shadow-xl flex items-center justify-between gap-4 border border-white/10">
             <div className="flex items-center gap-3">
