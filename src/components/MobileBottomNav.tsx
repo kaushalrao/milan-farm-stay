@@ -3,16 +3,34 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import CookModal from "./CookModal";
+import dynamic from "next/dynamic";
+
+const Player = dynamic(() => import("@lottiefiles/react-lottie-player").then((mod) => mod.Player), { ssr: false });
 
 export default function MobileBottomNav() {
   const [activeSection, setActiveSection] = useState<string>("plan");
   const t = useTranslations("Navbar");
+  const tFab = useTranslations("MobileFABs");
+  const [isHelpOpen, setIsHelpOpen] = useState(false);
+  const [cookModalOpen, setCookModalOpen] = useState(false);
+
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      if (isHelpOpen && !(e.target as Element).closest('#mobile-help-popup')) {
+        setIsHelpOpen(false);
+      }
+    };
+    document.addEventListener('click', handleClick);
+    return () => document.removeEventListener('click', handleClick);
+  }, [isHelpOpen]);
 
   const navItems = [
     { id: "plan", label: t("plan"), icon: "ph-map-trifold" },
     { id: "contacts", label: t("contacts"), icon: "ph-users" },
     { id: "food", label: t("food"), icon: "ph-cooking-pot" },
-    { id: "taxi", label: t("taxi"), icon: "ph-taxi" }
+    { id: "taxi", label: t("taxi"), icon: "ph-taxi" },
+    { id: "help", label: "Help", icon: "ph-question" }
   ];
 
   // Scroll Spy: Update active section based on scroll position
@@ -57,6 +75,11 @@ export default function MobileBottomNav() {
   }, []);
 
   const scrollToSection = (id: string) => {
+    if (id === "help") {
+      setIsHelpOpen(!isHelpOpen);
+      return;
+    }
+    setIsHelpOpen(false);
     const el = document.getElementById(id);
     if (el) {
       // Small delay allows any closing animations to run, if necessary
@@ -118,6 +141,42 @@ export default function MobileBottomNav() {
             );
           })}
         </div>
+
+        {/* Help Popup Menu */}
+        <div
+          id="mobile-help-popup"
+          className={"absolute bottom-[76px] right-2 w-56 bg-warm-white dark:bg-[#1A1A1A] rounded-2xl shadow-xl border border-border dark:border-white/10 p-2 transition-all duration-300 origin-bottom-right " + (isHelpOpen ? 'scale-100 opacity-100' : 'scale-75 opacity-0 pointer-events-none')}
+        >
+          <h4 className="text-xs font-bold text-text-muted uppercase tracking-wider mb-1 px-3 pt-1">{tFab("askUs")}</h4>
+          <div className="flex flex-col gap-0.5">
+            <a href="tel:+919448244666" className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-cream dark:hover:bg-white/5 transition-colors text-dark dark:text-white text-sm font-medium">
+              <div className="w-7 h-7 rounded-full bg-soft-beige dark:bg-white/10 text-dark dark:text-white flex items-center justify-center shrink-0"><i className="ph-fill ph-phone text-sm"></i></div>
+              {tFab("callHost")}
+            </a>
+            <a href="https://wa.me/919448244666" target="_blank" rel="noreferrer" className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-cream dark:hover:bg-white/5 transition-colors text-dark dark:text-white text-sm font-medium">
+              <div className="w-7 h-7 rounded-full bg-[#25D366]/20 text-[#25D366] flex items-center justify-center shrink-0"><i className="ph-fill ph-whatsapp-logo text-sm"></i></div>
+              {tFab("whatsappHost")}
+            </a>
+            <button onClick={() => setCookModalOpen(true)} className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-cream dark:hover:bg-white/5 transition-colors text-dark dark:text-white text-sm font-medium group w-full text-left">
+              <div className="w-7 h-7 rounded-full bg-airbnb-coral/20 text-airbnb-coral flex items-center justify-center shrink-0 overflow-hidden">
+                <Player src="/boiling-pot.json" autoplay loop style={{ height: '28px', width: '28px' }} />
+              </div>
+              {tFab("contactCook")}
+            </button>
+            <a href="tel:+919702545810" className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-cream dark:hover:bg-white/5 transition-colors text-dark dark:text-white text-sm font-medium">
+              <div className="w-7 h-7 rounded-full bg-orange-500/20 text-orange-600 flex items-center justify-center shrink-0"><i className="ph-fill ph-package text-sm"></i></div>
+              {tFab("contactDelivery")}
+            </a>
+            <div className="h-px bg-border dark:bg-white/10 my-1"></div>
+            <a href="https://maps.app.goo.gl/27tXcbhyWdxo7We8A" target="_blank" rel="noreferrer" className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-cream dark:hover:bg-white/5 transition-colors text-dark dark:text-white text-sm font-medium">
+              <div className="w-7 h-7 rounded-full bg-dark dark:bg-white/20 text-warm-white flex items-center justify-center shrink-0"><i className="ph-fill ph-map-pin text-sm"></i></div>
+              {tFab("milanFarmStays")}
+            </a>
+          </div>
+        </div>
+
+        <CookModal isOpen={cookModalOpen} onClose={() => setCookModalOpen(false)} />
+
       </div>
     </motion.div>
   );

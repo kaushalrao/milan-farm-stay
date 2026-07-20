@@ -6,7 +6,6 @@ import HomeDelivery from "@/components/HomeDelivery";
 import HostProfile from "@/components/HostProfile";
 import ShareButton from "@/components/ShareButton";
 import Footer from "@/components/Footer";
-import MobileFABs from "@/components/MobileFABs";
 import { useTranslations } from "next-intl";
 
 import TaxiCard from "@/components/TaxiCard";
@@ -89,7 +88,7 @@ export default function Home() {
       </main>
       <Footer />
       <MobileBottomNav />
-      <MobileFABs />
+      
     </>
   );
 }
