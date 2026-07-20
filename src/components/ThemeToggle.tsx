@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 export default function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const { theme, resolvedTheme, setTheme } = useTheme();
 
   // useEffect only runs on the client, so now we can safely show the UI
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function ThemeToggle() {
     );
   }
 
-  const isDark = theme === "dark";
+  const isDark = resolvedTheme === "dark";
 
   return (
     <button
