@@ -96,3 +96,10 @@ html {
 .dark .leaflet-tile-pane, .dark .leaflet-control-zoom-in, .dark .leaflet-control-zoom-out, .dark .leaflet-control-attribution {
   filter: invert(100%) hue-rotate(180deg) grayscale(80%) brightness(105%) contrast(100%);
 }
+
+/* Hide Help FAB when Install Prompt is visible */
+body.install-prompt-active #help-menu-container {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+}
