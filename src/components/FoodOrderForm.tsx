@@ -276,24 +276,26 @@ export default function FoodOrderForm() {
 
             <div className="flex flex-col md:flex-row gap-4 items-center">
               {/* Date Pill */}
-              <div className="flex-1 w-full flex items-center justify-between bg-cream dark:bg-[#1f1f1f] rounded-2xl px-4 py-3 border border-black/5 dark:border-white/5">
+              <label className="flex-1 w-full flex items-center justify-between bg-cream dark:bg-[#1f1f1f] rounded-2xl px-4 py-3 border border-black/5 dark:border-white/5 relative cursor-pointer overflow-hidden group hover:border-black/10 dark:hover:border-white/10 transition-colors">
                 <div className="flex items-center gap-3">
                   <Calendar className="w-5 h-5 text-muted-terracotta" />
                   <span className="text-sm font-semibold text-text-main">{t("dateLabel")}</span>
                 </div>
+                
+                {/* Visual Value */}
+                <span className={`text-sm font-semibold text-right ${date ? 'text-text-main' : 'text-text-muted/50'}`}>
+                  {date ? date.split('-').reverse().join('/') : "dd/mm/yyyy"}
+                </span>
+
+                {/* Invisible Native Input */}
                 <input 
-                  type={date ? "date" : "text"}
-                  placeholder="dd/mm/yyyy"
-                  onFocus={(e) => (e.target.type = "date")}
-                  onBlur={(e) => {
-                    if (!e.target.value) e.target.type = "text";
-                  }}
+                  type="date" 
                   value={date}
                   onChange={(e) => setDate(e.target.value)}
-                  className="bg-transparent border-none outline-none text-text-main text-right text-sm font-semibold cursor-pointer min-w-[110px]"
+                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                   min={new Date().toISOString().split("T")[0]}
                 />
-              </div>
+              </label>
 
               {/* Meal Type Pill Toggle */}
               <div className="flex-1 w-full bg-cream dark:bg-[#1f1f1f] rounded-2xl p-1 flex relative border border-black/5 dark:border-white/5">
