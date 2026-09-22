@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import CookModal from "./CookModal";
+import Link from "next/link";
 
 import { useTranslations } from "next-intl";
 
@@ -30,6 +31,14 @@ export default function HomeCook() {
         </div>
 
         <div className="flex md:hidden items-center gap-2 shrink-0">
+          <Link 
+            href="/order-food"
+            onClick={(e) => e.stopPropagation()}
+            className="flex items-center gap-1.5 px-3 h-[38px] bg-green-600 text-white hover:bg-green-500 rounded-full transition-all shadow-[0_0_12px_rgba(22,163,74,0.6)] animate-[pulse_2s_ease-in-out_infinite]"
+          >
+            <i className="ph-fill ph-shopping-cart text-[16px]"></i>
+            <span className="text-sm font-semibold">Order</span>
+          </Link>
           <button 
             onClick={(e) => { e.stopPropagation(); setCookModalOpen(true); }}
             className="w-[38px] h-[38px] flex items-center justify-center bg-dark text-warm-white hover:opacity-90 rounded-full transition-colors shadow-sm"
@@ -74,9 +83,14 @@ export default function HomeCook() {
           </div>
         </div>
 
-        <button onClick={(e) => { e.stopPropagation(); setCookModalOpen(true); }} className="hidden lg:flex items-center justify-center gap-2 w-full py-3 bg-dark text-warm-white rounded-xl text-base font-semibold transition-all hover:opacity-90 shadow-sm hover:-translate-y-1 mt-auto">
-          <i className="ph-fill ph-phone text-xl"></i> {t("contactCook")}
-        </button>
+        <div className="hidden lg:flex flex-col gap-2 mt-auto">
+          <Link href="/order-food" onClick={(e) => e.stopPropagation()} className="flex items-center justify-center gap-2 w-full py-3 bg-green-600 text-white rounded-xl text-base font-semibold transition-all hover:bg-green-700 shadow-sm hover:-translate-y-1">
+            <i className="ph-fill ph-shopping-cart text-xl"></i> Order Online
+          </Link>
+          <button onClick={(e) => { e.stopPropagation(); setCookModalOpen(true); }} className="flex items-center justify-center gap-2 w-full py-3 bg-dark text-warm-white rounded-xl text-base font-semibold transition-all hover:opacity-90 shadow-sm hover:-translate-y-1">
+            <i className="ph-fill ph-phone text-xl"></i> {t("contactCook")}
+          </button>
+        </div>
       </div>
 
       {/* Mobile View (Expandable) */}
@@ -106,9 +120,14 @@ export default function HomeCook() {
                 </ul>
               </div>
 
-              <button onClick={(e) => { e.stopPropagation(); setCookModalOpen(true); }} className="hidden md:flex items-center justify-center gap-2 w-full py-3 bg-dark text-warm-white rounded-xl text-base font-semibold transition-all hover:opacity-90 shadow-sm hover:-translate-y-1">
-                <i className="ph-fill ph-phone text-xl"></i> {t("contactCook")}
-              </button>
+              <div className="hidden md:flex flex-col gap-2 w-full">
+                <Link href="/order-food" onClick={(e) => e.stopPropagation()} className="flex items-center justify-center gap-2 w-full py-3 bg-green-600 text-white rounded-xl text-base font-semibold transition-all hover:bg-green-700 shadow-sm hover:-translate-y-1">
+                  <i className="ph-fill ph-shopping-cart text-xl"></i> Order Online
+                </Link>
+                <button onClick={(e) => { e.stopPropagation(); setCookModalOpen(true); }} className="flex items-center justify-center gap-2 w-full py-3 bg-dark text-warm-white rounded-xl text-base font-semibold transition-all hover:opacity-90 shadow-sm hover:-translate-y-1">
+                  <i className="ph-fill ph-phone text-xl"></i> {t("contactCook")}
+                </button>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
