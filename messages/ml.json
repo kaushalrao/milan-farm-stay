@@ -628,5 +628,26 @@
     "contactCook": "പാചകക്കാരനെ ബന്ധപ്പെടുക",
     "contactDelivery": "ഡെലിവറി ബന്ധപ്പെടുക",
     "milanFarmStays": "മിലൻ ഫാം സ്റ്റേസ്"
+  },
+  "FoodOrderForm": {
+    "title": "ഫാം ടു ടേബിൾ",
+    "subtitle": "ജൈവ ഭക്ഷണങ്ങൾ",
+    "clearSearch": "തിരയൽ മായ്ക്കുക",
+    "yourOrder": "നിങ്ങളുടെ ഓർഡർ",
+    "specialInstructions": "പ്രത്യേക നിർദ്ദേശങ്ങൾ",
+    "specialInstructionsPlaceholder": "ഉദാ: ഉള്ളി/വെളുത്തുള്ളി വേണ്ട...",
+    "total": "ആകെ",
+    "orderViaWhatsApp": "WhatsApp വഴി ഓർഡർ ചെയ്യുക",
+    "enterYourName": "നിങ്ങളുടെ പേര് നൽകുക",
+    "selectDate": "തീയതി തിരഞ്ഞെടുക്കുക",
+    "selectMealType": "ഭക്ഷണ രീതി തിരഞ്ഞെടുക്കുക",
+    "addItemsToCart": "കാർട്ടിലേക്ക് ഇനങ്ങൾ ചേർക്കുക",
+    "yourNamePlaceholder": "നിങ്ങളുടെ പേര്",
+    "dateLabel": "തീയതി",
+    "lunch": "ഉച്ചഭക്ഷണം",
+    "dinner": "അത്താഴം",
+    "mandatoryNote": "പേര്, തീയതി, ഭക്ഷണ രീതി എന്നിവ നിർബന്ധമാണ്.",
+    "advanceNotice": "എല്ലാ ഭക്ഷണങ്ങളും പുതിയതായി തയ്യാറാക്കുന്നതിനാൽ ദയവായി കുറഞ്ഞത് 4 മണിക്കൂർ മുമ്പ് ഓർഡർ ചെയ്യുക.",
+    "searchPlaceholder": "മെനു ഇനങ്ങൾ തിരയുക..."
   }
 }

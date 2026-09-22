@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function OrderFoodPage() {
   return (
-    <main className="min-h-screen bg-[#FCFBF8] dark:bg-[#1C1C1C] text-text-main pb-24 font-sans">
+    <main className="min-h-screen bg-[#FCFBF8] dark:bg-[#1C1C1C] text-text-main font-sans">
       <FoodOrderForm />
     </main>
   );

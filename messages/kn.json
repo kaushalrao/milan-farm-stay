@@ -628,5 +628,26 @@
     "contactCook": "ಅಡುಗೆಯವರನ್ನು ಸಂಪರ್ಕಿಸಿ",
     "contactDelivery": "ವಿತರಣೆಯನ್ನು ಸಂಪರ್ಕಿಸಿ",
     "milanFarmStays": "ಮಿಲನ್ ಫಾರ್ಮ್ ಸ್ಟೇಸ್"
+  },
+  "FoodOrderForm": {
+    "title": "ಫಾರ್ಮ್ ಟು ಟೇಬಲ್",
+    "subtitle": "ಸಾವಯವ ಊಟ",
+    "clearSearch": "ಹುಡುಕಾಟ ತೆರವುಗೊಳಿಸಿ",
+    "yourOrder": "ನಿಮ್ಮ ಆರ್ಡರ್",
+    "specialInstructions": "ವಿಶೇಷ ಸೂಚನೆಗಳು",
+    "specialInstructionsPlaceholder": "ಉದಾ: ಈರುಳ್ಳಿ/ಬೆಳ್ಳುಳ್ಳಿ ಬೇಡ...",
+    "total": "ಒಟ್ಟು",
+    "orderViaWhatsApp": "WhatsApp ಮೂಲಕ ಆರ್ಡರ್ ಮಾಡಿ",
+    "enterYourName": "ನಿಮ್ಮ ಹೆಸರನ್ನು ನಮೂದಿಸಿ",
+    "selectDate": "ದಿನಾಂಕವನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+    "selectMealType": "ಊಟದ ಪ್ರಕಾರವನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+    "addItemsToCart": "ಕಾರ್ಟ್‌ಗೆ ಐಟಂಗಳನ್ನು ಸೇರಿಸಿ",
+    "yourNamePlaceholder": "ನಿಮ್ಮ ಹೆಸರು",
+    "dateLabel": "ದಿನಾಂಕ",
+    "lunch": "ಮಧ್ಯಾಹ್ನದ ಊಟ",
+    "dinner": "ರಾತ್ರಿ ಊಟ",
+    "mandatoryNote": "ಹೆಸರು, ದಿನಾಂಕ ಮತ್ತು ಊಟದ ಪ್ರಕಾರ ಕಡ್ಡಾಯವಾಗಿದೆ.",
+    "advanceNotice": "ಎಲ್ಲಾ ಊಟಗಳನ್ನು ಹೊಸದಾಗಿ ತಯಾರಿಸುವುದರಿಂದ ದಯವಿಟ್ಟು ಕನಿಷ್ಠ 4 ಗಂಟೆಗಳ ಮುಂಚಿತವಾಗಿ ಆರ್ಡರ್ ಮಾಡಿ.",
+    "searchPlaceholder": "ಮೆನು ಐಟಂಗಳನ್ನು ಹುಡುಕಿ..."
   }
 }

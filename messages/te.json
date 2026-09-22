@@ -628,5 +628,26 @@
     "contactCook": "వంటవాడిని సంప్రదించండి",
     "contactDelivery": "డెలివరీని సంప్రదించండి",
     "milanFarmStays": "మిలన్ ఫార్మ్ స్టేస్"
+  },
+  "FoodOrderForm": {
+    "title": "ఫార్మ్ టు టేబుల్",
+    "subtitle": "సేంద్రీయ భోజనం",
+    "clearSearch": "శోధనను క్లియర్ చేయండి",
+    "yourOrder": "మీ ఆర్డర్",
+    "specialInstructions": "ప్రత్యేక సూచనలు",
+    "specialInstructionsPlaceholder": "ఉదా: ఉల్లిపాయ/వెల్లుల్లి వద్దు...",
+    "total": "మొత్తం",
+    "orderViaWhatsApp": "WhatsApp ద్వారా ఆర్డర్ చేయండి",
+    "enterYourName": "మీ పేరు నమోదు చేయండి",
+    "selectDate": "తేదీని ఎంచుకోండి",
+    "selectMealType": "భోజనం రకాన్ని ఎంచుకోండి",
+    "addItemsToCart": "కార్ట్‌కు వస్తువులను జోడించండి",
+    "yourNamePlaceholder": "మీ పేరు",
+    "dateLabel": "తేదీ",
+    "lunch": "మధ్యాహ్న భోజనం",
+    "dinner": "రాత్రి భోజనం",
+    "mandatoryNote": "పేరు, తేదీ మరియు భోజనం రకం తప్పనిసరి.",
+    "advanceNotice": "అన్ని భోజనాలు తాజాగా తయారు చేయబడినందున దయచేసి కనీసం 4 గంటల ముందు ఆర్డర్ చేయండి.",
+    "searchPlaceholder": "మెను ఐటెమ్‌లను వెతకండి..."
   }
 }

@@ -628,5 +628,26 @@
     "contactCook": "Contact Cook",
     "contactDelivery": "Contact Delivery",
     "milanFarmStays": "Milan Farm Stays"
+  },
+  "FoodOrderForm": {
+    "title": "Farm to Table",
+    "subtitle": "Organic Meals",
+    "clearSearch": "Clear search",
+    "yourOrder": "Your Order",
+    "specialInstructions": "Special Instructions",
+    "specialInstructionsPlaceholder": "e.g., No onion/garlic, less spicy...",
+    "total": "Total",
+    "orderViaWhatsApp": "Order via WhatsApp",
+    "enterYourName": "Enter Your Name",
+    "selectDate": "Select a Date",
+    "selectMealType": "Select Meal Type",
+    "addItemsToCart": "Add Items to Cart",
+    "yourNamePlaceholder": "Your Name",
+    "dateLabel": "Date",
+    "lunch": "Lunch",
+    "dinner": "Dinner",
+    "mandatoryNote": "Name, date, and meal type are mandatory.",
+    "advanceNotice": "Please place your order at least 4 hours in advance as all our meals are freshly prepared from scratch.",
+    "searchPlaceholder": "Search menu items..."
   }
 }
