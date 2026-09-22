@@ -50,6 +50,12 @@ const VENDOR_PHONE_NUMBER = "919482214882";
 
 export default function FoodOrderForm() {
   const [date, setDate] = useState("");
+  const dateInputRef = useRef<HTMLInputElement>(null);
+  
+  // Set default date to today to avoid native placeholder quirks
+  useEffect(() => {
+    setDate(new Date().toISOString().split("T")[0]);
+  }, []);
   const [meal, setMeal] = useState<"Lunch" | "Dinner" | "">("Dinner");
   const [cart, setCart] = useState<{ [itemName: string]: number }>({});
   const [activeCategory, setActiveCategory] = useState<string>(CATEGORIES[0]);
@@ -276,26 +282,45 @@ export default function FoodOrderForm() {
 
             <div className="flex flex-col md:flex-row gap-4 items-center">
               {/* Date Pill */}
-              <label className="flex-1 w-full flex items-center justify-between bg-cream dark:bg-[#1f1f1f] rounded-2xl px-4 py-3 border border-black/5 dark:border-white/5 relative cursor-pointer overflow-hidden group hover:border-black/10 dark:hover:border-white/10 transition-colors">
-                <div className="flex items-center gap-3">
-                  <Calendar className="w-5 h-5 text-muted-terracotta" />
-                  <span className="text-sm font-semibold text-text-main">{t("dateLabel")}</span>
+              <div 
+                onClick={() => {
+                  try {
+                    if (dateInputRef.current && 'showPicker' in HTMLInputElement.prototype) {
+                      dateInputRef.current.showPicker();
+                    } else {
+                      dateInputRef.current?.focus();
+                    }
+                  } catch (e) {
+                    dateInputRef.current?.focus();
+                  }
+                }}
+                className="flex-1 w-full flex items-center justify-between bg-cream dark:bg-[#1f1f1f] rounded-2xl px-4 py-3 border border-black/5 dark:border-white/5 relative cursor-pointer hover:border-black/10 dark:hover:border-white/10 transition-colors"
+              >
+                <div className="flex items-center gap-3 pointer-events-none">
+                  <Calendar className="w-5 h-5 text-muted-terracotta shrink-0" />
+                  <span className="text-sm font-semibold text-text-main shrink-0">{t("dateLabel")}</span>
                 </div>
                 
-                {/* Visual Value */}
-                <span className={`text-sm font-semibold text-right ${date ? 'text-text-main' : 'text-text-muted/50'}`}>
-                  {date ? date.split('-').reverse().join('/') : "dd/mm/yyyy"}
-                </span>
-
-                {/* Invisible Native Input */}
-                <input 
-                  type="date" 
-                  value={date}
-                  onChange={(e) => setDate(e.target.value)}
-                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                  min={new Date().toISOString().split("T")[0]}
-                />
-              </label>
+                <div className="relative flex items-center justify-end flex-1 ml-2">
+                  <input 
+                    ref={dateInputRef}
+                    type="date" 
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
+                    className="w-full bg-transparent border-none outline-none text-right text-sm font-semibold cursor-pointer text-text-main"
+                    min={new Date().toISOString().split("T")[0]}
+                    onClick={(e) => {
+                      // Stop propagation so we don't trigger the parent onClick twice if clicking directly on the input
+                      e.stopPropagation();
+                      try {
+                        if ('showPicker' in HTMLInputElement.prototype) {
+                          e.currentTarget.showPicker();
+                        }
+                      } catch (err) {}
+                    }}
+                  />
+                </div>
+              </div>
 
               {/* Meal Type Pill Toggle */}
               <div className="flex-1 w-full bg-cream dark:bg-[#1f1f1f] rounded-2xl p-1 flex relative border border-black/5 dark:border-white/5">
