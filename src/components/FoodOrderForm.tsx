@@ -249,7 +249,7 @@ export default function FoodOrderForm() {
           </div>
           <h1 className="text-3xl md:text-4xl font-serif font-bold text-forest-green mb-3">{t("title")}</h1>
           <p className="text-text-muted text-sm md:text-base max-w-lg mx-auto leading-relaxed font-medium">
-            Partnering with Ruchi Home Made Food to bring you fresh, organic vegetarian meals prepared daily.
+            Fresh, organic vegetarian meals are prepared and delivered by an independent local caterer, <span className="text-airbnb-coral font-bold px-1">Ruchi Home Made Food</span>.
           </p>
         </header>
 
@@ -379,7 +379,7 @@ export default function FoodOrderForm() {
                       <div key={item.name} className={`group flex gap-4 p-4 rounded-3xl transition-all duration-500 ${
                         isActive 
                           ? "bg-white dark:bg-[#2A2A2A] border-forest-green/40 shadow-[0_8px_30px_rgba(22,163,74,0.15)] ring-1 ring-forest-green/20 transform scale-[1.01] z-10 relative" 
-                          : "bg-[#F4F7F4] dark:bg-[#2A2A2A] border-black/5 dark:border-white/5 hover:border-black/10 hover:bg-[#EDF2ED] hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] shadow-[0_4px_20px_rgba(0,0,0,0.03)]"
+                          : "bg-[#F4F7F4] dark:bg-[#2A2A2A] border-black/5 dark:border-white/5 hover:border-black/10 hover:bg-[#EDF2ED] dark:hover:bg-[#363636] hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] shadow-[0_4px_20px_rgba(0,0,0,0.03)]"
                       } border`}>
                         
                         {/* Initials Avatar */}
