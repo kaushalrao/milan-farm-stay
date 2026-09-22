@@ -282,10 +282,15 @@ export default function FoodOrderForm() {
                   <span className="text-sm font-semibold text-text-main">{t("dateLabel")}</span>
                 </div>
                 <input 
-                  type="date" 
+                  type={date ? "date" : "text"}
+                  placeholder="dd/mm/yyyy"
+                  onFocus={(e) => (e.target.type = "date")}
+                  onBlur={(e) => {
+                    if (!e.target.value) e.target.type = "text";
+                  }}
                   value={date}
                   onChange={(e) => setDate(e.target.value)}
-                  className="bg-transparent border-none outline-none text-text-main text-right text-sm font-semibold cursor-pointer"
+                  className="bg-transparent border-none outline-none text-text-main text-right text-sm font-semibold cursor-pointer min-w-[110px]"
                   min={new Date().toISOString().split("T")[0]}
                 />
               </div>
