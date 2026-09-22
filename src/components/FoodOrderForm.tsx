@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { Plus, Minus, Calendar, ShoppingBag, Send, Leaf, ArrowLeft, Info, Search, Users, ChevronUp, ChevronDown, User } from "lucide-react";
+import { Plus, Minus, Calendar, ShoppingBag, Send, Leaf, ArrowLeft, Info, Search, Users, ChevronUp, ChevronDown, User, Sun, Moon } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 import { useTranslations, useLocale } from "next-intl";
 
@@ -329,14 +329,16 @@ export default function FoodOrderForm() {
                 />
                 <button 
                   onClick={() => setMeal("Lunch")}
-                  className={`flex-1 relative z-10 py-2.5 text-sm font-bold rounded-xl transition-colors ${meal === "Lunch" ? "text-forest-green" : "text-text-muted hover:text-text-main"}`}
+                  className={`flex-1 relative z-10 py-2.5 text-sm font-bold rounded-xl transition-colors flex items-center justify-center gap-2 ${meal === "Lunch" ? "text-forest-green" : "text-text-muted hover:text-text-main"}`}
                 >
+                  <Sun className="w-4 h-4" />
                   {t("lunch")}
                 </button>
                 <button 
                   onClick={() => setMeal("Dinner")}
-                  className={`flex-1 relative z-10 py-2.5 text-sm font-bold rounded-xl transition-colors ${meal === "Dinner" ? "text-forest-green" : "text-text-muted hover:text-text-main"}`}
+                  className={`flex-1 relative z-10 py-2.5 text-sm font-bold rounded-xl transition-colors flex items-center justify-center gap-2 ${meal === "Dinner" ? "text-forest-green" : "text-text-muted hover:text-text-main"}`}
                 >
+                  <Moon className="w-4 h-4" />
                   {t("dinner")}
                 </button>
               </div>
