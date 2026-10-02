@@ -62,6 +62,7 @@ export default function FoodOrderForm() {
   const [isAnimating, setIsAnimating] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const locale = useLocale();
   const t = useTranslations("FoodOrderForm");
   
@@ -169,7 +170,9 @@ export default function FoodOrderForm() {
   const allItems = Object.values(MENU_DATA).flat();
   const getPrice = (name: string) => allItems.find(item => item.name === name)?.price || 0;
 
-  const totalAmount = Object.entries(cart).reduce((sum, [name, qty]) => sum + (getPrice(name) * qty), 0);
+  const subTotal = Object.entries(cart).reduce((sum, [name, qty]) => sum + (getPrice(name) * qty), 0);
+  const deliveryFee = (subTotal > 0 && subTotal < 600) ? 100 : 0;
+  const totalAmount = subTotal + deliveryFee;
   const isOrderValid = customerName.trim() !== "" && date !== "" && meal !== "" && Object.keys(cart).length > 0;
 
   const getCheckoutButtonText = () => {
@@ -180,7 +183,12 @@ export default function FoodOrderForm() {
     return t("orderViaWhatsApp");
   };
 
-  const handleSubmit = () => {
+  const handleCheckoutClick = () => {
+    setIsConfirmModalOpen(true);
+  };
+
+  const handleConfirmOrder = () => {
+    setIsConfirmModalOpen(false);
     let message = `*New Food Order - Milan Farm Stay*\n`;
     message += `Name: ${customerName.trim()}\n`;
     message += `Date: ${date}\n`;
@@ -188,9 +196,14 @@ export default function FoodOrderForm() {
     message += `*Items:*\n`;
 
     Object.entries(cart).forEach(([itemName, qty]) => {
-      const subtotal = getPrice(itemName) * qty;
-      message += `\n${qty}x ${itemName} (₹${subtotal})`;
+      const itemTotal = getPrice(itemName) * qty;
+      message += `\n${qty}x ${itemName} (₹${itemTotal})`;
     });
+
+    if (deliveryFee > 0) {
+      message += `\n\n*Subtotal: ₹${subTotal}*`;
+      message += `\n*Delivery Fee: ₹${deliveryFee}*`;
+    }
 
     message += `\n\n*Total Payable: ₹${totalAmount}*`;
 
@@ -526,6 +539,16 @@ export default function FoodOrderForm() {
                       <span className="text-text-muted font-bold whitespace-nowrap mt-0.5">₹{getPrice(name) * qty}</span>
                     </div>
                   ))}
+                  {deliveryFee > 0 && (
+                    <div className="flex justify-between items-start text-sm pt-2 border-t border-black/5 dark:border-white/5 mt-2">
+                      <span className="font-medium text-text-main leading-tight pr-4">Delivery Fee</span>
+                      <span className="text-text-muted font-bold whitespace-nowrap mt-0.5">₹{deliveryFee}</span>
+                    </div>
+                  )}
+                  <div className="text-[11px] text-text-muted mt-3 mb-1 bg-forest-green/5 p-2 rounded-lg flex items-start gap-2 border border-forest-green/10">
+                    <Info className="w-3.5 h-3.5 shrink-0 mt-0.5 text-forest-green" />
+                    <span>A delivery fee of ₹100 is applicable for orders below ₹600.</span>
+                  </div>
                 </div>
 
                 <div className="mt-2">
@@ -564,7 +587,7 @@ export default function FoodOrderForm() {
               </div>
             
             <button 
-              onClick={handleSubmit}
+              onClick={handleCheckoutClick}
               disabled={!isOrderValid}
               className={`flex items-center justify-center gap-2 py-3.5 px-6 rounded-2xl font-bold text-sm md:text-base transition-all duration-300 shadow-lg ${
                 isOrderValid 
@@ -578,6 +601,88 @@ export default function FoodOrderForm() {
           </div>
         </div>
       </div>
+
+      {/* Confirmation Modal */}
+      {isConfirmModalOpen && (
+        <div className="fixed inset-0 z-[200] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white dark:bg-[#1C1C1C] rounded-3xl p-5 md:p-6 w-full max-w-md shadow-2xl transform transition-all animate-in fade-in zoom-in-95 duration-200">
+            <h3 className="text-xl font-black text-forest-green mb-4">Confirm Your Order</h3>
+            
+            <div className="space-y-4 mb-6">
+              <div className="bg-cream dark:bg-[#2A2A2A] rounded-2xl p-4 text-sm border border-black/5 dark:border-white/5 shadow-inner">
+                <div className="grid grid-cols-2 gap-y-2 gap-x-4 mb-4 text-[13px]">
+                  <div className="text-text-muted font-medium">Name</div>
+                  <div className="font-bold text-text-main text-right truncate">{customerName}</div>
+                  <div className="text-text-muted font-medium">Date</div>
+                  <div className="font-bold text-text-main text-right">{date}</div>
+                  <div className="text-text-muted font-medium">Meal</div>
+                  <div className="font-bold text-text-main text-right">{meal}</div>
+                </div>
+                
+                <div className="border-t border-black/10 dark:border-white/10 pt-3 mt-3">
+                  <div className="font-bold text-text-main mb-2 text-xs uppercase tracking-wider text-text-muted">Order Details</div>
+                  <div className="space-y-2.5">
+                    {Object.entries(cart).map(([name, qty]) => (
+                      <div key={name} className="flex justify-between items-start text-[13px]">
+                        <span className="font-medium text-text-main pr-4">
+                          <span className="text-forest-green font-bold mr-2">{qty}x</span> 
+                          {name}
+                        </span>
+                        <span className="text-text-muted font-bold whitespace-nowrap">₹{getPrice(name) * qty}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                
+                <div className="border-t border-black/10 dark:border-white/10 pt-3 mt-3 space-y-2">
+                  <div className="flex justify-between items-center text-[13px] font-medium text-text-muted">
+                    <span>Subtotal</span>
+                    <span>₹{subTotal}</span>
+                  </div>
+                  {deliveryFee > 0 && (
+                    <div className="flex justify-between items-center text-[13px] font-medium text-text-muted">
+                      <span>Delivery Fee</span>
+                      <span>₹{deliveryFee}</span>
+                    </div>
+                  )}
+                  <div className="flex justify-between items-center text-lg font-black text-forest-green pt-2">
+                    <span>Total</span>
+                    <span>₹{totalAmount}</span>
+                  </div>
+                  
+                  <div className="text-[11px] text-text-muted mt-3 bg-forest-green/5 p-2 rounded-lg flex items-start gap-2 border border-forest-green/10">
+                    <Info className="w-3.5 h-3.5 shrink-0 mt-0.5 text-forest-green" />
+                    <span>A delivery fee of ₹100 is applicable for orders below ₹600.</span>
+                  </div>
+                </div>
+                
+                {specialInstructions.trim() && (
+                  <div className="border-t border-black/10 dark:border-white/10 pt-3 mt-3">
+                    <div className="font-bold text-text-main text-xs uppercase mb-1 tracking-wider text-text-muted">Instructions</div>
+                    <div className="text-[13px] text-text-main italic">{specialInstructions}</div>
+                  </div>
+                )}
+              </div>
+            </div>
+            
+            <div className="flex gap-3">
+              <button 
+                onClick={() => setIsConfirmModalOpen(false)}
+                className="flex-1 py-3.5 rounded-xl font-bold text-text-main bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={handleConfirmOrder}
+                className="flex-[2] flex items-center justify-center gap-2 py-3.5 rounded-xl font-bold text-white bg-[#25D366] hover:bg-[#128C7E] shadow-lg shadow-[#25D366]/30 transition-all hover:-translate-y-0.5"
+              >
+                <Send className="w-5 h-5" />
+                Confirm & Send
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   </>
 );
