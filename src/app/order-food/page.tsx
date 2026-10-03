@@ -3,7 +3,7 @@ import FoodOrderForm from "@/components/FoodOrderForm";
 
 export const metadata: Metadata = {
   title: "Order Food | Milan Farm Stays",
-  description: "Order fresh vegetarian food from Ruchi Home Made Food directly to your farm stay.",
+  description: "Order fresh vegetarian food from Prasad Home Made Food directly to your farm stay.",
 };
 
 export default function OrderFoodPage() {

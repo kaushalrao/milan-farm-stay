@@ -37,7 +37,7 @@ const MENU_DATA: MenuCategory = {
     { "name": "White Rice", "description": "Steamed sona masuri rice", "price": 100, "serves": 2 },
     { "name": "Tomato Rice", "description": "Tangy and spicy rice cooked with tomatoes", "price": 100, "serves": 2 },
     { "name": "Curd Rice", "description": "Cooling yogurt rice tempered with mustard and curry leaves", "price": 100, "serves": 2 },
-    { "name": "Jeera Rice", "description": "Basmati rice flavored with cumin seeds", "price": 100, "serves": 2 },
+    { "name": "Jeera Rice", "description": "Rice flavored with cumin seeds", "price": 100, "serves": 2 },
     { "name": "Lemon Rice", "description": "Zesty rice flavored with lemon and peanuts", "price": 100, "serves": 2 }
   ],
   "Noodles": [
@@ -51,7 +51,7 @@ const VENDOR_PHONE_NUMBER = "919482214882";
 export default function FoodOrderForm() {
   const [date, setDate] = useState("");
   const dateInputRef = useRef<HTMLInputElement>(null);
-  
+
   // Set default date to today to avoid native placeholder quirks
   useEffect(() => {
     setDate(new Date().toISOString().split("T")[0]);
@@ -65,7 +65,7 @@ export default function FoodOrderForm() {
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const locale = useLocale();
   const t = useTranslations("FoodOrderForm");
-  
+
   // Initialize with empty state to prevent hydration mismatch
   const [customerName, setCustomerName] = useState("");
   const [specialInstructions, setSpecialInstructions] = useState("");
@@ -103,7 +103,7 @@ export default function FoodOrderForm() {
     const handleScroll = () => {
       // Don't scrollspy if searching, as layout jumps
       if (searchQuery) return;
-      
+
       let currentActive = CATEGORIES[0];
       let minDistance = Infinity;
 
@@ -112,7 +112,7 @@ export default function FoodOrderForm() {
         if (element) {
           const rect = element.getBoundingClientRect();
           const distance = Math.abs(rect.top - 150);
-          
+
           if (rect.top <= 200 && distance < minDistance) {
             minDistance = distance;
             currentActive = category;
@@ -212,7 +212,16 @@ export default function FoodOrderForm() {
     }
 
     const encodedMessage = encodeURIComponent(message);
-    window.open(`https://wa.me/${VENDOR_PHONE_NUMBER}?text=${encodedMessage}`, "_blank");
+    const url = `https://wa.me/${VENDOR_PHONE_NUMBER}?text=${encodedMessage}`;
+
+    if (typeof window !== "undefined") {
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      if (isMobile) {
+        window.location.href = url;
+      } else {
+        window.open(url, "_blank");
+      }
+    }
   };
 
   return (
@@ -222,14 +231,14 @@ export default function FoodOrderForm() {
         <div className="fixed top-0 left-0 right-0 z-50 bg-cream/90 dark:bg-[#121212]/90 backdrop-blur-xl border-b border-black/5 dark:border-white/5 shadow-sm">
           <div className="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
             <div className="flex items-center">
-              <button 
+              <button
                 onClick={() => window.history.back()}
                 className="p-2 -ml-2 mr-2 hover:bg-black/5 dark:hover:bg-white/5 rounded-full transition-colors"
                 aria-label="Go back"
               >
                 <ArrowLeft className="w-5 h-5 text-text-main" />
               </button>
-              
+
               <div className="flex items-center gap-2.5">
                 <div className="w-9 h-9 rounded-full bg-forest-green/10 flex items-center justify-center border border-forest-green/20 shrink-0">
                   <Leaf className="w-4 h-4 text-forest-green" />
@@ -239,7 +248,7 @@ export default function FoodOrderForm() {
                 </div>
               </div>
             </div>
-            
+
             <div className="flex items-center gap-2">
               <ThemeToggle />
               <select
@@ -268,7 +277,7 @@ export default function FoodOrderForm() {
           </div>
           <h1 className="text-3xl md:text-4xl font-serif font-bold text-forest-green mb-3">{t("title")}</h1>
           <p className="text-text-muted text-sm md:text-base max-w-lg mx-auto leading-relaxed font-medium">
-            Fresh, organic vegetarian meals are prepared and delivered by an independent local caterer, <span className="text-airbnb-coral font-bold px-1">Ruchi Home Made Food</span>.
+            Fresh, organic vegetarian meals are prepared and delivered by an independent local caterer, <span className="text-airbnb-coral font-bold px-1">Prasad Home Made Food</span>.
           </p>
         </header>
 
@@ -278,14 +287,14 @@ export default function FoodOrderForm() {
             <Info className="w-4 h-4 text-forest-green shrink-0" />
             <span className="font-medium text-center">{t("mandatoryNote")}</span>
           </div>
-          
+
           <div className="bg-white dark:bg-[#2A2A2A] rounded-3xl p-4 md:p-5 shadow-md border border-black/10 dark:border-white/10 flex flex-col gap-4">
-            
+
             {/* Name Input */}
             <div className="w-full flex items-center bg-cream dark:bg-[#1f1f1f] rounded-2xl px-4 py-3 border border-black/5 dark:border-white/5 focus-within:border-forest-green/30 focus-within:ring-2 focus-within:ring-forest-green/10 transition-all">
               <User className="w-5 h-5 text-muted-terracotta mr-3 shrink-0" />
-              <input 
-                type="text" 
+              <input
+                type="text"
                 placeholder={t("yourNamePlaceholder")}
                 value={customerName}
                 onChange={(e) => setCustomerName(e.target.value)}
@@ -295,7 +304,7 @@ export default function FoodOrderForm() {
 
             <div className="flex flex-col md:flex-row gap-4 items-center">
               {/* Date Pill */}
-              <div 
+              <div
                 onClick={() => {
                   try {
                     if (dateInputRef.current && 'showPicker' in HTMLInputElement.prototype) {
@@ -313,11 +322,11 @@ export default function FoodOrderForm() {
                   <Calendar className="w-5 h-5 text-muted-terracotta shrink-0" />
                   <span className="text-sm font-semibold text-text-main shrink-0">{t("dateLabel")}</span>
                 </div>
-                
+
                 <div className="relative flex items-center justify-end flex-1 ml-2">
-                  <input 
+                  <input
                     ref={dateInputRef}
-                    type="date" 
+                    type="date"
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
                     className="w-full bg-transparent border-none outline-none text-right text-sm font-semibold cursor-pointer text-text-main"
@@ -329,7 +338,7 @@ export default function FoodOrderForm() {
                         if ('showPicker' in HTMLInputElement.prototype) {
                           e.currentTarget.showPicker();
                         }
-                      } catch (err) {}
+                      } catch (err) { }
                     }}
                   />
                 </div>
@@ -337,17 +346,17 @@ export default function FoodOrderForm() {
 
               {/* Meal Type Pill Toggle */}
               <div className="flex-1 w-full bg-cream dark:bg-[#1f1f1f] rounded-2xl p-1 flex relative border border-black/5 dark:border-white/5">
-                <div className="absolute inset-y-1 left-1 w-[calc(50%-4px)] bg-white dark:bg-[#333] rounded-xl shadow-md transition-transform duration-300 ease-in-out" 
-                     style={{ transform: meal === "Dinner" ? "translateX(100%)" : "translateX(0)" }} 
+                <div className="absolute inset-y-1 left-1 w-[calc(50%-4px)] bg-white dark:bg-[#333] rounded-xl shadow-md transition-transform duration-300 ease-in-out"
+                  style={{ transform: meal === "Dinner" ? "translateX(100%)" : "translateX(0)" }}
                 />
-                <button 
+                <button
                   onClick={() => setMeal("Lunch")}
                   className={`flex-1 relative z-10 py-2.5 text-sm font-bold rounded-xl transition-colors flex items-center justify-center gap-2 ${meal === "Lunch" ? "text-forest-green" : "text-text-muted hover:text-text-main"}`}
                 >
                   <Sun className="w-4 h-4" />
                   {t("lunch")}
                 </button>
-                <button 
+                <button
                   onClick={() => setMeal("Dinner")}
                   className={`flex-1 relative z-10 py-2.5 text-sm font-bold rounded-xl transition-colors flex items-center justify-center gap-2 ${meal === "Dinner" ? "text-forest-green" : "text-text-muted hover:text-text-main"}`}
                 >
@@ -372,8 +381,8 @@ export default function FoodOrderForm() {
           <div className="mb-3">
             <div className="relative group">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-text-muted group-focus-within:text-forest-green transition-colors" />
-              <input 
-                type="text" 
+              <input
+                type="text"
                 placeholder={t("searchPlaceholder")}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -387,11 +396,10 @@ export default function FoodOrderForm() {
               <button
                 key={category}
                 onClick={() => scrollToCategory(category)}
-                className={`shrink-0 whitespace-nowrap px-5 py-2 rounded-full text-sm font-bold transition-all duration-300 ${
-                  activeCategory === category 
-                    ? "bg-forest-green text-white shadow-md scale-105" 
+                className={`shrink-0 whitespace-nowrap px-5 py-2 rounded-full text-sm font-bold transition-all duration-300 ${activeCategory === category
+                    ? "bg-forest-green text-white shadow-md scale-105"
                     : "bg-white dark:bg-[#2A2A2A] text-text-muted hover:text-forest-green hover:bg-forest-green/5 border border-black/10 dark:border-white/10 hover:shadow-sm"
-                }`}
+                  }`}
               >
                 {category}
               </button>
@@ -406,11 +414,11 @@ export default function FoodOrderForm() {
           {Object.entries(MENU_DATA).map(([category, items]) => {
             const filteredItems = items.filter(item => item.name.toLowerCase().includes(searchQuery.toLowerCase()));
             if (filteredItems.length === 0) return null;
-            
+
             return (
-              <div 
-                key={category} 
-                id={category} 
+              <div
+                key={category}
+                id={category}
                 ref={(el) => {
                   sectionRefs.current[category] = el;
                 }}
@@ -421,14 +429,13 @@ export default function FoodOrderForm() {
                   {filteredItems.map((item) => {
                     const qty = getItemQuantity(item.name);
                     const isActive = qty > 0;
-                    
+
                     return (
-                      <div key={item.name} className={`group flex gap-4 p-4 rounded-3xl transition-all duration-500 ${
-                        isActive 
-                          ? "bg-white dark:bg-[#2A2A2A] border-forest-green/40 shadow-[0_8px_30px_rgba(22,163,74,0.15)] ring-1 ring-forest-green/20 transform scale-[1.01] z-10 relative" 
+                      <div key={item.name} className={`group flex gap-4 p-4 rounded-3xl transition-all duration-500 ${isActive
+                          ? "bg-white dark:bg-[#2A2A2A] border-forest-green/40 shadow-[0_8px_30px_rgba(22,163,74,0.15)] ring-1 ring-forest-green/20 transform scale-[1.01] z-10 relative"
                           : "bg-[#F4F7F4] dark:bg-[#2A2A2A] border-black/5 dark:border-white/5 hover:border-black/10 hover:bg-[#EDF2ED] dark:hover:bg-[#363636] hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] shadow-[0_4px_20px_rgba(0,0,0,0.03)]"
-                      } border`}>
-                        
+                        } border`}>
+
                         {/* Initials Avatar */}
                         <div className="w-20 h-20 md:w-24 md:h-24 shrink-0 rounded-2xl overflow-hidden bg-gradient-to-br from-forest-green/5 to-forest-green/15 dark:from-forest-green/10 dark:to-forest-green/25 text-forest-green flex items-center justify-center font-serif text-2xl md:text-3xl font-bold shadow-inner border border-forest-green/10">
                           {(() => {
@@ -457,40 +464,37 @@ export default function FoodOrderForm() {
                               </span>
                             </div>
                           </div>
-                          
+
                           {/* Dynamic Pill Quantity Selector */}
                           <div className="self-end mt-2 md:mt-0">
-                            <div className={`flex items-center rounded-full p-0.5 transition-all duration-300 border ${
-                              isActive 
-                                ? "bg-forest-green text-white shadow-md border-forest-green" 
+                            <div className={`flex items-center rounded-full p-0.5 transition-all duration-300 border ${isActive
+                                ? "bg-forest-green text-white shadow-md border-forest-green"
                                 : "bg-cream dark:bg-[#1f1f1f] text-text-muted border-black/10 dark:border-white/10"
-                            }`}>
-                              <button 
+                              }`}>
+                              <button
                                 onClick={() => handleDecrement(item.name)}
                                 disabled={qty === 0}
-                                className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
-                                  isActive ? "hover:bg-black/20" : "hover:bg-black/5 dark:hover:bg-white/5 opacity-50 cursor-not-allowed"
-                                }`}
+                                className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${isActive ? "hover:bg-black/20" : "hover:bg-black/5 dark:hover:bg-white/5 opacity-50 cursor-not-allowed"
+                                  }`}
                               >
                                 <Minus className="w-4 h-4" />
                               </button>
-                              
+
                               <span className={`w-6 text-center font-bold text-sm ${isActive ? "text-white" : "text-text-main"}`}>
                                 {qty}
                               </span>
-                              
-                              <button 
+
+                              <button
                                 onClick={() => handleIncrement(item.name)}
-                                className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
-                                  isActive ? "hover:bg-black/20" : "hover:bg-black/5 dark:hover:bg-white/5 text-text-main"
-                                }`}
+                                className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${isActive ? "hover:bg-black/20" : "hover:bg-black/5 dark:hover:bg-white/5 text-text-main"
+                                  }`}
                               >
                                 <Plus className="w-4 h-4" />
                               </button>
                             </div>
                           </div>
                         </div>
-                        
+
                       </div>
                     );
                   })}
@@ -498,12 +502,12 @@ export default function FoodOrderForm() {
               </div>
             );
           })}
-          
+
           {Object.values(MENU_DATA).flat().filter(item => item.name.toLowerCase().includes(searchQuery.toLowerCase())).length === 0 && (
             <div className="text-center py-12 text-text-muted">
               <Search className="w-12 h-12 mx-auto mb-3 opacity-20" />
               <p className="font-medium text-lg">No items found for "{searchQuery}"</p>
-              <button 
+              <button
                 onClick={() => setSearchQuery("")}
                 className="mt-4 text-forest-green font-semibold hover:underline"
               >
@@ -518,22 +522,22 @@ export default function FoodOrderForm() {
       <div className="fixed bottom-0 left-0 right-0 z-[100] px-4 pb-6 pt-4 pointer-events-none">
         <div className="max-w-3xl mx-auto pointer-events-auto">
           <div className={`bg-white/95 dark:bg-[#1C1C1C]/95 backdrop-blur-xl border border-black/10 dark:border-white/10 p-4 rounded-3xl shadow-[0_-10px_40px_rgba(0,0,0,0.12)] dark:shadow-[0_-10px_40px_rgba(0,0,0,0.5)] transition-all duration-300 flex flex-col ${isCartOpen && Object.keys(cart).length > 0 ? 'gap-4 max-h-[70vh]' : 'gap-0'}`}>
-            
+
             {/* Expanded Content */}
             <div className={`overflow-hidden transition-all duration-300 ${isCartOpen && Object.keys(cart).length > 0 ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
               <div className="pt-2 pb-4 border-b border-black/10 dark:border-white/10 px-2">
                 <div className="flex items-center justify-between mb-4">
                   <h4 className="font-bold text-text-main text-lg">Your Order</h4>
                   <button onClick={() => setIsCartOpen(false)} className="text-text-muted hover:text-text-main p-1.5 bg-black/5 dark:bg-white/5 rounded-full hover:bg-black/10 dark:hover:bg-white/10 transition-colors">
-                     <ChevronDown className="w-5 h-5" />
+                    <ChevronDown className="w-5 h-5" />
                   </button>
                 </div>
-                
+
                 <div className="space-y-3 mb-5 max-h-[25vh] overflow-y-auto pr-2 no-scrollbar">
                   {Object.entries(cart).map(([name, qty]) => (
                     <div key={name} className="flex justify-between items-start text-sm">
                       <span className="font-medium text-text-main leading-tight pr-4">
-                        <span className="text-forest-green font-bold bg-forest-green/10 px-1.5 py-0.5 rounded mr-2">{qty}x</span> 
+                        <span className="text-forest-green font-bold bg-forest-green/10 px-1.5 py-0.5 rounded mr-2">{qty}x</span>
                         {name}
                       </span>
                       <span className="text-text-muted font-bold whitespace-nowrap mt-0.5">₹{getPrice(name) * qty}</span>
@@ -569,7 +573,7 @@ export default function FoodOrderForm() {
 
             {/* Bottom Bar (Always visible) */}
             <div className={`flex items-center justify-between gap-4 ${isCartOpen && Object.keys(cart).length > 0 ? 'pt-2' : ''}`}>
-              <div 
+              <div
                 className={`pl-2 transition-opacity ${Object.keys(cart).length > 0 ? 'cursor-pointer hover:opacity-80' : ''}`}
                 onClick={() => {
                   if (Object.keys(cart).length > 0) setIsCartOpen(!isCartOpen);
@@ -585,29 +589,37 @@ export default function FoodOrderForm() {
                 </div>
                 <p className="text-2xl font-black text-forest-green">₹{totalAmount}</p>
               </div>
-            
-            <button 
-              onClick={handleCheckoutClick}
-              disabled={!isOrderValid}
-              className={`flex items-center justify-center gap-2 py-3.5 px-6 rounded-2xl font-bold text-sm md:text-base transition-all duration-300 shadow-lg ${
-                isOrderValid 
-                  ? `bg-[#25D366] hover:bg-[#128C7E] text-white hover:-translate-y-1 hover:shadow-[#25D366]/40 ${isAnimating ? 'scale-105' : 'scale-100'}`
-                  : "bg-gray-200 dark:bg-[#2A2A2A] text-gray-400 dark:text-gray-500 cursor-not-allowed shadow-none"
-              }`}
-            >
-              <Send className="w-5 h-5" />
-              <span>{getCheckoutButtonText()}</span>
-            </button>
+
+              <button
+                onClick={handleCheckoutClick}
+                disabled={!isOrderValid}
+                className={`flex items-center justify-center gap-2 py-3.5 px-6 rounded-2xl font-bold text-sm md:text-base transition-all duration-300 shadow-lg ${isOrderValid
+                    ? `bg-[#25D366] hover:bg-[#128C7E] text-white hover:-translate-y-1 hover:shadow-[#25D366]/40 ${isAnimating ? 'scale-105' : 'scale-100'}`
+                    : "bg-gray-200 dark:bg-[#2A2A2A] text-gray-400 dark:text-gray-500 cursor-not-allowed shadow-none"
+                  }`}
+              >
+                <Send className="w-5 h-5" />
+                <span>{getCheckoutButtonText()}</span>
+              </button>
+            </div>
           </div>
         </div>
+
       </div>
 
       {/* Confirmation Modal */}
       {isConfirmModalOpen && (
-        <div className="fixed inset-0 z-[200] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white dark:bg-[#1C1C1C] rounded-3xl p-5 md:p-6 w-full max-w-md shadow-2xl transform transition-all animate-in fade-in zoom-in-95 duration-200">
+        <div
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 pointer-events-auto touch-auto"
+          style={{ zIndex: 9999 }}
+          onClick={() => setIsConfirmModalOpen(false)}
+        >
+          <div
+            className="bg-white dark:bg-[#1C1C1C] rounded-3xl p-5 md:p-6 w-full max-w-md shadow-2xl transform transition-all relative pointer-events-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
             <h3 className="text-xl font-black text-forest-green mb-4">Confirm Your Order</h3>
-            
+
             <div className="space-y-4 mb-6">
               <div className="bg-cream dark:bg-[#2A2A2A] rounded-2xl p-4 text-sm border border-black/5 dark:border-white/5 shadow-inner">
                 <div className="grid grid-cols-2 gap-y-2 gap-x-4 mb-4 text-[13px]">
@@ -618,14 +630,14 @@ export default function FoodOrderForm() {
                   <div className="text-text-muted font-medium">Meal</div>
                   <div className="font-bold text-text-main text-right">{meal}</div>
                 </div>
-                
+
                 <div className="border-t border-black/10 dark:border-white/10 pt-3 mt-3">
                   <div className="font-bold text-text-main mb-2 text-xs uppercase tracking-wider text-text-muted">Order Details</div>
-                  <div className="space-y-2.5">
+                  <div className="space-y-2.5 max-h-[30vh] overflow-y-auto pr-2 no-scrollbar">
                     {Object.entries(cart).map(([name, qty]) => (
                       <div key={name} className="flex justify-between items-start text-[13px]">
                         <span className="font-medium text-text-main pr-4">
-                          <span className="text-forest-green font-bold mr-2">{qty}x</span> 
+                          <span className="text-forest-green font-bold mr-2">{qty}x</span>
                           {name}
                         </span>
                         <span className="text-text-muted font-bold whitespace-nowrap">₹{getPrice(name) * qty}</span>
@@ -633,7 +645,7 @@ export default function FoodOrderForm() {
                     ))}
                   </div>
                 </div>
-                
+
                 <div className="border-t border-black/10 dark:border-white/10 pt-3 mt-3 space-y-2">
                   <div className="flex justify-between items-center text-[13px] font-medium text-text-muted">
                     <span>Subtotal</span>
@@ -649,13 +661,13 @@ export default function FoodOrderForm() {
                     <span>Total</span>
                     <span>₹{totalAmount}</span>
                   </div>
-                  
+
                   <div className="text-[11px] text-text-muted mt-3 bg-forest-green/5 p-2 rounded-lg flex items-start gap-2 border border-forest-green/10">
                     <Info className="w-3.5 h-3.5 shrink-0 mt-0.5 text-forest-green" />
                     <span>A delivery fee of ₹100 is applicable for orders below ₹600.</span>
                   </div>
                 </div>
-                
+
                 {specialInstructions.trim() && (
                   <div className="border-t border-black/10 dark:border-white/10 pt-3 mt-3">
                     <div className="font-bold text-text-main text-xs uppercase mb-1 tracking-wider text-text-muted">Instructions</div>
@@ -664,17 +676,19 @@ export default function FoodOrderForm() {
                 )}
               </div>
             </div>
-            
+
             <div className="flex gap-3">
-              <button 
+              <button
+                type="button"
                 onClick={() => setIsConfirmModalOpen(false)}
-                className="flex-1 py-3.5 rounded-xl font-bold text-text-main bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
+                className="flex-1 py-3.5 rounded-xl font-bold text-text-main bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 transition-colors cursor-pointer"
               >
                 Cancel
               </button>
-              <button 
+              <button
+                type="button"
                 onClick={handleConfirmOrder}
-                className="flex-[2] flex items-center justify-center gap-2 py-3.5 rounded-xl font-bold text-white bg-[#25D366] hover:bg-[#128C7E] shadow-lg shadow-[#25D366]/30 transition-all hover:-translate-y-0.5"
+                className="flex-[2] flex items-center justify-center gap-2 py-3.5 rounded-xl font-bold text-white bg-[#25D366] hover:bg-[#128C7E] shadow-lg shadow-[#25D366]/30 transition-all hover:-translate-y-0.5 cursor-pointer"
               >
                 <Send className="w-5 h-5" />
                 Confirm & Send
@@ -683,7 +697,6 @@ export default function FoodOrderForm() {
           </div>
         </div>
       )}
-    </div>
-  </>
-);
+    </>
+  );
 }
