@@ -10,6 +10,7 @@ type MenuItem = {
   description?: string;
   price: number;
   serves: number;
+  minOrder?: number;
 };
 
 type MenuCategory = {
@@ -24,7 +25,7 @@ const MENU_DATA: MenuCategory = {
     { "name": "Paneer Manchurian", "description": "Available in Chilli or Pepper style", "price": 250, "serves": 2 }
   ],
   "Main Course": [
-    { "name": "South Indian Meals", "description": "Includes Rice roti, Rice, Veg stir-fry, Payasam, Sambar, Chutney, Salad & Pickle", "price": 200, "serves": 1 },
+    { "name": "South Indian Meals", "description": "Includes Rice roti, Rice, Veg stir-fry, Payasam, Sambar, Chutney, Salad & Pickle", "price": 200, "serves": 1, "minOrder": 3 },
     { "name": "Chapathi", "description": "Soft whole wheat flatbread", "price": 30, "serves": 1 },
     { "name": "Mushroom Masala", "description": "Rich tomato-onion gravy with fresh mushrooms", "price": 200, "serves": 2 },
     { "name": "Paneer Masala", "description": "Cottage cheese in a creamy, spiced tomato gravy", "price": 250, "serves": 2 },
@@ -138,24 +139,40 @@ export default function FoodOrderForm() {
   };
 
   const handleIncrement = (itemName: string) => {
-    setCart((prev) => ({
-      ...prev,
-      [itemName]: (prev[itemName] || 0) + 1,
-    }));
+    setCart((prev) => {
+      const current = prev[itemName] || 0;
+      let next = current + 1;
+      
+      if (itemName === "South Indian Meals" && current === 0) {
+        next = 3;
+      }
+
+      return {
+        ...prev,
+        [itemName]: next,
+      };
+    });
     triggerCartAnimation();
   };
 
   const handleDecrement = (itemName: string) => {
     setCart((prev) => {
       const current = prev[itemName] || 0;
-      if (current <= 1) {
+      let next = current - 1;
+
+      if (itemName === "South Indian Meals" && current <= 3) {
+        next = 0;
+      }
+
+      if (next <= 0) {
         const newCart = { ...prev };
         delete newCart[itemName];
         return newCart;
       }
+      
       return {
         ...prev,
-        [itemName]: current - 1,
+        [itemName]: next,
       };
     });
   };
@@ -456,12 +473,20 @@ export default function FoodOrderForm() {
                                 {item.description}
                               </p>
                             )}
-                            <div className="flex items-center gap-3">
+                            <div className="flex flex-wrap items-center gap-3 mt-1">
                               <span className="font-bold text-muted-terracotta text-sm md:text-base">₹{item.price}</span>
-                              <div className="w-1 h-1 rounded-full bg-black/20 dark:bg-white/20"></div>
+                              <div className="w-1 h-1 rounded-full bg-black/20 dark:bg-white/20 hidden sm:block"></div>
                               <span className="flex items-center gap-1.5 text-[11px] font-bold text-forest-green bg-forest-green/10 dark:bg-forest-green/20 px-2 py-0.5 rounded-md">
                                 <Users className="w-3 h-3" /> Serves {item.serves}
                               </span>
+                              {item.minOrder && (
+                                <>
+                                  <div className="w-1 h-1 rounded-full bg-black/20 dark:bg-white/20 hidden sm:block"></div>
+                                  <span className="flex items-center gap-1.5 text-[11px] font-bold text-[#D97706] dark:text-[#FBBF24] bg-[#D97706]/10 dark:bg-[#FBBF24]/10 px-2 py-0.5 rounded-md">
+                                    <Info className="w-3 h-3" /> Min order: {item.minOrder}
+                                  </span>
+                                </>
+                              )}
                             </div>
                           </div>
 
