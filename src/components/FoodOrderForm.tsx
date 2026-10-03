@@ -299,23 +299,23 @@ export default function FoodOrderForm() {
         </header>
 
         {/* Elegant Scheduling Form */}
-        <div className="px-4 md:px-6 mb-6">
-          <div className="flex items-center justify-center gap-2 mb-3 text-[11px] md:text-sm text-text-muted bg-white/60 dark:bg-black/20 backdrop-blur-sm py-1.5 px-4 rounded-full w-fit mx-auto border border-black/10 dark:border-white/10 shadow-sm">
-            <Info className="w-4 h-4 text-forest-green shrink-0" />
-            <span className="font-medium text-center">{t("mandatoryNote")}</span>
-          </div>
-
-          <div className="bg-white dark:bg-[#2A2A2A] rounded-3xl p-4 md:p-5 shadow-md border border-black/10 dark:border-white/10 flex flex-col gap-4">
+        <div className="px-4 md:px-6 mb-8 mt-2">
+          <div className="bg-white/80 dark:bg-[#222]/80 backdrop-blur-md rounded-3xl p-5 md:p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-black/5 dark:border-white/5 flex flex-col gap-4">
+            
+            <div className="flex items-center gap-2 mb-1 text-xs md:text-sm text-text-muted font-medium">
+              <Info className="w-4 h-4 text-forest-green shrink-0" />
+              <span>{t("mandatoryNote")}</span>
+            </div>
 
             {/* Name Input */}
-            <div className="w-full flex items-center bg-cream dark:bg-[#1f1f1f] rounded-2xl px-4 py-3 border border-black/5 dark:border-white/5 focus-within:border-forest-green/30 focus-within:ring-2 focus-within:ring-forest-green/10 transition-all">
-              <User className="w-5 h-5 text-muted-terracotta mr-3 shrink-0" />
+            <div className="w-full flex items-center bg-[#F8F9F8] dark:bg-[#1A1A1A] rounded-2xl px-4 py-3 border border-black/5 dark:border-white/5 focus-within:border-forest-green/30 focus-within:ring-2 focus-within:ring-forest-green/10 transition-all">
+              <User className="w-5 h-5 text-forest-green/70 mr-3 shrink-0" />
               <input
                 type="text"
                 placeholder={t("yourNamePlaceholder")}
                 value={customerName}
                 onChange={(e) => setCustomerName(e.target.value)}
-                className="bg-transparent border-none outline-none text-text-main w-full text-sm font-semibold placeholder:text-text-muted/50"
+                className="bg-transparent border-none outline-none text-text-main w-full text-base font-semibold placeholder:text-text-muted/50"
               />
             </div>
 
@@ -333,10 +333,10 @@ export default function FoodOrderForm() {
                     dateInputRef.current?.focus();
                   }
                 }}
-                className="flex-1 w-full flex items-center justify-between bg-cream dark:bg-[#1f1f1f] rounded-2xl px-4 py-3 border border-black/5 dark:border-white/5 relative cursor-pointer hover:border-black/10 dark:hover:border-white/10 transition-colors"
+                className="flex-1 w-full flex items-center justify-between bg-[#F8F9F8] dark:bg-[#1A1A1A] rounded-2xl px-4 py-3 border border-black/5 dark:border-white/5 relative cursor-pointer hover:border-black/10 dark:hover:border-white/10 transition-colors"
               >
                 <div className="flex items-center gap-3 pointer-events-none">
-                  <Calendar className="w-5 h-5 text-muted-terracotta shrink-0" />
+                  <Calendar className="w-5 h-5 text-forest-green/70 shrink-0" />
                   <span className="text-sm font-semibold text-text-main shrink-0">{t("dateLabel")}</span>
                 </div>
 
@@ -346,10 +346,9 @@ export default function FoodOrderForm() {
                     type="date"
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
-                    className="w-full bg-transparent border-none outline-none text-right text-sm font-semibold cursor-pointer text-text-main"
+                    className="w-full bg-transparent border-none outline-none text-right text-base font-semibold cursor-pointer text-text-main"
                     min={new Date().toISOString().split("T")[0]}
                     onClick={(e) => {
-                      // Stop propagation so we don't trigger the parent onClick twice if clicking directly on the input
                       e.stopPropagation();
                       try {
                         if ('showPicker' in HTMLInputElement.prototype) {
@@ -362,8 +361,8 @@ export default function FoodOrderForm() {
               </div>
 
               {/* Meal Type Pill Toggle */}
-              <div className="flex-1 w-full bg-cream dark:bg-[#1f1f1f] rounded-2xl p-1 flex relative border border-black/5 dark:border-white/5">
-                <div className="absolute inset-y-1 left-1 w-[calc(50%-4px)] bg-white dark:bg-[#333] rounded-xl shadow-md transition-transform duration-300 ease-in-out"
+              <div className="flex-1 w-full bg-[#F8F9F8] dark:bg-[#1A1A1A] rounded-2xl p-1.5 flex relative border border-black/5 dark:border-white/5">
+                <div className="absolute inset-y-1.5 left-1.5 w-[calc(50%-6px)] bg-white dark:bg-[#2A2A2A] rounded-xl shadow-sm transition-transform duration-300 ease-in-out"
                   style={{ transform: meal === "Dinner" ? "translateX(100%)" : "translateX(0)" }}
                 />
                 <button
@@ -382,46 +381,44 @@ export default function FoodOrderForm() {
                 </button>
               </div>
             </div>
-
+            
             {/* Advance Notice Note */}
-            <div className="mt-1 flex items-center gap-2.5 text-xs md:text-sm font-bold text-muted-terracotta bg-muted-terracotta/10 px-4 py-2.5 rounded-xl border border-muted-terracotta/20">
-              <Info className="w-4 h-4 shrink-0" />
+            <div className="mt-2 flex items-start gap-2.5 text-xs md:text-sm font-medium text-text-muted">
+              <Info className="w-4 h-4 shrink-0 mt-0.5 text-forest-green/70" />
               <p>{t("advanceNotice")}</p>
             </div>
-
           </div>
         </div>
 
         {/* Sticky Search & Category Navigation */}
-        <div className="sticky top-[60px] z-40 bg-[#FCFBF8]/95 dark:bg-[#1C1C1C]/95 backdrop-blur-md border-b border-black/10 dark:border-white/10 shadow-sm pt-4 pb-2 px-4 md:px-6 w-full">
+        <div className="sticky top-[60px] z-40 bg-[#FCFBF8]/95 dark:bg-[#121212]/95 backdrop-blur-md border-b border-black/10 dark:border-white/10 shadow-sm pt-3 pb-2 px-4 md:px-6 w-full">
           {/* Search Bar */}
-          <div className="mb-3">
+          <div className="mb-2">
             <div className="relative group">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-text-muted group-focus-within:text-forest-green transition-colors" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted group-focus-within:text-forest-green transition-colors" />
               <input
                 type="text"
                 placeholder={t("searchPlaceholder")}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-white dark:bg-[#2A2A2A] rounded-2xl py-3 pl-12 pr-4 shadow-sm border border-black/10 dark:border-white/10 focus:outline-none focus:border-forest-green/50 focus:ring-2 focus:ring-forest-green/20 transition-all text-text-main font-medium text-sm"
+                className="w-full bg-white dark:bg-[#2A2A2A] rounded-xl py-2.5 pl-10 pr-4 shadow-[0_2px_10px_rgba(0,0,0,0.03)] border border-black/5 dark:border-white/5 focus:outline-none focus:border-forest-green/50 focus:ring-1 focus:ring-forest-green/20 transition-all text-text-main font-medium text-sm"
               />
             </div>
           </div>
 
-          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar scroll-smooth -mx-4 px-4 md:mx-0 md:px-0">
+          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar scroll-smooth -mx-4 px-4 md:mx-0 md:px-0">
             {CATEGORIES.map((category) => (
               <button
                 key={category}
                 onClick={() => scrollToCategory(category)}
-                className={`shrink-0 whitespace-nowrap px-5 py-2 rounded-full text-sm font-bold transition-all duration-300 ${activeCategory === category
-                    ? "bg-forest-green text-white shadow-md scale-105"
-                    : "bg-white dark:bg-[#2A2A2A] text-text-muted hover:text-forest-green hover:bg-forest-green/5 border border-black/10 dark:border-white/10 hover:shadow-sm"
+                className={`shrink-0 whitespace-nowrap px-4 py-1.5 rounded-full text-[13px] font-bold transition-all duration-300 ${activeCategory === category
+                    ? "bg-forest-green text-white shadow-md"
+                    : "bg-black/5 dark:bg-white/5 text-text-muted hover:text-forest-green hover:bg-forest-green/10"
                   }`}
               >
                 {category}
               </button>
             ))}
-            {/* Spacer for proper right padding on scroll */}
             <div className="w-2 shrink-0" aria-hidden="true" />
           </div>
         </div>
@@ -448,78 +445,64 @@ export default function FoodOrderForm() {
                     const isActive = qty > 0;
 
                     return (
-                      <div key={item.name} className={`group flex gap-4 p-4 rounded-3xl transition-all duration-500 ${isActive
-                          ? "bg-white dark:bg-[#2A2A2A] border-forest-green/40 shadow-[0_8px_30px_rgba(22,163,74,0.15)] ring-1 ring-forest-green/20 transform scale-[1.01] z-10 relative"
-                          : "bg-[#F4F7F4] dark:bg-[#2A2A2A] border-black/5 dark:border-white/5 hover:border-black/10 hover:bg-[#EDF2ED] dark:hover:bg-[#363636] hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] shadow-[0_4px_20px_rgba(0,0,0,0.03)]"
-                        } border`}>
+                      <div key={item.name} className={`group flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 md:p-6 rounded-3xl transition-all duration-300 ${isActive
+                          ? "bg-white dark:bg-[#222] border-forest-green/30 shadow-lg ring-1 ring-forest-green/20 transform scale-[1.02] z-10 relative"
+                          : "bg-white/60 dark:bg-[#222]/60 border-black/5 dark:border-white/5 hover:border-black/10 hover:bg-white dark:hover:bg-[#2A2A2A] hover:shadow-md"
+                        } border backdrop-blur-sm`}>
 
-                        {/* Initials Avatar */}
-                        <div className="w-20 h-20 md:w-24 md:h-24 shrink-0 rounded-2xl overflow-hidden bg-gradient-to-br from-forest-green/5 to-forest-green/15 dark:from-forest-green/10 dark:to-forest-green/25 text-forest-green flex items-center justify-center font-serif text-2xl md:text-3xl font-bold shadow-inner border border-forest-green/10">
-                          {(() => {
-                            const cleanName = item.name.split('/')[0].trim();
-                            const words = cleanName.split(' ').filter(Boolean);
-                            if (words.length === 1) return words[0].substring(0, 2).toUpperCase();
-                            if (words.length >= 2) return (words[0][0] + words[1][0]).toUpperCase();
-                            return "MF";
-                          })()}
-                        </div>
-
-                        {/* Details & Controls */}
-                        <div className="flex-1 flex flex-col justify-between py-1">
-                          <div>
-                            <h4 className="font-bold text-text-main text-[15px] leading-tight mb-1">{item.name}</h4>
-                            {item.description && (
-                              <p className="text-[12px] text-text-muted/90 mb-3 line-clamp-2 leading-snug pr-2">
-                                {item.description}
-                              </p>
+                        {/* Details */}
+                        <div className="flex-1 flex flex-col py-1">
+                          <h4 className="font-bold text-text-main text-lg md:text-xl leading-tight mb-1.5">{item.name}</h4>
+                          {item.description && (
+                            <p className="text-sm text-text-muted/90 mb-3 md:mb-4 line-clamp-2 leading-relaxed pr-2">
+                              {item.description}
+                            </p>
+                          )}
+                          <div className="flex flex-wrap items-center gap-3 mt-auto">
+                            <span className="font-black text-forest-green text-lg">₹{item.price}</span>
+                            <div className="w-1 h-1 rounded-full bg-black/20 dark:bg-white/20 hidden sm:block"></div>
+                            <span className="flex items-center gap-1.5 text-xs font-bold text-text-muted bg-black/5 dark:bg-white/5 px-2.5 py-1 rounded-lg">
+                              <Users className="w-3.5 h-3.5" /> Serves {item.serves}
+                            </span>
+                            {item.minOrder && (
+                              <>
+                                <div className="w-1 h-1 rounded-full bg-black/20 dark:bg-white/20 hidden sm:block"></div>
+                                <span className="flex items-center gap-1.5 text-xs font-bold text-[#D97706] dark:text-[#FBBF24] bg-[#D97706]/10 dark:bg-[#FBBF24]/10 px-2.5 py-1 rounded-lg">
+                                  <Info className="w-3.5 h-3.5" /> Min order: {item.minOrder}
+                                </span>
+                              </>
                             )}
-                            <div className="flex flex-wrap items-center gap-3 mt-1">
-                              <span className="font-bold text-muted-terracotta text-sm md:text-base">₹{item.price}</span>
-                              <div className="w-1 h-1 rounded-full bg-black/20 dark:bg-white/20 hidden sm:block"></div>
-                              <span className="flex items-center gap-1.5 text-[11px] font-bold text-forest-green bg-forest-green/10 dark:bg-forest-green/20 px-2 py-0.5 rounded-md">
-                                <Users className="w-3 h-3" /> Serves {item.serves}
-                              </span>
-                              {item.minOrder && (
-                                <>
-                                  <div className="w-1 h-1 rounded-full bg-black/20 dark:bg-white/20 hidden sm:block"></div>
-                                  <span className="flex items-center gap-1.5 text-[11px] font-bold text-[#D97706] dark:text-[#FBBF24] bg-[#D97706]/10 dark:bg-[#FBBF24]/10 px-2 py-0.5 rounded-md">
-                                    <Info className="w-3 h-3" /> Min order: {item.minOrder}
-                                  </span>
-                                </>
-                              )}
-                            </div>
-                          </div>
-
-                          {/* Dynamic Pill Quantity Selector */}
-                          <div className="self-end mt-2 md:mt-0">
-                            <div className={`flex items-center rounded-full p-0.5 transition-all duration-300 border ${isActive
-                                ? "bg-forest-green text-white shadow-md border-forest-green"
-                                : "bg-cream dark:bg-[#1f1f1f] text-text-muted border-black/10 dark:border-white/10"
-                              }`}>
-                              <button
-                                onClick={() => handleDecrement(item.name)}
-                                disabled={qty === 0}
-                                className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${isActive ? "hover:bg-black/20" : "hover:bg-black/5 dark:hover:bg-white/5 opacity-50 cursor-not-allowed"
-                                  }`}
-                              >
-                                <Minus className="w-4 h-4" />
-                              </button>
-
-                              <span className={`w-6 text-center font-bold text-sm ${isActive ? "text-white" : "text-text-main"}`}>
-                                {qty}
-                              </span>
-
-                              <button
-                                onClick={() => handleIncrement(item.name)}
-                                className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${isActive ? "hover:bg-black/20" : "hover:bg-black/5 dark:hover:bg-white/5 text-text-main"
-                                  }`}
-                              >
-                                <Plus className="w-4 h-4" />
-                              </button>
-                            </div>
                           </div>
                         </div>
 
+                        {/* Quantity Controls */}
+                        <div className="sm:self-center self-start mt-2 sm:mt-0">
+                          <div className={`flex items-center rounded-2xl p-1 transition-all duration-300 border shadow-sm ${isActive
+                              ? "bg-forest-green text-white border-forest-green"
+                              : "bg-cream dark:bg-[#1f1f1f] text-text-muted border-black/10 dark:border-white/10"
+                            }`}>
+                            <button
+                              onClick={() => handleDecrement(item.name)}
+                              disabled={qty === 0}
+                              className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${isActive ? "hover:bg-black/20" : "hover:bg-black/5 dark:hover:bg-white/5 opacity-50 cursor-not-allowed"
+                                }`}
+                            >
+                              <Minus className="w-5 h-5" />
+                            </button>
+
+                            <span className={`w-8 text-center font-bold text-base ${isActive ? "text-white" : "text-text-main"}`}>
+                              {qty}
+                            </span>
+
+                            <button
+                              onClick={() => handleIncrement(item.name)}
+                              className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${isActive ? "hover:bg-black/20" : "hover:bg-black/5 dark:hover:bg-white/5 text-text-main"
+                                }`}
+                            >
+                              <Plus className="w-5 h-5" />
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     );
                   })}
