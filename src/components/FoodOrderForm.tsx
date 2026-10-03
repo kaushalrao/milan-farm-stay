@@ -636,7 +636,10 @@ export default function FoodOrderForm() {
                   <div className="text-text-muted font-medium">Date</div>
                   <div className="font-bold text-text-main text-right">{date}</div>
                   <div className="text-text-muted font-medium">Meal</div>
-                  <div className="font-bold text-text-main text-right">{meal}</div>
+                  <div className="font-bold text-text-main flex items-center justify-end gap-1.5">
+                    {meal === "Lunch" ? <Sun className="w-3.5 h-3.5 text-orange-500" /> : meal === "Dinner" ? <Moon className="w-3.5 h-3.5 text-indigo-400" /> : null}
+                    {meal}
+                  </div>
                 </div>
 
                 <div className="border-t border-black/10 dark:border-white/10 pt-3 mt-3">
