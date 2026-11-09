@@ -31,7 +31,7 @@
         "id": "1",
         "hash": "day-1",
         "destination": "Milan Farm Stays",
-        "metadata": "Day 1 • 6 hrs Drive",
+        "metadata": "6 hrs Drive",
         "highlights": "📍 Bangalore • Hassan • Sakleshpur",
         "tags": [
           "Road Trip",
@@ -43,7 +43,7 @@
         "id": "2",
         "hash": "day-2",
         "destination": "Chikmagalur",
-        "metadata": "Day 2 • Full Day",
+        "metadata": "Full Day",
         "highlights": "📍 Mullayanagiri • Jhari Falls",
         "tags": [
           "Nature",
@@ -55,7 +55,7 @@
         "id": "3",
         "hash": "day-3",
         "destination": "Mudigere",
-        "metadata": "Day 3 • Relaxed",
+        "metadata": "Relaxed",
         "highlights": "📍 Devaramane • Charmadi",
         "tags": [
           "Views",
@@ -67,7 +67,7 @@
         "id": "4",
         "hash": "day-4",
         "destination": "Kalasa",
-        "metadata": "Day 4 • Morning",
+        "metadata": "Morning",
         "highlights": "📍 Kelagur Estate • Temple",
         "tags": [
           "Culture",
@@ -561,7 +561,10 @@
     "localTips": "Local Tips",
     "faq": "Frequently Asked Questions",
     "itinerary": "Itinerary",
-    "guestServices": "Guest Services"
+    "guestServices": "Guest Services",
+    "day": "Day",
+    "stops": "Stops",
+    "treks": "Treks"
   },
   "HomeCook": {
     "title": "Home Cooked Veg Meals",
