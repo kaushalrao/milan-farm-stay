@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import ThemeToggle from "./ThemeToggle";
+import SearchTrigger from "./search/SearchTrigger";
 
 export default function Navbar() {
   const t = useTranslations("Navbar");
@@ -78,15 +79,17 @@ export default function Navbar() {
       }`}
       aria-label="Main Navigation"
     >
-      <div className="container mx-auto px-6 max-w-7xl flex justify-between items-center relative z-10">
-        <Link href="/">
+      <div className="container mx-auto px-3 sm:px-6 max-w-7xl flex justify-between items-center relative z-10">
+        <Link href="/" className="min-w-0 shrink">
           <motion.div
-            className={`font-serif font-bold text-dark transition-all duration-300 truncate mr-2 ${isScrolled ? 'text-xl' : 'text-2xl'}`}
+            className={`font-serif font-bold text-dark transition-all duration-300 truncate mr-1 sm:mr-2 ${
+              isScrolled ? "text-base sm:text-xl" : "text-lg sm:text-2xl"
+            }`}
           >
             {t("title")}
           </motion.div>
         </Link>
-        <div className="flex items-center gap-3 md:gap-6">
+        <div className="flex items-center gap-1.5 sm:gap-3 md:gap-6 shrink-0">
           <div className="hidden md:flex items-center gap-8">
             {navItems.map((item) => {
               const isActive = activeSection === item.id;
@@ -114,12 +117,15 @@ export default function Navbar() {
             })}
           </div>
           
+          <SearchTrigger variant="desktop-pill" className="hidden sm:flex" />
+          <SearchTrigger variant="mobile-icon" className="sm:hidden" />
+
           <ThemeToggle />
           
           <select
             value={locale}
             onChange={handleLanguageChange}
-            className="bg-transparent text-text-main font-medium border border-border/60 hover:border-border rounded-md px-2 py-1.5 focus:outline-none focus:ring-2 focus:ring-airbnb-coral/50 text-sm md:text-base cursor-pointer transition-colors"
+            className="bg-transparent text-text-main font-medium border border-border/60 hover:border-border rounded-md px-1.5 py-1 sm:px-2 sm:py-1.5 focus:outline-none focus:ring-2 focus:ring-airbnb-coral/50 text-xs sm:text-sm md:text-base cursor-pointer transition-colors shrink-0"
             aria-label="Select Language"
           >
             <option value="en">English</option>

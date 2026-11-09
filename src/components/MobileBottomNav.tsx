@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import CookModal from "./CookModal";
 import dynamic from "next/dynamic";
+import { useSearch } from "@/context/SearchContext";
 
 const Player = dynamic(() => import("@lottiefiles/react-lottie-player").then((mod) => mod.Player), { ssr: false });
 
@@ -14,6 +15,7 @@ export default function MobileBottomNav() {
   const tFab = useTranslations("MobileFABs");
   const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [cookModalOpen, setCookModalOpen] = useState(false);
+  const { openSearch } = useSearch();
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
@@ -149,6 +151,19 @@ export default function MobileBottomNav() {
         >
           <h4 className="text-xs font-bold text-text-muted uppercase tracking-wider mb-1 px-3 pt-1">{tFab("askUs")}</h4>
           <div className="flex flex-col gap-0.5">
+            <button
+              onClick={() => {
+                setIsHelpOpen(false);
+                openSearch();
+              }}
+              className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-cream dark:hover:bg-white/5 transition-colors text-dark dark:text-white text-sm font-medium w-full text-left cursor-pointer"
+            >
+              <div className="w-7 h-7 rounded-full bg-airbnb-coral/15 text-airbnb-coral flex items-center justify-center shrink-0">
+                <i className="ph-bold ph-magnifying-glass text-sm"></i>
+              </div>
+              Search Places & Food
+            </button>
+            <div className="h-px bg-border dark:bg-white/10 my-0.5"></div>
             <a href="tel:+919448244666" className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-cream dark:hover:bg-white/5 transition-colors text-dark dark:text-white text-sm font-medium">
               <div className="w-7 h-7 rounded-full bg-soft-beige dark:bg-white/10 text-dark dark:text-white flex items-center justify-center shrink-0"><i className="ph-fill ph-phone text-sm"></i></div>
               {tFab("callHost")}

@@ -23,6 +23,15 @@ export default function TripCards() {
         document.getElementById("itinerary-view")?.scrollIntoView({ behavior: "smooth" });
       }, 300);
     }
+
+    const handleCustomSelect = (e: any) => {
+      const dayId = e.detail;
+      if (dayId && ["1", "2", "3", "4", "5"].includes(dayId)) {
+        setSelectedDays(dayId);
+      }
+    };
+    window.addEventListener("milan:select-trip", handleCustomSelect);
+    return () => window.removeEventListener("milan:select-trip", handleCustomSelect);
   }, []);
 
   const handleSelect = (trip: typeof tripOptions[0]) => {

@@ -5,6 +5,8 @@ import InstallPrompt from "@/components/InstallPrompt";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getLocale } from "next-intl/server";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { SearchProvider } from "@/context/SearchContext";
+import SearchModal from "@/components/search/SearchModal";
 import "./globals.css";
 
 const inter = Inter({
@@ -48,8 +50,11 @@ export default async function RootLayout({
       <body className="min-h-screen flex flex-col bg-cream text-text-main font-sans overflow-x-hidden">
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            {children}
-            <InstallPrompt />
+            <SearchProvider>
+              {children}
+              <SearchModal />
+              <InstallPrompt />
+            </SearchProvider>
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>
