@@ -34,6 +34,7 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-8 lg:gap-6 items-stretch">
               <HostProfile
+                id="host-athula"
                 name={t("host1Name")}
                 role={t("host1Role")}
                 image="/images/athula_profile.jpeg"
@@ -43,6 +44,7 @@ export default function Home() {
                 phone="9448244666"
               />
               <HostProfile
+                id="host-kaushal"
                 name={t("host2Name")}
                 role={t("host2Role")}
                 image="/images/kaushal.jpg"

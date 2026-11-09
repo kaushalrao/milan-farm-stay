@@ -13,7 +13,8 @@ export default function HomeCook() {
 
   return (
     <div 
-      className="bg-warm-white rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-sm flex flex-col justify-between border border-green-100/60 dark:border-green-500/20 relative overflow-hidden group hover:shadow-md transition-shadow cursor-pointer h-full"
+      id="home-cook"
+      className="bg-warm-white rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-sm flex flex-col justify-between border border-green-100/60 dark:border-green-500/20 relative overflow-hidden group hover:shadow-md transition-shadow cursor-pointer h-full scroll-mt-28"
       onClick={() => setIsExpanded(!isExpanded)}
     >
       <i className="ph-fill ph-leaf absolute -right-6 -bottom-6 text-[160px] md:text-[240px] text-green-500/[0.03] rotate-[-15deg] pointer-events-none transition-transform duration-700 group-hover:scale-110"></i>

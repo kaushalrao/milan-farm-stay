@@ -148,7 +148,8 @@ export default function RentalsDirectory() {
               return (
                 <div
                   key={vendor.id}
-                  className={`bg-warm-white rounded-2xl md:rounded-3xl p-5 md:p-6 shadow-sm border flex flex-col justify-between transition-all hover:shadow-md ${
+                  id={vendor.id}
+                  className={`bg-warm-white rounded-2xl md:rounded-3xl p-5 md:p-6 shadow-sm border flex flex-col justify-between transition-all hover:shadow-md scroll-mt-28 ${
                     isSakleshpurBike
                       ? "border-emerald-500/40 ring-1 ring-emerald-500/20"
                       : "border-border/80"

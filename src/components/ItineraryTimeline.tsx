@@ -10,18 +10,37 @@ const MapView = dynamic(() => import("./MapView"), {
   loading: () => <div className="h-[500px] w-full bg-soft-beige rounded-2xl animate-pulse flex items-center justify-center text-text-muted font-bold text-sm">Loading Map...</div> 
 });
 
-function CompactStopCard({ stop, index }: { stop: any, index: number }) {
+interface TimelineStop {
+  title?: string;
+  category?: string;
+  img?: string;
+  drivingTime?: string;
+  duration?: string;
+  desc?: string;
+  mapsUrl?: string;
+  bestTime?: string;
+  entryFee?: string;
+  parkingInfo?: string;
+  tips?: string;
+  localTips?: string;
+  nearbyCafes?: string;
+  bookingLink?: string;
+}
+
+function CompactStopCard({ stop, index }: { stop: TimelineStop, index: number }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const t = useTranslations("ItineraryTimeline");
+  const stopId = stop.title ? `stop-${stop.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}` : `stop-${index}`;
 
   return (
     <motion.div
+      id={stopId}
       layout
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.5, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
-      className="relative mb-6 group stop-card"
+      className="relative mb-6 group stop-card scroll-mt-28"
       data-stop-title={stop.title}
     >
 

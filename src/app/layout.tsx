@@ -7,6 +7,7 @@ import { getMessages, getLocale } from "next-intl/server";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { SearchProvider } from "@/context/SearchContext";
 import SearchModal from "@/components/search/SearchModal";
+import SearchTargetWatcher from "@/components/search/SearchTargetWatcher";
 import "./globals.css";
 
 const inter = Inter({
@@ -53,6 +54,7 @@ export default async function RootLayout({
             <SearchProvider>
               {children}
               <SearchModal />
+              <SearchTargetWatcher />
               <InstallPrompt />
             </SearchProvider>
           </ThemeProvider>

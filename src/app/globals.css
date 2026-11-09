@@ -103,3 +103,38 @@ body.install-prompt-active #help-menu-container {
   pointer-events: none;
   transform: translateY(20px);
 }
+
+/* Search Target Landing & Highlight Animation (2.6s pulse & glow) */
+@keyframes searchHighlightPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 90, 95, 0.8), 0 0 30px rgba(255, 90, 95, 0.45);
+    outline: 2px solid rgba(255, 90, 95, 0.85);
+    outline-offset: 4px;
+    transform: scale(1.02);
+  }
+  25% {
+    box-shadow: 0 0 0 8px rgba(255, 90, 95, 0.4), 0 0 40px rgba(255, 90, 95, 0.3);
+    outline: 2px solid rgba(255, 90, 95, 0.65);
+    outline-offset: 4px;
+    transform: scale(1.015);
+  }
+  60% {
+    box-shadow: 0 0 0 5px rgba(255, 90, 95, 0.2), 0 0 20px rgba(255, 90, 95, 0.15);
+    outline: 2px solid rgba(255, 90, 95, 0.35);
+    outline-offset: 2px;
+    transform: scale(1);
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+    outline: 2px solid transparent;
+    outline-offset: 0;
+    transform: scale(1);
+  }
+}
+
+.search-highlight-target {
+  animation: searchHighlightPulse 2.6s cubic-bezier(0.22, 1, 0.36, 1) forwards !important;
+  scroll-margin-top: 110px;
+  position: relative;
+  z-index: 20;
+}

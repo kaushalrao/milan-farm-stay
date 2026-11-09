@@ -402,10 +402,14 @@ export default function FoodOrderForm() {
                     const isActive = qty > 0;
 
                     return (
-                      <div key={item.name} className={`group flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 md:p-6 rounded-3xl transition-all duration-300 ${isActive
+                      <div
+                        key={item.name}
+                        id={`food-${item.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+                        className={`group flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 md:p-6 rounded-3xl transition-all duration-300 scroll-mt-28 ${isActive
                           ? "bg-white dark:bg-[#222] border-forest-green/30 shadow-lg ring-1 ring-forest-green/20 transform scale-[1.02] z-10 relative"
                           : "bg-white/60 dark:bg-[#222]/60 border-black/5 dark:border-white/5 hover:border-black/10 hover:bg-white dark:hover:bg-[#2A2A2A] hover:shadow-md"
-                        } border backdrop-blur-sm`}>
+                        } border backdrop-blur-sm`}
+                      >
 
                         {/* Details */}
                         <div className="flex-1 flex flex-col py-1">

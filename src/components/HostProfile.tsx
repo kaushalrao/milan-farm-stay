@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
 
 interface HostProfileProps {
+  id?: string;
   name: string;
   role: string;
   image: string;
@@ -13,13 +14,14 @@ interface HostProfileProps {
   phone: string;
 }
 
-export default function HostProfile({ name, role, image, imgClass = "w-full h-full object-cover", desc, years, phone }: HostProfileProps) {
+export default function HostProfile({ id, name, role, image, imgClass = "w-full h-full object-cover", desc, years, phone }: HostProfileProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const ui = useTranslations("UI");
 
   return (
     <div 
-      className="bg-warm-white rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-sm flex flex-col justify-between border border-border h-full hover:shadow-md transition-shadow cursor-pointer md:cursor-default"
+      id={id}
+      className="bg-warm-white rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-sm flex flex-col justify-between border border-border h-full hover:shadow-md transition-shadow cursor-pointer md:cursor-default scroll-mt-28"
       onClick={() => setIsExpanded(!isExpanded)}
     >
       <div className="flex flex-row md:flex-col items-center md:items-start gap-3.5 md:gap-4 mb-0 md:mb-6 text-left">

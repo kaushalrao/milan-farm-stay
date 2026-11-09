@@ -9,10 +9,11 @@ export default function TravelRentalsCard() {
 
   return (
     <motion.div
+      id="travel-rentals-card"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      className="w-full max-w-4xl mx-auto"
+      className="w-full max-w-4xl mx-auto scroll-mt-28"
     >
       <Link
         href="/rentals"

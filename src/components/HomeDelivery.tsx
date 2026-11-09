@@ -10,10 +10,11 @@ export default function HomeDelivery() {
 
   return (
     <motion.div
+      id="home-delivery"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      className="bg-warm-white rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-sm flex flex-col justify-between border border-orange-100/60 dark:border-orange-500/20 relative overflow-hidden group hover:shadow-md transition-shadow cursor-pointer h-full"
+      className="bg-warm-white rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-sm flex flex-col justify-between border border-orange-100/60 dark:border-orange-500/20 relative overflow-hidden group hover:shadow-md transition-shadow cursor-pointer h-full scroll-mt-28"
       onClick={() => setIsExpanded(!isExpanded)}
     >
       <i className="ph-fill ph-package absolute -right-6 -bottom-6 text-[160px] md:text-[240px] text-orange-500/[0.03] rotate-[-15deg] pointer-events-none transition-transform duration-700 group-hover:scale-110"></i>

@@ -89,6 +89,7 @@ export function useSearchIndex() {
         stops.forEach((stop, idx) => {
           if (!stop?.title) return;
           const tags = [stop.category, stop.drivingTime, stop.duration].filter((t): t is string => Boolean(t));
+          const stopSlug = stop.title ? `stop-${stop.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}` : `stop-${idx}`;
           items.push({
             id: `stop-day${dayId}-${idx}`,
             title: stop.title,
@@ -99,7 +100,7 @@ export function useSearchIndex() {
             icon: "ph-map-pin",
             action: {
               type: "anchor",
-              href: `/?day=${dayId}#plan`,
+              href: `/?day=${dayId}#${stopSlug}`,
             },
             keywords: [
               stop.title,
@@ -166,6 +167,7 @@ export function useSearchIndex() {
     // 4. Prasad Home Made Food Menu Items
     Object.entries(MENU_DATA).forEach(([catName, menuItems]) => {
       menuItems.forEach((food, idx) => {
+        const foodSlug = `food-${food.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
         items.push({
           id: `menu-${catName.toLowerCase()}-${idx}`,
           title: food.name,
@@ -178,7 +180,7 @@ export function useSearchIndex() {
           icon: "ph-cooking-pot",
           action: {
             type: "route",
-            href: "/order-food",
+            href: `/order-food#${foodSlug}`,
           },
           keywords: [
             food.name,
@@ -216,7 +218,7 @@ export function useSearchIndex() {
         icon: vendor.category === "car" ? "ph-car" : "ph-moped",
         action: {
           type: "route",
-          href: "/rentals",
+          href: `/rentals#${vendor.id}`,
         },
         keywords: [
           vendor.name,
@@ -329,9 +331,8 @@ export function useSearchIndex() {
         tags: ["Host", "Contact"],
         icon: "ph-user",
         action: {
-          type: "external",
-          href: "tel:+919448244666",
-          external: true,
+          type: "anchor",
+          href: "/#host-athula",
         },
         keywords: ["athula", "host", "call host", "contact", "emergency", "manager", "ಅತುಲ", "ಹೋಸ್ಟ್"],
       });
@@ -345,9 +346,8 @@ export function useSearchIndex() {
         tags: ["Host", "Contact"],
         icon: "ph-user",
         action: {
-          type: "external",
-          href: "tel:+919448632666",
-          external: true,
+          type: "anchor",
+          href: "/#host-kaushal",
         },
         keywords: ["kaushal", "host", "call host", "contact", "emergency", "ಕೌಶಲ್", "ಹೋಸ್ಟ್"],
       });
