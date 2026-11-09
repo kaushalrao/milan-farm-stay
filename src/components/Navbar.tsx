@@ -10,8 +10,9 @@ export default function Navbar() {
   const locale = useLocale();
 
   const navItems = useMemo(() => [
-    { label: t("plan"), href: "#plan", id: "plan", icon: "ph-map-trifold" },
-    { label: t("contacts"), href: "#contacts", id: "contacts", icon: "ph-users" }
+    { label: t("plan"), href: "#plan", id: "plan", icon: "ph-map-trifold", isAnchor: true },
+    { label: t("contacts"), href: "#contacts", id: "contacts", icon: "ph-users", isAnchor: true },
+    { label: t("rentals"), href: "/rentals", id: "rentals", icon: "ph-moped", isAnchor: false }
   ], [t]);
 
   const [isScrolled, setIsScrolled] = useState(false);
@@ -52,11 +53,15 @@ export default function Navbar() {
     return () => observer.disconnect();
   }, [navItems]);
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, href: string) => {
-    e.preventDefault();
-    setTimeout(() => {
-      document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
-    }, 50);
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string, isAnchor?: boolean) => {
+    if (isAnchor) {
+      if (typeof window !== "undefined" && window.location.pathname === "/") {
+        e.preventDefault();
+        setTimeout(() => {
+          document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+        }, 50);
+      }
+    }
   };
 
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -74,7 +79,7 @@ export default function Navbar() {
       aria-label="Main Navigation"
     >
       <div className="container mx-auto px-6 max-w-7xl flex justify-between items-center relative z-10">
-        <Link href="#">
+        <Link href="/">
           <motion.div
             className={`font-serif font-bold text-dark transition-all duration-300 truncate mr-2 ${isScrolled ? 'text-xl' : 'text-2xl'}`}
           >
@@ -87,14 +92,23 @@ export default function Navbar() {
               const isActive = activeSection === item.id;
               return (
                 <motion.div key={item.id} whileHover={{ y: -2 }} whileTap={{ scale: 0.95 }}>
-                  <a
-                    href={item.href}
-                    onClick={(e) => handleNavClick(e, item.href)}
-                    className={`font-medium transition-colors duration-300 ${isActive ? 'text-airbnb-coral' : 'text-text-main hover:text-airbnb-coral'}`}
-                    aria-current={isActive ? "page" : undefined}
-                  >
-                    {item.label}
-                  </a>
+                  {item.isAnchor ? (
+                    <a
+                      href={item.href}
+                      onClick={(e) => handleNavClick(e, item.href, item.isAnchor)}
+                      className={`font-medium transition-colors duration-300 ${isActive ? 'text-airbnb-coral' : 'text-text-main hover:text-airbnb-coral'}`}
+                      aria-current={isActive ? "page" : undefined}
+                    >
+                      {item.label}
+                    </a>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      className="font-medium transition-colors duration-300 text-text-main hover:text-airbnb-coral"
+                    >
+                      {item.label}
+                    </Link>
+                  )}
                 </motion.div>
               );
             })}

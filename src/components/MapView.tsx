@@ -43,10 +43,10 @@ export default function MapView({ stops }: { stops: any[] }) {
   const createIcon = (index: number, category?: string) => {
     const cat = (category || "").toLowerCase();
     const isFood = cat.includes("veg") || cat.includes("cuisine") || cat.includes("food") || cat.includes("restaurant") || cat.includes("cafe");
-    
+
     let content = `${index + 1}`;
     let bgColor = "#ff5a5f"; // Default coral/red for sightseeing
-    
+
     if (isFood) {
       content = `<i class="ph-bold ph-fork-knife" style="font-size: 14px;"></i>`;
       bgColor = "#10b981"; // Emerald green for food
@@ -63,9 +63,9 @@ export default function MapView({ stops }: { stops: any[] }) {
 
   return (
     <div className="h-[500px] w-full md:h-[600px] lg:h-full bg-soft-beige rounded-2xl md:rounded-3xl overflow-hidden relative shadow-inner">
-      <MapContainer 
-        center={routePositions[0] || [13.3, 75.7]} 
-        zoom={10} 
+      <MapContainer
+        center={routePositions[0] || [13.3, 75.7]}
+        zoom={10}
         style={{ height: '100%', width: '100%' }}
         scrollWheelZoom={false}
       >
@@ -74,11 +74,11 @@ export default function MapView({ stops }: { stops: any[] }) {
           url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
           maxZoom={19}
         />
-        
+
         <MapBounds stops={[...validStops, { lat: 13.1524102, lng: 75.6523835 }]} />
 
         {/* Draw Milan Farm Stay Home Marker */}
-        <Marker 
+        <Marker
           position={[13.1524102, 75.6523835]}
           icon={L.divIcon({
             className: "custom-leaflet-icon",
@@ -106,19 +106,19 @@ export default function MapView({ stops }: { stops: any[] }) {
 
         {/* Draw the connecting route */}
         {routePositions.length > 1 && (
-          <Polyline 
-            positions={routePositions} 
-            color="#ff5a5f" 
-            weight={4} 
+          <Polyline
+            positions={routePositions}
+            color="#ff5a5f"
+            weight={4}
             opacity={0.8}
-            dashArray="10, 10" 
+            dashArray="10, 10"
           />
         )}
 
         {/* Draw the stops */}
         {validStops.map((stop, idx) => (
-          <Marker 
-            key={idx} 
+          <Marker
+            key={idx}
             position={[stop.lat, stop.lng]}
             icon={createIcon(idx, stop.category)}
           >

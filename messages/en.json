@@ -4,7 +4,8 @@
     "plan": "Itinerary",
     "contacts": "Services",
     "food": "Food",
-    "taxi": "Taxi"
+    "taxi": "Taxi",
+    "rentals": "Rentals"
   },
   "Hero": {
     "title": "Welcome to your<br />home in the hills",
@@ -540,7 +541,17 @@
     "host2Name": "Kaushal Kudpi",
     "host2Role": "Co-Host",
     "host2Desc": "Software Engineer & Outdoor Enthusiast",
-    "host2Years": "Hosting for over 6 years"
+    "host2Years": "Hosting for over 6 years",
+    "travelAndRentals": "Travel & Vehicle Rentals",
+    "selfDriveTitle": "Self-Drive Rentals (Sakleshpur)",
+    "selfDriveBadge": "selfdrive.bike",
+    "selfDriveDesc": "Bikes, scooters & self-drive cars to explore Sakleshpur, waterfalls & estate trails.",
+    "bookSelfDrive": "Book on SelfDrive.bike",
+    "viewAllRentals": "View All Rentals (Sakleshpur & Chikmagalur) →",
+    "travelCardTitle": "Self-Drive Rentals & Local Taxis",
+    "travelCardDesc": "Explore Chikmagalur & Sakleshpur on your own terms. Find self-drive bikes, scooters, cars, or book trusted local taxi drivers for your itinerary.",
+    "travelCardCta": "Explore All Rentals & Taxis",
+    "travelCardBadge": "Chikmagalur • Sakleshpur"
   },
   "UI": {
     "currentStop": "Current Stop",
@@ -613,7 +624,8 @@
     "googleMaps": "Google Maps",
     "whatsapp": "WhatsApp",
     "callUs": "Call Us",
-    "designedForGuests": "Designed for guests."
+    "designedForGuests": "Designed for guests.",
+    "rentals": "Self-Drive & Taxi Rentals"
   },
   "ShareButton": {
     "shareGuide": "Share Guide",
@@ -649,5 +661,37 @@
     "mandatoryNote": "Name, date, and meal type are mandatory.",
     "advanceNotice": "Please place your order at least 4 hours in advance as all our meals are freshly prepared from scratch.",
     "searchPlaceholder": "Search menu items..."
+  },
+  "Rentals": {
+    "badge": "Travel & Transport Directory",
+    "pageTitle": "Self-Drive Vehicles & Local Rentals",
+    "pageSubtitle": "Rent bikes, scooters, and self-drive cars in Sakleshpur and Chikmagalur, or book trusted local taxis to explore Malnad at your own pace.",
+    "backToHome": "Back to Itinerary",
+    "featuredSakleshpur": "Featured in Sakleshpur",
+    "recommendedBadge": "Recommended Platform",
+    "bookOnline": "Book Online Now",
+    "callVendor": "Call Vendor",
+    "visitWebsite": "Visit Website",
+    "fleetTypes": "Available Vehicles",
+    "features": "Highlights",
+    "tabAll": "All Options",
+    "tabSakleshpur": "Sakleshpur Rentals",
+    "tabChikmagalur": "Chikmagalur Rentals",
+    "tabTaxis": "Local Taxis (With Driver)",
+    "tabTips": "Travel & Riding Tips",
+    "sakleshpurSpotlightTitle": "Explore Sakleshpur on Wheels",
+    "sakleshpurSpotlightDesc": "Rent scooters (Activa, Dio), off-road & cruiser motorcycles (Royal Enfield, Himalayan), or self-drive cars directly in Sakleshpur via selfdrive.bike. Ideal for Bisle Ghat, Manjarabad Fort, Bettada Byraveshwara temple, and winding coffee estate roads.",
+    "vendorCtaTitle": "Are you a vehicle rental service in Sakleshpur or Chikmagalur?",
+    "vendorCtaDesc": "Get your self-drive rental or cab service listed on Milan Farm Stays for visiting tourists and guests.",
+    "contactUs": "Contact Us to List",
+    "tip1Title": "Original Driving License & ID",
+    "tip1Desc": "Always carry your original physical Driving License (matching the vehicle class: two-wheeler gear/non-gear or light motor vehicle) and a valid government photo ID (Aadhaar or Passport).",
+    "tip2Title": "Helmet Law & Mountain Driving",
+    "tip2Desc": "Wearing a helmet is mandatory under traffic regulations for both the rider and pillion. Use lower gears on steep hairpin curves, and drive cautiously during morning fog or wet road conditions.",
+    "tip3Title": "Fuel & Service Stations",
+    "tip3Desc": "Fuel stations are readily available in Sakleshpur, Mudigere, and Chikmagalur towns. Always fill up before venturing into remote trails and forest stretches like Bisle or Charmadi.",
+    "tip4Title": "Offline Maps & Connectivity",
+    "tip4Desc": "Mobile network can be patchy along Ghat stretches. Download offline Google Maps for Sakleshpur, Mudigere, and Chikmagalur to navigate seamlessly without cellular connection.",
+    "vendorDisclaimer": "Disclaimer: Pricing, vehicle availability, security deposits, safety gear, and rental policies are determined solely by each respective vendor. Please check their official websites or contact them directly for current terms."
   }
 }

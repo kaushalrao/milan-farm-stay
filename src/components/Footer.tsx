@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 
 export default function Footer() {
   const t = useTranslations("Footer");
@@ -15,6 +16,9 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-col gap-4">
+            <Link href="/rentals" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
+              <i className="ph ph-moped text-xl text-emerald-400"></i> {t("rentals")}
+            </Link>
             <a href="https://maps.app.goo.gl/yzBY4r2cDHzE2JpY8" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
               <i className="ph ph-map-pin text-xl"></i> {t("googleMaps")}
             </a>
