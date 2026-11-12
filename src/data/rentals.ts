@@ -107,9 +107,9 @@ export const RENTAL_VENDORS: RentalVendor[] = [
   // 3. Local Taxis with Driver (Mudigere & Surrounds)
   {
     id: "vishwanath-car-belagala",
-    name: "Vishwanath Car (Belagala)",
+    name: "Vishwanath",
     location: "Mudigere",
-    locationDetail: "Belagala Village, Mudigere (~5 mins from Milan Farm)",
+    locationDetail: "Mudigere",
     address: "Belagala, Mudigere Taluk, Chikkamagaluru District",
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Belagala+Mudigere+Karnataka",
     category: "taxi",
@@ -119,16 +119,16 @@ export const RENTAL_VENDORS: RentalVendor[] = [
       "Local Taxi"
     ],
     highlights: [
-      "Belagala & Mudigere estate routes",
+      "Mudigere & Chikmagalur routes",
       "Direct phone booking with driver"
     ],
     description: "Local taxi for sightseeing."
   },
   {
     id: "myaddi-isama-car",
-    name: "Myaddi Isama Car (Mudigere)",
+    name: "Myaddi Isama",
     location: "Mudigere",
-    locationDetail: "Mudigere Town Hub",
+    locationDetail: "Mudigere",
     address: "Mudigere Town, Chikkamagaluru District",
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Mudigere+Town+Chikkamagaluru",
     category: "taxi",
@@ -138,7 +138,7 @@ export const RENTAL_VENDORS: RentalVendor[] = [
       "Local Taxi"
     ],
     highlights: [
-      "Mudigere, Charmadi & Chikmagalur routes",
+      "Mudigere & Chikmagalur routes",
       "Direct phone booking with driver"
     ],
     description: "Local taxi for sightseeing."
