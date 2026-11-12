@@ -215,7 +215,12 @@ export function useSearchIndex() {
         category: "rentals",
         badge: vendor.badge || tSearch("badgeRentals"),
         tags: [vendor.category, vendor.location, ...vendor.vehicles],
-        icon: vendor.category === "car" ? "ph-car" : "ph-moped",
+        icon:
+          vendor.category === "taxi"
+            ? "ph-taxi"
+            : vendor.category === "car"
+            ? "ph-car"
+            : "ph-moped",
         action: {
           type: "route",
           href: `/rentals#${vendor.id}`,
@@ -223,15 +228,23 @@ export function useSearchIndex() {
         keywords: [
           vendor.name,
           vendor.location,
+          vendor.locationDetail,
+          vendor.address || "",
           vendor.category,
-          "bike rental",
-          "scooter rental",
+          vendor.category === "taxi" ? "taxi" : "self drive",
+          vendor.category === "taxi" ? "cab" : "bike rental",
+          vendor.category === "taxi" ? "driver" : "scooter rental",
+          "ratnagiri road",
+          "vijayapura",
           "car rental",
           "self drive",
           "activa",
           "royal enfield",
           "rentals",
           "rental",
+          "taxi",
+          "ಟ್ಯಾಕ್ಸಿ",
+          "ಡ್ರೈವರ್",
           "ಬಾಡಿಗೆ",
           "ಸ್ಕೂಟರ್",
           "ಬೈಕ್",

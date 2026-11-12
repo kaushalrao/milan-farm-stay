@@ -1,7 +1,7 @@
 export interface RentalVendor {
   id: string;
   name: string;
-  location: "Sakleshpur" | "Chikmagalur" | "Mudigere";
+  location: "Chikmagalur" | "Sakleshpur" | "Mudigere";
   locationDetail: string;
   category: "bike" | "car" | "both" | "taxi";
   websiteUrl?: string;
@@ -13,123 +13,134 @@ export interface RentalVendor {
   highlights: string[];
   description: string;
   address?: string;
+  mapsUrl?: string;
 }
 
 export const RENTAL_VENDORS: RentalVendor[] = [
-  {
-    id: "darshh-rental-sakleshpur",
-    name: "Darshh Rental",
-    location: "Sakleshpur",
-    locationDetail: "Sakleshpur Town & Hassan District (near Bus Stand / Railway Station)",
-    category: "both",
-    websiteUrl: "https://www.selfdrive.bike/",
-    badge: "Sakleshpur Vendor",
-    isFeatured: true,
-    vehicles: [
-      "Scooters (Honda Activa, Dio, etc.)",
-      "Motorcycles (Royal Enfield, Himalayan, etc.)",
-      "Commuter Bikes",
-      "Self-Drive Cars"
-    ],
-    highlights: [
-      "Online booking & availability check on selfdrive.bike",
-      "Pickup in Sakleshpur town (~25-30 mins from Milan Farm)",
-      "Daily & multi-day rental options",
-      "Check rates, deposits & rental policies directly on official website"
-    ],
-    description: "Online platform offering self-drive two-wheelers and cars in Sakleshpur. Useful for exploring Bisle Ghat viewpoints, Manjarabad Fort, Bettada Byraveshwara temple, and Malnad routes."
-  },
+  // 1. Chikmagalur Priority (Self-Drive Rentals)
   {
     id: "royal-brothers-chikmagalur",
     name: "Royal Brothers",
     location: "Chikmagalur",
-    locationDetail: "Chikmagalur Station / Hub",
+    locationDetail: "Jyothi Nagar & Market Road Hubs (App Booking)",
+    address: "Housing Board, Jyothi Nagar / Market Road, Chikmagalur - 577102",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Royal+Brothers+Bike+Rentals+Chikmagalur",
     category: "bike",
     websiteUrl: "https://www.royalbrothers.com/chikmagalur/bike-rentals",
-    badge: "Chikmagalur Platform",
+    badge: "App Booking",
     vehicles: [
-      "Scooters",
-      "Motorcycles & Cruisers"
+      "Scooters (Activa, Dio)",
+      "Bikes (Royal Enfield, Himalayan)"
     ],
     highlights: [
-      "Official website & app booking",
-      "Pickup station in Chikmagalur town",
-      "Check current fleet, rates & deposit requirements on official site"
+      "Official app & website booking with verified fleet",
+      "Pickup hubs around Jyothi Nagar & Market Road"
     ],
-    description: "Self-drive bike and scooter rental platform with a pickup location in Chikmagalur for visiting Mullayanagiri, Bababudangiri, and surrounding areas."
+    description: "Well-known self-drive bike and scooter rental platform with verified fleet and app booking. Convenient for exploring Mullayanagiri, Bababudangiri, and hill roads."
   },
   {
     id: "rock-n-roll-chikmagalur",
     name: "Rock N Roll Bike Rentals",
     location: "Chikmagalur",
-    locationDetail: "Indira Gandhi Road, Chikmagalur",
+    locationDetail: "Chokanna Street, Adarsha Nagara (near Mayura Hotel)",
+    address: "Chokanna Street, near Mayura Hotel (opp. Sai Angels School), Adarsha Nagara, Chikmagalur - 577101",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Rock+N+Roll+Rentals+Bikes+For+Rent+Chikmagalur",
     category: "bike",
     websiteUrl: "https://rocknrollrental.com/",
-    badge: "Chikmagalur Vendor",
+    badge: "Adarsha Nagara",
     vehicles: [
       "Motorcycles",
       "Scooters"
     ],
     highlights: [
-      "Located in Chikmagalur town",
-      "Two-wheeler rental options",
-      "Contact vendor or visit official site for booking and terms"
+      "Chokanna Street, near Mayura Hotel & IG Road",
+      "Flexible daily and multi-day rental options"
     ],
-    description: "Local bike and scooter rental service based in Chikmagalur town for estate routes and hill station travel."
+    description: "Popular local bike and scooter rental service on Chokanna Street, Adarsha Nagara for coffee estate routes and scenic hill station exploration."
   },
   {
     id: "ridez-chikmagalur",
     name: "Ridez Bike Rental",
     location: "Chikmagalur",
-    locationDetail: "Near KSRTC Bus Stand, Chikmagalur",
+    locationDetail: "Ratnagiri Road, Vijayapura (behind Kailash Parbat)",
+    address: "AMS Square, Ratnagiri Road, behind Kailash Parbat Hotel, Vijayapura, Chikmagalur - 577101",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Ridez+Bike+Rental+Ratnagiri+Road+Chikmagalur",
     category: "bike",
     websiteUrl: "https://ridezbikes.com/",
-    badge: "Chikmagalur Vendor",
+    phone: "+919353942371",
+    badge: "Ratnagiri Road",
     vehicles: [
       "Scooters",
       "Motorcycles"
     ],
     highlights: [
-      "Located near Chikmagalur bus stand",
-      "Two-wheeler rental options",
-      "Inquire directly for rates, terms & requirements"
+      "AMS Square, Ratnagiri Road (behind Kailash Parbat)",
+      "Self-drive scooters & bikes for hill exploration"
     ],
-    description: "Rental option located near the transit area in Chikmagalur for travelers arriving by bus."
+    description: "Top-rated two-wheeler rental agency located at AMS Square on Ratnagiri Road, Vijayapura. Great starting point for Mullayanagiri & Bababudangiri."
   },
+
+  // 2. Sakleshpur (Self-Drive Two-Wheelers & Cars)
+  {
+    id: "darshh-rental-sakleshpur",
+    name: "Darshh Rental",
+    location: "Sakleshpur",
+    locationDetail: "Railway Station Road, Lakshmipooram, Sakleshpur",
+    address: "Lakshmipooram Badavane, Railway Station Road, Sakleshpur - 573134",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Darshh+Rental+Railway+Station+Road+Sakleshpur",
+    category: "both",
+    websiteUrl: "https://www.selfdrive.bike/",
+    phone: "+917676875595",
+    badge: "Railway Station Rd",
+    vehicles: [
+      "Scooters",
+      "Motorcycles",
+      "Self-Drive Cars"
+    ],
+    highlights: [
+      "Two-wheelers & self-drive cars on Railway Station Road",
+      "Pickup in Sakleshpur town (~25 mins from Milan Farm)"
+    ],
+    description: "Self-drive rental platform offering two-wheelers and cars on Railway Station Road in Sakleshpur town. Ideal for Bisle Ghat viewpoints and Manjarabad Fort."
+  },
+
+  // 3. Local Taxis with Driver (Mudigere & Surrounds)
   {
     id: "vishwanath-car-belagala",
-    name: "Vishwanath Car Belagala",
+    name: "Vishwanath Car (Belagala)",
     location: "Mudigere",
-    locationDetail: "Belagala, Mudigere & Surrounding Coffee Estates",
+    locationDetail: "Belagala Village, Mudigere (~5 mins from Milan Farm)",
+    address: "Belagala, Mudigere Taluk, Chikkamagaluru District",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Belagala+Mudigere+Karnataka",
     category: "taxi",
     phone: "+919481672571",
-    badge: "Local Taxi Driver",
+    badge: "Near Milan Farm",
     vehicles: [
       "Chauffeur-Driven Private Cab"
     ],
     highlights: [
-      "Local driver familiar with Mudigere & coffee estate routes",
-      "Pre-book via phone call for sightseeing & transfers",
-      "Direct driver contact"
+      "Stationed in Belagala, just ~5 mins from Milan Farm Stay",
+      "Direct phone booking for sightseeing & transfers"
     ],
-    description: "Local taxi service based in Belagala near Milan Farm Stay for guests who prefer to travel with a local driver."
+    description: "Trusted local taxi service based in Belagala near Milan Farm Stay for guests who prefer to relax with a local chauffeur."
   },
   {
     id: "myaddi-isama-car",
-    name: "Myaddi Isama Car",
+    name: "Myaddi Isama Car (Mudigere)",
     location: "Mudigere",
-    locationDetail: "Mudigere, Sakleshpur & Chikmagalur routes",
+    locationDetail: "Mudigere Town (covers Charmadi, Kalasa & Chikmagalur)",
+    address: "Mudigere Town, Chikkamagaluru District",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Mudigere+Town+Chikkamagaluru",
     category: "taxi",
     phone: "+919880947313",
-    badge: "Local Taxi Driver",
+    badge: "Mudigere Town",
     vehicles: [
       "Chauffeur-Driven Private Cab"
     ],
     highlights: [
-      "Sightseeing and station/airport transfers",
-      "Pre-book via phone call",
-      "Direct driver contact"
+      "Full-day sightseeing tours across Charmadi, Kalasa & Chikmagalur",
+      "Station & airport transfer options"
     ],
-    description: "Local cab provider based near Mudigere available for sightseeing day trips and transfers across the region."
+    description: "Local cab and jeep provider based in Mudigere available for sightseeing day trips, hill viewpoints, and transfers across the Malnad region."
   }
 ];

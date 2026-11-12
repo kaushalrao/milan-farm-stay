@@ -10,7 +10,7 @@ export default function RentalsDirectory() {
   const t = useTranslations("Rentals");
   const locale = useLocale();
 
-  const [activeTab, setActiveTab] = useState<"all" | "sakleshpur" | "chikmagalur" | "taxi" | "tips">("all");
+  const [activeTab, setActiveTab] = useState<"all" | "chikmagalur" | "sakleshpur" | "taxi" | "tips">("all");
 
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     document.cookie = `NEXT_LOCALE=${e.target.value}; path=/; max-age=31536000`;
@@ -19,8 +19,8 @@ export default function RentalsDirectory() {
 
   const filteredVendors = RENTAL_VENDORS.filter((vendor) => {
     if (activeTab === "all") return true;
-    if (activeTab === "sakleshpur") return vendor.location === "Sakleshpur";
     if (activeTab === "chikmagalur") return vendor.location === "Chikmagalur";
+    if (activeTab === "sakleshpur") return vendor.location === "Sakleshpur";
     if (activeTab === "taxi") return vendor.category === "taxi";
     return true;
   });
@@ -77,7 +77,7 @@ export default function RentalsDirectory() {
 
       {/* Main Container */}
       <main className="max-w-6xl mx-auto px-4 md:px-6">
-        {/* Tab Filters */}
+        {/* Tab Filters - Chikmagalur first, then Sakleshpur */}
         <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-6 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           <button
             onClick={() => setActiveTab("all")}
@@ -90,16 +90,6 @@ export default function RentalsDirectory() {
             {t("tabAll")}
           </button>
           <button
-            onClick={() => setActiveTab("sakleshpur")}
-            className={`px-4 py-2 rounded-full text-xs md:text-sm font-semibold whitespace-nowrap transition-all ${
-              activeTab === "sakleshpur"
-                ? "bg-dark text-warm-white dark:text-neutral-900 shadow-sm"
-                : "bg-warm-white text-text-muted hover:text-dark dark:hover:text-white border border-border"
-            }`}
-          >
-            {t("tabSakleshpur")}
-          </button>
-          <button
             onClick={() => setActiveTab("chikmagalur")}
             className={`px-4 py-2 rounded-full text-xs md:text-sm font-semibold whitespace-nowrap transition-all ${
               activeTab === "chikmagalur"
@@ -108,6 +98,16 @@ export default function RentalsDirectory() {
             }`}
           >
             {t("tabChikmagalur")}
+          </button>
+          <button
+            onClick={() => setActiveTab("sakleshpur")}
+            className={`px-4 py-2 rounded-full text-xs md:text-sm font-semibold whitespace-nowrap transition-all ${
+              activeTab === "sakleshpur"
+                ? "bg-dark text-warm-white dark:text-neutral-900 shadow-sm"
+                : "bg-warm-white text-text-muted hover:text-dark dark:hover:text-white border border-border"
+            }`}
+          >
+            {t("tabSakleshpur")}
           </button>
           <button
             onClick={() => setActiveTab("taxi")}
@@ -143,53 +143,61 @@ export default function RentalsDirectory() {
         {activeTab !== "tips" && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-14">
             {filteredVendors.map((vendor: RentalVendor) => {
-              const isSakleshpurBike = vendor.id === "darshh-rental-sakleshpur";
+              const isTaxi = vendor.category === "taxi";
 
               return (
                 <div
                   key={vendor.id}
                   id={vendor.id}
-                  className={`bg-warm-white rounded-2xl md:rounded-3xl p-5 md:p-6 shadow-sm border flex flex-col justify-between transition-all hover:shadow-md scroll-mt-28 ${
-                    isSakleshpurBike
-                      ? "border-emerald-500/40 ring-1 ring-emerald-500/20"
-                      : "border-border/80"
+                  className={`bg-warm-white dark:bg-card-dark rounded-2xl md:rounded-3xl p-5 md:p-6 shadow-sm border flex flex-col justify-between transition-all hover:shadow-md scroll-mt-28 ${
+                    isTaxi
+                      ? "border-blue-500/25 hover:border-blue-500/40"
+                      : "border-emerald-500/25 hover:border-emerald-500/40"
                   }`}
                 >
                   <div>
-                    {/* Header */}
-                    <div className="flex items-start justify-between gap-2 mb-3">
-                      <div>
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-stone-100 dark:bg-white/10 text-text-muted">
-                            {vendor.location}
-                          </span>
-                          {vendor.badge && (
-                            <span
-                              className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${
-                                isSakleshpurBike
-                                  ? "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300"
-                                  : "bg-blue-500/10 text-blue-700 dark:text-blue-300"
-                              }`}
-                            >
-                              {vendor.badge}
-                            </span>
-                          )}
-                        </div>
-                        <h3 className="font-serif text-xl font-bold text-dark leading-snug">
-                          {vendor.name}
-                        </h3>
+                    {/* Header: Service Type & Location */}
+                    <div className="flex items-start justify-between gap-2 mb-3.5">
+                      <div className="flex flex-wrap items-center gap-2">
+                        {/* Clear Service Type Badge */}
+                        <span
+                          className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold ${
+                            isTaxi
+                              ? "bg-blue-500/10 text-blue-700 dark:text-blue-300 border border-blue-500/25"
+                              : "bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 border border-emerald-500/25"
+                          }`}
+                        >
+                          <i
+                            className={`ph-fill ${
+                              isTaxi
+                                ? "ph-taxi"
+                                : vendor.category === "car"
+                                ? "ph-car"
+                                : "ph-moped"
+                            } text-xs`}
+                          ></i>
+                          <span>{isTaxi ? t("taxiWithDriver") : t("selfDrive")}</span>
+                        </span>
+
+                        {/* Location Tag */}
+                        <span className="inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-md bg-stone-100 dark:bg-white/10 text-text-muted">
+                          <i className="ph-fill ph-map-pin text-[10px]"></i>
+                          <span>{vendor.location}</span>
+                        </span>
                       </div>
 
+                      {/* Top-Right Decorative Icon */}
                       <div
-                        className={`w-10 h-10 rounded-xl flex items-center justify-center text-xl shrink-0 ${
-                          vendor.category === "taxi"
+                        className={`w-9 h-9 rounded-xl flex items-center justify-center text-lg shrink-0 ${
+                          isTaxi
                             ? "bg-blue-50 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400"
                             : "bg-emerald-50 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400"
                         }`}
+                        aria-hidden="true"
                       >
                         <i
                           className={`ph-fill ${
-                            vendor.category === "taxi"
+                            isTaxi
                               ? "ph-taxi"
                               : vendor.category === "car"
                               ? "ph-car"
@@ -199,20 +207,46 @@ export default function RentalsDirectory() {
                       </div>
                     </div>
 
-                    <p className="text-xs text-text-muted mb-4 leading-relaxed line-clamp-3">
+                    {/* Title */}
+                    <h3 className="font-serif text-xl font-bold text-dark dark:text-warm-white leading-snug mb-1">
+                      {vendor.name}
+                    </h3>
+
+                    {/* Location detail */}
+                    {vendor.mapsUrl ? (
+                      <a
+                        href={vendor.mapsUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs text-text-muted hover:text-emerald-700 dark:hover:text-emerald-400 flex items-center gap-1.5 mb-3 group transition-colors"
+                        title="View location on Google Maps"
+                      >
+                        <i className="ph-bold ph-navigation-arrow text-emerald-600 dark:text-emerald-400 text-xs shrink-0"></i>
+                        <span className="truncate group-hover:underline">{vendor.locationDetail}</span>
+                        <i className="ph-bold ph-arrow-up-right text-[10px] opacity-50 group-hover:opacity-100 shrink-0"></i>
+                      </a>
+                    ) : (
+                      <p className="text-xs text-text-muted flex items-center gap-1.5 mb-3">
+                        <i className="ph-bold ph-navigation-arrow text-emerald-600 dark:text-emerald-400 text-xs shrink-0"></i>
+                        <span className="truncate">{vendor.locationDetail}</span>
+                      </p>
+                    )}
+
+                    {/* Description */}
+                    <p className="text-xs md:text-sm text-text-muted mb-4 leading-relaxed">
                       {vendor.description}
                     </p>
 
-                    {/* Vehicles */}
+                    {/* Available Vehicles */}
                     <div className="mb-4">
-                      <span className="text-[11px] font-bold text-text-muted uppercase tracking-wider block mb-1.5">
+                      <span className="text-[10px] font-bold text-text-muted uppercase tracking-wider block mb-1.5">
                         {t("fleetTypes")}
                       </span>
                       <div className="flex flex-wrap gap-1.5">
                         {vendor.vehicles.map((v, idx) => (
                           <span
                             key={idx}
-                            className="text-[11px] bg-cream dark:bg-white/5 border border-border/50 text-dark dark:text-gray-300 px-2 py-0.5 rounded-md font-medium"
+                            className="text-[11px] bg-cream/70 dark:bg-white/5 border border-border/60 text-dark dark:text-gray-300 px-2 py-0.5 rounded-md font-medium"
                           >
                             {v}
                           </span>
@@ -221,42 +255,56 @@ export default function RentalsDirectory() {
                     </div>
 
                     {/* Highlights */}
-                    <div className="mb-5 space-y-1">
-                      {vendor.highlights.slice(0, 3).map((h, idx) => (
-                        <div key={idx} className="flex items-center gap-1.5 text-xs text-text-muted">
-                          <i className="ph-bold ph-check text-emerald-600 dark:text-emerald-400 text-xs shrink-0"></i>
-                          <span className="line-clamp-1">{h}</span>
+                    <div className="mb-5 space-y-1.5">
+                      {vendor.highlights.map((h, idx) => (
+                        <div key={idx} className="flex items-center gap-2 text-xs text-text-muted">
+                          <i
+                            className={`ph-bold ph-check text-xs shrink-0 ${
+                              isTaxi
+                                ? "text-blue-600 dark:text-blue-400"
+                                : "text-emerald-600 dark:text-emerald-400"
+                            }`}
+                          ></i>
+                          <span>{h}</span>
                         </div>
                       ))}
                     </div>
                   </div>
 
                   {/* Actions */}
-                  <div className="pt-4 border-t border-border/60 flex items-center gap-2 mt-auto">
-                    {vendor.websiteUrl && (
-                      <a
-                        href={vendor.websiteUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl text-xs md:text-sm font-semibold transition-all ${
-                          isSakleshpurBike
-                            ? "bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm"
-                            : "bg-dark text-warm-white dark:text-neutral-900 hover:opacity-90"
-                        }`}
-                      >
-                        <span>{isSakleshpurBike ? t("bookOnline") : t("visitWebsite")}</span>
-                        <i className="ph-bold ph-arrow-up-right text-sm"></i>
-                      </a>
-                    )}
-
-                    {vendor.phone && (
+                  <div className="pt-3.5 border-t border-border/60 flex items-center gap-2 mt-auto">
+                    {isTaxi && vendor.phone ? (
                       <a
                         href={`tel:${vendor.phone}`}
-                        className="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl text-xs md:text-sm font-semibold bg-dark text-warm-white dark:text-neutral-900 hover:opacity-90 transition-all shadow-sm"
+                        className="w-full flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs md:text-sm font-semibold bg-blue-600 hover:bg-blue-700 text-white transition-all shadow-sm active:scale-[0.99]"
                       >
-                        <i className="ph-fill ph-phone text-sm"></i>
-                        <span>{t("callVendor")}</span>
+                        <i className="ph-fill ph-phone-call text-sm"></i>
+                        <span>{t("callDriver")}: {vendor.phone}</span>
                       </a>
+                    ) : (
+                      <div className="w-full flex items-center gap-2">
+                        {vendor.websiteUrl && (
+                          <a
+                            href={vendor.websiteUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl text-xs md:text-sm font-semibold bg-dark text-warm-white dark:bg-emerald-600 dark:text-white hover:opacity-90 transition-all shadow-sm active:scale-[0.99]"
+                          >
+                            <span>{t("visitWebsite")}</span>
+                            <i className="ph-bold ph-arrow-up-right text-sm"></i>
+                          </a>
+                        )}
+                        {vendor.phone && (
+                          <a
+                            href={`tel:${vendor.phone}`}
+                            className="w-10 h-10 flex items-center justify-center rounded-xl bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 text-dark dark:text-white border border-border/70 transition-all shrink-0"
+                            title={`Call ${vendor.name} (${vendor.phone})`}
+                            aria-label={`Call ${vendor.name}`}
+                          >
+                            <i className="ph-fill ph-phone text-sm"></i>
+                          </a>
+                        )}
+                      </div>
                     )}
                   </div>
                 </div>

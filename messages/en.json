@@ -695,7 +695,10 @@
     "tip3Desc": "Fuel stations are readily available in Sakleshpur, Mudigere, and Chikmagalur towns. Always fill up before venturing into remote trails and forest stretches like Bisle or Charmadi.",
     "tip4Title": "Offline Maps & Connectivity",
     "tip4Desc": "Mobile network can be patchy along Ghat stretches. Download offline Google Maps for Sakleshpur, Mudigere, and Chikmagalur to navigate seamlessly without cellular connection.",
-    "vendorDisclaimer": "Disclaimer: Pricing, vehicle availability, security deposits, safety gear, and rental policies are determined solely by each respective vendor. Please check their official websites or contact them directly for current terms."
+    "vendorDisclaimer": "Disclaimer: Pricing, vehicle availability, security deposits, safety gear, and rental policies are determined solely by each respective vendor. Please check their official websites or contact them directly for current terms.",
+    "selfDrive": "Self-Drive Rental",
+    "taxiWithDriver": "Taxi with Driver",
+    "callDriver": "Call Driver"
   },
   "Search": {
     "triggerPlaceholder": "Search places, food, rentals...",
