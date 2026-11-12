@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { ArrowLeft, Coffee, Plus, Minus, User, Sparkles, Check } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+import Coffee3DHero from "./Coffee3DHero";
 import { useTranslations, useLocale } from "next-intl";
 import { COFFEE_PACKS, HOST_PHONE_NUMBER } from "@/data/coffeeData";
 
@@ -170,21 +171,12 @@ export default function CoffeeOrderForm() {
             {t("title")}
           </h2>
 
-          <p className="text-text-muted text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
+          <p className="text-text-muted text-sm sm:text-base max-w-lg mx-auto leading-relaxed mb-6">
             {t("tagline")}
           </p>
 
-          {/* Cupping Notes Pills */}
-          <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
-            {[t("note1"), t("note2"), t("note3"), t("note4")].map((note, idx) => (
-              <span
-                key={idx}
-                className="text-xs font-medium px-3 py-1 rounded-full bg-[#F5F2E9] dark:bg-[#1E1E1E] text-[#4A3B2C] dark:text-[#d4a373] border border-black/5 dark:border-white/5"
-              >
-                ☕ {note}
-              </span>
-            ))}
-          </div>
+          {/* 3D Floating Coffee Pack & Beans Animation */}
+          <Coffee3DHero />
         </div>
 
         {/* Blend Spotlight Card */}
@@ -211,8 +203,31 @@ export default function CoffeeOrderForm() {
           </div>
         </section>
 
+        {/* Guest Details: Name First */}
+        <section className="mb-8" aria-label="Guest details">
+          <div className="bg-white/90 dark:bg-[#1A1A1A] rounded-3xl p-5 sm:p-6 border border-black/8 dark:border-white/8 shadow-xs">
+            <h3 className="text-base sm:text-lg font-serif font-bold text-dark dark:text-white mb-1">
+              {t("guestDetailsTitle")}
+            </h3>
+            <p className="text-xs text-text-muted mb-4">
+              Enter your name so Host Athula Rao K can prepare your order.
+            </p>
+
+            <div className="flex items-center bg-[#F8F9F8] dark:bg-[#242424] rounded-2xl px-4 py-3 border border-black/8 dark:border-white/8 focus-within:border-[#4A3B2C] dark:focus-within:border-[#d4a373] focus-within:ring-2 focus-within:ring-[#4A3B2C]/10 transition-all">
+              <User className="w-5 h-5 text-[#4A3B2C]/70 dark:text-[#d4a373]/80 mr-3 shrink-0" />
+              <input
+                type="text"
+                value={customerName}
+                onChange={(e) => setCustomerName(e.target.value)}
+                placeholder={t("yourNamePlaceholder")}
+                className="bg-transparent border-none outline-none text-text-main w-full text-base font-semibold placeholder:text-text-muted/50"
+              />
+            </div>
+          </div>
+        </section>
+
         {/* Pack Selection */}
-        <section className="mb-8" aria-label="Pack size and quantity selection">
+        <section className="mb-10" aria-label="Pack size and quantity selection">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg sm:text-xl font-serif font-bold text-dark dark:text-white">
               {t("selectQuantity")}
@@ -315,29 +330,6 @@ export default function CoffeeOrderForm() {
                 </div>
               );
             })}
-          </div>
-        </section>
-
-        {/* Guest Details: Name Only */}
-        <section className="mb-10" aria-label="Guest details">
-          <div className="bg-white/90 dark:bg-[#1A1A1A] rounded-3xl p-5 sm:p-6 border border-black/8 dark:border-white/8 shadow-xs">
-            <h3 className="text-base sm:text-lg font-serif font-bold text-dark dark:text-white mb-1">
-              {t("guestDetailsTitle")}
-            </h3>
-            <p className="text-xs text-text-muted mb-4">
-              Enter your name so Host Athula Rao K can prepare your order.
-            </p>
-
-            <div className="flex items-center bg-[#F8F9F8] dark:bg-[#242424] rounded-2xl px-4 py-3 border border-black/8 dark:border-white/8 focus-within:border-[#4A3B2C] dark:focus-within:border-[#d4a373] focus-within:ring-2 focus-within:ring-[#4A3B2C]/10 transition-all">
-              <User className="w-5 h-5 text-[#4A3B2C]/70 dark:text-[#d4a373]/80 mr-3 shrink-0" />
-              <input
-                type="text"
-                value={customerName}
-                onChange={(e) => setCustomerName(e.target.value)}
-                placeholder={t("yourNamePlaceholder")}
-                className="bg-transparent border-none outline-none text-text-main w-full text-base font-semibold placeholder:text-text-muted/50"
-              />
-            </div>
           </div>
         </section>
       </div>
