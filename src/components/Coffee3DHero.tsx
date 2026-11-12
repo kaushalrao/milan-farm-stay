@@ -178,9 +178,9 @@ export default function Coffee3DHero() {
         whileTap={{ scale: 0.98 }}
       >
         {/* Standalone Transparent Coffee Pouch Silhouette */}
-        <div className="relative filter drop-shadow-[0_20px_35px_rgba(0,0,0,0.7)]">
+        <div className="relative">
           <Image
-            src="/images/coffee_pouch_transparent.png"
+            src="/images/coffee_pouch_v2.png"
             alt="Milan Farm Stay Estate Coffee Powder"
             width={480}
             height={600}
