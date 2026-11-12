@@ -698,7 +698,8 @@
     "vendorDisclaimer": "Disclaimer: Pricing, vehicle availability, security deposits, safety gear, and rental policies are determined solely by each respective vendor. Please check their official websites or contact them directly for current terms.",
     "selfDrive": "Self-Drive Rental",
     "taxiWithDriver": "Taxi with Driver",
-    "callDriver": "Call Driver"
+    "callDriver": "Call Driver",
+    "copied": "Copied!"
   },
   "Search": {
     "triggerPlaceholder": "Search places, food, rentals...",
