@@ -293,7 +293,7 @@ export default function SearchModal() {
                       tSearch("suggestMullayanagiri"),
                       tSearch("suggestFood"),
                       tSearch("suggestRentals"),
-                      tSearch("suggestCheckInOut"),
+                      tSearch("suggestDevaramane"),
                     ].map((suggest) => (
                       <button
                         key={suggest}

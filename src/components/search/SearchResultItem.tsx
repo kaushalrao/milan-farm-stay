@@ -46,8 +46,6 @@ export default function SearchResultItem({
         return "bg-amber-500/10 text-amber-700 dark:text-amber-400 border-amber-500/20";
       case "rentals":
         return "bg-sky-500/10 text-sky-700 dark:text-sky-400 border-sky-500/20";
-      case "faq":
-        return "bg-purple-500/10 text-purple-700 dark:text-purple-400 border-purple-500/20";
       case "actions":
       default:
         return "bg-rose-500/10 text-airbnb-coral dark:text-rose-400 border-rose-500/20";

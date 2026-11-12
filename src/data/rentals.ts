@@ -116,31 +116,31 @@ export const RENTAL_VENDORS: RentalVendor[] = [
     phone: "+919481672571",
     badge: "Near Milan Farm",
     vehicles: [
-      "Chauffeur-Driven Private Cab"
+      "Local Taxi"
     ],
     highlights: [
-      "Stationed in Belagala, just ~5 mins from Milan Farm Stay",
-      "Direct phone booking for sightseeing & transfers"
+      "Belagala & Mudigere estate routes",
+      "Direct phone booking with driver"
     ],
-    description: "Trusted local taxi service based in Belagala near Milan Farm Stay for guests who prefer to relax with a local chauffeur."
+    description: "Local taxi for sightseeing."
   },
   {
     id: "myaddi-isama-car",
     name: "Myaddi Isama Car (Mudigere)",
     location: "Mudigere",
-    locationDetail: "Mudigere Town (covers Charmadi, Kalasa & Chikmagalur)",
+    locationDetail: "Mudigere Town Hub",
     address: "Mudigere Town, Chikkamagaluru District",
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Mudigere+Town+Chikkamagaluru",
     category: "taxi",
     phone: "+919880947313",
     badge: "Mudigere Town",
     vehicles: [
-      "Chauffeur-Driven Private Cab"
+      "Local Taxi"
     ],
     highlights: [
-      "Full-day sightseeing tours across Charmadi, Kalasa & Chikmagalur",
-      "Station & airport transfer options"
+      "Mudigere, Charmadi & Chikmagalur routes",
+      "Direct phone booking with driver"
     ],
-    description: "Local cab and jeep provider based in Mudigere available for sightseeing day trips, hill viewpoints, and transfers across the Malnad region."
+    description: "Local taxi for sightseeing."
   }
 ];

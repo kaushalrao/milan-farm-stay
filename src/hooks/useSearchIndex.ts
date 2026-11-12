@@ -33,17 +33,6 @@ interface RawRestaurant {
   mapsUrl?: string;
 }
 
-interface RawFaq {
-  q: string;
-  a: string;
-}
-
-interface RawTip {
-  title: string;
-  desc: string;
-  icon?: string;
-}
-
 export function useSearchIndex() {
   const tData = useTranslations("Data");
   const tPage = useTranslations("Page");
@@ -90,6 +79,30 @@ export function useSearchIndex() {
           if (!stop?.title) return;
           const tags = [stop.category, stop.drivingTime, stop.duration].filter((t): t is string => Boolean(t));
           const stopSlug = stop.title ? `stop-${stop.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}` : `stop-${idx}`;
+          const lowerStopTitle = stop.title.toLowerCase();
+
+          // Build stop-specific keywords to ensure search precision
+          const specificKeywords: string[] = [
+            stop.title,
+            stop.category || "",
+            `day ${dayId}`,
+          ];
+
+          if (lowerStopTitle.includes("mullayanagiri")) specificKeywords.push("ಮುಳ್ಳಯ್ಯನಗಿರಿ", "mullayanagiri peak");
+          if (lowerStopTitle.includes("devaramane")) specificKeywords.push("ದೇವರಮನೆ", "devaramane viewpoint", "devaramane betta");
+          if (lowerStopTitle.includes("jhari")) specificKeywords.push("ಜಹಾರಿ", "ಝರಿ", "jhari falls", "buttermilk falls");
+          if (lowerStopTitle.includes("bababudan")) specificKeywords.push("ಬಾಬಾಬುಡನ್", "bababudangiri", "dattatreya peetha");
+          if (lowerStopTitle.includes("halebidu") || lowerStopTitle.includes("hoysaleswara")) specificKeywords.push("ಹಳೇಬೀಡು", "ಹೊಯ್ಸಳೇಶ್ವರ", "halebidu temple");
+          if (lowerStopTitle.includes("belur") || lowerStopTitle.includes("chennakeshava")) specificKeywords.push("ಬೇಲೂರು", "ಚೆನ್ನಕೇಶವ", "belur temple");
+          if (lowerStopTitle.includes("charmadi")) specificKeywords.push("ಚಾರ್ಮಾಡಿ", "charmadi ghat");
+          if (lowerStopTitle.includes("kalasa") || lowerStopTitle.includes("horanadu")) specificKeywords.push("ಕಳಸ", "ಹೊರನಾಡು");
+          if (lowerStopTitle.includes("ettina bhuja")) specificKeywords.push("ಎತ್ತಿನ ಭುಜ", "byraveshwara");
+          if (lowerStopTitle.includes("netravati")) specificKeywords.push("ನೇತ್ರಾವತಿ", "netravati trek");
+          if (lowerStopTitle.includes("bandaje")) specificKeywords.push("ಬಂಡಾಜೆ", "bandaje arbi falls");
+          if (lowerStopTitle.includes("yagachi")) specificKeywords.push("ಯಾಗಚಿ", "yagachi dam", "water sports");
+          if (lowerStopTitle.includes("doddagaddavalli")) specificKeywords.push("ದೊಡ್ಡಗದ್ದವಳ್ಳಿ", "lakshmi temple");
+          if (lowerStopTitle.includes("kelagur")) specificKeywords.push("ಕೆಳಗೂರು", "tea estate");
+
           items.push({
             id: `stop-day${dayId}-${idx}`,
             title: stop.title,
@@ -102,25 +115,7 @@ export function useSearchIndex() {
               type: "anchor",
               href: `/?day=${dayId}#${stopSlug}`,
             },
-            keywords: [
-              stop.title,
-              stop.category || "",
-              stop.drivingTime || "",
-              stop.bestTime || "",
-              `day ${dayId}`,
-              "sightseeing",
-              "viewpoint",
-              "waterfall",
-              "temple",
-              "ಮುಳ್ಳಯ್ಯನಗಿರಿ",
-              "mullayanagiri",
-              "ದೇವರಮನೆ",
-              "devaramane",
-              "ಜಹಾರಿ",
-              "jhari",
-              "ಬಾಬಾಬುಡನ್",
-              "bababudangiri",
-            ].filter(Boolean),
+            keywords: specificKeywords.filter(Boolean),
           });
         });
       }
@@ -257,83 +252,7 @@ export function useSearchIndex() {
       });
     });
 
-    // 6. FAQs
-    try {
-      const faqs = (tData.raw("faqs") as RawFaq[]) || [];
-      faqs.forEach((faq, idx) => {
-        if (!faq?.q) return;
-        items.push({
-          id: `faq-${idx}`,
-          title: faq.q,
-          description: faq.a,
-          category: "faq",
-          badge: tSearch("badgeFaq"),
-          tags: ["FAQ", "Help", "Info"],
-          icon: "ph-question",
-          action: {
-            type: "anchor",
-            href: "/#plan",
-          },
-          keywords: [
-            faq.q,
-            faq.a,
-            "timing",
-            "check in",
-            "check-in",
-            "check out",
-            "check-out",
-            "pet",
-            "pets",
-            "cab",
-            "pickup",
-            "taxi",
-            "ಚೆಕ್-ಇನ್",
-            "ಚೆಕ್-ಔಟ್",
-            "ಸಮಯ",
-            "ಪ್ರಶ್ನೆ",
-          ],
-        });
-      });
-    } catch (e) {
-      console.warn("Failed to index FAQs", e);
-    }
-
-    // 7. Local Tips
-    try {
-      const tips = (tData.raw("localTips") as RawTip[]) || [];
-      tips.forEach((tip, idx) => {
-        if (!tip?.title) return;
-        items.push({
-          id: `tip-${idx}`,
-          title: tip.title,
-          description: tip.desc,
-          category: "faq",
-          badge: tSearch("badgeTip"),
-          tags: ["Tip", "Advice"],
-          icon: tip.icon || "ph-lightbulb",
-          action: {
-            type: "anchor",
-            href: "/#plan",
-          },
-          keywords: [
-            tip.title,
-            tip.desc,
-            "network",
-            "airtel",
-            "jio",
-            "clothing",
-            "packing",
-            "weather",
-            "ಸಲಹೆ",
-            "ನೆಟ್‌ವರ್ಕ್",
-          ],
-        });
-      });
-    } catch (e) {
-      console.warn("Failed to index tips", e);
-    }
-
-    // 8. Hosts & Contacts
+    // 6. Hosts & Contacts
     try {
       items.push({
         id: "host-athula",
@@ -470,19 +389,19 @@ export function useSearchIndex() {
       description: tSearch("actionTaxiDesc"),
       category: "actions",
       badge: tSearch("badgeRentals"),
-      tags: ["Taxi", "Jeep", "Driver"],
+      tags: ["Taxi", "Cab", "Driver"],
       icon: "ph-taxi",
       action: {
-        type: "anchor",
-        href: "/#taxi",
+        type: "route",
+        href: "/rentals",
       },
-      keywords: ["taxi", "jeep", "cab", "driver", "off road", "transport", "ಟ್ಯಾಕ್ಸಿ", "ಜೀಪ್", "ಚಾಲಕ"],
+      keywords: ["taxi", "cab", "driver", "transport", "ಟ್ಯಾಕ್ಸಿ", "ಕ್ಯಾಬ್", "ಚಾಲಕ"],
     });
 
     return items;
   }, [tData, tPage, tSearch]);
 
-  // Search function that scores and sorts results
+  // Search function that scores and sorts results dynamically with high precision
   const search = (query: string, category: SearchCategory = "all"): SearchItem[] => {
     const trimmed = query.trim().toLowerCase();
     
@@ -493,7 +412,7 @@ export function useSearchIndex() {
       return pool;
     }
 
-    const words = trimmed.split(/\s+/).filter(Boolean);
+    const words = trimmed.split(/\s+/).filter((w) => w.length > 0);
 
     const scored = pool
       .map((item) => {
@@ -504,23 +423,62 @@ export function useSearchIndex() {
         const keywords = (item.keywords || []).map((k) => k.toLowerCase());
         const tags = (item.tags || []).map((t) => t.toLowerCase());
 
-        // Exact full title match
-        if (lowerTitle === trimmed) score += 120;
-        else if (lowerTitle.startsWith(trimmed)) score += 90;
-        else if (lowerTitle.includes(trimmed)) score += 60;
+        // 1. Exact full query matches on title (highest relevance)
+        if (lowerTitle === trimmed) score += 200;
+        else if (lowerTitle.startsWith(trimmed)) score += 120;
+        else if (lowerTitle.includes(trimmed)) score += 80;
 
-        // Keywords & Tags matching
-        if (keywords.some((k) => k === trimmed)) score += 70;
-        else if (keywords.some((k) => k.startsWith(trimmed) || k.includes(trimmed))) score += 40;
-        if (tags.some((t) => t.includes(trimmed))) score += 30;
+        // 2. Keyword exact & prefix matching
+        if (keywords.some((k) => k === trimmed)) score += 100;
+        else if (keywords.some((k) => k.startsWith(trimmed))) score += 60;
+        else if (keywords.some((k) => k.includes(trimmed))) score += 40;
 
-        // Individual word hits across title, desc, keywords
+        // 3. Tag matching
+        if (tags.some((t) => t === trimmed)) score += 50;
+        else if (tags.some((t) => t.includes(trimmed))) score += 30;
+
+        // 4. Word-by-word matching
+        let matchedWordsCount = 0;
         words.forEach((w) => {
-          if (lowerTitle.includes(w)) score += 25;
-          if (keywords.some((k) => k.includes(w))) score += 15;
-          if (lowerDesc.includes(w)) score += 10;
-          if (lowerBadge.includes(w)) score += 8;
+          let wordMatched = false;
+          // Match word in title
+          if (lowerTitle.includes(w)) {
+            score += 35;
+            wordMatched = true;
+          }
+          // Match word in keywords
+          if (keywords.some((k) => k.includes(w))) {
+            score += 20;
+            wordMatched = true;
+          }
+          // Match word in badge (e.g. Day 1, Food)
+          if (lowerBadge.includes(w)) {
+            score += 15;
+            wordMatched = true;
+          }
+          // Match word in description ONLY if word has length >= 3 to avoid noise from short common words
+          if (w.length >= 3 && lowerDesc.includes(w)) {
+            score += 10;
+            wordMatched = true;
+          }
+          if (wordMatched) matchedWordsCount++;
         });
+
+        // For multi-word queries, penalize items that don't match all words
+        if (words.length > 1 && matchedWordsCount < words.length && !lowerTitle.includes(trimmed)) {
+          score = Math.floor(score * 0.5);
+        }
+
+        // For short queries (< 3 chars), require at least a title, tag or keyword match
+        if (trimmed.length < 3) {
+          const hasTitleOrKeywordMatch = 
+            lowerTitle.includes(trimmed) || 
+            keywords.some((k) => k.startsWith(trimmed)) ||
+            tags.some((t) => t.startsWith(trimmed));
+          if (!hasTitleOrKeywordMatch) {
+            score = 0;
+          }
+        }
 
         return { item, score };
       })

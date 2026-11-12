@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 
 interface CategoryOption {
   id: SearchCategory;
-  labelKey: "all" | "itinerary" | "food" | "rentals" | "faq" | "actions";
+  labelKey: "all" | "itinerary" | "food" | "rentals" | "actions";
   icon: string;
 }
 
@@ -15,7 +15,6 @@ const CATEGORIES: CategoryOption[] = [
   { id: "itinerary", labelKey: "itinerary", icon: "ph-map-pin" },
   { id: "food", labelKey: "food", icon: "ph-cooking-pot" },
   { id: "rentals", labelKey: "rentals", icon: "ph-moped" },
-  { id: "faq", labelKey: "faq", icon: "ph-question" },
   { id: "actions", labelKey: "actions", icon: "ph-lightning" },
 ];
 
@@ -44,9 +43,9 @@ export default function SearchCategoryFilter({
             key={cat.id}
             type="button"
             onClick={() => onSelectCategory(cat.id)}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full font-medium whitespace-nowrap transition-all cursor-pointer shrink-0 select-none ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full font-semibold whitespace-nowrap transition-all cursor-pointer shrink-0 select-none ${
               isActive
-                ? "bg-dark text-warm-white dark:bg-warm-white dark:text-dark shadow-xs"
+                ? "bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 shadow-xs"
                 : "bg-cream/60 dark:bg-white/5 text-text-muted hover:text-text-main hover:bg-cream dark:hover:bg-white/10"
             }`}
           >
@@ -56,7 +55,7 @@ export default function SearchCategoryFilter({
               <span
                 className={`text-[10px] px-1.5 py-0.2 rounded-full font-semibold ${
                   isActive
-                    ? "bg-warm-white/20 dark:bg-dark/20 text-warm-white dark:text-dark"
+                    ? "bg-white/20 dark:bg-black/15 text-white dark:text-neutral-900"
                     : "bg-border/60 text-text-muted"
                 }`}
               >

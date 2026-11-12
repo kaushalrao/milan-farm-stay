@@ -48,8 +48,8 @@ export default function RentalsDirectory() {
   return (
     <div className="min-h-screen bg-cream text-text-main pb-24">
       {/* Top Header */}
-      <header className="sticky top-0 z-40 bg-warm-white/90 backdrop-blur-md border-b border-border/60 py-3.5 px-4 md:px-8">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
+      <header className="sticky top-0 z-40 h-14 bg-warm-white/90 backdrop-blur-md border-b border-border/60 px-4 md:px-8 flex items-center">
+        <div className="w-full max-w-6xl mx-auto flex items-center justify-between">
           <Link
             href="/"
             className="group flex items-center gap-2 text-sm md:text-base font-semibold text-text-main hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors"
@@ -100,36 +100,41 @@ export default function RentalsDirectory() {
         </motion.div>
       </section>
 
+      {/* Sticky Filter Bar on scroll */}
+      <div className="sticky top-14 z-30 bg-cream/90 backdrop-blur-md border-b border-border/50 py-2.5 px-4 md:px-6 mb-6 transition-colors shadow-xs">
+        <div className="max-w-6xl mx-auto overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+          <div className="w-max min-w-full mx-auto flex items-center justify-start md:justify-center gap-2 px-1">
+            {tabs.map((tab) => {
+              const isActive = activeTab === tab.id;
+              return (
+                <motion.button
+                  key={tab.id}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`relative px-4 py-2 rounded-full text-xs md:text-sm font-semibold whitespace-nowrap transition-colors flex items-center gap-1.5 shrink-0 select-none ${
+                    isActive
+                      ? "text-white dark:text-neutral-900"
+                      : "text-text-muted hover:text-dark dark:hover:text-white bg-warm-white dark:bg-[#1A1A1A] border border-border"
+                  }`}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeRentalTabPill"
+                      className="absolute inset-0 bg-neutral-900 dark:bg-white rounded-full shadow-sm"
+                      transition={{ type: "spring", stiffness: 450, damping: 32 }}
+                    />
+                  )}
+                  <i className={`ph-fill ${tab.icon} relative z-10 text-xs`}></i>
+                  <span className="relative z-10">{tab.label}</span>
+                </motion.button>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
       {/* Main Container */}
       <main className="max-w-6xl mx-auto px-4 md:px-6">
-        {/* Tab Filters with Smooth Animated Sliding Pill */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-6 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-          {tabs.map((tab) => {
-            const isActive = activeTab === tab.id;
-            return (
-              <motion.button
-                key={tab.id}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setActiveTab(tab.id)}
-                className={`relative px-4 py-2 rounded-full text-xs md:text-sm font-semibold whitespace-nowrap transition-colors flex items-center gap-1.5 ${
-                  isActive
-                    ? "text-warm-white dark:text-neutral-900"
-                    : "text-text-muted hover:text-dark dark:hover:text-white bg-warm-white dark:bg-card-dark border border-border"
-                }`}
-              >
-                {isActive && (
-                  <motion.div
-                    layoutId="activeRentalTabPill"
-                    className="absolute inset-0 bg-dark dark:bg-warm-white rounded-full shadow-sm"
-                    transition={{ type: "spring", stiffness: 450, damping: 32 }}
-                  />
-                )}
-                <i className={`ph-fill ${tab.icon} relative z-10 text-xs`}></i>
-                <span className="relative z-10">{tab.label}</span>
-              </motion.button>
-            );
-          })}
-        </div>
 
         {/* Disclaimer Note */}
         <motion.div
@@ -164,7 +169,7 @@ export default function RentalsDirectory() {
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.25, ease: "easeOut" }}
                     whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                    className={`group relative overflow-hidden bg-warm-white dark:bg-card-dark rounded-2xl md:rounded-3xl p-5 md:p-6 shadow-sm border flex flex-col justify-between transition-all hover:shadow-lg scroll-mt-28 ${
+                    className={`group relative overflow-hidden bg-warm-white dark:bg-[#1A1A1A] rounded-2xl md:rounded-3xl p-5 md:p-6 shadow-sm border flex flex-col justify-between transition-all hover:shadow-lg scroll-mt-28 ${
                       isTaxi
                         ? "border-blue-500/25 hover:border-blue-500/50 hover:shadow-blue-500/5"
                         : "border-emerald-500/25 hover:border-emerald-500/50 hover:shadow-emerald-500/5"
@@ -237,7 +242,7 @@ export default function RentalsDirectory() {
                       </div>
 
                       {/* Title */}
-                      <h3 className="font-serif text-xl font-bold text-dark dark:text-warm-white leading-snug mb-1">
+                      <h3 className="font-serif text-xl font-bold text-dark dark:text-white leading-snug mb-1">
                         {vendor.name}
                       </h3>
 
@@ -266,24 +271,26 @@ export default function RentalsDirectory() {
                         {vendor.description}
                       </p>
 
-                      {/* Available Vehicles Chips with Subtle Micro-hover */}
-                      <div className="mb-4">
-                        <span className="text-[10px] font-bold text-text-muted uppercase tracking-wider block mb-1.5">
-                          {t("fleetTypes")}
-                        </span>
-                        <div className="flex flex-wrap gap-1.5">
-                          {vendor.vehicles.map((v, idx) => (
-                            <motion.span
-                              key={idx}
-                              whileHover={{ scale: 1.05 }}
-                              transition={{ duration: 0.15 }}
-                              className="text-[11px] bg-cream/70 dark:bg-white/5 border border-border/60 hover:border-emerald-500/40 text-dark dark:text-gray-300 px-2 py-0.5 rounded-md font-medium transition-colors cursor-default select-none"
-                            >
-                              {v}
-                            </motion.span>
-                          ))}
+                      {/* Available Vehicles Chips with Subtle Micro-hover (Rentals only) */}
+                      {!isTaxi && vendor.vehicles.length > 0 && (
+                        <div className="mb-4">
+                          <span className="text-[10px] font-bold text-text-muted uppercase tracking-wider block mb-1.5">
+                            {t("fleetTypes")}
+                          </span>
+                          <div className="flex flex-wrap gap-1.5">
+                            {vendor.vehicles.map((v, idx) => (
+                              <motion.span
+                                key={idx}
+                                whileHover={{ scale: 1.05 }}
+                                transition={{ duration: 0.15 }}
+                                className="text-[11px] bg-cream/70 dark:bg-white/5 border border-border/60 hover:border-emerald-500/40 text-dark dark:text-gray-300 px-2 py-0.5 rounded-md font-medium transition-colors cursor-default select-none"
+                              >
+                                {v}
+                              </motion.span>
+                            ))}
+                          </div>
                         </div>
-                      </div>
+                      )}
 
                       {/* Highlights */}
                       <div className="mb-5 space-y-1.5">

@@ -38,11 +38,6 @@ export default function SearchSuggestions({
         icon: "ph-moped",
       },
       {
-        label: tSearch("suggestCheckInOut"),
-        query: tSearch("suggestCheckInOut"),
-        icon: "ph-clock",
-      },
-      {
         label: tSearch("suggestDevaramane"),
         query: tSearch("suggestDevaramane"),
         icon: "ph-camera",
@@ -54,10 +49,9 @@ export default function SearchSuggestions({
         icon: "ph-taxi",
       },
       {
-        label: tSearch("suggestTips"),
-        query: tSearch("suggestTips"),
-        category: "faq" as SearchCategory,
-        icon: "ph-lightbulb",
+        label: tSearch("suggestCharmadi"),
+        query: tSearch("suggestCharmadi"),
+        icon: "ph-compass",
       },
     ],
     [tSearch]

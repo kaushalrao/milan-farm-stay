@@ -3,7 +3,6 @@ export type SearchCategory =
   | "itinerary" 
   | "food" 
   | "rentals" 
-  | "faq" 
   | "actions";
 
 export interface SearchAction {
@@ -16,7 +15,7 @@ export interface SearchItem {
   id: string;
   title: string;
   description: string;
-  category: "itinerary" | "food" | "rentals" | "faq" | "actions";
+  category: "itinerary" | "food" | "rentals" | "actions";
   tags?: string[];
   badge?: string;
   icon?: string;
