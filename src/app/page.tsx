@@ -22,7 +22,7 @@ export default function Home() {
         <TripCards />
 
         <section className="pt-2 md:pt-8 pb-8 scroll-mt-24" id="contacts">
-          <div className="container mx-auto px-6 max-w-5xl lg:max-w-7xl">
+          <div className="container mx-auto px-4 sm:px-6 max-w-5xl lg:max-w-7xl">
             <div className="flex items-center gap-4 mb-8 md:mb-10">
               <div className="flex-1 h-px bg-border"></div>
               <h2 className="font-serif text-lg md:text-2xl lg:text-3xl font-semibold text-text-muted/80 tracking-wide text-center uppercase">
@@ -66,7 +66,7 @@ export default function Home() {
         </section>
 
         <section className="pb-8 md:pb-6 lg:pb-1 scroll-mt-24" id="taxi">
-          <div className="container mx-auto px-6 max-w-5xl lg:max-w-7xl">
+          <div className="container mx-auto px-4 sm:px-6 max-w-5xl lg:max-w-7xl">
             <div className="flex items-center gap-4 mb-8 md:mb-10">
               <div className="flex-1 h-px bg-border"></div>
               <h2 className="font-serif text-lg md:text-2xl lg:text-3xl font-semibold text-text-muted/80 tracking-wide text-center uppercase">
