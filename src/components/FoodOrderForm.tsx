@@ -239,6 +239,7 @@ export default function FoodOrderForm() {
                 <option value="te">తెలుగు</option>
                 <option value="ta">தமிழ்</option>
                 <option value="ml">മലയാളം</option>
+                <option value="hi">हिन्दी</option>
               </select>
             </div>
           </div>

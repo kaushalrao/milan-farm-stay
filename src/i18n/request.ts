@@ -7,7 +7,7 @@ export default getRequestConfig(async () => {
   
   let locale = localeCookie || 'en';
   
-  if (!['en', 'kn', 'te', 'ta', 'ml'].includes(locale)) {
+  if (!['en', 'kn', 'te', 'ta', 'ml', 'hi'].includes(locale)) {
     locale = 'en';
   }
   

@@ -57,7 +57,7 @@ export function useSearchIndex() {
             type: "anchor",
             href: `/?day=${trip.id}#plan`,
           },
-          keywords: [trip.destination, "day", `day ${trip.id}`, "ದಿನ", ...(trip.tags || [])],
+          keywords: [trip.destination, "day", `day ${trip.id}`, "ದಿನ", "दिन", ...(trip.tags || [])],
         });
       });
     } catch (e) {
@@ -88,20 +88,20 @@ export function useSearchIndex() {
             `day ${dayId}`,
           ];
 
-          if (lowerStopTitle.includes("mullayanagiri")) specificKeywords.push("ಮುಳ್ಳಯ್ಯನಗಿರಿ", "mullayanagiri peak");
-          if (lowerStopTitle.includes("devaramane")) specificKeywords.push("ದೇವರಮನೆ", "devaramane viewpoint", "devaramane betta");
-          if (lowerStopTitle.includes("jhari")) specificKeywords.push("ಜಹಾರಿ", "ಝರಿ", "jhari falls", "buttermilk falls");
-          if (lowerStopTitle.includes("bababudan")) specificKeywords.push("ಬಾಬಾಬುಡನ್", "bababudangiri", "dattatreya peetha");
-          if (lowerStopTitle.includes("halebidu") || lowerStopTitle.includes("hoysaleswara")) specificKeywords.push("ಹಳೇಬೀಡು", "ಹೊಯ್ಸಳೇಶ್ವರ", "halebidu temple");
-          if (lowerStopTitle.includes("belur") || lowerStopTitle.includes("chennakeshava")) specificKeywords.push("ಬೇಲೂರು", "ಚೆನ್ನಕೇಶವ", "belur temple");
-          if (lowerStopTitle.includes("charmadi")) specificKeywords.push("ಚಾರ್ಮಾಡಿ", "charmadi ghat");
-          if (lowerStopTitle.includes("kalasa") || lowerStopTitle.includes("horanadu")) specificKeywords.push("ಕಳಸ", "ಹೊರನಾಡು");
-          if (lowerStopTitle.includes("ettina bhuja")) specificKeywords.push("ಎತ್ತಿನ ಭುಜ", "byraveshwara");
-          if (lowerStopTitle.includes("netravati")) specificKeywords.push("ನೇತ್ರಾವತಿ", "netravati trek");
-          if (lowerStopTitle.includes("bandaje")) specificKeywords.push("ಬಂಡಾಜೆ", "bandaje arbi falls");
-          if (lowerStopTitle.includes("yagachi")) specificKeywords.push("ಯಾಗಚಿ", "yagachi dam", "water sports");
-          if (lowerStopTitle.includes("doddagaddavalli")) specificKeywords.push("ದೊಡ್ಡಗದ್ದವಳ್ಳಿ", "lakshmi temple");
-          if (lowerStopTitle.includes("kelagur")) specificKeywords.push("ಕೆಳಗೂರು", "tea estate");
+          if (lowerStopTitle.includes("mullayanagiri")) specificKeywords.push("ಮುಳ್ಳಯ್ಯನಗಿರಿ", "मुल्लायनगिरि", "mullayanagiri peak");
+          if (lowerStopTitle.includes("devaramane")) specificKeywords.push("ದೇವರಮನೆ", "देवरामाने", "devaramane viewpoint", "devaramane betta");
+          if (lowerStopTitle.includes("jhari")) specificKeywords.push("ಜಹಾರಿ", "ಝರಿ", "झरी", "jhari falls", "buttermilk falls");
+          if (lowerStopTitle.includes("bababudan")) specificKeywords.push("ಬಾಬಾಬುಡನ್", "बाबाबूदन", "bababudangiri", "dattatreya peetha");
+          if (lowerStopTitle.includes("halebidu") || lowerStopTitle.includes("hoysaleswara")) specificKeywords.push("ಹಳೇಬೀಡು", "हलेबीडू", "ಹೊಯ್ಸಳೇಶ್ವರ", "होयसलेश्वर", "halebidu temple");
+          if (lowerStopTitle.includes("belur") || lowerStopTitle.includes("chennakeshava")) specificKeywords.push("ಬೇಲೂರು", "बेलूर", "ಚೆನ್ನಕೇಶವ", "चेन्नाकेशव", "belur temple");
+          if (lowerStopTitle.includes("charmadi")) specificKeywords.push("ಚಾರ್ಮಾಡಿ", "चारमाडी", "charmadi ghat");
+          if (lowerStopTitle.includes("kalasa") || lowerStopTitle.includes("horanadu")) specificKeywords.push("ಕಳಸ", "कलसा", "ಹೊರನಾಡು", "होरानाडू");
+          if (lowerStopTitle.includes("ettina bhuja")) specificKeywords.push("ಎತ್ತಿನ ಭುಜ", "एत्तिना भुजा", "byraveshwara");
+          if (lowerStopTitle.includes("netravati")) specificKeywords.push("ನೇತ್ರಾವತಿ", "नेत्रावती", "netravati trek");
+          if (lowerStopTitle.includes("bandaje")) specificKeywords.push("ಬಂಡಾಜೆ", "बंडाजे", "bandaje arbi falls");
+          if (lowerStopTitle.includes("yagachi")) specificKeywords.push("ಯಾಗಚಿ", "यागाची", "yagachi dam", "water sports");
+          if (lowerStopTitle.includes("doddagaddavalli")) specificKeywords.push("ದೊಡ್ಡಗದ್ದವಳ್ಳಿ", "दोड्डगद्दवल्ली", "lakshmi temple");
+          if (lowerStopTitle.includes("kelagur")) specificKeywords.push("ಕೆಳಗೂರು", "केलागुर", "tea estate");
 
           items.push({
             id: `stop-day${dayId}-${idx}`,
@@ -266,7 +266,7 @@ export function useSearchIndex() {
           type: "anchor",
           href: "/#host-athula",
         },
-        keywords: ["athula", "host", "call host", "contact", "emergency", "manager", "ಅತುಲ", "ಹೋಸ್ಟ್"],
+        keywords: ["athula", "host", "call host", "contact", "emergency", "manager", "ಅತುಲ", "ಹೋಸ್ಟ್", "अतुल", "होस्ट"],
       });
 
       items.push({
@@ -281,7 +281,7 @@ export function useSearchIndex() {
           type: "anchor",
           href: "/#host-kaushal",
         },
-        keywords: ["kaushal", "host", "call host", "contact", "emergency", "ಕೌಶಲ್", "ಹೋಸ್ಟ್"],
+        keywords: ["kaushal", "host", "call host", "contact", "emergency", "ಕೌಶಲ್", "ಹೋಸ್ಟ್", "कौशल", "होस्ट"],
       });
     } catch (e) {
       console.warn("Failed to index hosts", e);
