@@ -5,7 +5,8 @@
     "contacts": "Host",
     "food": "Food",
     "taxi": "Taxi",
-    "rentals": "Rentals"
+    "rentals": "Rentals",
+    "coffee": "Coffee"
   },
   "Hero": {
     "title": "Welcome to your<br />home in the hills",
@@ -551,7 +552,11 @@
     "travelCardTitle": "Self-Drive Rentals & Local Taxis",
     "travelCardDesc": "Explore Chikmagalur & Sakleshpur on your own terms. Find self-drive bikes, scooters, cars, or book trusted local taxi drivers for your itinerary.",
     "travelCardCta": "Explore All Rentals & Taxis",
-    "travelCardBadge": "Chikmagalur • Sakleshpur"
+    "travelCardBadge": "Chikmagalur • Sakleshpur",
+    "coffeeCardTitle": "Estate Coffee Powder",
+    "coffeeCardBadge": "From Our Plantation",
+    "coffeeCardDesc": "Freshly roasted and ground Arabica + Chicory blend from Milan Coffee Plantation. Take home the authentic taste of Malnad.",
+    "coffeeCardCta": "Order Estate Coffee"
   },
   "UI": {
     "currentStop": "Current Stop",
@@ -628,7 +633,8 @@
     "whatsapp": "WhatsApp",
     "callUs": "Call Us",
     "designedForGuests": "Designed for guests.",
-    "rentals": "Self-Drive & Taxi Rentals"
+    "rentals": "Self-Drive & Taxi Rentals",
+    "coffee": "Estate Coffee Powder"
   },
   "ShareButton": {
     "shareGuide": "Share Guide",
@@ -642,7 +648,8 @@
     "whatsappHost": "WhatsApp Host",
     "contactCook": "Contact Cook",
     "contactDelivery": "Contact Delivery",
-    "milanFarmStays": "Milan Farm Stays"
+    "milanFarmStays": "Milan Farm Stays",
+    "orderCoffee": "Order Coffee Powder"
   },
   "FoodOrderForm": {
     "title": "Farm to Table",
@@ -737,6 +744,40 @@
     "actionTaxi": "Book Local Taxi",
     "actionTaxiDesc": "Arrange local cab transportation for sightseeing and day trips.",
     "suggestCharmadi": "Charmadi Ghat",
-    "suggestDirections": "Directions to Farm"
+    "suggestDirections": "Directions to Farm",
+    "actionOrderCoffee": "Order Estate Coffee Powder",
+    "actionOrderCoffeeDesc": "Order freshly ground Arabica + Chicory filter coffee powder from Milan Plantation.",
+    "suggestCoffee": "Estate Coffee Powder"
+  },
+  "CoffeeOrderForm": {
+    "title": "Estate Coffee Powder",
+    "subtitle": "From Our Plantation",
+    "tagline": "Handpicked shade-grown Arabica from the slopes of Milan Farm Stay, roasted and blended with chicory for the authentic South Indian filter coffee experience.",
+    "blendTitle": "Milan Heritage Blend",
+    "blendRatio": "80% Arabica + 20% Chicory",
+    "blendDesc": "Crafted in the heart of Malnad. Shade-grown Arabica gives a fragrant, chocolatey profile, while slow-roasted chicory imparts thickness, rich color, and velvety crema to your morning decoction.",
+    "tastingNotesLabel": "Cupping Notes",
+    "note1": "Dark Chocolate",
+    "note2": "Caramelized Sugar",
+    "note3": "Roasted Nuts",
+    "note4": "Velvety Crema",
+    "selectQuantity": "Select Pack Size & Quantity",
+    "pack250gDesc": "Fresh aroma-lock zipper pouch. Ideal for trying or weekend brewing.",
+    "pack500gDesc": "Most popular choice for households and filter coffee lovers.",
+    "pack1kgDesc": "Two 500g packs. Best value for daily brewing and gifting friends.",
+    "guestDetailsTitle": "Your Details",
+    "yourNameLabel": "Guest Name",
+    "yourNamePlaceholder": "Enter your name (e.g., Priya Sharma)",
+    "yourNameRequired": "Enter Your Name",
+    "addItemNotice": "Select a Pack",
+    "totalWeight": "Total Weight",
+    "totalAmount": "Total Payable",
+    "orderViaWhatsApp": "Order via WhatsApp",
+    "confirmTitle": "Confirm Coffee Order",
+    "confirmSubtitle": "Your order will be sent directly to your host, Athula Rao K, on WhatsApp.",
+    "confirmButton": "Send Order",
+    "cancelButton": "Review Order",
+    "freshlyRoasted": "Freshly Roasted & Ground",
+    "directFromFarm": "Direct from Farm"
   }
 }

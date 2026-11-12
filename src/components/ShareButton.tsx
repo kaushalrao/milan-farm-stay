@@ -9,9 +9,9 @@ export default function ShareButton() {
   const whatsappLink = "https://wa.me/?text=" + encodeURIComponent(shareText + "\n\n" + shareUrl);
 
   return (
-    <section className="pb-8 pt-2 md:py-12 px-4 md:px-6 relative z-10" id="share">
+    <section className="pt-2 pb-4 md:pt-4 md:pb-6 px-4 md:px-6 relative z-10" id="share">
       <div className="container mx-auto max-w-4xl relative">
-        <div className="flex items-center gap-4 mb-6 md:mb-10">
+        <div className="flex items-center gap-4 mb-4 md:mb-5">
           <div className="flex-1 h-px bg-border"></div>
           <h3 className="font-serif text-lg md:text-2xl font-semibold text-text-muted/80 tracking-wide text-center uppercase">{t("shareGuide")}</h3>
           <div className="flex-1 h-px bg-border"></div>

@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 import { useTranslations } from "next-intl";
 
 import TravelRentalsCard from "@/components/TravelRentalsCard";
+import CoffeeShowcaseCard from "@/components/CoffeeShowcaseCard";
 import MobileBottomNav from "@/components/MobileBottomNav";
 
 export default function Home() {
@@ -65,9 +66,23 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="pb-8 md:pb-6 lg:pb-1 scroll-mt-24" id="taxi">
+        <section className="pt-2 pb-5 md:pt-4 md:pb-6 scroll-mt-24" id="coffee">
           <div className="container mx-auto px-4 sm:px-6 max-w-5xl lg:max-w-7xl">
-            <div className="flex items-center gap-4 mb-8 md:mb-10">
+            <div className="flex items-center gap-4 mb-4 md:mb-5">
+              <div className="flex-1 h-px bg-border"></div>
+              <h2 className="font-serif text-lg md:text-2xl lg:text-3xl font-semibold text-text-muted/80 tracking-wide text-center uppercase">
+                {t("coffeeCardTitle")}
+              </h2>
+              <div className="flex-1 h-px bg-border"></div>
+            </div>
+
+            <CoffeeShowcaseCard />
+          </div>
+        </section>
+
+        <section className="pt-2 pb-5 md:pt-4 md:pb-6 scroll-mt-24" id="taxi">
+          <div className="container mx-auto px-4 sm:px-6 max-w-5xl lg:max-w-7xl">
+            <div className="flex items-center gap-4 mb-4 md:mb-5">
               <div className="flex-1 h-px bg-border"></div>
               <h2 className="font-serif text-lg md:text-2xl lg:text-3xl font-semibold text-text-muted/80 tracking-wide text-center uppercase">
                 {t("travelAndRentals")}

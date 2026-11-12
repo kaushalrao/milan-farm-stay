@@ -289,6 +289,39 @@ export function useSearchIndex() {
 
     // 9. Quick Actions & Navigation
     items.push({
+      id: "action-order-coffee",
+      title: tSearch("actionOrderCoffee"),
+      description: tSearch("actionOrderCoffeeDesc"),
+      category: "actions",
+      badge: tSearch("badgeQuickAction"),
+      tags: ["Coffee", "Order", "Plantation", "Arabica"],
+      icon: "ph-coffee",
+      action: {
+        type: "route",
+        href: "/order-coffee",
+      },
+      keywords: [
+        "coffee",
+        "coffee powder",
+        "order coffee",
+        "estate coffee",
+        "arabica",
+        "chicory",
+        "filter coffee",
+        "plantation",
+        "ಕಾಫಿ",
+        "ಕಾಫಿ ಪುಡಿ",
+        "ಕಾಫಿ ತೋಟ",
+        "కాఫీ",
+        "కాఫీ పొడి",
+        "காபி",
+        "காபி தூள்",
+        "കാപ്പി",
+        "കാപ്പിപ്പൊടി",
+      ],
+    });
+
+    items.push({
       id: "action-order-food",
       title: tSearch("actionOrderFood"),
       description: tSearch("actionOrderFoodDesc"),

@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Footer() {
   const t = useTranslations("Footer");
   return (
-    <footer className="bg-[#111] text-white py-16">
+    <footer className="bg-[#111] text-white pt-6 pb-16 md:pt-10 md:pb-16">
       <div className="container mx-auto px-6 max-w-6xl">
         <div className="flex flex-col md:flex-row justify-between gap-12 mb-12">
 
@@ -16,6 +16,9 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-col gap-4">
+            <Link href="/order-coffee" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
+              <i className="ph ph-coffee text-xl text-[#d4a373]"></i> {t("coffee")}
+            </Link>
             <Link href="/rentals" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
               <i className="ph ph-moped text-xl text-emerald-400"></i> {t("rentals")}
             </Link>

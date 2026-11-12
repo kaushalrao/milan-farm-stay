@@ -13,6 +13,7 @@ export default function Navbar() {
   const navItems = useMemo(() => [
     { label: t("plan"), href: "#plan", id: "plan", icon: "ph-map-trifold", isAnchor: true },
     { label: t("contacts"), href: "#contacts", id: "contacts", icon: "ph-users", isAnchor: true },
+    { label: t("coffee"), href: "/order-coffee", id: "coffee", icon: "ph-coffee", isAnchor: false },
     { label: t("rentals"), href: "/rentals", id: "rentals", icon: "ph-moped", isAnchor: false }
   ], [t]);
 
