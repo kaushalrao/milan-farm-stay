@@ -71,6 +71,9 @@ export default function Coffee3DHero() {
       onMouseLeave={handleMouseLeave}
       style={{ perspective: 1200 }}
     >
+      {/* Soft warm ambient halo for light mode */}
+      <div className="absolute inset-0 max-w-[280px] max-h-[220px] m-auto rounded-full bg-gradient-to-tr from-amber-200/25 via-orange-100/35 to-amber-50/15 blur-2xl dark:opacity-0 pointer-events-none transition-opacity duration-300" />
+
       {/* Floating Coffee Bean 1 (Top Left) */}
       <motion.div
         className="absolute top-2 left-8 sm:left-14 z-20 pointer-events-none"

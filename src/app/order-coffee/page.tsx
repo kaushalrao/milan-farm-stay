@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function OrderCoffeePage() {
   return (
-    <main className="min-h-screen bg-[#FCFBF8] dark:bg-[#121212] text-text-main font-sans">
+    <main className="min-h-screen bg-[#FBF9F5] dark:bg-[#121212] text-text-main font-sans">
       <CoffeeOrderForm />
     </main>
   );

@@ -157,10 +157,10 @@ export default function CoffeeOrderForm() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FCFBF8] dark:bg-[#121212] text-text-main font-sans pb-36 transition-colors duration-300">
+    <div className="min-h-screen bg-[#FBF9F5] dark:bg-[#121212] text-text-main font-sans pb-36 transition-colors duration-300">
       <div className="max-w-2xl mx-auto w-full px-4 sm:px-6 relative">
         {/* Fixed Header */}
-        <header className="fixed top-0 left-0 right-0 z-50 bg-[#FCFBF8]/90 dark:bg-[#121212]/90 backdrop-blur-xl border-b border-black/5 dark:border-white/5 shadow-xs">
+        <header className="fixed top-0 left-0 right-0 z-50 bg-[#FBF9F5]/90 dark:bg-[#121212]/90 backdrop-blur-xl border-b border-stone-200/80 dark:border-white/5 shadow-[0_2px_12px_rgba(0,0,0,0.03)]">
           <div className="max-w-2xl mx-auto px-4 py-3.5 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <button
@@ -171,7 +171,7 @@ export default function CoffeeOrderForm() {
                     window.location.href = "/";
                   }
                 }}
-                className="p-2 -ml-2 hover:bg-black/5 dark:hover:bg-white/5 rounded-full transition-colors"
+                className="p-2 -ml-2 hover:bg-stone-200/50 dark:hover:bg-white/5 rounded-full transition-colors"
                 aria-label="Go back"
               >
                 <ArrowLeft className="w-5 h-5 text-text-main" />
@@ -185,7 +185,7 @@ export default function CoffeeOrderForm() {
                   <h1 className="text-base sm:text-lg font-bold text-[#4A3B2C] dark:text-[#d4a373] leading-tight">
                     {t("title")}
                   </h1>
-                  <p className="text-[11px] text-text-muted font-medium leading-none">
+                  <p className="text-[11px] text-stone-500 dark:text-stone-400 font-medium leading-none">
                     {t("subtitle")}
                   </p>
                 </div>
@@ -200,7 +200,7 @@ export default function CoffeeOrderForm() {
                   document.cookie = `NEXT_LOCALE=${e.target.value}; path=/; max-age=31536000`;
                   window.location.reload();
                 }}
-                className="bg-transparent text-text-main font-medium border border-black/10 dark:border-white/10 hover:border-black/20 dark:hover:border-white/20 rounded-md px-1.5 py-1 focus:outline-none focus:ring-2 focus:ring-[#4A3B2C]/50 text-[11px] sm:text-xs cursor-pointer transition-colors"
+                className="bg-white dark:bg-transparent text-text-main font-semibold border border-stone-200 dark:border-white/10 hover:border-stone-300 dark:hover:border-white/20 rounded-lg px-2 py-1 focus:outline-none focus:ring-2 focus:ring-[#4A3B2C]/40 text-[11px] sm:text-xs cursor-pointer shadow-2xs transition-colors"
                 aria-label="Select Language"
               >
                 <option value="en">English</option>
@@ -216,23 +216,23 @@ export default function CoffeeOrderForm() {
 
         {/* Hero Section */}
         <div className="pt-24 sm:pt-28 pb-6 text-center">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#4A3B2C]/10 dark:bg-[#d4a373]/15 text-[#4A3B2C] dark:text-[#d4a373] text-xs font-semibold uppercase tracking-wider mb-4 border border-[#4A3B2C]/20 dark:border-[#d4a373]/20">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#4A3B2C]/10 dark:bg-[#d4a373]/15 text-[#4A3B2C] dark:text-[#d4a373] text-xs font-semibold uppercase tracking-wider mb-4 border border-[#4A3B2C]/20 dark:border-[#d4a373]/20 shadow-2xs">
             <Sparkles className="w-3.5 h-3.5" />
             <span>{t("directFromFarm")}</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#1F1F1F] dark:text-[#F5F5F5] mb-3 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-stone-900 dark:text-[#F5F5F5] mb-3 tracking-tight">
             {t("title")}
           </h2>
 
-          <p className="text-text-muted text-sm sm:text-base max-w-lg mx-auto leading-relaxed mb-6">
+          <p className="text-stone-600 dark:text-stone-400 text-sm sm:text-base max-w-lg mx-auto leading-relaxed mb-6 font-normal">
             {t("tagline")}
           </p>
 
           {/* 3D Floating Coffee Pack & Beans Animation */}
           <Coffee3DHero />
 
-          <p className="text-[11px] sm:text-xs text-text-muted/70 dark:text-text-muted/60 italic text-center mt-2.5">
+          <p className="text-[11px] sm:text-xs text-stone-500 dark:text-stone-400 italic text-center mt-2.5 tracking-wide">
             {t("packagingDisclaimer")}
           </p>
         </div>
@@ -247,22 +247,22 @@ export default function CoffeeOrderForm() {
           }`}
           aria-label="Guest details"
         >
-          <div className="bg-white/90 dark:bg-[#1A1A1A] rounded-3xl p-5 sm:p-6 border border-black/8 dark:border-white/8 shadow-xs">
-            <h3 className="text-base sm:text-lg font-serif font-bold text-dark dark:text-white mb-1">
+          <div className="bg-white dark:bg-[#1A1A1A] rounded-3xl p-5 sm:p-6 border border-stone-200/90 dark:border-white/8 shadow-[0_4px_24px_rgba(74,59,44,0.05)] dark:shadow-xs">
+            <h3 className="text-base sm:text-lg font-serif font-bold text-stone-900 dark:text-white mb-1">
               {t("guestDetailsTitle")}
             </h3>
-            <p className="text-xs text-text-muted mb-4">
+            <p className="text-xs text-stone-500 dark:text-stone-400 mb-4">
               Enter your name so Host Athula Rao K can prepare your order.
             </p>
 
-            <div className="flex items-center bg-[#F8F9F8] dark:bg-[#242424] rounded-2xl px-4 py-3 border border-black/8 dark:border-white/8 focus-within:border-[#4A3B2C] dark:focus-within:border-[#d4a373] focus-within:ring-2 focus-within:ring-[#4A3B2C]/10 transition-all">
-              <User className="w-5 h-5 text-[#4A3B2C]/70 dark:text-[#d4a373]/80 mr-3 shrink-0" />
+            <div className="flex items-center bg-[#F8F6F0] dark:bg-[#242424] rounded-2xl px-4 py-3.5 border border-stone-200 dark:border-white/8 focus-within:border-[#4A3B2C] dark:focus-within:border-[#d4a373] focus-within:bg-white focus-within:ring-3 focus-within:ring-[#4A3B2C]/15 focus-within:shadow-xs transition-all">
+              <User className="w-5 h-5 text-[#4A3B2C]/80 dark:text-[#d4a373]/80 mr-3 shrink-0" />
               <input
                 type="text"
                 value={customerName}
                 onChange={(e) => setCustomerName(e.target.value)}
                 placeholder={t("yourNamePlaceholder")}
-                className="bg-transparent border-none outline-none text-text-main w-full text-base font-semibold placeholder:text-text-muted/50"
+                className="bg-transparent border-none outline-none text-stone-900 dark:text-white w-full text-base font-semibold placeholder:text-stone-400 dark:placeholder:text-stone-600"
               />
             </div>
           </div>
@@ -278,18 +278,23 @@ export default function CoffeeOrderForm() {
           }`}
           aria-label="Select Coffee Type"
         >
-          <div className="flex items-center justify-between mb-3">
-            <div>
-              <h3 className="text-lg sm:text-xl font-serif font-bold text-dark dark:text-white">
-                {t("selectCoffeeType")}
-              </h3>
-              <p className="text-xs text-text-muted mt-0.5">
-                {t("selectCoffeeTypeSubtitle")}
-              </p>
+          <div className="flex items-center justify-between mb-3.5">
+            <div className="flex items-center gap-2.5">
+              <span className="w-6 h-6 rounded-full bg-[#4A3B2C] dark:bg-[#d4a373] text-white dark:text-[#1F1F1F] text-xs font-bold flex items-center justify-center shrink-0 shadow-2xs">
+                1
+              </span>
+              <div>
+                <h3 className="text-lg sm:text-xl font-serif font-bold text-stone-900 dark:text-white leading-tight">
+                  {t("selectCoffeeType")}
+                </h3>
+                <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
+                  {t("selectCoffeeTypeSubtitle")}
+                </p>
+              </div>
             </div>
             {selectedCoffeeType && (
-              <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full">
-                <Check className="w-3 h-3" />
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 px-2.5 py-1 rounded-full shadow-2xs">
+                <Check className="w-3.5 h-3.5 stroke-[2.5]" />
                 <span>Selected</span>
               </span>
             )}
@@ -305,44 +310,44 @@ export default function CoffeeOrderForm() {
               onKeyDown={(e) => e.key === "Enter" && setSelectedCoffeeType("arabica")}
               className={`relative rounded-2xl p-4 sm:p-5 cursor-pointer transition-all duration-200 border flex flex-col justify-between ${
                 selectedCoffeeType === "arabica"
-                  ? "bg-gradient-to-br from-[#4A3B2C]/[0.08] via-white to-[#F5F2E9]/60 dark:from-[#2A2016] dark:via-[#1E1712] dark:to-[#171717] border-[#4A3B2C] dark:border-[#d4a373] shadow-md ring-2 ring-[#4A3B2C]/30 dark:ring-[#d4a373]/40 scale-[1.01]"
-                  : "bg-white/80 dark:bg-[#181818] border-black/8 dark:border-white/8 hover:border-black/20 dark:hover:border-white/20 hover:shadow-xs active:scale-[0.99]"
+                  ? "bg-gradient-to-br from-[#FFFDF9] via-[#FAF6EE] to-[#F5EFE4] dark:from-[#2A2016] dark:via-[#1E1712] dark:to-[#171717] border-2 border-[#4A3B2C] dark:border-[#d4a373] shadow-[0_8px_24px_rgba(74,59,44,0.10)] ring-2 ring-[#4A3B2C]/20 dark:ring-[#d4a373]/40 scale-[1.01]"
+                  : "bg-white dark:bg-[#181818] border border-stone-200 dark:border-white/10 hover:border-[#4A3B2C]/40 dark:hover:border-white/20 hover:shadow-[0_4px_16px_rgba(74,59,44,0.06)] active:scale-[0.99]"
               }`}
             >
               <div>
                 <div className="flex items-center justify-between gap-2 mb-2">
-                  <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#4A3B2C]/10 dark:bg-[#d4a373]/20 text-[#4A3B2C] dark:text-[#d4a373]">
+                  <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#4A3B2C]/10 dark:bg-[#d4a373]/20 text-[#4A3B2C] dark:text-[#d4a373] border border-[#4A3B2C]/15 dark:border-[#d4a373]/30">
                     {t("arabicaBadge")}
                   </span>
                   <div
                     className={`w-5 h-5 rounded-full flex items-center justify-center transition-all ${
                       selectedCoffeeType === "arabica"
                         ? "bg-[#4A3B2C] text-white dark:bg-[#d4a373] dark:text-[#1F1F1F] shadow-xs"
-                        : "border-2 border-black/20 dark:border-white/20"
+                        : "border-2 border-stone-300 dark:border-white/20 hover:border-[#4A3B2C]"
                     }`}
                   >
                     {selectedCoffeeType === "arabica" && <Check className="w-3.5 h-3.5 stroke-[3]" />}
                   </div>
                 </div>
 
-                <h4 className="text-lg sm:text-xl font-serif font-bold text-[#2A1D13] dark:text-[#F5EADB] mb-1">
+                <h4 className="text-lg sm:text-xl font-serif font-bold text-stone-900 dark:text-[#F5EADB] mb-1">
                   {t("arabicaTitle")}
                 </h4>
-                <div className="inline-block px-2 py-0.5 rounded-md bg-black/5 dark:bg-white/5 text-[11px] font-semibold text-[#4A3B2C] dark:text-[#d4a373] mb-2.5">
+                <div className="inline-block px-2.5 py-0.5 rounded-md bg-[#4A3B2C]/[0.08] dark:bg-white/5 text-[11px] font-semibold text-[#4A3B2C] dark:text-[#d4a373] mb-2.5 border border-[#4A3B2C]/12 dark:border-white/5">
                   {t("arabicaRatio")}
                 </div>
 
-                <p className="text-xs text-text-muted leading-relaxed mb-3">
+                <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed mb-3">
                   {t("arabicaDesc")}
                 </p>
               </div>
 
               {/* Tasting Notes */}
-              <div className="flex flex-wrap gap-1.5 pt-2 border-t border-black/5 dark:border-white/5">
+              <div className="flex flex-wrap gap-1.5 pt-2.5 border-t border-stone-200/80 dark:border-white/5">
                 {[t("note1"), t("note2"), t("note4")].map((note, i) => (
                   <span
                     key={i}
-                    className="text-[10px] font-medium px-2 py-0.5 rounded-md bg-black/5 dark:bg-white/5 text-text-muted"
+                    className="text-[10px] font-medium px-2 py-0.5 rounded-md bg-[#F6F1EA] text-[#4A3B2C] border border-[#4A3B2C]/15 dark:bg-white/5 dark:text-stone-300 dark:border-white/10"
                   >
                     {note}
                   </span>
@@ -359,44 +364,44 @@ export default function CoffeeOrderForm() {
               onKeyDown={(e) => e.key === "Enter" && setSelectedCoffeeType("robusta")}
               className={`relative rounded-2xl p-4 sm:p-5 cursor-pointer transition-all duration-200 border flex flex-col justify-between ${
                 selectedCoffeeType === "robusta"
-                  ? "bg-gradient-to-br from-[#4A3B2C]/[0.08] via-white to-[#F5F2E9]/60 dark:from-[#2A2016] dark:via-[#1E1712] dark:to-[#171717] border-[#4A3B2C] dark:border-[#d4a373] shadow-md ring-2 ring-[#4A3B2C]/30 dark:ring-[#d4a373]/40 scale-[1.01]"
-                  : "bg-white/80 dark:bg-[#181818] border-black/8 dark:border-white/8 hover:border-black/20 dark:hover:border-white/20 hover:shadow-xs active:scale-[0.99]"
+                  ? "bg-gradient-to-br from-[#FFFDF9] via-[#FAF6EE] to-[#F5EFE4] dark:from-[#2A2016] dark:via-[#1E1712] dark:to-[#171717] border-2 border-[#4A3B2C] dark:border-[#d4a373] shadow-[0_8px_24px_rgba(74,59,44,0.10)] ring-2 ring-[#4A3B2C]/20 dark:ring-[#d4a373]/40 scale-[1.01]"
+                  : "bg-white dark:bg-[#181818] border border-stone-200 dark:border-white/10 hover:border-[#4A3B2C]/40 dark:hover:border-white/20 hover:shadow-[0_4px_16px_rgba(74,59,44,0.06)] active:scale-[0.99]"
               }`}
             >
               <div>
                 <div className="flex items-center justify-between gap-2 mb-2">
-                  <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-700 dark:text-amber-400">
+                  <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-900 dark:text-amber-300 border border-amber-500/25 dark:border-amber-500/20">
                     {t("robustaBadge")}
                   </span>
                   <div
                     className={`w-5 h-5 rounded-full flex items-center justify-center transition-all ${
                       selectedCoffeeType === "robusta"
                         ? "bg-[#4A3B2C] text-white dark:bg-[#d4a373] dark:text-[#1F1F1F] shadow-xs"
-                        : "border-2 border-black/20 dark:border-white/20"
+                        : "border-2 border-stone-300 dark:border-white/20 hover:border-[#4A3B2C]"
                     }`}
                   >
                     {selectedCoffeeType === "robusta" && <Check className="w-3.5 h-3.5 stroke-[3]" />}
                   </div>
                 </div>
 
-                <h4 className="text-lg sm:text-xl font-serif font-bold text-[#2A1D13] dark:text-[#F5EADB] mb-1">
+                <h4 className="text-lg sm:text-xl font-serif font-bold text-stone-900 dark:text-[#F5EADB] mb-1">
                   {t("robustaTitle")}
                 </h4>
-                <div className="inline-block px-2 py-0.5 rounded-md bg-black/5 dark:bg-white/5 text-[11px] font-semibold text-[#4A3B2C] dark:text-[#d4a373] mb-2.5">
+                <div className="inline-block px-2.5 py-0.5 rounded-md bg-amber-500/10 dark:bg-white/5 text-[11px] font-semibold text-amber-800 dark:text-amber-400 mb-2.5 border border-amber-500/20 dark:border-white/5">
                   {t("robustaRatio")}
                 </div>
 
-                <p className="text-xs text-text-muted leading-relaxed mb-3">
+                <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed mb-3">
                   {t("robustaDesc")}
                 </p>
               </div>
 
               {/* Tasting Notes */}
-              <div className="flex flex-wrap gap-1.5 pt-2 border-t border-black/5 dark:border-white/5">
+              <div className="flex flex-wrap gap-1.5 pt-2.5 border-t border-stone-200/80 dark:border-white/5">
                 {["Strong Body", "Roasted Cocoa", "Thick Crema"].map((note, i) => (
                   <span
                     key={i}
-                    className="text-[10px] font-medium px-2 py-0.5 rounded-md bg-black/5 dark:bg-white/5 text-text-muted"
+                    className="text-[10px] font-medium px-2 py-0.5 rounded-md bg-[#F6F1EA] text-[#4A3B2C] border border-[#4A3B2C]/15 dark:bg-white/5 dark:text-stone-300 dark:border-white/10"
                   >
                     {note}
                   </span>
@@ -416,18 +421,23 @@ export default function CoffeeOrderForm() {
           }`}
           aria-label="Select Powder Type"
         >
-          <div className="flex items-center justify-between mb-3">
-            <div>
-              <h3 className="text-lg sm:text-xl font-serif font-bold text-dark dark:text-white">
-                {t("selectPowderType")}
-              </h3>
-              <p className="text-xs text-text-muted mt-0.5">
-                {t("selectPowderTypeSubtitle")}
-              </p>
+          <div className="flex items-center justify-between mb-3.5">
+            <div className="flex items-center gap-2.5">
+              <span className="w-6 h-6 rounded-full bg-[#4A3B2C] dark:bg-[#d4a373] text-white dark:text-[#1F1F1F] text-xs font-bold flex items-center justify-center shrink-0 shadow-2xs">
+                2
+              </span>
+              <div>
+                <h3 className="text-lg sm:text-xl font-serif font-bold text-stone-900 dark:text-white leading-tight">
+                  {t("selectPowderType")}
+                </h3>
+                <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
+                  {t("selectPowderTypeSubtitle")}
+                </p>
+              </div>
             </div>
             {selectedPowderType && (
-              <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full">
-                <Check className="w-3 h-3" />
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 px-2.5 py-1 rounded-full shadow-2xs">
+                <Check className="w-3.5 h-3.5 stroke-[2.5]" />
                 <span>Selected</span>
               </span>
             )}
@@ -443,13 +453,13 @@ export default function CoffeeOrderForm() {
               onKeyDown={(e) => e.key === "Enter" && setSelectedPowderType("filter")}
               className={`relative rounded-2xl p-4 sm:p-5 cursor-pointer transition-all duration-200 border flex flex-col justify-between ${
                 selectedPowderType === "filter"
-                  ? "bg-gradient-to-br from-[#4A3B2C]/[0.08] via-white to-[#F5F2E9]/60 dark:from-[#2A2016] dark:via-[#1E1712] dark:to-[#171717] border-[#4A3B2C] dark:border-[#d4a373] shadow-md ring-2 ring-[#4A3B2C]/30 dark:ring-[#d4a373]/40 scale-[1.01]"
-                  : "bg-white/80 dark:bg-[#181818] border-black/8 dark:border-white/8 hover:border-black/20 dark:hover:border-white/20 hover:shadow-xs active:scale-[0.99]"
+                  ? "bg-gradient-to-br from-[#FFFDF9] via-[#FAF6EE] to-[#F5EFE4] dark:from-[#2A2016] dark:via-[#1E1712] dark:to-[#171717] border-2 border-[#4A3B2C] dark:border-[#d4a373] shadow-[0_8px_24px_rgba(74,59,44,0.10)] ring-2 ring-[#4A3B2C]/20 dark:ring-[#d4a373]/40 scale-[1.01]"
+                  : "bg-white dark:bg-[#181818] border border-stone-200 dark:border-white/10 hover:border-[#4A3B2C]/40 dark:hover:border-white/20 hover:shadow-[0_4px_16px_rgba(74,59,44,0.06)] active:scale-[0.99]"
               }`}
             >
               <div>
                 <div className="flex items-center justify-between gap-2 mb-2">
-                  <span className="inline-flex items-center gap-1 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#4A3B2C]/10 dark:bg-[#d4a373]/20 text-[#4A3B2C] dark:text-[#d4a373]">
+                  <span className="inline-flex items-center gap-1 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#4A3B2C]/10 dark:bg-[#d4a373]/20 text-[#4A3B2C] dark:text-[#d4a373] border border-[#4A3B2C]/15 dark:border-[#d4a373]/30">
                     <Coffee className="w-3 h-3" />
                     <span>Traditional Drip</span>
                   </span>
@@ -457,28 +467,28 @@ export default function CoffeeOrderForm() {
                     className={`w-5 h-5 rounded-full flex items-center justify-center transition-all ${
                       selectedPowderType === "filter"
                         ? "bg-[#4A3B2C] text-white dark:bg-[#d4a373] dark:text-[#1F1F1F] shadow-xs"
-                        : "border-2 border-black/20 dark:border-white/20"
+                        : "border-2 border-stone-300 dark:border-white/20 hover:border-[#4A3B2C]"
                     }`}
                   >
                     {selectedPowderType === "filter" && <Check className="w-3.5 h-3.5 stroke-[3]" />}
                   </div>
                 </div>
 
-                <h4 className="text-base sm:text-lg font-serif font-bold text-[#2A1D13] dark:text-[#F5EADB] mb-0.5">
+                <h4 className="text-base sm:text-lg font-serif font-bold text-stone-900 dark:text-[#F5EADB] mb-0.5">
                   {t("filterPowderTitle")}
                 </h4>
                 <p className="text-[11px] font-semibold text-[#4A3B2C] dark:text-[#d4a373] mb-2">
                   {t("filterPowderSubtitle")}
                 </p>
 
-                <p className="text-xs text-text-muted leading-relaxed">
+                <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed">
                   {t("filterPowderDesc")}
                 </p>
               </div>
 
-              <div className="mt-3 pt-2.5 border-t border-black/5 dark:border-white/5">
-                <span className="text-[10px] text-text-muted">
-                  Ideal for: <strong className="text-dark dark:text-white">Brass/Steel Filter, French Press</strong>
+              <div className="mt-3.5 pt-2.5 border-t border-stone-200/80 dark:border-white/5">
+                <span className="text-[11px] text-stone-500 dark:text-stone-400">
+                  Ideal for: <strong className="text-stone-800 dark:text-stone-200 font-semibold">Brass/Steel Filter, French Press</strong>
                 </span>
               </div>
             </div>
@@ -492,13 +502,13 @@ export default function CoffeeOrderForm() {
               onKeyDown={(e) => e.key === "Enter" && setSelectedPowderType("nice")}
               className={`relative rounded-2xl p-4 sm:p-5 cursor-pointer transition-all duration-200 border flex flex-col justify-between ${
                 selectedPowderType === "nice"
-                  ? "bg-gradient-to-br from-[#4A3B2C]/[0.08] via-white to-[#F5F2E9]/60 dark:from-[#2A2016] dark:via-[#1E1712] dark:to-[#171717] border-[#4A3B2C] dark:border-[#d4a373] shadow-md ring-2 ring-[#4A3B2C]/30 dark:ring-[#d4a373]/40 scale-[1.01]"
-                  : "bg-white/80 dark:bg-[#181818] border-black/8 dark:border-white/8 hover:border-black/20 dark:hover:border-white/20 hover:shadow-xs active:scale-[0.99]"
+                  ? "bg-gradient-to-br from-[#FFFDF9] via-[#FAF6EE] to-[#F5EFE4] dark:from-[#2A2016] dark:via-[#1E1712] dark:to-[#171717] border-2 border-[#4A3B2C] dark:border-[#d4a373] shadow-[0_8px_24px_rgba(74,59,44,0.10)] ring-2 ring-[#4A3B2C]/20 dark:ring-[#d4a373]/40 scale-[1.01]"
+                  : "bg-white dark:bg-[#181818] border border-stone-200 dark:border-white/10 hover:border-[#4A3B2C]/40 dark:hover:border-white/20 hover:shadow-[0_4px_16px_rgba(74,59,44,0.06)] active:scale-[0.99]"
               }`}
             >
               <div>
                 <div className="flex items-center justify-between gap-2 mb-2">
-                  <span className="inline-flex items-center gap-1 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400">
+                  <span className="inline-flex items-center gap-1 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-900 dark:text-emerald-300 border border-emerald-500/30 dark:border-emerald-500/20">
                     <Sparkles className="w-3 h-3" />
                     <span>Fine Grind</span>
                   </span>
@@ -506,28 +516,28 @@ export default function CoffeeOrderForm() {
                     className={`w-5 h-5 rounded-full flex items-center justify-center transition-all ${
                       selectedPowderType === "nice"
                         ? "bg-[#4A3B2C] text-white dark:bg-[#d4a373] dark:text-[#1F1F1F] shadow-xs"
-                        : "border-2 border-black/20 dark:border-white/20"
+                        : "border-2 border-stone-300 dark:border-white/20 hover:border-[#4A3B2C]"
                     }`}
                   >
                     {selectedPowderType === "nice" && <Check className="w-3.5 h-3.5 stroke-[3]" />}
                   </div>
                 </div>
 
-                <h4 className="text-base sm:text-lg font-serif font-bold text-[#2A1D13] dark:text-[#F5EADB] mb-0.5">
+                <h4 className="text-base sm:text-lg font-serif font-bold text-stone-900 dark:text-[#F5EADB] mb-0.5">
                   {t("nicePowderTitle")}
                 </h4>
                 <p className="text-[11px] font-semibold text-[#4A3B2C] dark:text-[#d4a373] mb-2">
                   {t("nicePowderSubtitle")}
                 </p>
 
-                <p className="text-xs text-text-muted leading-relaxed">
+                <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed">
                   {t("nicePowderDesc")}
                 </p>
               </div>
 
-              <div className="mt-3 pt-2.5 border-t border-black/5 dark:border-white/5">
-                <span className="text-[10px] text-text-muted">
-                  Ideal for: <strong className="text-dark dark:text-white">Stovetop Boil, Instant Decoction, Moka Pot</strong>
+              <div className="mt-3.5 pt-2.5 border-t border-stone-200/80 dark:border-white/5">
+                <span className="text-[11px] text-stone-500 dark:text-stone-400">
+                  Ideal for: <strong className="text-stone-800 dark:text-stone-200 font-semibold">Stovetop Boil, Instant Decoction, Moka Pot</strong>
                 </span>
               </div>
             </div>
@@ -545,22 +555,27 @@ export default function CoffeeOrderForm() {
           aria-label="Pack size and quantity selection"
         >
           <div className="flex items-center justify-between mb-4">
-            <div>
-              <h3 className="text-lg sm:text-xl font-serif font-bold text-dark dark:text-white">
-                3. {t("selectQuantity")}
-              </h3>
-              <p className="text-xs text-text-muted mt-0.5">
-                {selectedCoffeeType && selectedPowderType ? (
-                  <span className="text-[#4A3B2C] dark:text-[#d4a373] font-semibold">
-                    {selectedCoffeeType === "arabica" ? "Arabica 80/20" : "Robusta 80/20"} • {selectedPowderType === "filter" ? "Filter Grind" : "Nice Grind"}
-                  </span>
-                ) : (
-                  <span>Select pack sizes for your order</span>
-                )}
-              </p>
+            <div className="flex items-center gap-2.5">
+              <span className="w-6 h-6 rounded-full bg-[#4A3B2C] dark:bg-[#d4a373] text-white dark:text-[#1F1F1F] text-xs font-bold flex items-center justify-center shrink-0 shadow-2xs">
+                3
+              </span>
+              <div>
+                <h3 className="text-lg sm:text-xl font-serif font-bold text-stone-900 dark:text-white leading-tight">
+                  {t("selectQuantity")}
+                </h3>
+                <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
+                  {selectedCoffeeType && selectedPowderType ? (
+                    <span className="inline-flex items-center gap-1.5 bg-[#4A3B2C]/[0.08] dark:bg-[#d4a373]/15 text-[#4A3B2C] dark:text-[#d4a373] border border-[#4A3B2C]/15 dark:border-[#d4a373]/20 px-2 py-0.5 rounded-md font-semibold text-[11px]">
+                      {selectedCoffeeType === "arabica" ? "Arabica 80/20" : "Robusta 80/20"} • {selectedPowderType === "filter" ? "Filter Grind" : "Nice Grind"}
+                    </span>
+                  ) : (
+                    <span>Select pack sizes for your order</span>
+                  )}
+                </p>
+              </div>
             </div>
             {totalItemsCount > 0 && (
-              <span className="text-xs font-semibold text-text-muted">
+              <span className="text-xs font-bold text-stone-700 dark:text-stone-300 bg-stone-100 dark:bg-white/10 px-2.5 py-1 rounded-full border border-stone-200/80 dark:border-white/10">
                 {totalItemsCount} {totalItemsCount === 1 ? "pack" : "packs"}
               </span>
             )}
@@ -582,8 +597,8 @@ export default function CoffeeOrderForm() {
                   key={pack.id}
                   className={`relative rounded-2xl p-4 sm:p-5 transition-all duration-200 border ${
                     isSelected
-                      ? "bg-white dark:bg-[#1E1E1E] border-[#4A3B2C] dark:border-[#d4a373] shadow-md ring-1 ring-[#4A3B2C]/30 dark:ring-[#d4a373]/30"
-                      : "bg-white/80 dark:bg-[#181818] border-black/8 dark:border-white/8 hover:border-black/15 dark:hover:border-white/15"
+                      ? "bg-gradient-to-br from-[#FFFDF9] to-[#FAF6EE] dark:bg-[#1E1E1E] border-2 border-[#4A3B2C] dark:border-[#d4a373] shadow-[0_8px_24px_rgba(74,59,44,0.08)] ring-1 ring-[#4A3B2C]/20 dark:ring-[#d4a373]/30"
+                      : "bg-white dark:bg-[#181818] border border-stone-200 dark:border-white/10 hover:border-[#4A3B2C]/40 dark:hover:border-white/20 hover:shadow-[0_4px_16px_rgba(74,59,44,0.05)]"
                   }`}
                 >
                   {/* Badge */}
@@ -592,8 +607,10 @@ export default function CoffeeOrderForm() {
                       <span
                         className={`text-[10px] sm:text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full ${
                           pack.isPopular
-                            ? "bg-[#4A3B2C] text-white dark:bg-[#d4a373] dark:text-[#1F1F1F]"
-                            : "bg-[#F5F2E9] dark:bg-[#2A2A2A] text-text-muted"
+                            ? "bg-[#4A3B2C] text-[#FFFDF9] dark:bg-[#d4a373] dark:text-[#1F1F1F] shadow-xs"
+                            : pack.id === "1kg"
+                            ? "bg-amber-100 text-amber-900 border border-amber-300/70 dark:bg-amber-950/40 dark:text-amber-300 dark:border-amber-700/50"
+                            : "bg-stone-100 text-stone-700 border border-stone-200 dark:bg-stone-800 dark:text-stone-300 dark:border-stone-700"
                         }`}
                       >
                         {pack.badge}
@@ -604,28 +621,28 @@ export default function CoffeeOrderForm() {
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1 pr-16 sm:pr-20">
                       <div className="flex items-baseline gap-2 mb-1">
-                        <h4 className="text-xl sm:text-2xl font-serif font-bold text-dark dark:text-white">
+                        <h4 className="text-xl sm:text-2xl font-serif font-bold text-stone-900 dark:text-white">
                           {pack.weightLabel}
                         </h4>
                         <span className="text-lg sm:text-xl font-bold text-[#4A3B2C] dark:text-[#d4a373]">
                           ₹{pack.price}
                         </span>
                       </div>
-                      <p className="text-xs sm:text-sm text-text-muted leading-relaxed">
+                      <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-400 leading-relaxed">
                         {desc}
                       </p>
                     </div>
                   </div>
 
                   {/* Stepper Controls */}
-                  <div className="mt-4 pt-3.5 border-t border-black/5 dark:border-white/5 flex items-center justify-between">
-                    <div className="text-xs font-medium text-text-muted">
+                  <div className="mt-4 pt-3.5 border-t border-stone-200/80 dark:border-white/5 flex items-center justify-between">
+                    <div className="text-xs font-medium text-stone-500 dark:text-stone-400">
                       {qty > 0 ? (
-                        <span className="text-[#4A3B2C] dark:text-[#d4a373] font-semibold">
+                        <span className="text-[#4A3B2C] dark:text-[#d4a373] font-bold bg-[#4A3B2C]/10 dark:bg-[#d4a373]/15 px-2.5 py-1 rounded-md border border-[#4A3B2C]/15 dark:border-[#d4a373]/20">
                           Subtotal: ₹{pack.price * qty}
                         </span>
                       ) : (
-                        <span>Tap + to add</span>
+                        <span className="text-stone-400 dark:text-stone-500">Tap + to add</span>
                       )}
                     </div>
 
@@ -636,21 +653,21 @@ export default function CoffeeOrderForm() {
                         aria-label={`Decrease ${pack.weightLabel}`}
                         className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all ${
                           qty > 0
-                            ? "bg-black/5 dark:bg-white/10 text-dark dark:text-white hover:bg-black/10 active:scale-95"
-                            : "bg-black/[0.03] dark:bg-white/[0.03] text-black/20 dark:text-white/20 cursor-not-allowed"
+                            ? "bg-stone-100 hover:bg-stone-200 text-stone-800 border border-stone-300 dark:bg-white/10 dark:text-white dark:border-white/10 active:scale-95 shadow-2xs"
+                            : "bg-stone-100/60 dark:bg-white/[0.03] text-stone-300 dark:text-white/20 border border-stone-200/60 dark:border-transparent cursor-not-allowed"
                         }`}
                       >
                         <Minus className="w-4 h-4" />
                       </button>
 
-                      <span className="w-8 text-center font-bold text-base text-dark dark:text-white">
+                      <span className="w-8 text-center font-bold text-base text-stone-900 dark:text-white">
                         {qty}
                       </span>
 
                       <button
                         onClick={() => handleIncrement(pack.id)}
                         aria-label={`Increase ${pack.weightLabel}`}
-                        className="w-9 h-9 rounded-xl flex items-center justify-center bg-[#4A3B2C] text-white dark:bg-[#d4a373] dark:text-[#1F1F1F] hover:opacity-90 active:scale-95 shadow-xs transition-all"
+                        className="w-9 h-9 rounded-xl flex items-center justify-center bg-[#4A3B2C] hover:bg-[#3B2818] text-white dark:bg-[#d4a373] dark:text-[#1F1F1F] dark:hover:bg-[#c99564] shadow-xs active:scale-95 transition-all"
                       >
                         <Plus className="w-4 h-4" />
                       </button>
@@ -664,17 +681,17 @@ export default function CoffeeOrderForm() {
       </div>
 
       {/* Sticky Bottom Order Bar */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 bg-[#FCFBF8]/95 dark:bg-[#121212]/95 backdrop-blur-xl border-t border-black/10 dark:border-white/10 p-4 pb-[max(1rem,env(safe-area-inset-bottom))] shadow-lg">
+      <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-[#121212]/95 backdrop-blur-xl border-t border-stone-200/90 dark:border-white/10 p-4 pb-[max(1rem,env(safe-area-inset-bottom))] shadow-[0_-6px_25px_rgba(0,0,0,0.07)]">
         <div className="max-w-2xl mx-auto flex items-center justify-between gap-4">
           <div className="flex flex-col">
-            <div className="flex items-center gap-1.5 text-xs text-text-muted">
+            <div className="flex items-center gap-1.5 text-xs text-stone-500 dark:text-stone-400">
               <span>{t("totalWeight")}:</span>
-              <span className="font-semibold text-dark dark:text-white">
+              <span className="font-bold text-stone-800 dark:text-stone-200 bg-stone-100 dark:bg-white/10 px-2 py-0.5 rounded-md text-[11px]">
                 {totalItemsCount > 0 ? formattedWeight : "0g"}
               </span>
             </div>
-            <div className="flex items-baseline gap-1">
-              <span className="text-xs font-semibold text-text-muted">₹</span>
+            <div className="flex items-baseline gap-1 mt-0.5">
+              <span className="text-xs font-semibold text-stone-500 dark:text-stone-400">₹</span>
               <span className="text-2xl font-bold font-serif text-[#4A3B2C] dark:text-[#d4a373]">
                 {totalAmount}
               </span>
@@ -683,10 +700,10 @@ export default function CoffeeOrderForm() {
 
           <button
             onClick={handleCheckoutClick}
-            className={`flex-1 max-w-xs py-3.5 px-4 sm:px-6 rounded-2xl font-bold text-xs sm:text-base flex items-center justify-center gap-2 transition-all shadow-md whitespace-nowrap ${
+            className={`flex-1 max-w-xs py-3.5 px-4 sm:px-6 rounded-2xl font-bold text-xs sm:text-base flex items-center justify-center gap-2 transition-all whitespace-nowrap ${
               isOrderValid
-                ? "bg-[#25D366] hover:bg-[#20b858] text-white active:scale-[0.98] cursor-pointer"
-                : "bg-black/10 dark:bg-white/10 text-text-muted hover:bg-black/15 dark:hover:bg-white/15 cursor-pointer shadow-none"
+                ? "bg-[#25D366] hover:bg-[#20b858] text-white shadow-[0_4px_16px_rgba(37,211,102,0.35)] active:scale-[0.98] cursor-pointer"
+                : "bg-stone-100 dark:bg-white/10 text-stone-600 dark:text-stone-400 border border-stone-200 dark:border-white/10 hover:bg-stone-200/70 dark:hover:bg-white/15 cursor-pointer shadow-none"
             }`}
           >
             {isOrderValid && (
@@ -713,58 +730,58 @@ export default function CoffeeOrderForm() {
       {isConfirmModalOpen && (
         <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/60 backdrop-blur-xs transition-opacity animate-in fade-in duration-200">
           <div
-            className="w-full max-w-lg bg-[#FCFBF8] dark:bg-[#1A1A1A] rounded-t-3xl sm:rounded-3xl p-6 shadow-2xl border border-black/10 dark:border-white/10 max-h-[90vh] overflow-y-auto"
+            className="w-full max-w-lg bg-white dark:bg-[#1A1A1A] rounded-t-3xl sm:rounded-3xl p-6 shadow-2xl border border-stone-200 dark:border-white/10 max-h-[90vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2.5">
-                <div className="w-10 h-10 rounded-full bg-[#4A3B2C]/10 dark:bg-[#d4a373]/20 flex items-center justify-center text-[#4A3B2C] dark:text-[#d4a373]">
+                <div className="w-10 h-10 rounded-full bg-[#4A3B2C]/10 dark:bg-[#d4a373]/20 flex items-center justify-center text-[#4A3B2C] dark:text-[#d4a373] border border-[#4A3B2C]/15 dark:border-[#d4a373]/20">
                   <Coffee className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-serif font-bold text-dark dark:text-white">
+                  <h3 className="text-lg font-serif font-bold text-stone-900 dark:text-white">
                     {t("confirmTitle")}
                   </h3>
-                  <p className="text-xs text-text-muted">
+                  <p className="text-xs text-stone-500 dark:text-stone-400">
                     Host Athula Rao K (+91 {HOST_PHONE_NUMBER})
                   </p>
                 </div>
               </div>
             </div>
 
-            <p className="text-xs sm:text-sm text-text-muted mb-4">
+            <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-400 mb-4 leading-relaxed">
               {t("confirmSubtitle")}
             </p>
 
             {/* Order Review List */}
-            <div className="bg-white dark:bg-[#222] rounded-2xl p-4 border border-black/5 dark:border-white/5 mb-5 flex flex-col gap-3">
-              <div className="flex justify-between items-center pb-2.5 border-b border-black/5 dark:border-white/5 text-xs text-text-muted">
-                <span>Guest: <strong className="text-dark dark:text-white">{customerName}</strong></span>
-                <span>Total Weight: <strong className="text-dark dark:text-white">{formattedWeight}</strong></span>
+            <div className="bg-[#FAF8F5] dark:bg-[#222] rounded-2xl p-4 border border-stone-200/90 dark:border-white/5 mb-4 flex flex-col gap-3">
+              <div className="flex justify-between items-center pb-2.5 border-b border-stone-200/80 dark:border-white/5 text-xs text-stone-600 dark:text-stone-400">
+                <span>Guest: <strong className="text-stone-900 dark:text-white font-semibold">{customerName}</strong></span>
+                <span>Total Weight: <strong className="text-stone-900 dark:text-white font-semibold">{formattedWeight}</strong></span>
               </div>
 
               {/* Selections Summary */}
-              <div className="grid grid-cols-2 gap-2 pb-2.5 border-b border-black/5 dark:border-white/5">
-                <div className="bg-[#F8F9F8] dark:bg-[#1A1A1A] rounded-xl p-2.5 border border-black/5 dark:border-white/5">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-text-muted block mb-0.5">
+              <div className="grid grid-cols-2 gap-2 pb-2.5 border-b border-stone-200/80 dark:border-white/5">
+                <div className="bg-white dark:bg-[#1A1A1A] rounded-xl p-2.5 border border-stone-200/80 dark:border-white/5 shadow-2xs">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-stone-500 dark:text-stone-400 block mb-0.5">
                     {t("coffeeTypeLabel")}
                   </span>
                   <span className="text-xs font-bold text-[#4A3B2C] dark:text-[#d4a373] block truncate">
                     {selectedCoffeeType === "arabica" ? t("arabicaTitle") : t("robustaTitle")}
                   </span>
-                  <span className="text-[10px] text-text-muted block">
+                  <span className="text-[10px] text-stone-500 dark:text-stone-400 block">
                     {selectedCoffeeType === "arabica" ? t("arabicaRatio") : t("robustaRatio")}
                   </span>
                 </div>
 
-                <div className="bg-[#F8F9F8] dark:bg-[#1A1A1A] rounded-xl p-2.5 border border-black/5 dark:border-white/5">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-text-muted block mb-0.5">
+                <div className="bg-white dark:bg-[#1A1A1A] rounded-xl p-2.5 border border-stone-200/80 dark:border-white/5 shadow-2xs">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-stone-500 dark:text-stone-400 block mb-0.5">
                     {t("powderTypeLabel")}
                   </span>
                   <span className="text-xs font-bold text-[#4A3B2C] dark:text-[#d4a373] block truncate">
                     {selectedPowderType === "filter" ? t("filterPowderTitle") : t("nicePowderTitle")}
                   </span>
-                  <span className="text-[10px] text-text-muted block">
+                  <span className="text-[10px] text-stone-500 dark:text-stone-400 block">
                     {selectedPowderType === "filter" ? t("filterPowderSubtitle") : t("nicePowderSubtitle")}
                   </span>
                 </div>
@@ -776,7 +793,7 @@ export default function CoffeeOrderForm() {
                 if (qty === 0) return null;
                 return (
                   <div key={pack.id} className="flex justify-between items-center text-sm">
-                    <span className="font-medium text-dark dark:text-white">
+                    <span className="font-semibold text-stone-900 dark:text-white">
                       {qty}x {pack.weightLabel}
                     </span>
                     <span className="font-bold text-[#4A3B2C] dark:text-[#d4a373]">
@@ -786,26 +803,26 @@ export default function CoffeeOrderForm() {
                 );
               })}
 
-              <div className="flex justify-between items-center pt-2.5 mt-1 border-t border-black/5 dark:border-white/5 font-bold">
-                <span className="text-sm text-dark dark:text-white">{t("totalAmount")}</span>
+              <div className="flex justify-between items-center pt-2.5 mt-1 border-t border-stone-200/80 dark:border-white/5 font-bold">
+                <span className="text-sm text-stone-900 dark:text-white">{t("totalAmount")}</span>
                 <span className="text-lg text-[#4A3B2C] dark:text-[#d4a373]">₹{totalAmount}</span>
               </div>
             </div>
 
-            <p className="text-[10px] text-text-muted/70 italic text-center -mt-2 mb-4">
+            <p className="text-[11px] text-stone-500 dark:text-stone-400 italic text-center mb-4 tracking-wide">
               {t("packagingDisclaimer")}
             </p>
 
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setIsConfirmModalOpen(false)}
-                className="flex-1 py-3 px-3 sm:px-4 rounded-xl border border-black/10 dark:border-white/10 text-xs sm:text-sm font-semibold text-text-muted hover:bg-black/5 dark:hover:bg-white/5 transition-colors whitespace-nowrap text-center"
+                className="flex-1 py-3 px-3 sm:px-4 rounded-xl border border-stone-200 dark:border-white/10 text-xs sm:text-sm font-semibold text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-white/5 transition-colors whitespace-nowrap text-center"
               >
                 {t("cancelButton")}
               </button>
               <button
                 onClick={handleConfirmOrder}
-                className="flex-1 py-3 px-3 sm:px-4 rounded-xl bg-[#25D366] hover:bg-[#20b858] text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 sm:gap-2 shadow-sm transition-all active:scale-[0.98] whitespace-nowrap text-center"
+                className="flex-1 py-3 px-3 sm:px-4 rounded-xl bg-[#25D366] hover:bg-[#20b858] text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 sm:gap-2 shadow-[0_2px_10px_rgba(37,211,102,0.3)] transition-all active:scale-[0.98] whitespace-nowrap text-center"
               >
                 <i className="ph-fill ph-whatsapp-logo text-base sm:text-lg shrink-0"></i>
                 <span className="whitespace-nowrap">{t("confirmButton")}</span>

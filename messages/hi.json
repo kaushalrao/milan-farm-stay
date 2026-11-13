@@ -740,7 +740,7 @@
     "suggestDirections": "फार्म के लिए दिशा-निर्देश"
   },
   "CoffeeOrderForm": {
-    "selectCoffeeType": "1. कॉफ़ी का प्रकार चुनें",
+    "selectCoffeeType": "कॉफ़ी का प्रकार चुनें",
     "selectCoffeeTypeSubtitle": "अपना पसंदीदा एस्टेट ब्लेंड चुनें",
     "arabicaTitle": "अरेबिका कॉफ़ी",
     "arabicaRatio": "80% अरेबिका + 20% चिकोरी",
@@ -750,7 +750,7 @@
     "robustaRatio": "80% रोबस्टा + 20% चिकोरी",
     "robustaBadge": "कड़क और मज़बूत",
     "robustaDesc": "गाढ़ा डिकॉक्शन, गहरा भुना हुआ स्वाद और कड़क कॉफ़ी पसंद करने वालों के लिए उत्तम।",
-    "selectPowderType": "2. पाउडर का प्रकार चुनें",
+    "selectPowderType": "पाउडर का प्रकार चुनें",
     "selectPowderTypeSubtitle": "कॉफ़ी बनाने के अपने तरीके के अनुसार चुनें",
     "filterPowderTitle": "फ़िल्टर कॉफ़ी पाउडर",
     "filterPowderSubtitle": "पारंपरिक मध्यम-दरदरा पाउडर",
