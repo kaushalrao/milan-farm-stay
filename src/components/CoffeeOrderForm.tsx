@@ -1,23 +1,39 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { ArrowLeft, Coffee, Plus, Minus, User, Sparkles, Check } from "lucide-react";
+import React, { useState, useEffect, useRef } from "react";
+import { ArrowLeft, Coffee, Plus, Minus, User, Sparkles, Check, Flame, Zap } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 import Coffee3DHero from "./Coffee3DHero";
 import { useTranslations, useLocale } from "next-intl";
-import { COFFEE_PACKS, HOST_PHONE_NUMBER } from "@/data/coffeeData";
+import {
+  COFFEE_PACKS,
+  HOST_PHONE_NUMBER,
+  COFFEE_TYPES,
+  POWDER_TYPES,
+  CoffeeTypeId,
+  PowderTypeId,
+} from "@/data/coffeeData";
 
 export default function CoffeeOrderForm() {
   const t = useTranslations("CoffeeOrderForm");
   const locale = useLocale();
 
   const [customerName, setCustomerName] = useState("");
+  const [selectedCoffeeType, setSelectedCoffeeType] = useState<CoffeeTypeId | null>(null);
+  const [selectedPowderType, setSelectedPowderType] = useState<PowderTypeId | null>(null);
   const [quantities, setQuantities] = useState<{ [packId: string]: number }>({
     "250g": 0,
     "500g": 0,
     "1kg": 0,
   });
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+  const [highlightSection, setHighlightSection] = useState<"name" | "coffee" | "powder" | "packs" | null>(null);
+
+  // Section refs for smooth scrolling to unselected requirements
+  const nameSectionRef = useRef<HTMLElement>(null);
+  const coffeeTypeRef = useRef<HTMLElement>(null);
+  const powderTypeRef = useRef<HTMLElement>(null);
+  const packsSectionRef = useRef<HTMLElement>(null);
 
   // Load guest name from local storage on mount (shared with FoodOrderForm)
   useEffect(() => {
@@ -64,31 +80,68 @@ export default function CoffeeOrderForm() {
       ? `${(totalWeightGrams / 1000).toFixed(totalWeightGrams % 1000 === 0 ? 0 : 2)} kg`
       : `${totalWeightGrams}g`;
 
-  const isOrderValid = customerName.trim() !== "" && totalItemsCount > 0;
+  // Validation: Name, Items, Coffee Type, and Powder Type must all be present
+  const isOrderValid =
+    customerName.trim() !== "" &&
+    totalItemsCount > 0 &&
+    selectedCoffeeType !== null &&
+    selectedPowderType !== null;
 
   const handleCheckoutClick = () => {
-    if (!isOrderValid) return;
+    if (!isOrderValid) {
+      // Guide user to the missing requirement
+      if (!customerName.trim()) {
+        nameSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+        setHighlightSection("name");
+      } else if (!selectedCoffeeType) {
+        coffeeTypeRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+        setHighlightSection("coffee");
+      } else if (!selectedPowderType) {
+        powderTypeRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+        setHighlightSection("powder");
+      } else if (totalItemsCount === 0) {
+        packsSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+        setHighlightSection("packs");
+      }
+      setTimeout(() => setHighlightSection(null), 2500);
+      return;
+    }
     setIsConfirmModalOpen(true);
   };
 
   const handleConfirmOrder = () => {
     setIsConfirmModalOpen(false);
 
+    const coffeeOption = COFFEE_TYPES.find((c) => c.id === selectedCoffeeType);
+    const powderOption = POWDER_TYPES.find((p) => p.id === selectedPowderType);
+
+    const coffeeLabel =
+      selectedCoffeeType === "arabica"
+        ? `${t("arabicaTitle")} (${t("arabicaRatio")})`
+        : `${t("robustaTitle")} (${t("robustaRatio")})`;
+
+    const powderLabel =
+      selectedPowderType === "filter"
+        ? `${t("filterPowderTitle")} (${t("filterPowderSubtitle")})`
+        : `${t("nicePowderTitle")} (${t("nicePowderSubtitle")})`;
+
     let message = `*New Coffee Powder Order - Milan Farm Stay*\n`;
-    message += `Name: ${customerName.trim()}\n\n`;
+    message += `*Guest Name:* ${customerName.trim()}\n\n`;
+    message += `*Coffee Type:* ${coffeeLabel}\n`;
+    message += `*Powder Type:* ${powderLabel}\n\n`;
     message += `*Items Ordered:*\n`;
 
     COFFEE_PACKS.forEach((pack) => {
       const qty = quantities[pack.id] || 0;
       if (qty > 0) {
         const itemTotal = pack.price * qty;
-        message += `- ${qty}x ${pack.weightLabel} Arabica + Chicory (₹${itemTotal})\n`;
+        message += `- ${qty}x ${pack.weightLabel} — ₹${itemTotal}\n`;
       }
     });
 
     message += `\n*Total Weight:* ${formattedWeight}\n`;
     message += `*Total Payable:* ₹${totalAmount}\n\n`;
-    message += `_Fresh from Milan Coffee Plantation_`;
+    message += `_Freshly roasted & ground at Milan Coffee Plantation_`;
 
     const encodedMessage = encodeURIComponent(message);
     const url = `https://wa.me/91${HOST_PHONE_NUMBER}?text=${encodedMessage}`;
@@ -155,6 +208,7 @@ export default function CoffeeOrderForm() {
                 <option value="te">తెలుగు</option>
                 <option value="ta">தமிழ்</option>
                 <option value="ml">മലയാളം</option>
+                <option value="hi">हिन्दी</option>
               </select>
             </div>
           </div>
@@ -179,32 +233,16 @@ export default function CoffeeOrderForm() {
           <Coffee3DHero />
         </div>
 
-        {/* Blend Spotlight Card */}
-        <section className="mb-8" aria-label="Coffee blend information">
-          <div className="relative overflow-hidden rounded-3xl p-5 sm:p-6 bg-gradient-to-br from-[#4A3B2C]/5 via-[#4A3B2C]/10 to-[#F5F2E9] dark:from-[#2A2016] dark:via-[#1E1712] dark:to-[#121212] border border-[#4A3B2C]/15 dark:border-[#d4a373]/20 shadow-sm">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
-              <div>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-[#4A3B2C]/80 dark:text-[#d4a373]/90">
-                  {t("blendTitle")}
-                </span>
-                <h3 className="text-xl sm:text-2xl font-serif font-bold text-[#2A1D13] dark:text-[#F5EADB]">
-                  {t("blendRatio")}
-                </h3>
-              </div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-white/80 dark:bg-black/40 text-xs font-semibold text-[#4A3B2C] dark:text-[#d4a373] border border-black/5 dark:border-white/10 w-fit">
-                <Check className="w-3.5 h-3.5 text-forest-green" />
-                <span>{t("freshlyRoasted")}</span>
-              </div>
-            </div>
-
-            <p className="text-xs sm:text-sm text-text-muted dark:text-[#C5B8AA] leading-relaxed">
-              {t("blendDesc")}
-            </p>
-          </div>
-        </section>
-
         {/* Guest Details: Name First */}
-        <section className="mb-8" aria-label="Guest details">
+        <section
+          ref={nameSectionRef}
+          className={`mb-8 transition-all duration-300 rounded-3xl ${
+            highlightSection === "name"
+              ? "ring-2 ring-airbnb-coral/80 shadow-md"
+              : ""
+          }`}
+          aria-label="Guest details"
+        >
           <div className="bg-white/90 dark:bg-[#1A1A1A] rounded-3xl p-5 sm:p-6 border border-black/8 dark:border-white/8 shadow-xs">
             <h3 className="text-base sm:text-lg font-serif font-bold text-dark dark:text-white mb-1">
               {t("guestDetailsTitle")}
@@ -226,15 +264,302 @@ export default function CoffeeOrderForm() {
           </div>
         </section>
 
-        {/* Pack Selection */}
-        <section className="mb-10" aria-label="Pack size and quantity selection">
+        {/* Step 1: Select Coffee Type (Arabica vs Robusta) */}
+        <section
+          ref={coffeeTypeRef}
+          className={`mb-8 transition-all duration-300 rounded-3xl ${
+            highlightSection === "coffee"
+              ? "ring-2 ring-airbnb-coral/80 shadow-md"
+              : ""
+          }`}
+          aria-label="Select Coffee Type"
+        >
+          <div className="flex items-center justify-between mb-3">
+            <div>
+              <h3 className="text-lg sm:text-xl font-serif font-bold text-dark dark:text-white">
+                {t("selectCoffeeType")}
+              </h3>
+              <p className="text-xs text-text-muted mt-0.5">
+                {t("selectCoffeeTypeSubtitle")}
+              </p>
+            </div>
+            {selectedCoffeeType && (
+              <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full">
+                <Check className="w-3 h-3" />
+                <span>Selected</span>
+              </span>
+            )}
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5" role="radiogroup" aria-label="Coffee Blend Type">
+            {/* Option 1: Arabica Coffee */}
+            <div
+              onClick={() => setSelectedCoffeeType("arabica")}
+              role="radio"
+              aria-checked={selectedCoffeeType === "arabica"}
+              tabIndex={0}
+              onKeyDown={(e) => e.key === "Enter" && setSelectedCoffeeType("arabica")}
+              className={`relative rounded-2xl p-4 sm:p-5 cursor-pointer transition-all duration-200 border flex flex-col justify-between ${
+                selectedCoffeeType === "arabica"
+                  ? "bg-gradient-to-br from-[#4A3B2C]/[0.08] via-white to-[#F5F2E9]/60 dark:from-[#2A2016] dark:via-[#1E1712] dark:to-[#171717] border-[#4A3B2C] dark:border-[#d4a373] shadow-md ring-2 ring-[#4A3B2C]/30 dark:ring-[#d4a373]/40 scale-[1.01]"
+                  : "bg-white/80 dark:bg-[#181818] border-black/8 dark:border-white/8 hover:border-black/20 dark:hover:border-white/20 hover:shadow-xs active:scale-[0.99]"
+              }`}
+            >
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-2">
+                  <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#4A3B2C]/10 dark:bg-[#d4a373]/20 text-[#4A3B2C] dark:text-[#d4a373]">
+                    {t("arabicaBadge")}
+                  </span>
+                  <div
+                    className={`w-5 h-5 rounded-full flex items-center justify-center transition-all ${
+                      selectedCoffeeType === "arabica"
+                        ? "bg-[#4A3B2C] text-white dark:bg-[#d4a373] dark:text-[#1F1F1F] shadow-xs"
+                        : "border-2 border-black/20 dark:border-white/20"
+                    }`}
+                  >
+                    {selectedCoffeeType === "arabica" && <Check className="w-3.5 h-3.5 stroke-[3]" />}
+                  </div>
+                </div>
+
+                <h4 className="text-lg sm:text-xl font-serif font-bold text-[#2A1D13] dark:text-[#F5EADB] mb-1">
+                  {t("arabicaTitle")}
+                </h4>
+                <div className="inline-block px-2 py-0.5 rounded-md bg-black/5 dark:bg-white/5 text-[11px] font-semibold text-[#4A3B2C] dark:text-[#d4a373] mb-2.5">
+                  {t("arabicaRatio")}
+                </div>
+
+                <p className="text-xs text-text-muted leading-relaxed mb-3">
+                  {t("arabicaDesc")}
+                </p>
+              </div>
+
+              {/* Tasting Notes */}
+              <div className="flex flex-wrap gap-1.5 pt-2 border-t border-black/5 dark:border-white/5">
+                {[t("note1"), t("note2"), t("note4")].map((note, i) => (
+                  <span
+                    key={i}
+                    className="text-[10px] font-medium px-2 py-0.5 rounded-md bg-black/5 dark:bg-white/5 text-text-muted"
+                  >
+                    {note}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Option 2: Robusta Coffee */}
+            <div
+              onClick={() => setSelectedCoffeeType("robusta")}
+              role="radio"
+              aria-checked={selectedCoffeeType === "robusta"}
+              tabIndex={0}
+              onKeyDown={(e) => e.key === "Enter" && setSelectedCoffeeType("robusta")}
+              className={`relative rounded-2xl p-4 sm:p-5 cursor-pointer transition-all duration-200 border flex flex-col justify-between ${
+                selectedCoffeeType === "robusta"
+                  ? "bg-gradient-to-br from-[#4A3B2C]/[0.08] via-white to-[#F5F2E9]/60 dark:from-[#2A2016] dark:via-[#1E1712] dark:to-[#171717] border-[#4A3B2C] dark:border-[#d4a373] shadow-md ring-2 ring-[#4A3B2C]/30 dark:ring-[#d4a373]/40 scale-[1.01]"
+                  : "bg-white/80 dark:bg-[#181818] border-black/8 dark:border-white/8 hover:border-black/20 dark:hover:border-white/20 hover:shadow-xs active:scale-[0.99]"
+              }`}
+            >
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-2">
+                  <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-700 dark:text-amber-400">
+                    {t("robustaBadge")}
+                  </span>
+                  <div
+                    className={`w-5 h-5 rounded-full flex items-center justify-center transition-all ${
+                      selectedCoffeeType === "robusta"
+                        ? "bg-[#4A3B2C] text-white dark:bg-[#d4a373] dark:text-[#1F1F1F] shadow-xs"
+                        : "border-2 border-black/20 dark:border-white/20"
+                    }`}
+                  >
+                    {selectedCoffeeType === "robusta" && <Check className="w-3.5 h-3.5 stroke-[3]" />}
+                  </div>
+                </div>
+
+                <h4 className="text-lg sm:text-xl font-serif font-bold text-[#2A1D13] dark:text-[#F5EADB] mb-1">
+                  {t("robustaTitle")}
+                </h4>
+                <div className="inline-block px-2 py-0.5 rounded-md bg-black/5 dark:bg-white/5 text-[11px] font-semibold text-[#4A3B2C] dark:text-[#d4a373] mb-2.5">
+                  {t("robustaRatio")}
+                </div>
+
+                <p className="text-xs text-text-muted leading-relaxed mb-3">
+                  {t("robustaDesc")}
+                </p>
+              </div>
+
+              {/* Tasting Notes */}
+              <div className="flex flex-wrap gap-1.5 pt-2 border-t border-black/5 dark:border-white/5">
+                {["Strong Body", "Roasted Cocoa", "Thick Crema"].map((note, i) => (
+                  <span
+                    key={i}
+                    className="text-[10px] font-medium px-2 py-0.5 rounded-md bg-black/5 dark:bg-white/5 text-text-muted"
+                  >
+                    {note}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Step 2: Select Powder Type (Filter vs Nice Powder) */}
+        <section
+          ref={powderTypeRef}
+          className={`mb-8 transition-all duration-300 rounded-3xl ${
+            highlightSection === "powder"
+              ? "ring-2 ring-airbnb-coral/80 shadow-md"
+              : ""
+          }`}
+          aria-label="Select Powder Type"
+        >
+          <div className="flex items-center justify-between mb-3">
+            <div>
+              <h3 className="text-lg sm:text-xl font-serif font-bold text-dark dark:text-white">
+                {t("selectPowderType")}
+              </h3>
+              <p className="text-xs text-text-muted mt-0.5">
+                {t("selectPowderTypeSubtitle")}
+              </p>
+            </div>
+            {selectedPowderType && (
+              <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full">
+                <Check className="w-3 h-3" />
+                <span>Selected</span>
+              </span>
+            )}
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5" role="radiogroup" aria-label="Powder Grind Type">
+            {/* Powder 1: Filter Coffee Powder */}
+            <div
+              onClick={() => setSelectedPowderType("filter")}
+              role="radio"
+              aria-checked={selectedPowderType === "filter"}
+              tabIndex={0}
+              onKeyDown={(e) => e.key === "Enter" && setSelectedPowderType("filter")}
+              className={`relative rounded-2xl p-4 sm:p-5 cursor-pointer transition-all duration-200 border flex flex-col justify-between ${
+                selectedPowderType === "filter"
+                  ? "bg-gradient-to-br from-[#4A3B2C]/[0.08] via-white to-[#F5F2E9]/60 dark:from-[#2A2016] dark:via-[#1E1712] dark:to-[#171717] border-[#4A3B2C] dark:border-[#d4a373] shadow-md ring-2 ring-[#4A3B2C]/30 dark:ring-[#d4a373]/40 scale-[1.01]"
+                  : "bg-white/80 dark:bg-[#181818] border-black/8 dark:border-white/8 hover:border-black/20 dark:hover:border-white/20 hover:shadow-xs active:scale-[0.99]"
+              }`}
+            >
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-2">
+                  <span className="inline-flex items-center gap-1 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#4A3B2C]/10 dark:bg-[#d4a373]/20 text-[#4A3B2C] dark:text-[#d4a373]">
+                    <Coffee className="w-3 h-3" />
+                    <span>Traditional Drip</span>
+                  </span>
+                  <div
+                    className={`w-5 h-5 rounded-full flex items-center justify-center transition-all ${
+                      selectedPowderType === "filter"
+                        ? "bg-[#4A3B2C] text-white dark:bg-[#d4a373] dark:text-[#1F1F1F] shadow-xs"
+                        : "border-2 border-black/20 dark:border-white/20"
+                    }`}
+                  >
+                    {selectedPowderType === "filter" && <Check className="w-3.5 h-3.5 stroke-[3]" />}
+                  </div>
+                </div>
+
+                <h4 className="text-base sm:text-lg font-serif font-bold text-[#2A1D13] dark:text-[#F5EADB] mb-0.5">
+                  {t("filterPowderTitle")}
+                </h4>
+                <p className="text-[11px] font-semibold text-[#4A3B2C] dark:text-[#d4a373] mb-2">
+                  {t("filterPowderSubtitle")}
+                </p>
+
+                <p className="text-xs text-text-muted leading-relaxed">
+                  {t("filterPowderDesc")}
+                </p>
+              </div>
+
+              <div className="mt-3 pt-2.5 border-t border-black/5 dark:border-white/5">
+                <span className="text-[10px] text-text-muted">
+                  Ideal for: <strong className="text-dark dark:text-white">Brass/Steel Filter, French Press</strong>
+                </span>
+              </div>
+            </div>
+
+            {/* Powder 2: Nice Powder */}
+            <div
+              onClick={() => setSelectedPowderType("nice")}
+              role="radio"
+              aria-checked={selectedPowderType === "nice"}
+              tabIndex={0}
+              onKeyDown={(e) => e.key === "Enter" && setSelectedPowderType("nice")}
+              className={`relative rounded-2xl p-4 sm:p-5 cursor-pointer transition-all duration-200 border flex flex-col justify-between ${
+                selectedPowderType === "nice"
+                  ? "bg-gradient-to-br from-[#4A3B2C]/[0.08] via-white to-[#F5F2E9]/60 dark:from-[#2A2016] dark:via-[#1E1712] dark:to-[#171717] border-[#4A3B2C] dark:border-[#d4a373] shadow-md ring-2 ring-[#4A3B2C]/30 dark:ring-[#d4a373]/40 scale-[1.01]"
+                  : "bg-white/80 dark:bg-[#181818] border-black/8 dark:border-white/8 hover:border-black/20 dark:hover:border-white/20 hover:shadow-xs active:scale-[0.99]"
+              }`}
+            >
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-2">
+                  <span className="inline-flex items-center gap-1 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400">
+                    <Sparkles className="w-3 h-3" />
+                    <span>Fine Grind</span>
+                  </span>
+                  <div
+                    className={`w-5 h-5 rounded-full flex items-center justify-center transition-all ${
+                      selectedPowderType === "nice"
+                        ? "bg-[#4A3B2C] text-white dark:bg-[#d4a373] dark:text-[#1F1F1F] shadow-xs"
+                        : "border-2 border-black/20 dark:border-white/20"
+                    }`}
+                  >
+                    {selectedPowderType === "nice" && <Check className="w-3.5 h-3.5 stroke-[3]" />}
+                  </div>
+                </div>
+
+                <h4 className="text-base sm:text-lg font-serif font-bold text-[#2A1D13] dark:text-[#F5EADB] mb-0.5">
+                  {t("nicePowderTitle")}
+                </h4>
+                <p className="text-[11px] font-semibold text-[#4A3B2C] dark:text-[#d4a373] mb-2">
+                  {t("nicePowderSubtitle")}
+                </p>
+
+                <p className="text-xs text-text-muted leading-relaxed">
+                  {t("nicePowderDesc")}
+                </p>
+              </div>
+
+              <div className="mt-3 pt-2.5 border-t border-black/5 dark:border-white/5">
+                <span className="text-[10px] text-text-muted">
+                  Ideal for: <strong className="text-dark dark:text-white">Stovetop Boil, Instant Decoction, Moka Pot</strong>
+                </span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Step 3: Pack Selection */}
+        <section
+          ref={packsSectionRef}
+          className={`mb-10 transition-all duration-300 rounded-3xl ${
+            highlightSection === "packs"
+              ? "ring-2 ring-airbnb-coral/80 shadow-md"
+              : ""
+          }`}
+          aria-label="Pack size and quantity selection"
+        >
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg sm:text-xl font-serif font-bold text-dark dark:text-white">
-              {t("selectQuantity")}
-            </h3>
-            <span className="text-xs font-medium text-text-muted">
-              Arabica + Chicory
-            </span>
+            <div>
+              <h3 className="text-lg sm:text-xl font-serif font-bold text-dark dark:text-white">
+                3. {t("selectQuantity")}
+              </h3>
+              <p className="text-xs text-text-muted mt-0.5">
+                {selectedCoffeeType && selectedPowderType ? (
+                  <span className="text-[#4A3B2C] dark:text-[#d4a373] font-semibold">
+                    {selectedCoffeeType === "arabica" ? "Arabica 80/20" : "Robusta 80/20"} • {selectedPowderType === "filter" ? "Filter Grind" : "Nice Grind"}
+                  </span>
+                ) : (
+                  <span>Select pack sizes for your order</span>
+                )}
+              </p>
+            </div>
+            {totalItemsCount > 0 && (
+              <span className="text-xs font-semibold text-text-muted">
+                {totalItemsCount} {totalItemsCount === 1 ? "pack" : "packs"}
+              </span>
+            )}
           </div>
 
           <div className="grid grid-cols-1 gap-3.5">
@@ -354,17 +679,24 @@ export default function CoffeeOrderForm() {
 
           <button
             onClick={handleCheckoutClick}
-            disabled={!isOrderValid}
             className={`flex-1 max-w-xs py-3.5 px-4 sm:px-6 rounded-2xl font-bold text-xs sm:text-base flex items-center justify-center gap-2 transition-all shadow-md whitespace-nowrap ${
               isOrderValid
                 ? "bg-[#25D366] hover:bg-[#20b858] text-white active:scale-[0.98] cursor-pointer"
-                : "bg-black/10 dark:bg-white/10 text-text-muted cursor-not-allowed shadow-none"
+                : "bg-black/10 dark:bg-white/10 text-text-muted hover:bg-black/15 dark:hover:bg-white/15 cursor-pointer shadow-none"
             }`}
           >
-            <i className="ph-fill ph-whatsapp-logo text-base sm:text-xl shrink-0"></i>
+            {isOrderValid && (
+              <i className="ph-fill ph-whatsapp-logo text-base sm:text-xl shrink-0"></i>
+            )}
             <span className="whitespace-nowrap">
               {totalItemsCount === 0
                 ? t("addItemNotice")
+                : !selectedCoffeeType && !selectedPowderType
+                ? t("selectionRequiredNotice")
+                : !selectedCoffeeType
+                ? t("coffeeTypeRequired")
+                : !selectedPowderType
+                ? t("powderTypeRequired")
                 : !customerName.trim()
                 ? t("yourNameRequired")
                 : t("orderViaWhatsApp")}
@@ -401,19 +733,47 @@ export default function CoffeeOrderForm() {
             </p>
 
             {/* Order Review List */}
-            <div className="bg-white dark:bg-[#222] rounded-2xl p-4 border border-black/5 dark:border-white/5 mb-5 flex flex-col gap-2.5">
-              <div className="flex justify-between items-center pb-2 border-b border-black/5 dark:border-white/5 text-xs text-text-muted">
+            <div className="bg-white dark:bg-[#222] rounded-2xl p-4 border border-black/5 dark:border-white/5 mb-5 flex flex-col gap-3">
+              <div className="flex justify-between items-center pb-2.5 border-b border-black/5 dark:border-white/5 text-xs text-text-muted">
                 <span>Guest: <strong className="text-dark dark:text-white">{customerName}</strong></span>
                 <span>Total Weight: <strong className="text-dark dark:text-white">{formattedWeight}</strong></span>
               </div>
 
+              {/* Selections Summary */}
+              <div className="grid grid-cols-2 gap-2 pb-2.5 border-b border-black/5 dark:border-white/5">
+                <div className="bg-[#F8F9F8] dark:bg-[#1A1A1A] rounded-xl p-2.5 border border-black/5 dark:border-white/5">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-text-muted block mb-0.5">
+                    {t("coffeeTypeLabel")}
+                  </span>
+                  <span className="text-xs font-bold text-[#4A3B2C] dark:text-[#d4a373] block truncate">
+                    {selectedCoffeeType === "arabica" ? t("arabicaTitle") : t("robustaTitle")}
+                  </span>
+                  <span className="text-[10px] text-text-muted block">
+                    {selectedCoffeeType === "arabica" ? t("arabicaRatio") : t("robustaRatio")}
+                  </span>
+                </div>
+
+                <div className="bg-[#F8F9F8] dark:bg-[#1A1A1A] rounded-xl p-2.5 border border-black/5 dark:border-white/5">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-text-muted block mb-0.5">
+                    {t("powderTypeLabel")}
+                  </span>
+                  <span className="text-xs font-bold text-[#4A3B2C] dark:text-[#d4a373] block truncate">
+                    {selectedPowderType === "filter" ? t("filterPowderTitle") : t("nicePowderTitle")}
+                  </span>
+                  <span className="text-[10px] text-text-muted block">
+                    {selectedPowderType === "filter" ? t("filterPowderSubtitle") : t("nicePowderSubtitle")}
+                  </span>
+                </div>
+              </div>
+
+              {/* Packs */}
               {COFFEE_PACKS.map((pack) => {
                 const qty = quantities[pack.id] || 0;
                 if (qty === 0) return null;
                 return (
                   <div key={pack.id} className="flex justify-between items-center text-sm">
                     <span className="font-medium text-dark dark:text-white">
-                      {qty}x {pack.weightLabel} Arabica + Chicory
+                      {qty}x {pack.weightLabel}
                     </span>
                     <span className="font-bold text-[#4A3B2C] dark:text-[#d4a373]">
                       ₹{pack.price * qty}
@@ -449,4 +809,3 @@ export default function CoffeeOrderForm() {
     </div>
   );
 }
-
