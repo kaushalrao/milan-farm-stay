@@ -792,6 +792,7 @@
     "confirmButton": "ऑर्डर भेजें",
     "cancelButton": "ऑर्डर की समीक्षा करें",
     "freshlyRoasted": "ताज़ा भुना और पिसा हुआ",
-    "directFromFarm": "सीधे बागान से"
+    "directFromFarm": "सीधे बागान से",
+    "packagingDisclaimer": "* दिखाया गया पैकेजिंग केवल उदाहरण के लिए है। वास्तविक पैकेजिंग भिन्न हो सकती है।"
   }
 }

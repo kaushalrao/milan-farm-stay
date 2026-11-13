@@ -231,6 +231,10 @@ export default function CoffeeOrderForm() {
 
           {/* 3D Floating Coffee Pack & Beans Animation */}
           <Coffee3DHero />
+
+          <p className="text-[11px] sm:text-xs text-text-muted/70 dark:text-text-muted/60 italic text-center mt-2.5">
+            {t("packagingDisclaimer")}
+          </p>
         </div>
 
         {/* Guest Details: Name First */}
@@ -787,6 +791,10 @@ export default function CoffeeOrderForm() {
                 <span className="text-lg text-[#4A3B2C] dark:text-[#d4a373]">₹{totalAmount}</span>
               </div>
             </div>
+
+            <p className="text-[10px] text-text-muted/70 italic text-center -mt-2 mb-4">
+              {t("packagingDisclaimer")}
+            </p>
 
             <div className="flex items-center gap-3">
               <button

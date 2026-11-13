@@ -802,6 +802,7 @@
     "selectionRequiredNotice": "Select Coffee & Powder Type",
     "coffeeTypeLabel": "Coffee Blend",
     "powderTypeLabel": "Powder / Grind",
-    "bothRequiredNotice": "Please select both Coffee Type and Powder Type"
+    "bothRequiredNotice": "Please select both Coffee Type and Powder Type",
+    "packagingDisclaimer": "* Packaging shown is for illustration only. Actual packaging may vary."
   }
 }
