@@ -9,6 +9,7 @@ export default function HomeCook() {
   const [cookModalOpen, setCookModalOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const t = useTranslations("HomeCook");
+  const ui = useTranslations("UI");
 
   return (
     <div 
@@ -115,7 +116,7 @@ export default function HomeCook() {
           className="flex items-center justify-center gap-1.5 py-2.5 md:py-3 bg-dark text-warm-white hover:opacity-90 active:scale-[0.98] rounded-xl text-xs sm:text-sm md:text-base font-semibold shadow-sm transition-all"
         >
           <i className="ph-fill ph-phone text-base md:text-xl"></i>
-          <span className="truncate">{t("contactCook")}</span>
+          <span>{ui("call")}</span>
         </button>
       </div>
 

@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 export default function HomeDelivery() {
   const [isExpanded, setIsExpanded] = useState(false);
   const t = useTranslations("HomeDelivery");
+  const ui = useTranslations("UI");
 
   return (
     <motion.div
@@ -96,7 +97,7 @@ export default function HomeDelivery() {
           className="flex items-center justify-center gap-2 w-full py-2.5 md:py-3 bg-dark text-warm-white hover:opacity-90 active:scale-[0.98] rounded-xl text-xs sm:text-sm md:text-base font-semibold transition-all shadow-sm"
         >
           <i className="ph-fill ph-phone text-base md:text-xl"></i>
-          <span>{t("callDelivery")}</span>
+          <span>{ui("call")}</span>
         </a>
       </div>
     </motion.div>

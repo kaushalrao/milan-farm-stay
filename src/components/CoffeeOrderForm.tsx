@@ -1,8 +1,10 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { ArrowLeft, Coffee, Plus, Minus, User, Sparkles, Check, Flame, Zap } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+import PageShareButton from "./PageShareButton";
 import Coffee3DHero from "./Coffee3DHero";
 import { useTranslations, useLocale } from "next-intl";
 import {
@@ -161,8 +163,8 @@ export default function CoffeeOrderForm() {
       <div className="max-w-2xl mx-auto w-full px-4 sm:px-6 relative">
         {/* Fixed Header */}
         <header className="fixed top-0 left-0 right-0 z-50 bg-[#FBF9F5]/90 dark:bg-[#121212]/90 backdrop-blur-xl border-b border-stone-200/80 dark:border-white/5 shadow-[0_2px_12px_rgba(0,0,0,0.03)]">
-          <div className="max-w-2xl mx-auto px-4 py-3.5 flex items-center justify-between">
-            <div className="flex items-center gap-2">
+          <div className="max-w-2xl mx-auto px-3 sm:px-4 py-2.5 sm:py-3.5 flex items-center justify-between gap-2">
+            <div className="flex items-center gap-1.5 sm:gap-2.5 min-w-0 flex-1">
               <button
                 onClick={() => {
                   if (typeof window !== "undefined" && window.history.length > 1) {
@@ -171,28 +173,40 @@ export default function CoffeeOrderForm() {
                     window.location.href = "/";
                   }
                 }}
-                className="p-2 -ml-2 hover:bg-stone-200/50 dark:hover:bg-white/5 rounded-full transition-colors"
+                className="p-1.5 sm:p-2 -ml-1 sm:-ml-2 hover:bg-stone-200/50 dark:hover:bg-white/5 rounded-full transition-colors shrink-0"
                 aria-label="Go back"
               >
                 <ArrowLeft className="w-5 h-5 text-text-main" />
               </button>
 
-              <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-full bg-[#4A3B2C]/10 dark:bg-[#d4a373]/20 flex items-center justify-center border border-[#4A3B2C]/20 dark:border-[#d4a373]/30 shrink-0">
-                  <Coffee className="w-4 h-4 text-[#4A3B2C] dark:text-[#d4a373]" />
-                </div>
-                <div>
-                  <h1 className="text-base sm:text-lg font-bold text-[#4A3B2C] dark:text-[#d4a373] leading-tight">
-                    {t("title")}
-                  </h1>
-                  <p className="text-[11px] text-stone-500 dark:text-stone-400 font-medium leading-none">
-                    {t("subtitle")}
-                  </p>
-                </div>
+              <div className="w-8 h-8 rounded-full bg-[#4A3B2C]/10 dark:bg-[#d4a373]/20 flex items-center justify-center border border-[#4A3B2C]/20 dark:border-[#d4a373]/30 shrink-0 p-1 hidden sm:flex">
+                <Image
+                  src="/images/logo-emblem.png"
+                  alt="Milan Farm Stays"
+                  width={26}
+                  height={26}
+                  className="w-5 h-5 object-contain dark:hidden"
+                />
+                <Image
+                  src="/images/logo-emblem-dark.png"
+                  alt="Milan Farm Stays"
+                  width={26}
+                  height={26}
+                  className="w-5 h-5 object-contain hidden dark:block"
+                />
+              </div>
+              <div className="min-w-0 flex-1">
+                <h1 className="text-sm sm:text-base md:text-lg font-bold text-[#4A3B2C] dark:text-[#d4a373] leading-tight truncate">
+                  {t("title")}
+                </h1>
+                <p className="text-[11px] text-stone-500 dark:text-stone-400 font-medium leading-none truncate hidden sm:block">
+                  {t("subtitle")}
+                </p>
               </div>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1 sm:gap-2 shrink-0">
+              <PageShareButton />
               <ThemeToggle />
               <select
                 value={locale}

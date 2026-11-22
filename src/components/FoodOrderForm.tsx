@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Plus, Minus, Calendar, Send, Leaf, ArrowLeft, Info, Search, Users, ChevronUp, ChevronDown, User, Sun, Moon } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+import PageShareButton from "./PageShareButton";
 import { useTranslations, useLocale } from "next-intl";
 import { MENU_DATA, CATEGORIES, VENDOR_PHONE_NUMBER } from "@/data/foodMenu";
 
@@ -203,27 +204,28 @@ export default function FoodOrderForm() {
       <div className="max-w-3xl mx-auto w-full relative">
         {/* Fixed Top Navigation */}
         <div className="fixed top-0 left-0 right-0 z-50 bg-cream/90 dark:bg-[#121212]/90 backdrop-blur-xl border-b border-black/5 dark:border-white/5 shadow-sm">
-          <div className="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
-            <div className="flex items-center">
+          <div className="max-w-3xl mx-auto px-3 sm:px-4 py-2.5 sm:py-3 flex items-center justify-between gap-2">
+            <div className="flex items-center gap-1.5 sm:gap-2.5 min-w-0 flex-1">
               <button
                 onClick={() => window.history.back()}
-                className="p-2 -ml-2 mr-2 hover:bg-black/5 dark:hover:bg-white/5 rounded-full transition-colors"
+                className="p-1.5 sm:p-2 -ml-1 sm:-ml-2 hover:bg-black/5 dark:hover:bg-white/5 rounded-full transition-colors shrink-0"
                 aria-label="Go back"
               >
                 <ArrowLeft className="w-5 h-5 text-text-main" />
               </button>
 
-              <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-full bg-forest-green/10 flex items-center justify-center border border-forest-green/20 shrink-0">
-                  <Leaf className="w-4 h-4 text-forest-green" />
-                </div>
-                <div>
-                  <h1 className="text-lg md:text-xl font-black text-forest-green leading-tight truncate">{t("title")}</h1>
-                </div>
+              <div className="w-8 h-8 rounded-full bg-forest-green/10 flex items-center justify-center border border-forest-green/20 shrink-0 hidden sm:flex">
+                <Leaf className="w-4 h-4 text-forest-green" />
+              </div>
+              <div className="min-w-0 flex-1">
+                <h1 className="text-base sm:text-lg md:text-xl font-bold text-forest-green leading-tight truncate">
+                  {t("title")}
+                </h1>
               </div>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1 sm:gap-2 shrink-0">
+              <PageShareButton />
               <ThemeToggle />
               <select
                 value={locale}
@@ -231,7 +233,7 @@ export default function FoodOrderForm() {
                   document.cookie = `NEXT_LOCALE=${e.target.value}; path=/; max-age=31536000`;
                   window.location.reload();
                 }}
-                className="bg-transparent text-text-main font-medium border border-black/10 dark:border-white/10 hover:border-black/20 dark:hover:border-white/20 rounded-md px-1 py-1 focus:outline-none focus:ring-2 focus:ring-forest-green/50 text-[11px] md:text-xs cursor-pointer transition-colors"
+                className="bg-transparent text-text-main font-medium border border-black/10 dark:border-white/10 hover:border-black/20 dark:hover:border-white/20 rounded-md px-1 sm:px-1.5 py-1 focus:outline-none focus:ring-2 focus:ring-forest-green/50 text-[11px] sm:text-xs cursor-pointer transition-colors"
                 aria-label="Select Language"
               >
                 <option value="en">English</option>

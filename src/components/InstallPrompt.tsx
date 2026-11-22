@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function InstallPrompt() {
@@ -73,8 +74,14 @@ export default function InstallPrompt() {
         >
           <div className="bg-[#1F1F1F] text-white rounded-2xl p-4 shadow-xl flex items-center justify-between gap-4 border border-white/10">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-airbnb-coral rounded-xl flex items-center justify-center shrink-0">
-                <i className="ph-bold ph-download-simple text-xl text-white"></i>
+              <div className="w-11 h-11 bg-[#181513] rounded-xl flex items-center justify-center shrink-0 border border-white/15 overflow-hidden shadow-sm p-1.5">
+                <Image
+                  src="/images/logo-emblem-dark.png"
+                  alt="Milan Farm"
+                  width={36}
+                  height={36}
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div className="flex flex-col flex-1">
                 <h4 className="font-bold text-sm leading-tight">Install Offline App</h4>

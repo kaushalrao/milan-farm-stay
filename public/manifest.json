@@ -4,8 +4,8 @@
   "description": "Your digital concierge and itinerary for Milan Farm Stays.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#FCF9F2",
-  "theme_color": "#F36E57",
+  "background_color": "#181513",
+  "theme_color": "#181513",
   "icons": [
     {
       "src": "/icons/icon-192x192.png",

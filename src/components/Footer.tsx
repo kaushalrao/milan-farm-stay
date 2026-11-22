@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   const t = useTranslations("Footer");
@@ -9,7 +10,16 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between gap-12 mb-12">
 
           <div className="max-w-xs">
-            <h3 className="font-serif text-2xl font-semibold mb-3">{t("title")}</h3>
+            <div className="flex items-center gap-3 mb-3">
+              <Image
+                src="/images/logo-emblem-dark.png"
+                alt="Milan Farm Stays"
+                width={36}
+                height={36}
+                className="w-9 h-9 object-contain shrink-0"
+              />
+              <h3 className="font-serif text-2xl font-semibold tracking-tight">{t("title")}</h3>
+            </div>
             <p className="text-white/70">
               {t("desc")}
             </p>

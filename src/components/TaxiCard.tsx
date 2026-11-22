@@ -7,6 +7,7 @@ export default function TaxiCard({ name, phone }: { name: string, phone: string 
   const [isExpanded, setIsExpanded] = useState(false);
   const firstName = name.split(" ")[0];
   const t = useTranslations("TaxiCard");
+  const ui = useTranslations("UI");
 
   return (
     <motion.div
@@ -96,7 +97,7 @@ export default function TaxiCard({ name, phone }: { name: string, phone: string 
           className="flex items-center justify-center gap-2 w-full py-2.5 md:py-3 bg-dark text-warm-white hover:opacity-90 active:scale-[0.98] rounded-xl text-xs sm:text-sm md:text-base font-semibold transition-all shadow-sm"
         >
           <i className="ph-fill ph-phone text-base md:text-xl"></i>
-          <span>{t("callFirstName", { firstName })}</span>
+          <span>{ui("call")}</span>
         </a>
       </div>
     </motion.div>

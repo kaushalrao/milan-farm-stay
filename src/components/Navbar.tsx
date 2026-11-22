@@ -1,7 +1,8 @@
 "use client";
 import { useState, useEffect, useMemo } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import ThemeToggle from "./ThemeToggle";
 import SearchTrigger from "./search/SearchTrigger";
@@ -81,16 +82,92 @@ export default function Navbar() {
       aria-label="Main Navigation"
     >
       <div className="container mx-auto px-3 sm:px-6 max-w-7xl flex justify-between items-center relative z-10">
-        <Link href="/" className="min-w-0 shrink">
-          <motion.div
-            className={`font-serif font-bold text-dark transition-all duration-300 truncate mr-1 sm:mr-2 ${
-              isScrolled ? "text-base sm:text-xl" : "text-lg sm:text-2xl"
+        <Link href="/" className="flex items-center gap-2.5 sm:gap-3 min-w-0 shrink group">
+          <div className="relative shrink-0 flex items-center justify-center">
+            {/* Light mode: Charcoal logo emblem */}
+            <Image
+              src="/images/logo-emblem.png"
+              alt="Milan Farm Stays Logo"
+              width={36}
+              height={36}
+              className={`object-contain dark:hidden shrink-0 transition-transform duration-300 group-hover:scale-105 ${
+                isScrolled ? "w-7 h-7 sm:w-8 sm:h-8" : "w-8 h-8 sm:w-9 sm:h-9"
+              }`}
+              priority
+            />
+            {/* Dark mode: White logo emblem */}
+            <Image
+              src="/images/logo-emblem-dark.png"
+              alt="Milan Farm Stays Logo"
+              width={36}
+              height={36}
+              className={`object-contain hidden dark:block shrink-0 transition-transform duration-300 group-hover:scale-105 ${
+                isScrolled ? "w-7 h-7 sm:w-8 sm:h-8" : "w-8 h-8 sm:w-9 sm:h-9"
+              }`}
+              priority
+            />
+          </div>
+          <div
+            className={`font-serif font-bold text-dark flex items-center whitespace-nowrap select-none transition-all duration-300 ${
+              isScrolled ? "text-base sm:text-xl tracking-normal" : "text-lg sm:text-2xl tracking-tight"
             }`}
           >
-            {t("title")}
-          </motion.div>
+            {locale === "en" ? (
+              <>
+                <span>M</span>
+                <motion.span
+                  initial={false}
+                  animate={{
+                    maxWidth: isScrolled ? 0 : 150,
+                    opacity: isScrolled ? 0 : 1,
+                    paddingRight: isScrolled ? 0 : 6,
+                  }}
+                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  className="inline-block overflow-hidden whitespace-nowrap"
+                >
+                  ilan Farm
+                </motion.span>
+                <span>S</span>
+                <motion.span
+                  initial={false}
+                  animate={{
+                    maxWidth: isScrolled ? 0 : 80,
+                    opacity: isScrolled ? 0 : 1,
+                  }}
+                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  className="inline-block overflow-hidden whitespace-nowrap"
+                >
+                  tays
+                </motion.span>
+              </>
+            ) : (
+              <AnimatePresence mode="wait" initial={false}>
+                {isScrolled ? (
+                  <motion.span
+                    key="short"
+                    initial={{ opacity: 0, x: -4 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -4 }}
+                    transition={{ duration: 0.25 }}
+                  >
+                    MS
+                  </motion.span>
+                ) : (
+                  <motion.span
+                    key="full"
+                    initial={{ opacity: 0, x: -4 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -4 }}
+                    transition={{ duration: 0.25 }}
+                  >
+                    {t("title")}
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            )}
+          </div>
         </Link>
-        <div className="flex items-center gap-1.5 sm:gap-3 md:gap-6 shrink-0">
+        <div className="flex items-center gap-1 sm:gap-2 md:gap-6 shrink-0">
           <div className="hidden md:flex items-center gap-8">
             {navItems.map((item) => {
               const isActive = activeSection === item.id;

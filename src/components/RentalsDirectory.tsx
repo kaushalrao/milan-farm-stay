@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import ThemeToggle from "./ThemeToggle";
+import PageShareButton from "./PageShareButton";
 import { RENTAL_VENDORS, RentalVendor } from "@/data/rentals";
 
 export default function RentalsDirectory() {
@@ -48,17 +49,18 @@ export default function RentalsDirectory() {
   return (
     <div className="min-h-screen bg-cream text-text-main pb-24">
       {/* Top Header */}
-      <header className="sticky top-0 z-40 h-14 bg-warm-white/90 backdrop-blur-md border-b border-border/60 px-4 md:px-8 flex items-center">
-        <div className="w-full max-w-6xl mx-auto flex items-center justify-between">
+      <header className="sticky top-0 z-40 h-14 bg-warm-white/90 backdrop-blur-md border-b border-border/60 px-3 sm:px-4 md:px-8 flex items-center">
+        <div className="w-full max-w-6xl mx-auto flex items-center justify-between gap-2">
           <Link
             href="/"
-            className="group flex items-center gap-2 text-sm md:text-base font-semibold text-text-main hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors"
+            className="group flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm md:text-base font-semibold text-text-main hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors min-w-0"
           >
-            <i className="ph-bold ph-arrow-left text-lg transition-transform duration-200 group-hover:-translate-x-1.5"></i>
-            <span>{t("backToHome")}</span>
+            <i className="ph-bold ph-arrow-left text-base sm:text-lg transition-transform duration-200 group-hover:-translate-x-1.5 shrink-0"></i>
+            <span className="truncate">{t("backToHome")}</span>
           </Link>
 
-          <div className="flex items-center gap-3 md:gap-4">
+          <div className="flex items-center gap-1 sm:gap-2 md:gap-4 shrink-0">
+            <PageShareButton />
             <ThemeToggle />
 
             <select

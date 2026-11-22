@@ -579,7 +579,7 @@
     "lunch": "Lunch",
     "dinner": "Dinner",
     "preOrder4hrs": "Pre-order 4hrs prior",
-    "contactCook": "Contact Prasad"
+    "contactCook": "Call"
   },
   "HomeDelivery": {
     "title": "Home Delivery",
@@ -588,7 +588,7 @@
     "foodGroceries": "Food & Groceries",
     "deliveryFee": "Delivery Fee",
     "variesDistance": "Varies by distance",
-    "callDelivery": "Call Manjunath"
+    "callDelivery": "Call"
   },
   "TaxiCard": {
     "localTaxi": "Local Taxi",
@@ -596,7 +596,7 @@
     "mudigereSurrounds": "Mudigere & Surrounds",
     "availability": "Availability",
     "preBookCall": "Pre-book via Call",
-    "callFirstName": "Call {firstName}",
+    "callFirstName": "Call",
     "area": "Area",
     "mudigere": "Mudigere",
     "booking": "Booking",
@@ -804,5 +804,27 @@
     "powderTypeLabel": "Powder / Grind",
     "bothRequiredNotice": "Please select both Coffee Type and Powder Type",
     "packagingDisclaimer": "* Packaging shown is for illustration only. Actual packaging may vary."
+  },
+  "PageShare": {
+    "share": "Share",
+    "shareWithGuest": "Share with Guest",
+    "shareDescription": "Easily share this page link with your guest via WhatsApp or copy link.",
+    "copyLink": "Copy link",
+    "copied": "Copied!",
+    "shareOnWhatsapp": "Share on WhatsApp",
+    "moreOptions": "More options...",
+    "close": "Close",
+    "liveLink": "Live Link",
+    "localLink": "Local Link",
+    "localhostHint": "Tip: Live link is used so guests can open it on their phones.",
+    "pageCoffee": "Estate Coffee Powder",
+    "pageFood": "Prasad Home Made Food",
+    "pageRentals": "Vehicle Rentals & Taxis",
+    "pageHome": "Guest Guide & Itinerary",
+    "coffeeShareText": "☕ *Estate Coffee Powder - Milan Farm Stay*\nOrder authentic, freshly roasted shade-grown coffee powder directly from our plantation:\n\n{url}",
+    "foodShareText": "🍲 *Order Food - Milan Farm Stay*\nOrder fresh, organic vegetarian South Indian meals delivered directly to your stay:\n\n{url}",
+    "rentalsShareText": "🛵 *Vehicle Rentals & Taxis - Milan Farm Stay*\nFind trusted self-drive bike/car rentals and local taxi drivers for Chikmagalur & Sakleshpur:\n\n{url}",
+    "homeShareText": "🌿 *Milan Farm Stay - Guest Guide & Itinerary*\nCurated road trips, local tips, food contacts, and farm stay experiences:\n\n{url}",
+    "defaultShareText": "🌿 *Milan Farm Stay*\nCheck out this page:\n\n{url}"
   }
 }
