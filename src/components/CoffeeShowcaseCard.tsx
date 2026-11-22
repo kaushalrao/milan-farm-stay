@@ -10,63 +10,49 @@ export default function CoffeeShowcaseCard() {
   return (
     <motion.div
       id="coffee-showcase-card"
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
+      viewport={{ once: true, margin: "-40px" }}
       className="w-full max-w-4xl mx-auto scroll-mt-28"
     >
       <Link
         href="/order-coffee"
-        className="group relative block bg-warm-white rounded-3xl p-6 md:p-10 shadow-sm hover:shadow-xl border border-border/80 hover:border-[#4A3B2C]/40 dark:hover:border-[#d4a373]/40 transition-all duration-300 overflow-hidden"
+        className="group relative block bg-warm-white rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-sm hover:shadow-md border border-amber-200/60 dark:border-amber-500/20 transition-all duration-300 overflow-hidden cursor-pointer"
       >
         {/* Subtle Watermark in Background */}
-        <i className="ph-fill ph-coffee absolute -right-6 -bottom-8 text-[160px] md:text-[230px] text-[#4A3B2C]/[0.04] dark:text-[#d4a373]/[0.05] rotate-[-12deg] pointer-events-none transition-transform duration-700 group-hover:scale-105 group-hover:rotate-[-6deg]"></i>
-        <i className="ph-fill ph-plant absolute right-32 -bottom-10 text-[120px] md:text-[180px] text-green-600/[0.03] dark:text-green-400/[0.03] rotate-[6deg] pointer-events-none transition-transform duration-700 group-hover:scale-105"></i>
+        <i className="ph-fill ph-coffee absolute -right-6 -bottom-6 text-[140px] md:text-[200px] text-amber-600/[0.03] dark:text-amber-400/[0.03] rotate-[-15deg] pointer-events-none transition-transform duration-700 group-hover:scale-110"></i>
 
-        <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-8">
-          {/* Left Details */}
-          <div className="flex-1 min-w-0">
-            {/* Badges */}
-            <div className="flex flex-wrap items-center gap-2 mb-3.5">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] md:text-xs font-semibold bg-[#4A3B2C]/10 text-[#4A3B2C] dark:bg-[#d4a373]/20 dark:text-[#d4a373] border border-[#4A3B2C]/20 dark:border-[#d4a373]/30">
-                <i className="ph-fill ph-coffee text-[#4A3B2C] dark:text-[#d4a373] text-xs"></i>
-                {t("coffeeCardBadge")}
-              </span>
-              <span className="text-[11px] md:text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-800 dark:text-amber-300">
-                Arabica + Chicory (80:20)
-              </span>
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3.5 md:gap-6 relative z-10">
+          {/* Header Info */}
+          <div className="flex items-center gap-3.5 md:gap-4 text-left min-w-0 flex-1">
+            {/* Themed Icon Box matching Food & Delivery cards */}
+            <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-amber-50 to-amber-100/50 dark:from-amber-500/20 dark:to-amber-500/10 text-[#4A3B2C] dark:text-[#d4a373] rounded-2xl flex items-center justify-center text-[22px] md:text-3xl shadow-sm border border-amber-200/60 dark:border-amber-500/20 shrink-0">
+              <i className="ph-fill ph-coffee"></i>
             </div>
 
-            {/* Title & Description */}
-            <h3 className="font-serif text-2xl md:text-3xl lg:text-3xl font-bold text-dark group-hover:text-[#4A3B2C] dark:group-hover:text-[#d4a373] transition-colors mb-2 leading-tight">
-              {t("coffeeCardTitle")}
-            </h3>
-            <p className="text-xs md:text-sm text-text-muted leading-relaxed max-w-2xl mb-5">
-              {t("coffeeCardDesc")}
-            </p>
-
-            {/* Feature Pills */}
-            <div className="flex flex-wrap gap-2 text-xs">
-              <span className="inline-flex items-center gap-1.5 bg-cream dark:bg-white/5 border border-border/60 text-dark dark:text-gray-200 px-3 py-1.5 rounded-xl font-medium">
-                <i className="ph-fill ph-package text-[#4A3B2C] dark:text-[#d4a373] text-sm"></i>
-                250g · 500g · 1kg Packs
-              </span>
-              <span className="inline-flex items-center gap-1.5 bg-cream dark:bg-white/5 border border-border/60 text-dark dark:text-gray-200 px-3 py-1.5 rounded-xl font-medium">
-                <i className="ph-fill ph-tag text-green-600 dark:text-green-400 text-sm"></i>
-                From ₹200
-              </span>
-              <span className="inline-flex items-center gap-1.5 bg-cream dark:bg-white/5 border border-border/60 text-dark dark:text-gray-200 px-3 py-1.5 rounded-xl font-medium">
-                <i className="ph-fill ph-whatsapp-logo text-[#25D366] text-sm"></i>
-                Direct WhatsApp Order
-              </span>
+            <div className="flex flex-col min-w-0">
+              <h4 className="font-serif text-[17px] md:text-2xl lg:text-xl font-semibold text-dark mb-0.5 md:mb-1 leading-snug md:leading-tight truncate">
+                {t("coffeeCardTitle")}
+              </h4>
+              <div className="flex flex-wrap items-center gap-1.5 md:gap-2">
+                <div className="flex items-center gap-1 text-[11px] md:text-sm font-semibold text-amber-800 dark:text-amber-300">
+                  <i className="ph-fill ph-plant text-xs shrink-0"></i>
+                  <span>{t("coffeeCardSubtitle")}</span>
+                </div>
+                <span className="text-text-muted/40 text-xs hidden sm:inline">•</span>
+                <span className="text-xs text-text-muted hidden sm:inline">
+                  {t("coffeeCardPacks")}
+                </span>
+              </div>
             </div>
           </div>
 
-          {/* Right Action Button */}
-          <div className="shrink-0 w-full md:w-auto pt-2 md:pt-0">
-            <div className="inline-flex items-center justify-center w-full md:w-auto gap-2.5 px-6 py-3.5 bg-dark text-warm-white dark:text-neutral-900 group-hover:bg-[#4A3B2C] dark:group-hover:bg-[#d4a373] group-hover:text-white dark:group-hover:text-[#1F1F1F] rounded-2xl text-sm font-semibold transition-all duration-300 shadow-sm group-hover:shadow-md group-hover:-translate-y-0.5">
+          {/* Action Button */}
+          <div className="mt-3.5 md:mt-0 pt-3 md:pt-0 border-t border-amber-200/60 dark:border-amber-500/20 md:border-t-0 relative z-10 w-full md:w-auto shrink-0">
+            <div className="flex items-center justify-center gap-2 w-full md:w-auto px-5 py-2.5 md:py-3 bg-dark text-warm-white group-hover:opacity-90 active:scale-[0.98] rounded-xl text-xs sm:text-sm md:text-base font-semibold transition-all shadow-sm">
+              <i className="ph-fill ph-shopping-bag text-base md:text-xl"></i>
               <span>{t("coffeeCardCta")}</span>
-              <i className="ph-bold ph-arrow-right text-base transition-transform duration-300 group-hover:translate-x-1"></i>
+              <i className="ph-bold ph-arrow-right text-xs md:text-sm transition-transform duration-200 group-hover:translate-x-0.5"></i>
             </div>
           </div>
         </div>
@@ -74,4 +60,3 @@ export default function CoffeeShowcaseCard() {
     </motion.div>
   );
 }
-

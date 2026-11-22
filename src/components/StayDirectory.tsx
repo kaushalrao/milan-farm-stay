@@ -117,7 +117,7 @@ export default function StayDirectory() {
         {/* Mobile Swipe Cue */}
         <div className="flex md:hidden items-center justify-center gap-1.5 text-[11px] text-text-muted/70 dark:text-neutral-400 mt-1">
           <i className="ph-bold ph-arrows-left-right text-xs"></i>
-          <span>Swipe to explore all stays</span>
+          <span>{t("swipeToExplore")}</span>
         </div>
       </main>
 

@@ -209,6 +209,12 @@ export default function TripCards() {
             );
           })}
         </div>
+
+        {/* Mobile / Tablet Swipe Cue */}
+        <div className="flex lg:hidden items-center justify-center gap-1.5 text-[11px] text-text-muted/70 dark:text-neutral-400 mt-0.5 mb-2">
+          <i className="ph-bold ph-arrows-left-right text-xs"></i>
+          <span>{ui("swipeToExplore")}</span>
+        </div>
       </div>
 
       {selectedDays && (

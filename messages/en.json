@@ -557,7 +557,11 @@
     "coffeeCardTitle": "Estate Coffee Powder",
     "coffeeCardBadge": "From Our Plantation",
     "coffeeCardDesc": "Freshly roasted and ground Arabica + Chicory blend from Milan Coffee Plantation. Take home the authentic taste of Malnad.",
-    "coffeeCardCta": "Order Estate Coffee"
+    "coffeeCardCta": "Order Estate Coffee",
+    "coffeeCardSubtitle": "Arabica + Chicory (80:20) · From ₹200",
+    "coffeeCardPacks": "250g · 500g · 1kg Packs",
+    "travelCardSubtitle": "Bikes, Scooters, Cars & Cabs",
+    "travelCardLocations": "Mudigere, Sakleshpur & Chikmagalur"
   },
   "UI": {
     "currentStop": "Current Stop",
@@ -570,7 +574,8 @@
     "guestServices": "Guest Services",
     "day": "Day",
     "stops": "Stops",
-    "treks": "Treks"
+    "treks": "Treks",
+    "swipeToExplore": "Swipe to explore all itineraries"
   },
   "HomeCook": {
     "title": "Home Cooked Veg Meals",
@@ -884,6 +889,7 @@
     "needAssistance": "Have questions about your stay?",
     "chatDirectly": "Chat directly with your host",
     "whatsappUs": "Chat on WhatsApp",
-    "chatDirectlyDesc": "Reach out to your host directly on WhatsApp for live booking inquiries, custom arrangements, or coffee estate walks."
+    "chatDirectlyDesc": "Reach out to your host directly on WhatsApp for live booking inquiries, custom arrangements, or coffee estate walks.",
+    "swipeToExplore": "Swipe to explore all stays"
   }
 }
