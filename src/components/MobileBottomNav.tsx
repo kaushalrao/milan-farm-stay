@@ -32,6 +32,7 @@ export default function MobileBottomNav() {
     { id: "contacts", label: t("contacts"), icon: "ph-users" },
     { id: "food", label: t("food"), icon: "ph-cooking-pot" },
     { id: "taxi", label: t("taxi"), icon: "ph-taxi" },
+    { id: "stay", label: t("stays"), icon: "ph-house-line" },
     { id: "help", label: "Help", icon: "ph-question" }
   ];
 
@@ -111,7 +112,7 @@ export default function MobileBottomNav() {
                 aria-label={`Scroll to ${item.label}`}
               >
                 {/* Icon Container with Pill */}
-                <div className="relative w-14 h-8 flex items-center justify-center">
+                <div className="relative w-11 sm:w-14 h-8 flex items-center justify-center">
                   {/* Active Pill Indicator */}
                   {isActive && (
                     <motion.div

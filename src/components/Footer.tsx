@@ -26,6 +26,9 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-col gap-4">
+            <Link href="/stay" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
+              <i className="ph ph-house text-xl text-[#FF5A5F]"></i> {t("stays")}
+            </Link>
             <Link href="/order-coffee" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
               <i className="ph ph-coffee text-xl text-[#d4a373]"></i> {t("coffee")}
             </Link>

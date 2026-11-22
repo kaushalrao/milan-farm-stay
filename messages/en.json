@@ -6,7 +6,8 @@
     "food": "Food",
     "taxi": "Taxi",
     "rentals": "Rentals",
-    "coffee": "Coffee"
+    "coffee": "Coffee",
+    "stays": "Stays"
   },
   "Hero": {
     "title": "Welcome to your<br />home in the hills",
@@ -634,7 +635,8 @@
     "callUs": "Call Us",
     "designedForGuests": "Designed for guests.",
     "rentals": "Self-Drive & Taxi Rentals",
-    "coffee": "Estate Coffee Powder"
+    "coffee": "Estate Coffee Powder",
+    "stays": "Our Airbnb Stays"
   },
   "ShareButton": {
     "shareGuide": "Share Guide",
@@ -738,7 +740,7 @@
     "actionRentals": "Rent a Bike or Car",
     "actionRentalsDesc": "Explore self-drive scooters, bikes, and car rental vendors in Sakleshpur & Chikmagalur.",
     "actionWhatsapp": "WhatsApp Milan Farm Host",
-    "actionWhatsappDesc": "Instant chat with host for assistance, check-in queries, or campfire setup.",
+    "actionWhatsappDesc": "Instant chat with host for assistance, check-in queries, or estate inquiries.",
     "actionDirections": "Directions to Milan Farm Stay",
     "actionDirectionsDesc": "Open Milan Farm Stay coordinates in Google Maps for navigation from Bangalore.",
     "actionTaxi": "Book Local Taxi",
@@ -825,7 +827,9 @@
     "foodShareText": "🍲 *Order Food - Milan Farm Stay*\nOrder fresh, organic vegetarian South Indian meals delivered directly to your stay:\n\n{url}",
     "rentalsShareText": "🛵 *Vehicle Rentals & Taxis - Milan Farm Stay*\nFind trusted self-drive bike/car rentals and local taxi drivers for Chikmagalur & Sakleshpur:\n\n{url}",
     "homeShareText": "🌿 *Milan Farm Stay - Guest Guide & Itinerary*\nCurated road trips, local tips, food contacts, and farm stay experiences:\n\n{url}",
-    "defaultShareText": "🌿 *Milan Farm Stay*\nCheck out this page:\n\n{url}"
+    "defaultShareText": "🌿 *Milan Farm Stay*\nCheck out this page:\n\n{url}",
+    "pageStays": "Our Airbnb Stays & Villas",
+    "staysShareText": "🏡 *Milan Farm Stay - Airbnb Accommodations*\nExplore our 2 BHK plantation cottages and 4 BHK grand estate villa in Mudigere, Chikmagalur:\n\n{url}"
   },
   "JioMart": {
     "title": "JioMart",
@@ -836,5 +840,50 @@
     "itemsDesc": "Groceries, snacks, dairy, drinks & daily essentials",
     "playStore": "Google Play",
     "appStore": "App Store"
+  },
+  "Stays": {
+    "sectionTitle": "Our Accommodations & Villas",
+    "sectionSubtitle": "Experience authentic plantation living across our private 2 BHK cottages and the grand 4 BHK estate villa in Mudigere.",
+    "heroTitle": "Our Accommodations & Airbnb Listings",
+    "heroSubtitle": "Choose from our serene 2 BHK plantation cottages or the expansive 4 BHK private estate villa. All properties are nestled inside our 3-acre coffee estate with pure vegetarian dining and direct Airbnb reservations.",
+    "pageHeaderTitle": "Accommodations",
+    "officialListingsBadge": "Official Airbnb Stays",
+    "filterAll": "All Accommodations",
+    "filter2BHK": "2 BHK Cottages",
+    "filter4BHK": "4 BHK Grand Villa",
+    "viewPhotosOnAirbnb": "View Photos on Airbnb",
+    "viewOnAirbnb": "View on Airbnb",
+    "bookOnAirbnb": "Book on Airbnb",
+    "whatsappHost": "WhatsApp Host",
+    "inquireOnWhatsapp": "Inquire with Host on WhatsApp",
+    "guests": "Guests",
+    "bedrooms": "Bedrooms",
+    "beds": "Beds",
+    "bathrooms": "Baths",
+    "vegOnly": "Pure Veg Stay",
+    "guestFavorite": "Guest Favorite",
+    "viewComparisonAndRules": "View Full Comparison & House Rules",
+    "backToHome": "Back to Guide",
+    "comparisonTitle": "Quick Accommodation Overview",
+    "comparisonSubtitle": "Compare configurations, capacity, and suitability across our three properties.",
+    "property": "Property",
+    "bhkType": "Type",
+    "capacity": "Capacity",
+    "bestFor": "Best For",
+    "action": "Listing",
+    "viewAirbnb": "View on Airbnb",
+    "largeGroupsReunions": "Large families, friend reunions & group getaways",
+    "couplesSmallFamilies": "Couples, small families & peaceful getaways",
+    "houseRulesTitle": "House Rules & Estate Guidelines",
+    "ruleVegOnlyTitle": "Strictly Vegetarian",
+    "ruleVegOnlyDesc": "To honor the tranquility of the farm stay, only pure vegetarian food is permitted on the property.",
+    "rulePeaceTitle": "Peace & Nature Sanctuary",
+    "rulePeaceDesc": "Milan Farm Stay is a serene sanctuary for nature lovers. Late-night loud music, parties, and alcohol are strictly prohibited.",
+    "ruleEstateTitle": "Estate Trails & Nature",
+    "ruleEstateDesc": "Feel free to wander the 3-acre coffee plantation. Guided plantation walks can be coordinated with the host.",
+    "needAssistance": "Have questions about your stay?",
+    "chatDirectly": "Chat directly with your host",
+    "whatsappUs": "Chat on WhatsApp",
+    "chatDirectlyDesc": "Reach out to your host directly on WhatsApp for live booking inquiries, custom arrangements, or coffee estate walks."
   }
 }

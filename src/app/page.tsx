@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import TripCards from "@/components/TripCards";
+import StaySection from "@/components/StaySection";
 import HomeCook from "@/components/HomeCook";
 import HomeDelivery from "@/components/HomeDelivery";
 import JioMartDelivery from "@/components/JioMartDelivery";
@@ -100,6 +101,8 @@ export default function Home() {
             <TravelRentalsCard />
           </div>
         </section>
+
+        <StaySection />
 
         <ShareButton />
       </main>

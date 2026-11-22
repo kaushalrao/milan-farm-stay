@@ -16,7 +16,8 @@ export default function Navbar() {
     { label: t("plan"), href: "#plan", id: "plan", icon: "ph-map-trifold", isAnchor: true },
     { label: t("contacts"), href: "#contacts", id: "contacts", icon: "ph-users", isAnchor: true },
     { label: t("coffee"), href: "/order-coffee", id: "coffee", icon: "ph-coffee", isAnchor: false },
-    { label: t("rentals"), href: "/rentals", id: "rentals", icon: "ph-moped", isAnchor: false }
+    { label: t("rentals"), href: "/rentals", id: "rentals", icon: "ph-moped", isAnchor: false },
+    { label: t("stays"), href: "#stay", id: "stay", icon: "ph-house-line", isAnchor: true }
   ], [t]);
 
   const isScrolled = useScrolled(25);
@@ -59,11 +60,16 @@ export default function Navbar() {
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string, isAnchor?: boolean) => {
     if (isAnchor) {
-      if (typeof window !== "undefined" && window.location.pathname === "/") {
-        e.preventDefault();
-        setTimeout(() => {
-          document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
-        }, 50);
+      if (typeof window !== "undefined") {
+        if (window.location.pathname === "/") {
+          e.preventDefault();
+          setTimeout(() => {
+            document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+          }, 50);
+        } else {
+          e.preventDefault();
+          window.location.href = `/${href}`;
+        }
       }
     }
   };

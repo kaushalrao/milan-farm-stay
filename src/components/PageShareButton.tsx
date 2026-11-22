@@ -14,6 +14,7 @@ import {
   UtensilsCrossed,
   Car,
   Compass,
+  Home,
   ExternalLink,
 } from "lucide-react";
 
@@ -104,6 +105,14 @@ export default function PageShareButton({
         icon: <Car className="w-4.5 h-4.5 text-emerald-700 dark:text-emerald-300" />,
         iconBg: "bg-emerald-600/10 dark:bg-emerald-600/20",
         shareText: (url: string) => t("rentalsShareText", { url }),
+      };
+    }
+    if (pathname.includes("/stay")) {
+      return {
+        title: customTitle || t("pageStays"),
+        icon: <Home className="w-4.5 h-4.5 text-airbnb-coral" />,
+        iconBg: "bg-airbnb-coral/10",
+        shareText: (url: string) => t("staysShareText", { url }),
       };
     }
     return {

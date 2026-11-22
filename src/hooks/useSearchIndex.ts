@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { SearchItem, SearchCategory } from "@/types/search";
 import { RENTAL_VENDORS } from "@/data/rentals";
 import { MENU_DATA } from "@/data/foodMenu";
+import { STAYS_DATA } from "@/data/staysData";
 
 interface RawTripOption {
   id: string;
@@ -252,6 +253,54 @@ export function useSearchIndex() {
       });
     });
 
+    // 5b. Stays & Accommodations (Airbnb)
+    STAYS_DATA.forEach((stay) => {
+      items.push({
+        id: `stay-${stay.id}`,
+        title: `${stay.name} (${stay.bhkLabel})`,
+        description: `${stay.maxGuests} Guests • ${stay.bedrooms} Bedrooms • ${stay.location} • Airbnb Rating: ★${stay.rating || "New"}`,
+        category: "actions",
+        badge: stay.bhkLabel,
+        tags: [stay.bhkLabel, "Airbnb", "Stay", "Villa", "Cottage"],
+        icon: "ph-house-line",
+        action: {
+          type: "route",
+          href: "/stay",
+        },
+        keywords: [
+          stay.name,
+          stay.bhkLabel,
+          stay.bhk,
+          "stay",
+          "stays",
+          "room",
+          "rooms",
+          "villa",
+          "villas",
+          "cottage",
+          "cottages",
+          "airbnb",
+          "booking",
+          "retreat",
+          "mudigere",
+          "bilagola",
+          "2bhk",
+          "4bhk",
+          "ಕೊಠಡಿ",
+          "ವಾಸ್ತವ್ಯ",
+          "ವಿಲ್ಲಾ",
+          "ಕಾಟೇಜ್",
+          "कमरा",
+          "आवास",
+          "विला",
+          "గది",
+          "బస",
+          "அறை",
+          "தங்குமிடம்",
+        ],
+      });
+    });
+
     // 6. Hosts & Contacts
     try {
       items.push({
@@ -386,7 +435,7 @@ export function useSearchIndex() {
         href: "https://wa.me/919448244666",
         external: true,
       },
-      keywords: ["whatsapp", "chat", "message host", "help", "campfire", "ವಾಟ್ಸಾಪ್", "ಸಹಾಯ"],
+      keywords: ["whatsapp", "chat", "message host", "help", "ವಾಟ್ಸಾಪ್", "ಸಹಾಯ"],
     });
 
     items.push({
