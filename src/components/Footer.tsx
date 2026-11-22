@@ -5,7 +5,7 @@ import Image from "next/image";
 export default function Footer() {
   const t = useTranslations("Footer");
   return (
-    <footer className="bg-[#111] text-white pt-6 pb-16 md:pt-10 md:pb-16">
+    <footer className="bg-[#111] text-white pt-6 pb-28 sm:pb-32 md:pt-10 md:pb-16">
       <div className="container mx-auto px-6 max-w-6xl">
         <div className="flex flex-col md:flex-row justify-between gap-12 mb-12">
 
@@ -33,13 +33,13 @@ export default function Footer() {
               <i className="ph ph-moped text-xl text-emerald-400"></i> {t("rentals")}
             </Link>
             <a href="https://maps.app.goo.gl/yzBY4r2cDHzE2JpY8" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
-              <i className="ph ph-map-pin text-xl"></i> {t("googleMaps")}
+              <i className="ph ph-map-pin text-xl text-rose-400"></i> {t("googleMaps")}
             </a>
             <a href="https://wa.me/919448244666" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
-              <i className="ph ph-whatsapp-logo text-xl"></i> {t("whatsapp")}
+              <i className="ph ph-whatsapp-logo text-xl text-[#25D366]"></i> {t("whatsapp")}
             </a>
             <a href="tel:+919448244666" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors">
-              <i className="ph ph-phone text-xl"></i> {t("callUs")}
+              <i className="ph ph-phone text-xl text-sky-400"></i> {t("callUs")}
             </a>
           </div>
 
