@@ -1,11 +1,12 @@
 "use client";
 import { useState, useEffect, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import ThemeToggle from "./ThemeToggle";
 import SearchTrigger from "./search/SearchTrigger";
+import { useScrolled } from "@/hooks/useScrolled";
 
 export default function Navbar() {
   const t = useTranslations("Navbar");
@@ -18,14 +19,14 @@ export default function Navbar() {
     { label: t("rentals"), href: "/rentals", id: "rentals", icon: "ph-moped", isAnchor: false }
   ], [t]);
 
-  const [isScrolled, setIsScrolled] = useState(false);
-  
+  const isScrolled = useScrolled(25);
+  const [isDesktop, setIsDesktop] = useState(false);
+
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const handleResize = () => setIsDesktop(window.innerWidth >= 640);
+    handleResize();
+    window.addEventListener("resize", handleResize, { passive: true });
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const [activeSection, setActiveSection] = useState<string>("");
@@ -77,96 +78,63 @@ export default function Navbar() {
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         isScrolled 
           ? "py-3 bg-warm-white/95 backdrop-blur-md shadow-sm border-b border-border/50" 
-          : "py-6 bg-transparent border-b border-transparent"
+          : "py-3 sm:py-3.5 bg-transparent border-b border-transparent"
       }`}
       aria-label="Main Navigation"
     >
       <div className="container mx-auto px-3 sm:px-6 max-w-7xl flex justify-between items-center relative z-10">
-        <Link href="/" className="flex items-center gap-2.5 sm:gap-3 min-w-0 shrink group">
-          <div className="relative shrink-0 flex items-center justify-center">
-            {/* Light mode: Charcoal logo emblem */}
-            <Image
-              src="/images/logo-emblem.png"
-              alt="Milan Farm Stays Logo"
-              width={36}
-              height={36}
-              className={`object-contain dark:hidden shrink-0 transition-transform duration-300 group-hover:scale-105 ${
-                isScrolled ? "w-7 h-7 sm:w-8 sm:h-8" : "w-8 h-8 sm:w-9 sm:h-9"
-              }`}
-              priority
-            />
-            {/* Dark mode: White logo emblem */}
-            <Image
-              src="/images/logo-emblem-dark.png"
-              alt="Milan Farm Stays Logo"
-              width={36}
-              height={36}
-              className={`object-contain hidden dark:block shrink-0 transition-transform duration-300 group-hover:scale-105 ${
-                isScrolled ? "w-7 h-7 sm:w-8 sm:h-8" : "w-8 h-8 sm:w-9 sm:h-9"
-              }`}
-              priority
-            />
-          </div>
-          <div
-            className={`font-serif font-bold text-dark flex items-center whitespace-nowrap select-none transition-all duration-300 ${
-              isScrolled ? "text-base sm:text-xl tracking-normal" : "text-lg sm:text-2xl tracking-tight"
-            }`}
-          >
-            {locale === "en" ? (
-              <>
-                <span>M</span>
-                <motion.span
-                  initial={false}
-                  animate={{
-                    maxWidth: isScrolled ? 0 : 150,
-                    opacity: isScrolled ? 0 : 1,
-                    paddingRight: isScrolled ? 0 : 6,
+        <div className="flex items-center">
+          <Link href="/" className="flex items-center gap-2 sm:gap-2.5 min-w-0 shrink group">
+            <div className="relative shrink-0 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8">
+              {isScrolled && (
+                <motion.div
+                  layoutId="hero-brand-logo-emblem"
+                  transition={{
+                    type: "spring",
+                    stiffness: 260,
+                    damping: 24,
+                    mass: 0.7,
                   }}
-                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                  className="inline-block overflow-hidden whitespace-nowrap"
+                  className="w-full h-full relative"
                 >
-                  ilan Farm
-                </motion.span>
-                <span>S</span>
-                <motion.span
-                  initial={false}
-                  animate={{
-                    maxWidth: isScrolled ? 0 : 80,
-                    opacity: isScrolled ? 0 : 1,
-                  }}
-                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                  className="inline-block overflow-hidden whitespace-nowrap"
-                >
-                  tays
-                </motion.span>
-              </>
-            ) : (
-              <AnimatePresence mode="wait" initial={false}>
-                {isScrolled ? (
-                  <motion.span
-                    key="short"
-                    initial={{ opacity: 0, x: -4 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -4 }}
-                    transition={{ duration: 0.25 }}
-                  >
-                    MS
-                  </motion.span>
-                ) : (
-                  <motion.span
-                    key="full"
-                    initial={{ opacity: 0, x: -4 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -4 }}
-                    transition={{ duration: 0.25 }}
-                  >
-                    {t("title")}
-                  </motion.span>
-                )}
-              </AnimatePresence>
-            )}
-          </div>
-        </Link>
+                  {/* Light mode: Charcoal logo emblem */}
+                  <Image
+                    src="/images/logo-emblem.png"
+                    alt="Milan Farm Stays Logo"
+                    width={36}
+                    height={36}
+                    className="w-full h-full object-contain dark:hidden shrink-0 transition-transform duration-300 group-hover:scale-105"
+                    priority
+                  />
+                  {/* Dark mode: White logo emblem */}
+                  <Image
+                    src="/images/logo-emblem-dark.png"
+                    alt="Milan Farm Stays Logo"
+                    width={36}
+                    height={36}
+                    className="w-full h-full object-contain hidden dark:block shrink-0 transition-transform duration-300 group-hover:scale-105"
+                    priority
+                  />
+                </motion.div>
+              )}
+            </div>
+            <motion.span
+              initial={false}
+              animate={{
+                x: isScrolled ? 0 : (isDesktop ? -42 : -36),
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 260,
+                damping: 24,
+                mass: 0.7,
+              }}
+              className="font-serif font-bold text-dark text-base sm:text-xl tracking-tight whitespace-nowrap select-none"
+            >
+              {t("title")}
+            </motion.span>
+          </Link>
+        </div>
         <div className="flex items-center gap-1 sm:gap-2 md:gap-6 shrink-0">
           <div className="hidden md:flex items-center gap-8">
             {navItems.map((item) => {

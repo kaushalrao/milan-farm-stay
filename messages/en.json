@@ -826,5 +826,15 @@
     "rentalsShareText": "🛵 *Vehicle Rentals & Taxis - Milan Farm Stay*\nFind trusted self-drive bike/car rentals and local taxi drivers for Chikmagalur & Sakleshpur:\n\n{url}",
     "homeShareText": "🌿 *Milan Farm Stay - Guest Guide & Itinerary*\nCurated road trips, local tips, food contacts, and farm stay experiences:\n\n{url}",
     "defaultShareText": "🌿 *Milan Farm Stay*\nCheck out this page:\n\n{url}"
+  },
+  "JioMart": {
+    "title": "JioMart",
+    "deliveryName": "HOME DELIVERY",
+    "homeDelivery": "Home Delivery",
+    "homeDeliveryDesc": "Delivers directly to Milan Farm Stays",
+    "items": "Available Items",
+    "itemsDesc": "Groceries, snacks, dairy, drinks & daily essentials",
+    "playStore": "Google Play",
+    "appStore": "App Store"
   }
 }

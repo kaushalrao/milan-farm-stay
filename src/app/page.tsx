@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import TripCards from "@/components/TripCards";
 import HomeCook from "@/components/HomeCook";
 import HomeDelivery from "@/components/HomeDelivery";
+import JioMartDelivery from "@/components/JioMartDelivery";
 import HostProfile from "@/components/HostProfile";
 import ShareButton from "@/components/ShareButton";
 import Footer from "@/components/Footer";
@@ -27,13 +28,13 @@ export default function Home() {
             <div className="flex items-center gap-4 mb-8 md:mb-10">
               <div className="flex-1 h-px bg-border"></div>
               <h2 className="font-serif text-lg md:text-2xl lg:text-3xl font-semibold text-text-muted/80 tracking-wide text-center uppercase">
-                <span className="lg:hidden">{t("yourHosts")}</span>
-                <span className="hidden lg:inline">{t("propertyAndHost")}</span>
+                {t("yourHosts")}
               </h2>
               <div className="flex-1 h-px bg-border"></div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-8 lg:gap-6 items-stretch">
+            {/* Host Profiles */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 max-w-4xl mx-auto lg:max-w-5xl mb-8 md:mb-12 items-stretch">
               <HostProfile
                 id="host-athula"
                 name={t("host1Name")}
@@ -53,15 +54,21 @@ export default function Home() {
                 years={t("host2Years")}
                 phone="9448632666"
               />
+            </div>
 
-              <div id="food" className="col-span-1 md:col-span-2 lg:hidden flex items-center gap-4 my-5 md:my-2 scroll-mt-24">
-                <div className="flex-1 h-px bg-border"></div>
-                <h3 className="font-serif text-lg md:text-2xl font-semibold text-text-muted/80 tracking-wide text-center uppercase">{t("foodAndDelivery")}</h3>
-                <div className="flex-1 h-px bg-border"></div>
-              </div>
+            {/* Food & Delivery Section */}
+            <div id="food" className="flex items-center gap-4 my-6 md:my-8 scroll-mt-24">
+              <div className="flex-1 h-px bg-border"></div>
+              <h3 className="font-serif text-lg md:text-2xl font-semibold text-text-muted/80 tracking-wide text-center uppercase">
+                {t("foodAndDelivery")}
+              </h3>
+              <div className="flex-1 h-px bg-border"></div>
+            </div>
 
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 items-stretch">
               <HomeCook />
               <HomeDelivery />
+              <JioMartDelivery />
             </div>
           </div>
         </section>

@@ -1,12 +1,16 @@
 "use client";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import WeatherWidget from "./WeatherWidget";
 import { useTranslations } from "next-intl";
+import { useScrolled } from "@/hooks/useScrolled";
 
 export default function Hero() {
   const t = useTranslations("Hero");
+  const isScrolled = useScrolled(25);
+
   return (
-    <header className="pt-24 md:pt-32 pb-6 md:pb-12 px-4 lg:px-8 text-center lg:text-left overflow-hidden">
+    <header className="pt-16 sm:pt-20 md:pt-24 pb-6 md:pb-12 px-4 lg:px-8 text-center lg:text-left relative">
       <div className="container mx-auto max-w-4xl lg:max-w-7xl lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center">
         {/* Text Content */}
         <motion.div
@@ -15,6 +19,43 @@ export default function Hero() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="flex flex-col items-center lg:items-start"
         >
+          {/* Medium Logo above Heading with FLIP transition to header */}
+          <div className="mb-3 sm:mb-4 md:mb-5 flex items-center justify-center lg:justify-start">
+            <div className="relative w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center">
+              {!isScrolled && (
+                <motion.div
+                  layoutId="hero-brand-logo-emblem"
+                  transition={{
+                    type: "spring",
+                    stiffness: 260,
+                    damping: 24,
+                    mass: 0.7,
+                  }}
+                  className="w-full h-full relative"
+                >
+                  {/* Light mode: Charcoal logo emblem */}
+                  <Image
+                    src="/images/logo-emblem.png"
+                    alt="Milan Farm Stays Logo"
+                    width={80}
+                    height={80}
+                    className="w-full h-full object-contain dark:hidden"
+                    priority
+                  />
+                  {/* Dark mode: White logo emblem */}
+                  <Image
+                    src="/images/logo-emblem-dark.png"
+                    alt="Milan Farm Stays Logo"
+                    width={80}
+                    height={80}
+                    className="w-full h-full object-contain hidden dark:block"
+                    priority
+                  />
+                </motion.div>
+              )}
+            </div>
+          </div>
+
           <h1 
             className="font-serif text-[40px] md:text-7xl lg:text-[76px] leading-[1.05] md:leading-[1.1] lg:leading-[1.05] text-dark font-semibold mb-4 md:mb-6 tracking-tight"
             dangerouslySetInnerHTML={{ __html: t("title") }}
