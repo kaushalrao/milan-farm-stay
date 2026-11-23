@@ -132,7 +132,7 @@ export default function Navbar() {
                     width={36}
                     height={36}
                     className="w-full h-full object-contain dark:hidden shrink-0 transition-transform duration-300 group-hover:scale-105"
-                    priority
+                    preload
                   />
                   {/* Dark mode: White logo emblem */}
                   <Image
@@ -141,7 +141,7 @@ export default function Navbar() {
                     width={36}
                     height={36}
                     className="w-full h-full object-contain hidden dark:block shrink-0 transition-transform duration-300 group-hover:scale-105"
-                    priority
+                    preload
                   />
                 </motion.div>
               )}

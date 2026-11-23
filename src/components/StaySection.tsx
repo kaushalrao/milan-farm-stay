@@ -75,12 +75,12 @@ export default function StaySection() {
           ref={scrollRef}
           className="flex md:grid md:grid-cols-3 gap-4 md:gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none pb-4 pt-1 -mx-4 px-4 sm:mx-0 sm:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
         >
-          {filteredStays.map((property, idx) => (
+          {filteredStays.map((property) => (
             <div
               key={property.id}
               className="snap-center md:snap-none shrink-0 w-[84vw] max-w-[340px] md:w-auto flex flex-col"
             >
-              <StayCard property={property} priority={idx < 2} minimal={true} />
+              <StayCard property={property} minimal={true} />
             </div>
           ))}
         </div>

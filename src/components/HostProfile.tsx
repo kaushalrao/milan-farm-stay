@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
 
@@ -25,8 +26,15 @@ export default function HostProfile({ id, name, role, image, imgClass = "w-full 
       onClick={() => setIsExpanded(!isExpanded)}
     >
       <div className="flex flex-row md:flex-col items-center md:items-start gap-3.5 md:gap-4 mb-0 md:mb-6 text-left">
-        <div className="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden shrink-0 ring-2 ring-airbnb-coral/20 ring-offset-2 ring-offset-warm-white">
-          <img src={image} alt={name} className={imgClass} />
+        <div className="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden shrink-0 ring-2 ring-airbnb-coral/20 ring-offset-2 ring-offset-warm-white relative">
+          <Image
+            src={image}
+            alt={name}
+            fill
+            sizes="(max-width: 768px) 48px, 64px"
+            loading="lazy"
+            className={imgClass}
+          />
         </div>
         <div className="flex flex-col flex-1 min-w-0 md:flex-none">
           <h4 className="font-serif text-[17px] md:text-2xl font-semibold text-dark mb-0.5 md:mb-1 leading-snug md:leading-tight break-words">{name}</h4>

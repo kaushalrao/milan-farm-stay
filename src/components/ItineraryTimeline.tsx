@@ -52,7 +52,11 @@ function CompactStopCard({ stop, index }: { stop: TimelineStop, index: number })
           <motion.img
             whileHover={{ scale: 1.04 }}
             transition={{ duration: 0.6 }}
-            src={stop.img} alt={stop.title} className="w-full h-full object-cover"
+            src={stop.img}
+            alt={stop.title}
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full object-cover"
           />
         </motion.div>
 
@@ -290,7 +294,7 @@ function RestaurantCard({ stop }: { stop: any }) {
   return (
     <div className="bg-warm-white rounded-2xl overflow-hidden shadow-sm transition-all duration-300 border border-border/50 hover:shadow-md mb-4 flex">
       <div className="w-[100px] h-[100px] shrink-0 p-2">
-        <img src={stop.img} alt={stop.title} className="w-full h-full object-cover rounded-xl" />
+        <img src={stop.img} alt={stop.title} loading="lazy" decoding="async" className="w-full h-full object-cover rounded-xl" />
       </div>
       <div className="p-3 flex-1 flex flex-col justify-between">
         <div>

@@ -57,7 +57,9 @@ export default async function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <Script src="https://unpkg.com/@phosphor-icons/web" strategy="beforeInteractive" />
+        <link rel="preconnect" href="https://unpkg.com" />
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
+        <Script src="https://unpkg.com/@phosphor-icons/web" strategy="afterInteractive" />
       </head>
       <body className="min-h-screen flex flex-col bg-cream text-text-main font-sans overflow-x-hidden">
         <NextIntlClientProvider messages={messages}>

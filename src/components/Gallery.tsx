@@ -21,6 +21,8 @@ export default function Gallery() {
               <img 
                 src={src} 
                 alt={`Gallery \${i}`} 
+                loading="lazy"
+                decoding="async"
                 className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500" 
               />
             </div>
@@ -42,6 +44,7 @@ export default function Gallery() {
           <img 
             src={selectedImg} 
             alt="Enlarged" 
+            decoding="async"
             className="max-w-full max-h-[90vh] rounded-xl object-contain animate-[fadeIn_0.3s_ease-out]" 
             onClick={(e) => e.stopPropagation()}
           />

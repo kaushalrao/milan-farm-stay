@@ -7,12 +7,14 @@ import { useTranslations } from "next-intl";
 
 interface StayCardProps {
   property: StayProperty;
+  preload?: boolean;
   priority?: boolean;
   minimal?: boolean;
 }
 
-export default function StayCard({ property, priority = false, minimal = false }: StayCardProps) {
+export default function StayCard({ property, preload, priority, minimal = false }: StayCardProps) {
   const t = useTranslations("Stays");
+  const shouldPreload = preload ?? priority ?? false;
 
   const whatsappHref = `https://wa.me/91${property.hostPhone}?text=${encodeURIComponent(
     property.whatsappMessage
@@ -33,14 +35,15 @@ export default function StayCard({ property, priority = false, minimal = false }
           target="_blank"
           rel="noopener noreferrer"
           aria-label={`${property.name} - ${t("viewOnAirbnb")}`}
-          className="block w-full h-full cursor-pointer"
+          className="relative block w-full h-full cursor-pointer"
         >
           <Image
             src={property.coverImage}
             alt={property.name}
             fill
             sizes="(max-width: 768px) 85vw, (max-width: 1200px) 50vw, 33vw"
-            priority={priority}
+            preload={shouldPreload}
+            loading={shouldPreload ? "eager" : "lazy"}
             className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           />
 

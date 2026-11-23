@@ -40,7 +40,7 @@ export default function Hero() {
                     width={80}
                     height={80}
                     className="w-full h-full object-contain dark:hidden"
-                    priority
+                    preload
                   />
                   {/* Dark mode: White logo emblem */}
                   <Image
@@ -49,7 +49,7 @@ export default function Hero() {
                     width={80}
                     height={80}
                     className="w-full h-full object-contain hidden dark:block"
-                    priority
+                    preload
                   />
                 </motion.div>
               )}
@@ -81,16 +81,37 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="flex flex-col gap-4 mt-12">
-            <div className="w-full h-[220px] rounded-3xl overflow-hidden shadow-sm group">
-              <img src="/images/trip2.png" alt="Estate View" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div className="w-full h-[220px] rounded-3xl overflow-hidden shadow-sm group relative">
+              <Image
+                src="/images/trip2.png"
+                alt="Estate View"
+                fill
+                sizes="(min-width: 1024px) 280px, 50vw"
+                loading="lazy"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
             </div>
-            <div className="w-full h-[200px] rounded-3xl overflow-hidden shadow-sm group">
-              <img src="/images/trip3.png" alt="Scenic View" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div className="w-full h-[200px] rounded-3xl overflow-hidden shadow-sm group relative">
+              <Image
+                src="/images/trip3.png"
+                alt="Scenic View"
+                fill
+                sizes="(min-width: 1024px) 280px, 50vw"
+                loading="lazy"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
             </div>
           </div>
           <div className="flex flex-col gap-4">
-            <div className="w-full h-[320px] rounded-3xl overflow-hidden shadow-sm group">
-              <img src="/images/trip1.png" alt="Road Trip" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div className="w-full h-[320px] rounded-3xl overflow-hidden shadow-sm group relative">
+              <Image
+                src="/images/trip1.png"
+                alt="Road Trip"
+                fill
+                sizes="(min-width: 1024px) 280px, 50vw"
+                preload
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
             </div>
           </div>
         </motion.div>

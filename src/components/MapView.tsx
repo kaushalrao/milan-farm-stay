@@ -126,7 +126,7 @@ export default function MapView({ stops }: { stops: any[] }) {
               <div className="flex flex-col w-[250px]">
                 {stop.img && (
                   <div className="w-full h-[110px] relative">
-                    <img src={stop.img} alt={stop.title} className="w-full h-full object-cover rounded-t-[15px]" />
+                    <img src={stop.img} alt={stop.title} loading="lazy" decoding="async" className="w-full h-full object-cover rounded-t-[15px]" />
                     <span className="absolute top-2 left-2 bg-warm-white/95 dark:bg-[#1A1A1A]/90 backdrop-blur-md px-1.5 py-0.5 rounded flex items-center text-[9px] font-bold uppercase text-dark dark:text-white dark:border dark:border-white/10 shadow-sm">
                       {stop.category}
                     </span>

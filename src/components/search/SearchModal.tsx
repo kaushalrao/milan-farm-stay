@@ -14,6 +14,16 @@ import { useTranslations } from "next-intl";
 const RECENT_KEY = "milan_recent_searches";
 
 export default function SearchModal() {
+  const { isOpen } = useSearch();
+
+  return (
+    <AnimatePresence>
+      {isOpen && <SearchModalContent />}
+    </AnimatePresence>
+  );
+}
+
+function SearchModalContent() {
   const { isOpen, closeSearch, query, setQuery, activeCategory, setActiveCategory } = useSearch();
   const { search, searchItems } = useSearchIndex();
   const router = useRouter();
@@ -42,15 +52,13 @@ export default function SearchModal() {
     return counts;
   }, [query, search, searchItems]);
 
-  // Focus input on open
+  // Focus input on open/mount
   useEffect(() => {
-    if (isOpen) {
-      const timer = setTimeout(() => {
-        inputRef.current?.focus();
-      }, 50);
-      return () => clearTimeout(timer);
-    }
-  }, [isOpen]);
+    const timer = setTimeout(() => {
+      inputRef.current?.focus();
+    }, 50);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Scroll active item into view
   useEffect(() => {
@@ -165,19 +173,17 @@ export default function SearchModal() {
   };
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-start justify-center md:pt-[10vh] md:px-4">
-          {/* Backdrop Blur */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            onClick={closeSearch}
-            className="fixed inset-0 bg-black/50 backdrop-blur-md"
-            aria-hidden="true"
-          />
+    <div className="fixed inset-0 z-[100] flex items-start justify-center md:pt-[10vh] md:px-4">
+      {/* Backdrop Blur */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.2 }}
+        onClick={closeSearch}
+        className="fixed inset-0 bg-black/50 backdrop-blur-md"
+        aria-hidden="true"
+      />
 
           {/* Modal Container: Full-screen on mobile, Floating card on desktop */}
           <motion.div
@@ -338,7 +344,5 @@ export default function SearchModal() {
             </div>
           </motion.div>
         </div>
-      )}
-    </AnimatePresence>
   );
 }

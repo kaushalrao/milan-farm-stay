@@ -187,7 +187,7 @@ export default function Coffee3DHero() {
             alt="Milan Farm Stay Estate Coffee Powder"
             width={480}
             height={600}
-            priority
+            preload
             className="w-[125px] sm:w-[150px] h-auto object-contain pointer-events-none select-none"
           />
         </div>
