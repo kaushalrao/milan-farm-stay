@@ -361,6 +361,18 @@ export default function RentalsDirectory() {
                         </div>
                       ) : (
                         <div className="w-full flex items-center gap-2">
+                          {vendor.phone && (
+                            <motion.a
+                              whileTap={{ scale: 0.9 }}
+                              whileHover={{ scale: 1.08 }}
+                              href={`tel:${vendor.phone}`}
+                              className="w-10 h-10 flex items-center justify-center rounded-xl bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 text-dark dark:text-white border border-border/70 transition-all shrink-0 group/phone"
+                              title={`Call ${vendor.name} (${vendor.phone})`}
+                              aria-label={`Call ${vendor.name}`}
+                            >
+                              <i className="ph-fill ph-phone text-sm group-hover/phone:animate-bounce"></i>
+                            </motion.a>
+                          )}
                           {vendor.websiteUrl && (
                             <motion.a
                               whileTap={{ scale: 0.98 }}
@@ -372,18 +384,6 @@ export default function RentalsDirectory() {
                             >
                               <span>{t("visitWebsite")}</span>
                               <i className="ph-bold ph-arrow-up-right text-sm transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"></i>
-                            </motion.a>
-                          )}
-                          {vendor.phone && (
-                            <motion.a
-                              whileTap={{ scale: 0.9 }}
-                              whileHover={{ scale: 1.08 }}
-                              href={`tel:${vendor.phone}`}
-                              className="w-10 h-10 flex items-center justify-center rounded-xl bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 text-dark dark:text-white border border-border/70 transition-all shrink-0 group/phone"
-                              title={`Call ${vendor.name} (${vendor.phone})`}
-                              aria-label={`Call ${vendor.name}`}
-                            >
-                              <i className="ph-fill ph-phone text-sm group-hover/phone:animate-bounce"></i>
                             </motion.a>
                           )}
                         </div>

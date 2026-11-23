@@ -100,24 +100,24 @@ export default function HomeCook() {
         </AnimatePresence>
       </div>
 
-      {/* Action buttons (both Mobile and Desktop) */}
+      {/* Action buttons (both Mobile and Desktop): Call on left, Order CTA on right */}
       <div className="grid grid-cols-2 md:flex md:flex-col gap-2 md:gap-2.5 mt-3.5 md:mt-auto pt-3 md:pt-0 border-t border-green-100/60 dark:border-green-500/20 md:border-t-0 relative z-10 w-full">
+        <button 
+          onClick={(e) => { e.stopPropagation(); setCookModalOpen(true); }} 
+          className="flex items-center justify-center gap-1.5 py-2.5 md:py-3 bg-dark text-warm-white hover:opacity-90 active:scale-[0.98] rounded-xl text-xs sm:text-sm md:text-base font-semibold shadow-sm transition-all cursor-pointer"
+        >
+          <i className="ph-fill ph-phone text-base md:text-xl"></i>
+          <span>{ui("call")}</span>
+        </button>
         <Link 
           href="/order-food" 
           onClick={(e) => e.stopPropagation()} 
-          className="flex items-center justify-center gap-1.5 py-2.5 md:py-3 bg-green-600 text-white hover:bg-green-700 active:scale-[0.98] rounded-xl text-xs sm:text-sm md:text-base font-semibold shadow-sm transition-all shadow-[0_0_12px_rgba(22,163,74,0.25)]"
+          className="flex items-center justify-center gap-1.5 py-2.5 md:py-3 bg-[#25D366] text-white hover:bg-[#20b858] active:scale-[0.98] rounded-xl text-xs sm:text-sm md:text-base font-semibold shadow-sm hover:shadow-md transition-all cursor-pointer"
         >
           <i className="ph-fill ph-shopping-cart text-base md:text-xl"></i>
           <span>Order</span>
           <span className="hidden sm:inline md:hidden lg:inline"> Online</span>
         </Link>
-        <button 
-          onClick={(e) => { e.stopPropagation(); setCookModalOpen(true); }} 
-          className="flex items-center justify-center gap-1.5 py-2.5 md:py-3 bg-dark text-warm-white hover:opacity-90 active:scale-[0.98] rounded-xl text-xs sm:text-sm md:text-base font-semibold shadow-sm transition-all"
-        >
-          <i className="ph-fill ph-phone text-base md:text-xl"></i>
-          <span>{ui("call")}</span>
-        </button>
       </div>
 
       <CookModal isOpen={cookModalOpen} onClose={() => setCookModalOpen(false)} />
