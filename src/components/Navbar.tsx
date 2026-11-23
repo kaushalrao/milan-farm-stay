@@ -44,8 +44,17 @@ export default function Navbar() {
           }
         });
       },
-      { rootMargin: "-20% 0px -70% 0px" }
+      { rootMargin: "-15% 0px -50% 0px" }
     );
+
+    const handleBottomScroll = () => {
+      const scrollPosition = window.scrollY + window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      if (documentHeight - scrollPosition < 180) {
+        setActiveSection("stay");
+      }
+    };
+    window.addEventListener("scroll", handleBottomScroll, { passive: true });
 
     // Give DOM time to mount
     setTimeout(() => {
@@ -55,7 +64,10 @@ export default function Navbar() {
       });
     }, 100);
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", handleBottomScroll);
+    };
   }, [navItems]);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string, isAnchor?: boolean) => {
@@ -63,9 +75,19 @@ export default function Navbar() {
       if (typeof window !== "undefined") {
         if (window.location.pathname === "/") {
           e.preventDefault();
+          const targetId = href.replace("#", "");
+          setActiveSection(targetId);
           setTimeout(() => {
-            document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
-          }, 50);
+            const el = document.querySelector(href);
+            if (el) {
+              const navOffset = 76;
+              const elementPosition = el.getBoundingClientRect().top + window.scrollY;
+              window.scrollTo({
+                top: Math.max(0, elementPosition - navOffset),
+                behavior: "smooth"
+              });
+            }
+          }, 30);
         } else {
           e.preventDefault();
           window.location.href = `/${href}`;

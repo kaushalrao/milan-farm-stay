@@ -31,7 +31,7 @@ export default function TravelRentalsCard() {
             </div>
 
             <div className="flex flex-col min-w-0">
-              <h4 className="font-serif text-[17px] md:text-2xl lg:text-xl font-semibold text-dark mb-0.5 md:mb-1 leading-snug md:leading-tight truncate">
+              <h4 className="font-serif text-[17px] md:text-2xl lg:text-xl font-semibold text-dark mb-0.5 md:mb-1 leading-snug md:leading-tight break-words">
                 {t("travelCardTitle")}
               </h4>
               <div className="flex flex-wrap items-center gap-1.5 md:gap-2">

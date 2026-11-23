@@ -22,8 +22,8 @@ export default function StayCard({ property, priority = false, minimal = false }
     <motion.div
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true, margin: "250px" }}
+      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
       className="group h-full flex flex-col bg-warm-white dark:bg-[#1A1A1A] rounded-3xl border border-border/80 dark:border-white/10 hover:border-airbnb-coral/50 shadow-xs hover:shadow-xl transition-all duration-300 overflow-hidden"
     >
       {/* Cover Image Container with direct Airbnb link */}

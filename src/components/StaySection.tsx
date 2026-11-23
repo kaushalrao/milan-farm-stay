@@ -80,7 +80,7 @@ export default function StaySection() {
               key={property.id}
               className="snap-center md:snap-none shrink-0 w-[84vw] max-w-[340px] md:w-auto flex flex-col"
             >
-              <StayCard property={property} priority={idx === 0} minimal={true} />
+              <StayCard property={property} priority={idx < 2} minimal={true} />
             </div>
           ))}
         </div>

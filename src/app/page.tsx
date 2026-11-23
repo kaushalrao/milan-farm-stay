@@ -24,9 +24,10 @@ export default function Home() {
         <Hero />
         <TripCards />
 
-        <section className="pt-2 md:pt-8 pb-8 scroll-mt-24" id="contacts">
+        {/* Section 1: Contacts / Meet Your Hosts */}
+        <section className="pt-2 md:pt-6 pb-2 md:pb-4 scroll-mt-24" id="contacts">
           <div className="container mx-auto px-4 sm:px-6 max-w-5xl lg:max-w-7xl">
-            <div className="flex items-center gap-4 mb-8 md:mb-10">
+            <div className="flex items-center gap-4 mb-3 md:mb-5">
               <div className="flex-1 h-px bg-border"></div>
               <h2 className="font-serif text-lg md:text-2xl lg:text-3xl font-semibold text-text-muted/80 tracking-wide text-center uppercase">
                 {t("yourHosts")}
@@ -35,7 +36,7 @@ export default function Home() {
             </div>
 
             {/* Host Profiles */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 max-w-4xl mx-auto lg:max-w-5xl mb-8 md:mb-12 items-stretch">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6 max-w-4xl mx-auto lg:max-w-5xl items-stretch">
               <HostProfile
                 id="host-athula"
                 name={t("host1Name")}
@@ -56,35 +57,26 @@ export default function Home() {
                 phone="9448632666"
               />
             </div>
-
-            {/* Food & Delivery Section */}
-            <div id="food" className="flex items-center gap-4 my-6 md:my-8 scroll-mt-24">
-              <div className="flex-1 h-px bg-border"></div>
-              <h3 className="font-serif text-lg md:text-2xl font-semibold text-text-muted/80 tracking-wide text-center uppercase">
-                {t("foodAndDelivery")}
-              </h3>
-              <div className="flex-1 h-px bg-border"></div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 items-stretch">
-              <HomeCook />
-              <HomeDelivery />
-              <JioMartDelivery />
-            </div>
           </div>
         </section>
 
-        <section className="pt-2 pb-5 md:pt-4 md:pb-6 scroll-mt-24" id="coffee">
+        {/* Food & Delivery Section (including Estate Coffee) */}
+        <section className="pt-2 pb-5 md:pt-4 md:pb-6 scroll-mt-24" id="food">
           <div className="container mx-auto px-4 sm:px-6 max-w-5xl lg:max-w-7xl">
-            <div className="flex items-center gap-4 mb-4 md:mb-5">
+            <div className="flex items-center gap-4 mb-3 md:mb-5">
               <div className="flex-1 h-px bg-border"></div>
               <h2 className="font-serif text-lg md:text-2xl lg:text-3xl font-semibold text-text-muted/80 tracking-wide text-center uppercase">
-                {t("coffeeCardTitle")}
+                {t("foodAndDelivery")}
               </h2>
               <div className="flex-1 h-px bg-border"></div>
             </div>
 
-            <CoffeeShowcaseCard />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 items-stretch">
+              <HomeCook />
+              <HomeDelivery />
+              <JioMartDelivery />
+              <CoffeeShowcaseCard />
+            </div>
           </div>
         </section>
 

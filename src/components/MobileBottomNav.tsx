@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import CookModal from "./CookModal";
@@ -16,6 +16,9 @@ export default function MobileBottomNav() {
   const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [cookModalOpen, setCookModalOpen] = useState(false);
   const { openSearch } = useSearch();
+
+  const isManualScrollRef = useRef(false);
+  const manualScrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
@@ -39,22 +42,40 @@ export default function MobileBottomNav() {
   // Scroll Spy: Update active section based on scroll position
   useEffect(() => {
     const handleScroll = () => {
-      // Use a detection line at 30% from the top of the viewport
-      const detectionLine = window.innerHeight * 0.3;
+      // If user tapped a tab, don't override activeSection during programmatic smooth scroll
+      if (isManualScrollRef.current) return;
+
+      const scrollPosition = window.scrollY + window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+
+      // 1. Bottom of page check: If near the bottom, the last section ('stay') is active
+      if (documentHeight - scrollPosition < 180) {
+        setActiveSection("stay");
+        return;
+      }
+
+      // 2. Viewport detection line: 45% from top of screen
+      const detectionLine = window.innerHeight * 0.45;
       
-      // Iterate through sections in reverse order to properly handle nested or overlapping sections
-      const reversedItems = [...navItems].reverse();
-      
+      // Filter out 'help' which is not an in-page section
+      const scrollNavItems = navItems.filter((item) => item.id !== "help");
+      const reversedItems = [...scrollNavItems].reverse();
+
       for (const item of reversedItems) {
         const el = document.getElementById(item.id);
         if (el) {
           const rect = el.getBoundingClientRect();
-          // If the top of the element is above the detection line, it is the active section
-          if (rect.top <= detectionLine) {
+          // If the top of the element has crossed the detection line and it is still visible in viewport
+          if (rect.top <= detectionLine && rect.bottom > 80) {
             setActiveSection(item.id);
-            return; // Found the active section, stop checking
+            return;
           }
         }
+      }
+
+      // If at top of page, default to plan
+      if (window.scrollY < 120) {
+        setActiveSection("plan");
       }
     };
 
@@ -74,22 +95,39 @@ export default function MobileBottomNav() {
     // Trigger once on mount
     handleScroll();
 
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (manualScrollTimeoutRef.current) {
+        clearTimeout(manualScrollTimeoutRef.current);
+      }
+    };
   }, []);
 
   const scrollToSection = (id: string) => {
     if (id === "help") {
-      setIsHelpOpen(!isHelpOpen);
+      setIsHelpOpen((prev) => !prev);
       return;
     }
     setIsHelpOpen(false);
+    setActiveSection(id);
+
+    // Lock scroll-spy while smooth scrolling
+    isManualScrollRef.current = true;
+    if (manualScrollTimeoutRef.current) {
+      clearTimeout(manualScrollTimeoutRef.current);
+    }
+    manualScrollTimeoutRef.current = setTimeout(() => {
+      isManualScrollRef.current = false;
+    }, 900);
+
     const el = document.getElementById(id);
     if (el) {
-      // Small delay allows any closing animations to run, if necessary
-      setTimeout(() => {
-        el.scrollIntoView({ behavior: "smooth" });
-        setActiveSection(id);
-      }, 50);
+      const navOffset = 76;
+      const elementPosition = el.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: Math.max(0, elementPosition - navOffset),
+        behavior: "smooth"
+      });
     }
   };
 
@@ -101,23 +139,23 @@ export default function MobileBottomNav() {
       className="md:hidden fixed bottom-0 left-0 w-full z-[80] pb-[env(safe-area-inset-bottom)] pointer-events-none"
     >
       <div className="mx-4 mb-4 pointer-events-auto">
-        <div className="flex items-center justify-between px-2 py-1.5 h-[64px] bg-warm-white/85 backdrop-blur-xl border border-white/40 shadow-[0_8px_30px_rgb(0,0,0,0.12)] rounded-full">
+        <div className="flex items-center justify-between px-2 py-1.5 h-[64px] bg-warm-white/90 dark:bg-[#1A1A1A]/95 backdrop-blur-xl border border-black/5 dark:border-white/15 shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.6)] rounded-full">
           {navItems.map((item) => {
-            const isActive = activeSection === item.id;
+            const isActive = item.id === "help" ? isHelpOpen : activeSection === item.id;
             return (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="relative flex flex-col items-center justify-center w-full h-full gap-0.5 tap-highlight-transparent group"
+                className="relative flex flex-col items-center justify-center w-full h-full gap-0.5 tap-highlight-transparent group cursor-pointer"
                 aria-label={`Scroll to ${item.label}`}
               >
                 {/* Icon Container with Pill */}
                 <div className="relative w-11 sm:w-14 h-8 flex items-center justify-center">
-                  {/* Active Pill Indicator */}
+                  {/* Active Pill Indicator - High contrast in both Light & Dark Theme */}
                   {isActive && (
                     <motion.div
                       layoutId="activeNavPill"
-                      className="absolute inset-0 bg-airbnb-coral/15 rounded-full"
+                      className="absolute inset-0 bg-airbnb-coral/15 dark:bg-airbnb-coral/30 border border-airbnb-coral/30 dark:border-airbnb-coral/50 rounded-full shadow-xs"
                       initial={false}
                       transition={{ type: "spring", stiffness: 500, damping: 35 }}
                     />
@@ -125,7 +163,7 @@ export default function MobileBottomNav() {
                   
                   <div
                     className={`relative z-10 text-[22px] transition-all duration-300 ${
-                      isActive ? "text-airbnb-coral scale-110" : "text-text-muted/70 group-hover:text-dark"
+                      isActive ? "text-airbnb-coral scale-110 drop-shadow-xs" : "text-stone-500 dark:text-neutral-400 group-hover:text-dark dark:group-hover:text-white"
                     }`}
                   >
                     <i className={`${isActive ? "ph-fill" : "ph"} ${item.icon}`}></i>
@@ -135,7 +173,7 @@ export default function MobileBottomNav() {
                 {/* Label */}
                 <span
                   className={`text-[10px] font-bold tracking-wide transition-all duration-300 mt-0.5 ${
-                    isActive ? "text-airbnb-coral" : "text-text-muted/70 group-hover:text-dark"
+                    isActive ? "text-airbnb-coral" : "text-stone-500 dark:text-neutral-400 group-hover:text-dark dark:group-hover:text-white"
                   }`}
                 >
                   {item.label}
